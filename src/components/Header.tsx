@@ -26,9 +26,9 @@ export default function Header() {
             <Link href="/#areas" className="text-gray-600 hover:text-violet-600 font-medium transition">
               Areas
             </Link>
-            <button className="bg-violet-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-violet-700 transition">
+            <Link href="/list-your-pg" className="bg-violet-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-violet-700 transition">
               List Your PG
-            </button>
+            </Link>
           </nav>
         </div>
       </div>

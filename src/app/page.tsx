@@ -4,7 +4,10 @@ import { useState, useMemo } from "react";
 import Header from "@/components/Header";
 import SearchFilters from "@/components/SearchFilters";
 import PGCard from "@/components/PGCard";
+import MapView from "@/components/MapView";
+import CompareDrawer from "@/components/CompareDrawer";
 import { listings, areas } from "@/data/listings";
+import type { PGListing } from "@/data/listings";
 
 type Filters = {
   search: string;
@@ -33,6 +36,16 @@ const defaultFilters: Filters = {
 export default function Home() {
   const [filters, setFilters] = useState<Filters>(defaultFilters);
   const [sortBy, setSortBy] = useState<string>("rating");
+  const [viewMode, setViewMode] = useState<"grid" | "map">("grid");
+  const [compareList, setCompareList] = useState<PGListing[]>([]);
+
+  const toggleCompare = (pg: PGListing) => {
+    if (compareList.find((c) => c.id === pg.id)) {
+      setCompareList(compareList.filter((c) => c.id !== pg.id));
+    } else if (compareList.length < 3) {
+      setCompareList([...compareList, pg]);
+    }
+  };
 
   const filtered = useMemo(() => {
     let result = listings.filter((pg) => {
@@ -133,34 +146,67 @@ export default function Home() {
         <section id="listings" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <SearchFilters filters={filters} onChange={setFilters} />
 
-          {/* Sort + Results count */}
+          {/* Sort + Results count + View Toggle */}
           <div className="flex items-center justify-between mt-8 mb-6">
             <p className="text-gray-600">
               <span className="font-semibold text-gray-900">{filtered.length}</span> PGs found
               {filters.area && <span> in <span className="font-medium text-violet-600">{filters.area}</span></span>}
             </p>
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-gray-500">Sort:</span>
-              <select
-                className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-violet-500 outline-none bg-white text-gray-700"
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-              >
-                <option value="rating">Top Rated</option>
-                <option value="price-low">Price: Low to High</option>
-                <option value="price-high">Price: High to Low</option>
-                <option value="reviews">Most Reviews</option>
-              </select>
+            <div className="flex items-center gap-4">
+              {/* View Toggle */}
+              <div className="flex items-center bg-gray-100 rounded-lg p-1">
+                <button
+                  onClick={() => setViewMode("grid")}
+                  className={`px-3 py-1.5 rounded-md text-sm font-medium transition ${viewMode === "grid" ? "bg-white shadow-sm text-gray-900" : "text-gray-500"}`}
+                >
+                  Grid
+                </button>
+                <button
+                  onClick={() => setViewMode("map")}
+                  className={`px-3 py-1.5 rounded-md text-sm font-medium transition ${viewMode === "map" ? "bg-white shadow-sm text-gray-900" : "text-gray-500"}`}
+                >
+                  Map
+                </button>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-gray-500">Sort:</span>
+                <select
+                  className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-violet-500 outline-none bg-white text-gray-700"
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                >
+                  <option value="rating">Top Rated</option>
+                  <option value="price-low">Price: Low to High</option>
+                  <option value="price-high">Price: High to Low</option>
+                  <option value="reviews">Most Reviews</option>
+                </select>
+              </div>
             </div>
           </div>
 
-          {/* Listing Grid */}
+          {/* Listing Grid or Map */}
           {filtered.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filtered.map((pg) => (
-                <PGCard key={pg.id} pg={pg} />
-              ))}
-            </div>
+            viewMode === "map" ? (
+              <MapView listings={filtered} />
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filtered.map((pg) => (
+                  <div key={pg.id} className="relative">
+                    <PGCard pg={pg} />
+                    <button
+                      onClick={(e) => { e.preventDefault(); toggleCompare(pg); }}
+                      className={`absolute top-3 left-12 z-10 px-2 py-1 rounded-full text-xs font-medium transition ${
+                        compareList.find((c) => c.id === pg.id)
+                          ? "bg-violet-600 text-white"
+                          : "bg-white/90 text-gray-600 hover:bg-violet-100 border border-gray-200"
+                      }`}
+                    >
+                      {compareList.find((c) => c.id === pg.id) ? "Added" : "Compare"}
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )
           ) : (
             <div className="text-center py-20">
               <div className="w-20 h-20 bg-violet-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -232,6 +278,11 @@ export default function Home() {
           </div>
         </footer>
       </main>
+      <CompareDrawer
+        items={compareList}
+        onRemove={(id) => setCompareList(compareList.filter((c) => c.id !== id))}
+        onClear={() => setCompareList([])}
+      />
     </>
   );
 }
