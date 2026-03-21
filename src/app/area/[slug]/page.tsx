@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { listings, areas } from "@/data/listings";
+import { fetchListings, fetchAreas } from "@/lib/db";
 import Header from "@/components/Header";
 import PGCard from "@/components/PGCard";
 import type { Metadata } from "next";
@@ -9,7 +9,8 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
-function slugToArea(slug: string): string | undefined {
+async function slugToArea(slug: string): Promise<string | undefined> {
+  const areas = await fetchAreas();
   return areas.find(
     (a) => a.toLowerCase().replace(/\s+/g, "-") === slug.toLowerCase()
   );
@@ -17,25 +18,29 @@ function slugToArea(slug: string): string | undefined {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const area = slugToArea(slug);
+  const area = await slugToArea(slug);
   if (!area) return { title: "Area Not Found" };
-  const count = listings.filter((l) => l.area === area).length;
+  const allListings = await fetchListings();
+  const areaListings = allListings.filter((l) => l.area === area);
   return {
-    title: `PG in ${area} | ${count}+ PGs & Hostels | PG Finder Bangalore`,
-    description: `Find the best PG accommodations in ${area}, Bangalore. ${count}+ verified PGs with food, WiFi, AC. Compare prices starting from ₹${Math.min(...listings.filter((l) => l.area === area).map((l) => l.price)).toLocaleString()}/month.`,
+    title: `PG in ${area} | ${areaListings.length}+ PGs & Hostels | PG Finder Bangalore`,
+    description: `Find the best PG accommodations in ${area}, Bangalore. ${areaListings.length}+ verified PGs with food, WiFi, AC. Compare prices starting from ₹${Math.min(...areaListings.map((l) => l.price)).toLocaleString()}/month.`,
   };
 }
 
 export async function generateStaticParams() {
+  const areas = await fetchAreas();
   return areas.map((a) => ({ slug: a.toLowerCase().replace(/\s+/g, "-") }));
 }
 
 export default async function AreaPage({ params }: Props) {
   const { slug } = await params;
-  const area = slugToArea(slug);
+  const area = await slugToArea(slug);
   if (!area) notFound();
 
-  const areaListings = listings.filter((l) => l.area === area);
+  const allListings = await fetchListings();
+  const areas = await fetchAreas();
+  const areaListings = allListings.filter((l) => l.area === area);
   const avgPrice = Math.round(
     areaListings.reduce((s, l) => s + l.price, 0) / areaListings.length
   );

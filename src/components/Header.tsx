@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import DarkModeToggle from "@/components/DarkModeToggle";
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -16,7 +17,7 @@ export default function Header() {
                 <span className="text-white font-bold text-lg tracking-tight">P</span>
               </div>
               <div className="flex flex-col">
-                <span className="text-lg font-bold text-gray-900 tracking-tight leading-none">PG Finder</span>
+                <span className="text-lg font-bold text-gray-900 dark:text-white tracking-tight leading-none">PG Finder</span>
                 <span className="text-[10px] font-semibold text-violet-600 uppercase tracking-[0.15em] leading-none mt-0.5">Bangalore</span>
               </div>
             </Link>
@@ -27,16 +28,18 @@ export default function Header() {
                 { label: "Home", href: "/" },
                 { label: "Browse", href: "/#listings" },
                 { label: "Areas", href: "/#areas" },
+                { label: "Roommates", href: "/roommate-finder" },
               ].map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 rounded-xl hover:bg-gray-100/80 transition-all"
+                  className="px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white rounded-xl hover:bg-gray-100/80 dark:hover:bg-gray-800 transition-all"
                 >
                   {item.label}
                 </Link>
               ))}
-              <div className="w-px h-6 bg-gray-200 mx-2" />
+              <div className="w-px h-6 bg-gray-200 dark:bg-gray-700 mx-2" />
+              <DarkModeToggle />
               <Link
                 href="/list-your-pg"
                 className="btn-premium text-sm !py-2.5 !px-5"
@@ -46,33 +49,38 @@ export default function Header() {
             </nav>
 
             {/* Mobile Menu Button */}
-            <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden w-10 h-10 rounded-xl flex items-center justify-center hover:bg-gray-100 transition"
-            >
-              <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                {mobileOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
-            </button>
+            <div className="md:hidden flex items-center gap-2">
+              <DarkModeToggle />
+              <button
+                onClick={() => setMobileOpen(!mobileOpen)}
+                className="w-10 h-10 rounded-xl flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+              >
+                <svg className="w-5 h-5 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  {mobileOpen ? (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  ) : (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  )}
+                </svg>
+              </button>
+            </div>
           </div>
 
           {/* Mobile Menu */}
           {mobileOpen && (
-            <div className="md:hidden pt-4 pb-2 border-t border-gray-200/50 mt-3 space-y-1 animate-slide-up">
+            <div className="md:hidden pt-4 pb-2 border-t border-gray-200/50 dark:border-gray-700 mt-3 space-y-1 animate-slide-up">
               {[
                 { label: "Home", href: "/" },
                 { label: "Browse PGs", href: "/#listings" },
                 { label: "Areas", href: "/#areas" },
+                { label: "Find Roommates", href: "/roommate-finder" },
+                { label: "Owner Dashboard", href: "/owner-dashboard" },
               ].map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
                   onClick={() => setMobileOpen(false)}
-                  className="block px-4 py-2.5 text-sm font-medium text-gray-700 rounded-xl hover:bg-gray-100 transition"
+                  className="block px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition"
                 >
                   {item.label}
                 </Link>

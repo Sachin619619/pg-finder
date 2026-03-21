@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { listings } from "@/data/listings";
+import { fetchListings } from "@/lib/db";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = req.nextUrl;
@@ -10,7 +10,9 @@ export async function GET(req: NextRequest) {
   const roomType = searchParams.get("roomType");
   const search = searchParams.get("search");
 
-  let result = listings.filter((pg) => {
+  let result = await fetchListings();
+
+  result = result.filter((pg) => {
     if (area && pg.area !== area) return false;
     if (gender && pg.gender !== gender) return false;
     if (pg.price < minPrice || pg.price > maxPrice) return false;
