@@ -5,72 +5,42 @@ const MINIMAX_API_KEY = process.env.MINIMAX_API_KEY;
 const API_URL = "https://api.minimax.io/v1/text/chatcompletion_v2";
 const MODEL = "MiniMax-M2.7-highspeed";
 
-const SYSTEM_PROMPT = `You are PG Finder AI — a concise, action-oriented assistant for finding PGs in Bangalore.
+const SYSTEM_PROMPT = `You are PG Finder AI — ultra concise assistant for PG accommodation in Bangalore.
 
-RESPONSE RULES:
-1. Keep text to 1-2 SHORT sentences max. No lengthy descriptions or bullet points about each PG.
-2. When showing PGs, just say something like "Found 3 PGs matching your criteria 🎯" then include the json_results block.
-3. The UI will render beautiful PG cards automatically — do NOT describe PG details in text.
-4. ALWAYS include \`\`\`json_results ["id1", "id2"] \`\`\` at the end when recommending PGs.
-5. For actions (save, book, compare, navigate), include \`\`\`json_actions {...} \`\`\` block.
+STRICT RULES:
+1. Reply in MAX 1 short sentence. No bullet points. No descriptions of individual PGs.
+2. When showing PGs, write ONE line like "Found 3 PGs for you 🎯" then ALWAYS add RESULTS_JSON on a new line.
+3. RESULTS_JSON must contain real PG IDs from the database below. Example: RESULTS_JSON:["pg-5","pg-12","pg-14"]
+4. For actions, add ACTION_JSON on a new line. Example: ACTION_JSON:{"action":"navigate","data":{"url":"/saved"}}
+5. NEVER describe PG details in text — the UI renders cards automatically.
 
-ACTION FORMAT — use when the user wants to DO something:
-\`\`\`json_actions {"action": "ACTION_TYPE", "data": {...}} \`\`\`
-
-Available actions:
-- {"action": "navigate", "data": {"url": "/listing/pg-1"}} — open a listing page
-- {"action": "navigate", "data": {"url": "/saved"}} — go to saved PGs
-- {"action": "navigate", "data": {"url": "/roommate-finder"}} — find roommates
-- {"action": "navigate", "data": {"url": "/booking/pg-1"}} — book a PG
-- {"action": "navigate", "data": {"url": "/#listings"}} — browse all PGs
-- {"action": "navigate", "data": {"url": "/#areas"}} — view all areas
-- {"action": "save", "data": {"pgId": "pg-1"}} — save a PG to favorites
-- {"action": "unsave", "data": {"pgId": "pg-1"}} — remove from saved
-- {"action": "compare", "data": {"pgIds": ["pg-1", "pg-2"]}} — compare PGs
-- {"action": "call", "data": {"phone": "9876543210", "name": "Owner Name"}} — call owner
-- {"action": "whatsapp", "data": {"phone": "9876543210", "pgName": "PG Name"}} — WhatsApp owner
-- {"action": "filter", "data": {"area": "Koramangala", "maxPrice": 10000, "gender": "female", "amenities": ["WiFi", "AC"]}} — filter listings
+ACTION TYPES:
+- ACTION_JSON:{"action":"navigate","data":{"url":"/listing/pg-1"}} — open listing
+- ACTION_JSON:{"action":"navigate","data":{"url":"/saved"}} — saved PGs
+- ACTION_JSON:{"action":"navigate","data":{"url":"/roommate-finder"}} — roommates
+- ACTION_JSON:{"action":"navigate","data":{"url":"/booking/pg-1"}} — book PG
+- ACTION_JSON:{"action":"save","data":{"pgId":"pg-1"}} — save to favorites
+- ACTION_JSON:{"action":"call","data":{"phone":"9876543210","name":"Owner"}} — call owner
+- ACTION_JSON:{"action":"whatsapp","data":{"phone":"9876543210","pgName":"PG Name"}} — WhatsApp
 
 EXAMPLES:
-User: "Find PGs under 8000"
-Response: "Here are budget-friendly PGs under ₹8,000 🏠"
-\`\`\`json_results ["pg-4", "pg-8", "pg-14"] \`\`\`
-
-User: "Save the first one"
-Response: "Saved! ❤️"
-\`\`\`json_actions {"action": "save", "data": {"pgId": "pg-4"}} \`\`\`
-
-User: "Book Zolo Haven"
-Response: "Taking you to book Zolo Haven 🎉"
-\`\`\`json_actions {"action": "navigate", "data": {"url": "/booking/pg-5"}} \`\`\`
-
-User: "Compare the top 2"
-Response: "Here's a side-by-side comparison 📊"
-\`\`\`json_actions {"action": "compare", "data": {"pgIds": ["pg-1", "pg-5"]}} \`\`\`
-
-User: "Call the owner of CozyStay"
-Response: "Connecting you to Rahul Mehta 📞"
-\`\`\`json_actions {"action": "call", "data": {"phone": "9876543210", "name": "Rahul Mehta"}} \`\`\`
-
-User: "Show me my saved PGs"
-Response: "Opening your saved PGs ❤️"
-\`\`\`json_actions {"action": "navigate", "data": {"url": "/saved"}} \`\`\`
-
-User: "Find roommates"
-Response: "Let's find you a roommate! 🤝"
-\`\`\`json_actions {"action": "navigate", "data": {"url": "/roommate-finder"}} \`\`\`
+User: "PGs under 8000" → "Found 4 budget PGs under ₹8K 🏠" then RESULTS_JSON:["pg-4","pg-8","pg-14","pg-18"]
+User: "Save Zolo Haven" → "Saved! ❤️" then ACTION_JSON:{"action":"save","data":{"pgId":"pg-5"}}
+User: "Book CozyStay" → "Taking you to booking 🎉" then ACTION_JSON:{"action":"navigate","data":{"url":"/booking/pg-1"}}
+User: "Call ORR Connect owner" → "Calling Naveen 📞" then ACTION_JSON:{"action":"call","data":{"phone":"9632587410","name":"Naveen"}}
+User: "Show saved" → "Opening saved PGs ❤️" then ACTION_JSON:{"action":"navigate","data":{"url":"/saved"}}
+User: "Find roommates" → "Let's find a roommate! 🤝" then ACTION_JSON:{"action":"navigate","data":{"url":"/roommate-finder"}}
 
 PG DATABASE:
 ${JSON.stringify(listings.map(l => ({
-  id: l.id, name: l.name, area: l.area, locality: l.locality, price: l.price,
+  id: l.id, name: l.name, area: l.area, price: l.price,
   type: l.type, gender: l.gender, amenities: l.amenities, rating: l.rating,
-  reviews: l.reviews, furnished: l.furnished, foodIncluded: l.foodIncluded,
-  wifiIncluded: l.wifiIncluded, acAvailable: l.acAvailable,
-  contactPhone: l.contactPhone, contactName: l.contactName,
-  distanceFromMetro: l.distanceFromMetro, description: l.description,
-})), null, 0)}
+  reviews: l.reviews, foodIncluded: l.foodIncluded, wifiIncluded: l.wifiIncluded,
+  acAvailable: l.acAvailable, contactPhone: l.contactPhone, contactName: l.contactName,
+  distanceFromMetro: l.distanceFromMetro,
+})))}
 
-Remember: Be ULTRA concise. 1-2 sentences max. Let the UI do the heavy lifting.`;
+CRITICAL: Always use REAL PG IDs from the database. Filter accurately by price, area, gender, amenities. Keep text to ONE sentence.`;
 
 type Message = {
   role: "system" | "user" | "assistant";
@@ -102,7 +72,7 @@ export async function POST(req: Request) {
       body: JSON.stringify({
         model: MODEL,
         messages: fullMessages,
-        temperature: 0.5,
+        temperature: 0.3,
         max_tokens: 2048,
       }),
     });
@@ -111,35 +81,52 @@ export async function POST(req: Request) {
 
     if (data.base_resp?.status_code && data.base_resp.status_code !== 0) {
       console.error("MiniMax API error:", data.base_resp);
-      return NextResponse.json({ error: data.base_resp.status_msg || "AI service error" }, { status: 502 });
+      return NextResponse.json({ error: data.base_resp.status_msg || "AI error" }, { status: 502 });
     }
 
     const reply = data.choices?.[0]?.message?.content || "Sorry, try again!";
 
-    // Extract PG IDs
+    // Extract PG IDs — support multiple formats
     let matchedPGs: string[] = [];
-    const jsonMatch = reply.match(/```json_results\s*(\[[\s\S]*?\])\s*```/);
-    if (jsonMatch) {
-      try { matchedPGs = JSON.parse(jsonMatch[1]); } catch {}
+    const resultsMatch = reply.match(/RESULTS_JSON:\s*(\[[\s\S]*?\])/);
+    if (resultsMatch) {
+      try { matchedPGs = JSON.parse(resultsMatch[1]); } catch {}
+    }
+    // Fallback: try ```json_results format
+    if (matchedPGs.length === 0) {
+      const altMatch = reply.match(/```json_results\s*(\[[\s\S]*?\])\s*```/);
+      if (altMatch) {
+        try { matchedPGs = JSON.parse(altMatch[1]); } catch {}
+      }
     }
 
     // Extract action
     let action = null;
-    const actionMatch = reply.match(/```json_actions\s*(\{[\s\S]*?\})\s*```/);
+    const actionMatch = reply.match(/ACTION_JSON:\s*(\{[\s\S]*?\})/);
     if (actionMatch) {
       try { action = JSON.parse(actionMatch[1]); } catch {}
     }
+    // Fallback
+    if (!action) {
+      const altAction = reply.match(/```json_actions\s*(\{[\s\S]*?\})\s*```/);
+      if (altAction) {
+        try { action = JSON.parse(altAction[1]); } catch {}
+      }
+    }
 
-    // Clean reply text
+    // Clean reply — remove all JSON blocks
     const cleanReply = reply
+      .replace(/RESULTS_JSON:\s*\[[\s\S]*?\]/g, "")
+      .replace(/ACTION_JSON:\s*\{[\s\S]*?\}/g, "")
       .replace(/```json_results[\s\S]*?```/g, "")
       .replace(/```json_actions[\s\S]*?```/g, "")
       .replace(/---/g, "")
       .replace(/###\s*/g, "")
       .replace(/\*\*/g, "")
+      .replace(/\n{2,}/g, "\n")
       .trim();
 
-    // Get full listing data
+    // Get full listing data — only valid IDs
     const matchedListings = matchedPGs
       .map((id: string) => listings.find((l) => l.id === id))
       .filter(Boolean);
