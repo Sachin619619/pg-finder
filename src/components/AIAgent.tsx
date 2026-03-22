@@ -39,6 +39,7 @@ export default function AIAgent() {
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const sendingRef = useRef(false);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -92,7 +93,8 @@ export default function AIAgent() {
   };
 
   const sendMessage = async (text: string) => {
-    if (!text.trim() || loading) return;
+    if (!text.trim() || loading || sendingRef.current) return;
+    sendingRef.current = true;
 
     const userMsg: Message = { role: "user", content: text.trim() };
     const newMessages = [...messages, userMsg];
@@ -138,6 +140,7 @@ export default function AIAgent() {
       ]);
     } finally {
       setLoading(false);
+      sendingRef.current = false;
     }
   };
 
@@ -170,7 +173,7 @@ export default function AIAgent() {
 
       {/* Chat Panel */}
       {open && (
-        <div className="fixed bottom-24 right-4 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[420px] h-[70vh] max-h-[600px] flex flex-col bg-white dark:bg-[#0f0a1e] rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-700/50 overflow-hidden animate-slide-up backdrop-blur-none">
+        <div className="fixed bottom-24 right-4 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[420px] h-[70vh] max-h-[600px] flex flex-col bg-white dark:bg-[#0f0a1e] rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-700/50 overflow-hidden animate-slide-up isolate [backdrop-filter:none]">
           {/* Header */}
           <div className="px-5 py-3.5 bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-500 flex items-center gap-3">
             <div className="w-9 h-9 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center">
@@ -189,7 +192,7 @@ export default function AIAgent() {
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto px-3 py-3 space-y-3 scrollbar-thin">
+          <div className="flex-1 overflow-y-auto px-3 py-3 space-y-3 scrollbar-thin bg-white dark:bg-[#0f0a1e]">
             {messages.map((msg, i) => (
               <div key={i}>
                 {/* Text bubble */}
@@ -312,7 +315,7 @@ export default function AIAgent() {
 
           {/* Quick Prompts */}
           {messages.length <= 1 && (
-            <div className="px-3 pb-2">
+            <div className="px-3 pb-2 bg-white dark:bg-[#0f0a1e]">
               <div className="flex gap-1.5 overflow-x-auto pb-1.5 scrollbar-none">
                 {QUICK_PROMPTS.map((prompt) => (
                   <button

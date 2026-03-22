@@ -48,8 +48,9 @@ function filterPGs(filters: Record<string, unknown>): PGListing[] {
   let results = [...listings];
 
   if (filters.area) {
-    const area = (filters.area as string).toLowerCase();
-    results = results.filter(pg => pg.area.toLowerCase().includes(area));
+    const area = (filters.area as string).toLowerCase().trim();
+    // Use exact area match (case-insensitive) to avoid loose partial matches
+    results = results.filter(pg => pg.area.toLowerCase().trim() === area);
   }
   if (filters.maxPrice) {
     results = results.filter(pg => pg.price <= (filters.maxPrice as number));
@@ -158,12 +159,25 @@ export async function POST(req: Request) {
       });
     }
 
-    const replyText = parsed.text || "Here you go! 🎯";
+    let replyText = parsed.text || "Here you go! 🎯";
     let matchedListings: PGListing[] = [];
     let action = null;
 
     if (parsed.intent === "search" && parsed.filters) {
       matchedListings = filterPGs(parsed.filters);
+
+      // Fix: replace any number in the AI reply text with the actual count
+      // so the AI doesn't say "found 8" when only 2 results matched
+      const count = matchedListings.length;
+      if (count > 0) {
+        replyText = replyText.replace(/\d+/, String(count));
+        // If the text doesn't contain a number, prepend the count
+        if (!/\d/.test(replyText)) {
+          replyText = `Found ${count} options! ${replyText}`;
+        }
+      } else {
+        replyText = "No PGs found matching your criteria. Try adjusting your filters! 🔍";
+      }
     }
 
     if (parsed.intent === "action" && parsed.action) {
