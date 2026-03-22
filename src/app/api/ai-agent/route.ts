@@ -3,7 +3,7 @@ import { listings } from "@/data/listings";
 
 const MINIMAX_API_KEY = process.env.MINIMAX_API_KEY;
 const API_URL = "https://api.minimax.io/v1/text/chatcompletion_v2";
-const MODEL = "MiniMax-M2.5";
+const MODEL = "MiniMax-M2.7-highspeed";
 
 const SYSTEM_PROMPT = `You are PG Finder AI — a smart, friendly assistant that helps people find PG (Paying Guest) accommodations in Bangalore, India.
 
