@@ -327,26 +327,6 @@ export default function LoginPage() {
             </div>
           </div>
 
-          {/* Demo accounts */}
-          <div className="mt-6 premium-card !rounded-2xl p-5">
-            <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Demo Accounts</p>
-            <div className="space-y-2">
-              {[
-                { label: "🏠 Tenant", email: "tenant@pgfinder.com", pass: "demo123" },
-                { label: "👤 Owner", email: "owner@pgfinder.com", pass: "demo123" },
-                { label: "🛡️ Admin", email: "admin@pgfinder.com", pass: "demo123" },
-              ].map((demo) => (
-                <button
-                  key={demo.label}
-                  onClick={() => { setEmail(demo.email); setPassword(demo.pass); }}
-                  className="w-full text-left p-3 rounded-xl bg-gray-50 dark:bg-gray-800 hover:bg-violet-50 dark:hover:bg-violet-900/20 transition text-sm flex items-center justify-between"
-                >
-                  <span className="font-medium text-gray-700 dark:text-gray-300">{demo.label}</span>
-                  <span className="text-xs text-gray-400">{demo.email}</span>
-                </button>
-              ))}
-            </div>
-          </div>
         </div>
       </main>
     </>
