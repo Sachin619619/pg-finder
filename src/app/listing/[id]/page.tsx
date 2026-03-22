@@ -23,13 +23,15 @@ export default function ListingPage() {
 
   useEffect(() => {
     if (typeof id === "string") {
-      Promise.all([fetchListingById(id), fetchReviews(id)]).then(
-        ([listing, revs]) => {
+      Promise.all([fetchListingById(id), fetchReviews(id)])
+        .then(([listing, revs]) => {
           setPg(listing);
           setReviews(revs);
           setLoading(false);
-        }
-      );
+        })
+        .catch(() => {
+          setLoading(false);
+        });
     }
   }, [id]);
 
@@ -37,12 +39,26 @@ export default function ListingPage() {
     return (
       <>
         <Header />
-        <div className="max-w-7xl mx-auto px-4 py-20 text-center">
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-24">
           <div className="animate-pulse">
-            <div className="h-8 bg-gray-200 rounded w-1/3 mx-auto mb-4" />
-            <div className="h-4 bg-gray-200 rounded w-1/4 mx-auto" />
+            <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-48 mb-6" />
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <div className="lg:col-span-2 space-y-6">
+                <div className="h-80 bg-gray-200 dark:bg-gray-700 rounded-2xl" />
+                <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded w-2/3" />
+                <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/3" />
+                <div className="flex gap-3">
+                  <div className="h-10 bg-gray-200 dark:bg-gray-700 rounded-xl w-32" />
+                  <div className="h-10 bg-gray-200 dark:bg-gray-700 rounded-xl w-28" />
+                  <div className="h-10 bg-gray-200 dark:bg-gray-700 rounded-xl w-36" />
+                </div>
+              </div>
+              <div className="space-y-4">
+                <div className="h-96 bg-gray-200 dark:bg-gray-700 rounded-2xl" />
+              </div>
+            </div>
           </div>
-        </div>
+        </main>
       </>
     );
   }
@@ -79,7 +95,7 @@ export default function ListingPage() {
           <div className="lg:col-span-2 space-y-6">
             {/* Photo Gallery */}
             <div className="relative">
-              <PhotoGallery pgName={pg.name} />
+              <PhotoGallery pgName={pg.name} images={pg.images} />
               {/* Wishlist + Verified badges */}
               <div className="absolute top-4 right-4 z-10 flex items-center gap-2">
                 <WishlistButton pgId={pg.id} size="lg" />
@@ -176,7 +192,7 @@ export default function ListingPage() {
             <NearbyPlaces area={pg.area} />
 
             {/* Reviews */}
-            <ReviewSection reviews={reviews} pgName={pg.name} />
+            <ReviewSection reviews={reviews} pgId={pg.id} pgName={pg.name} />
           </div>
 
           {/* Right Column — Contact & Price */}

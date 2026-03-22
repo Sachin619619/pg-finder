@@ -1,11 +1,31 @@
 "use client";
 
 import { useState } from "react";
+import { addReview } from "@/lib/db";
 import type { Review } from "@/lib/db";
 
-export default function ReviewSection({ reviews, pgName }: { reviews: Review[]; pgName: string }) {
+export default function ReviewSection({ reviews: initialReviews, pgId, pgName }: { reviews: Review[]; pgId: string; pgName: string }) {
+  const [reviews, setReviews] = useState(initialReviews);
   const [showForm, setShowForm] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [name, setName] = useState("");
+  const [rating, setRating] = useState("");
+  const [comment, setComment] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name || !rating || !comment) return;
+    setSubmitting(true);
+    const newReview = await addReview({ pgId, name, rating: Number(rating), comment });
+    if (newReview) {
+      setReviews([newReview, ...reviews]);
+      setShowForm(false);
+      setName("");
+      setRating("");
+      setComment("");
+    }
+    setSubmitting(false);
+  };
 
   return (
     <div className="premium-card !rounded-2xl p-6 sm:p-8">
@@ -16,14 +36,11 @@ export default function ReviewSection({ reviews, pgName }: { reviews: Review[]; 
         </button>
       </div>
 
-      {showForm && !submitted && (
-        <form
-          onSubmit={(e) => { e.preventDefault(); setSubmitted(true); setShowForm(false); }}
-          className="bg-gray-50 rounded-2xl p-5 mb-6 space-y-4 animate-slide-up"
-        >
+      {showForm && (
+        <form onSubmit={handleSubmit} className="bg-gray-50 rounded-2xl p-5 mb-6 space-y-4 animate-slide-up">
           <div className="grid grid-cols-2 gap-4">
-            <input required placeholder="Your name" className="premium-input w-full text-sm" />
-            <select required className="premium-input w-full text-sm">
+            <input required placeholder="Your name" value={name} onChange={(e) => setName(e.target.value)} className="premium-input w-full text-sm" />
+            <select required value={rating} onChange={(e) => setRating(e.target.value)} className="premium-input w-full text-sm">
               <option value="">Rating</option>
               <option value="5">5 Stars</option>
               <option value="4">4 Stars</option>
@@ -32,18 +49,14 @@ export default function ReviewSection({ reviews, pgName }: { reviews: Review[]; 
               <option value="1">1 Star</option>
             </select>
           </div>
-          <textarea required rows={3} placeholder={`Share your experience at ${pgName}...`} className="premium-input w-full text-sm resize-none" />
+          <textarea required rows={3} value={comment} onChange={(e) => setComment(e.target.value)} placeholder={`Share your experience at ${pgName}...`} className="premium-input w-full text-sm resize-none" />
           <div className="flex gap-3">
-            <button type="submit" className="btn-premium !py-2.5 !px-6 !text-sm">Submit Review</button>
+            <button type="submit" disabled={submitting} className="btn-premium !py-2.5 !px-6 !text-sm disabled:opacity-50">
+              {submitting ? "Submitting..." : "Submit Review"}
+            </button>
             <button type="button" onClick={() => setShowForm(false)} className="px-6 py-2.5 text-sm text-gray-500 hover:text-gray-700">Cancel</button>
           </div>
         </form>
-      )}
-
-      {submitted && (
-        <div className="bg-emerald-50 rounded-2xl p-4 mb-6 text-emerald-700 text-sm font-medium animate-slide-up">
-          Thanks for your review! It will appear after verification.
-        </div>
       )}
 
       {reviews.length > 0 ? (

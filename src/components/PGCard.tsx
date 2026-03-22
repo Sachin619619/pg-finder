@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useRef } from "react";
+import Image from "next/image";
+import { useRef, useState } from "react";
 import type { PGListing } from "@/data/listings";
 import WishlistButton from "@/components/WishlistButton";
 
@@ -33,6 +34,8 @@ const areaEmojis: Record<string, string> = {
 export default function PGCard({ pg }: { pg: PGListing }) {
   const gradient = areaGradients[pg.area] || "from-violet-400 via-purple-500 to-indigo-500";
   const cardRef = useRef<HTMLDivElement>(null);
+  const [imgError, setImgError] = useState(false);
+  const hasImage = pg.images && pg.images.length > 0 && pg.images[0] && !imgError;
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!cardRef.current) return;
@@ -51,28 +54,40 @@ export default function PGCard({ pg }: { pg: PGListing }) {
         className="premium-card spotlight overflow-hidden cursor-pointer group h-full flex flex-col"
       >
         {/* Image area */}
-        <div className={`relative h-52 bg-gradient-to-br ${gradient} overflow-hidden`}>
-          {/* Animated mesh pattern */}
-          <div className="absolute inset-0 opacity-[0.15]">
-            <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <pattern id={`mesh-${pg.id}`} width="30" height="30" patternUnits="userSpaceOnUse">
-                  <circle cx="2" cy="2" r="1" fill="white" />
-                  <circle cx="15" cy="15" r="0.5" fill="white" opacity="0.5" />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill={`url(#mesh-${pg.id})`} />
-            </svg>
-          </div>
-
-          {/* Floating house icon with 3D effect */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-20 h-20 bg-white/15 backdrop-blur-xl rounded-3xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-700 shadow-2xl shadow-black/10 border border-white/10">
-              <svg className="w-10 h-10 text-white drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-              </svg>
-            </div>
-          </div>
+        <div className={`relative h-52 ${hasImage ? "bg-gray-200" : `bg-gradient-to-br ${gradient}`} overflow-hidden`}>
+          {hasImage ? (
+            <Image
+              src={pg.images[0]}
+              alt={pg.name}
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
+              sizes="(max-width: 768px) 100vw, 400px"
+              onError={() => setImgError(true)}
+            />
+          ) : (
+            <>
+              {/* Animated mesh pattern */}
+              <div className="absolute inset-0 opacity-[0.15]">
+                <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <pattern id={`mesh-${pg.id}`} width="30" height="30" patternUnits="userSpaceOnUse">
+                      <circle cx="2" cy="2" r="1" fill="white" />
+                      <circle cx="15" cy="15" r="0.5" fill="white" opacity="0.5" />
+                    </pattern>
+                  </defs>
+                  <rect width="100%" height="100%" fill={`url(#mesh-${pg.id})`} />
+                </svg>
+              </div>
+              {/* Floating house icon */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-20 h-20 bg-white/15 backdrop-blur-xl rounded-3xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-700 shadow-2xl shadow-black/10 border border-white/10">
+                  <svg className="w-10 h-10 text-white drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                  </svg>
+                </div>
+              </div>
+            </>
+          )}
 
           {/* Price badge — glassmorphism */}
           <div className="absolute top-4 right-4 bg-white/80 backdrop-blur-xl rounded-2xl px-4 py-2 shadow-lg border border-white/50">

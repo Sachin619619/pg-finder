@@ -84,10 +84,14 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchListings().then((data) => {
-      setListings(data);
-      setLoading(false);
-    });
+    fetchListings()
+      .then((data) => {
+        setListings(data);
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
   }, []);
 
   const areas = useMemo(() => {
@@ -96,7 +100,8 @@ export default function Home() {
 
   const stat1 = useCounter(listings.length);
   const stat2 = useCounter(areas.length);
-  const stat3 = useCounter(500);
+  const totalReviews = useMemo(() => listings.reduce((acc, pg) => acc + pg.reviews, 0), [listings]);
+  const stat3 = useCounter(totalReviews || 500);
 
   const toggleCompare = (pg: PGListing) => {
     if (compareList.find((c) => c.id === pg.id)) {
@@ -277,8 +282,8 @@ export default function Home() {
               onClick={() => setFilters(defaultFilters)}
               className={`shrink-0 px-6 py-3.5 rounded-2xl font-medium text-sm transition-all ${
                 !filters.area
-                  ? "bg-gray-900 text-white shadow-lg shadow-gray-900/25 ring-1 ring-white/10"
-                  : "bg-white text-gray-600 shadow-sm border border-gray-100 hover:border-violet-200 hover:shadow-md"
+                  ? "bg-gray-900 dark:bg-white text-white dark:text-gray-900 shadow-lg shadow-gray-900/25 dark:shadow-white/10 ring-1 ring-white/10 dark:ring-gray-800"
+                  : "bg-white dark:bg-gray-800/60 text-gray-600 dark:text-gray-300 shadow-sm border border-gray-100 dark:border-gray-700 hover:border-violet-200 dark:hover:border-violet-500/30 hover:shadow-md"
               }`}
             >
               🌍 All Areas
@@ -289,8 +294,8 @@ export default function Home() {
                 onClick={() => setFilters({ ...defaultFilters, area })}
                 className={`shrink-0 px-6 py-3.5 rounded-2xl font-medium text-sm transition-all ${
                   filters.area === area
-                    ? "bg-gray-900 text-white shadow-lg shadow-gray-900/25 ring-1 ring-white/10"
-                    : "bg-white text-gray-600 shadow-sm border border-gray-100 hover:border-violet-200 hover:shadow-md"
+                    ? "bg-gray-900 dark:bg-white text-white dark:text-gray-900 shadow-lg shadow-gray-900/25 dark:shadow-white/10 ring-1 ring-white/10 dark:ring-gray-800"
+                    : "bg-white dark:bg-gray-800/60 text-gray-600 dark:text-gray-300 shadow-sm border border-gray-100 dark:border-gray-700 hover:border-violet-200 dark:hover:border-violet-500/30 hover:shadow-md"
                 }`}
               >
                 {areaEmojis[area] || "📍"} {area} <span className="text-xs opacity-50 ml-1">{count}</span>
@@ -345,7 +350,27 @@ export default function Home() {
           </div>
 
           {/* Listings */}
-          {filtered.length > 0 ? (
+          {loading ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+              {[1, 2, 3, 4, 5, 6].map((i) => (
+                <div key={i} className="premium-card !rounded-2xl overflow-hidden animate-pulse">
+                  <div className="h-52 bg-gray-200 dark:bg-gray-700" />
+                  <div className="p-5 space-y-3">
+                    <div className="flex justify-between">
+                      <div className="h-5 bg-gray-200 dark:bg-gray-700 rounded w-3/4" />
+                      <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded-xl w-14" />
+                    </div>
+                    <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/2" />
+                    <div className="flex gap-2">
+                      <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded-full w-16" />
+                      <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded-full w-14" />
+                      <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded-full w-12" />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : filtered.length > 0 ? (
             viewMode === "map" ? (
               <MapView listings={filtered} />
             ) : (
@@ -423,7 +448,7 @@ export default function Home() {
         <PriceAlertBanner />
 
         {/* ===== PRICE INSIGHTS ===== */}
-        <PriceInsights />
+        <PriceInsights listings={listings} />
 
         {/* ===== TESTIMONIALS ===== */}
         <Testimonials />
@@ -466,41 +491,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ===== CTA WITH ANIMATED BORDER ===== */}
-        <section className="py-20 bg-white dark:bg-gray-950 border-t border-gray-100 dark:border-gray-800">
-          <div className="max-w-4xl mx-auto px-4 text-center">
-            <div className="hero-gradient rounded-3xl p-14 sm:p-20 relative overflow-hidden">
-              {/* Aurora orbs */}
-              <div className="absolute top-0 right-0 w-80 h-80 bg-violet-500/15 rounded-full blur-[100px] orb-1" />
-              <div className="absolute bottom-0 left-0 w-64 h-64 bg-fuchsia-500/10 rounded-full blur-[80px] orb-2" />
-              <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-blue-500/5 rounded-full blur-[120px]" />
-
-              {/* Grid */}
-              <div className="absolute inset-0 opacity-[0.03]" style={{
-                backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-                backgroundSize: '40px 40px'
-              }} />
-
-              <div className="relative z-10">
-                <span className="pill bg-white/10 text-white/80 !text-xs font-semibold mb-6 inline-block border border-white/10">For PG Owners</span>
-                <h2 className="text-3xl sm:text-5xl font-extrabold text-white mb-5 tracking-tight">
-                  Own a PG? List it for <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-300 to-fuchsia-300">free</span>
-                </h2>
-                <p className="text-white/40 max-w-md mx-auto mb-10 text-lg">
-                  Reach thousands of potential tenants every day. Premium plans start from just ₹499/mo.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <a href="/list-your-pg" className="btn-premium inline-block !text-base !py-4 !px-10">
-                    List Your PG Now
-                  </a>
-                  <a href="/owner-dashboard" className="inline-block py-4 px-10 bg-white/[0.06] border border-white/10 text-white font-semibold rounded-2xl hover:bg-white/10 transition-all text-base">
-                    Owner Dashboard
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* ===== FOOTER ===== */}
         <footer className="bg-gray-950 text-gray-500 pt-20 pb-8 relative overflow-hidden">
@@ -554,11 +544,9 @@ export default function Home() {
                 <h4 className="text-white text-xs font-semibold mb-5 uppercase tracking-[0.15em]">Company</h4>
                 <ul className="space-y-3 text-sm">
                   {[
-                    { label: "About Us", href: "#" },
-                    { label: "List Your PG", href: "/list-your-pg" },
                     { label: "Find Roommates", href: "/roommate-finder" },
                     { label: "Owner Dashboard", href: "/owner-dashboard" },
-                    { label: "Privacy Policy", href: "#" },
+                    { label: "Saved PGs", href: "/saved" },
                   ].map((item) => (
                     <li key={item.label}>
                       <a href={item.href} className="hover:text-white transition-colors flex items-center gap-2">

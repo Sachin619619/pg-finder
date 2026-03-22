@@ -1,5 +1,6 @@
 import { supabase } from "./supabase";
 import type { PGListing } from "@/data/listings";
+import { getPhotos } from "./photos";
 
 // Map snake_case DB rows to camelCase PGListing type
 function mapListing(row: Record<string, unknown>): PGListing {
@@ -14,7 +15,7 @@ function mapListing(row: Record<string, unknown>): PGListing {
     amenities: row.amenities as string[],
     rating: Number(row.rating),
     reviews: row.reviews as number,
-    images: row.images as string[],
+    images: getPhotos(row.id as string, row.images as string[]),
     description: row.description as string,
     contactPhone: row.contact_phone as string,
     contactName: row.contact_name as string,

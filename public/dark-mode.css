@@ -25,3 +25,34 @@
 .dark .text-green-700{color:#86efac!important}
 .dark .text-orange-700{color:#fdba74!important}
 .dark .text-emerald-700{color:#6ee7b7!important}
+.dark .text-amber-700{color:#fcd34d!important}
+.dark .text-red-700{color:#fca5a5!important}
+.dark .text-sky-700{color:#7dd3fc!important}
+.dark .text-gray-800{color:#e5e7eb!important}
+.dark .text-gray-500{color:#9ca3af!important}
+.dark .text-gray-400{color:#9ca3af!important}
+.dark .text-gray-300{color:#d1d5db!important}
+.dark p{color:#d1d5db!important}
+.dark .bg-white\/80{background-color:rgba(20,20,35,.8)!important}
+.dark .shadow-sm,.dark .shadow-md,.dark .shadow-lg,.dark .shadow-xl{box-shadow:0 4px 6px -1px rgba(0,0,0,.4),0 2px 4px -2px rgba(0,0,0,.3)!important}
+.dark .divide-gray-100>:not([hidden])~:not([hidden]){border-color:rgba(255,255,255,.08)!important}
+.dark .ring-gray-200{--tw-ring-color:rgba(255,255,255,.1)!important}
+.dark input,.dark select,.dark textarea{background-color:rgba(30,30,50,.8)!important;color:#e5e7eb!important;border-color:rgba(255,255,255,.12)!important}
+.dark .placeholder\:text-gray-400::placeholder{color:#6b7280!important}
+.dark .bg-gray-200{background-color:rgba(50,50,70,.6)!important}
+.dark .text-violet-600{color:#a78bfa!important}
+.dark .text-blue-600{color:#60a5fa!important}
+.dark .text-pink-600{color:#f472b6!important}
+.dark .text-emerald-600{color:#34d399!important}
+.dark .text-orange-600{color:#fb923c!important}
+.dark .text-amber-600{color:#fbbf24!important}
+.dark .text-red-600{color:#f87171!important}
+.dark .text-sky-600{color:#38bdf8!important}
+.dark .text-emerald-500{color:#34d399!important}
+.dark .hover\:bg-gray-50:hover{background-color:rgba(30,30,50,.6)!important}
+.dark .hover\:bg-gray-100:hover{background-color:rgba(40,40,60,.6)!important}
+.dark .text-violet-600{color:#a78bfa!important}
+.dark .bg-cyan-50{background-color:rgba(6,182,212,.15)!important}
+.dark .bg-indigo-50{background-color:rgba(99,102,241,.15)!important}
+.dark .bg-rose-50{background-color:rgba(244,63,94,.15)!important}
+.dark .bg-teal-50{background-color:rgba(20,184,166,.15)!important}

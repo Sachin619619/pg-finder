@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Header from "@/components/Header";
 import PGCard from "@/components/PGCard";
 import { fetchListings } from "@/lib/db";
@@ -11,13 +11,30 @@ import Link from "next/link";
 export default function SavedPage() {
   const [savedIds, setSavedIds] = useState<string[]>([]);
   const [allListings, setAllListings] = useState<PGListing[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const refreshWishlist = useCallback(() => setSavedIds(getWishlist()), []);
 
   useEffect(() => {
-    fetchListings().then(setAllListings);
-    setSavedIds(getWishlist());
-    const interval = setInterval(() => setSavedIds(getWishlist()), 1000);
-    return () => clearInterval(interval);
-  }, []);
+    fetchListings().then((data) => {
+      setAllListings(data);
+      setLoading(false);
+    });
+    refreshWishlist();
+
+    // Listen for storage changes (from other tabs or wishlist button clicks)
+    const handleStorage = () => refreshWishlist();
+    window.addEventListener("storage", handleStorage);
+    // Custom event for same-tab wishlist updates
+    window.addEventListener("wishlist-update", handleStorage);
+    // Also refresh on focus (covers switching back from listing page)
+    window.addEventListener("focus", handleStorage);
+    return () => {
+      window.removeEventListener("storage", handleStorage);
+      window.removeEventListener("wishlist-update", handleStorage);
+      window.removeEventListener("focus", handleStorage);
+    };
+  }, [refreshWishlist]);
 
   const savedPGs = allListings.filter((pg) => savedIds.includes(pg.id));
 
@@ -32,7 +49,23 @@ export default function SavedPage() {
           <p className="text-gray-400">Your shortlisted PG accommodations</p>
         </div>
 
-        {savedPGs.length > 0 ? (
+        {loading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="premium-card !rounded-2xl overflow-hidden animate-pulse">
+                <div className="h-52 bg-gray-200 dark:bg-gray-700" />
+                <div className="p-5 space-y-3">
+                  <div className="h-5 bg-gray-200 dark:bg-gray-700 rounded w-3/4" />
+                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/2" />
+                  <div className="flex gap-2">
+                    <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded-full w-16" />
+                    <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded-full w-16" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : savedPGs.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 stagger-children">
             {savedPGs.map((pg) => (
               <PGCard key={pg.id} pg={pg} />

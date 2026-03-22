@@ -29,6 +29,7 @@ export default function Header() {
                 { label: "Browse", href: "/#listings" },
                 { label: "Areas", href: "/#areas" },
                 { label: "Roommates", href: "/roommate-finder" },
+                { label: "Saved", href: "/saved" },
               ].map((item) => (
                 <Link
                   key={item.label}
@@ -40,12 +41,6 @@ export default function Header() {
               ))}
               <div className="w-px h-6 bg-gray-200 dark:bg-gray-700 mx-2" />
               <DarkModeToggle />
-              <Link
-                href="/list-your-pg"
-                className="btn-premium text-sm !py-2.5 !px-5"
-              >
-                List Your PG
-              </Link>
             </nav>
 
             {/* Mobile Menu Button */}
@@ -74,6 +69,7 @@ export default function Header() {
                 { label: "Browse PGs", href: "/#listings" },
                 { label: "Areas", href: "/#areas" },
                 { label: "Find Roommates", href: "/roommate-finder" },
+                { label: "Saved PGs", href: "/saved" },
                 { label: "Owner Dashboard", href: "/owner-dashboard" },
               ].map((item) => (
                 <Link
@@ -85,13 +81,6 @@ export default function Header() {
                   {item.label}
                 </Link>
               ))}
-              <Link
-                href="/list-your-pg"
-                onClick={() => setMobileOpen(false)}
-                className="block text-center btn-premium text-sm !py-2.5 mt-2"
-              >
-                List Your PG
-              </Link>
             </div>
           )}
         </div>

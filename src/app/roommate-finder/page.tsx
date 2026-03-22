@@ -2,8 +2,17 @@
 
 import { useState, useEffect, useMemo } from "react";
 import Header from "@/components/Header";
-import { fetchRoommateProfiles, fetchAreas } from "@/lib/db";
+import { fetchRoommateProfiles, fetchAreas, addRoommateProfile } from "@/lib/db";
 import type { RoommateProfile } from "@/lib/db";
+
+const gradients = [
+  "from-violet-400 to-purple-500",
+  "from-blue-400 to-indigo-500",
+  "from-pink-400 to-rose-500",
+  "from-emerald-400 to-teal-500",
+  "from-amber-400 to-orange-500",
+  "from-cyan-400 to-blue-500",
+];
 
 export default function RoommateFinder() {
   const [profiles, setProfiles] = useState<RoommateProfile[]>([]);
@@ -12,7 +21,18 @@ export default function RoommateFinder() {
   const [areaFilter, setAreaFilter] = useState("");
   const [budgetMax, setBudgetMax] = useState(50000);
   const [showForm, setShowForm] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  // Form state
+  const [formName, setFormName] = useState("");
+  const [formAge, setFormAge] = useState("");
+  const [formGender, setFormGender] = useState("");
+  const [formOccupation, setFormOccupation] = useState("");
+  const [formArea, setFormArea] = useState("");
+  const [formBudget, setFormBudget] = useState("");
+  const [formLifestyle, setFormLifestyle] = useState("");
+  const [formBio, setFormBio] = useState("");
 
   useEffect(() => {
     fetchRoommateProfiles().then(setProfiles);
@@ -26,14 +46,41 @@ export default function RoommateFinder() {
     return true;
   }), [profiles, genderFilter, areaFilter, budgetMax]);
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitting(true);
+    const budget = Number(formBudget);
+    const success = await addRoommateProfile({
+      name: formName,
+      age: Number(formAge),
+      gender: formGender,
+      occupation: formOccupation,
+      area: formArea,
+      budgetMin: Math.round(budget * 0.7),
+      budgetMax: budget,
+      moveInDate: new Date().toISOString().split("T")[0],
+      lifestyle: formLifestyle,
+      bio: formBio,
+      avatar: formName.charAt(0).toUpperCase(),
+      gradient: gradients[Math.floor(Math.random() * gradients.length)],
+    });
+    if (success) {
+      setSubmitted(true);
+      setShowForm(false);
+      // Refresh profiles
+      fetchRoommateProfiles().then(setProfiles);
+    }
+    setSubmitting(false);
+  };
+
   return (
     <>
       <Header />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16">
         {/* Hero */}
         <div className="text-center mb-12">
-          <span className="pill bg-pink-50 text-pink-600 !text-xs font-semibold mb-4 inline-block">Find Your Perfect Match 🤝</span>
-          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+          <span className="pill bg-pink-50 text-pink-600 !text-xs font-semibold mb-4 inline-block">Find Your Perfect Match</span>
+          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             Roommate <span className="gradient-text">Finder</span>
           </h1>
           <p className="text-gray-400 max-w-lg mx-auto">Connect with compatible roommates in Bangalore. Match by area, budget, and lifestyle.</p>
@@ -67,25 +114,27 @@ export default function RoommateFinder() {
         {/* Post Profile Form */}
         {showForm && !submitted && (
           <div className="premium-card !rounded-2xl p-6 sm:p-8 mb-8 animate-slide-up">
-            <h3 className="text-lg font-bold text-gray-900 mb-5">Create Your Roommate Profile</h3>
-            <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); setShowForm(false); }} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <input required placeholder="Your Name" className="premium-input text-sm" />
-              <input required type="number" placeholder="Age" className="premium-input text-sm" />
-              <select required className="premium-input text-sm">
+            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-5">Create Your Roommate Profile</h3>
+            <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <input required placeholder="Your Name" value={formName} onChange={(e) => setFormName(e.target.value)} className="premium-input text-sm" />
+              <input required type="number" min="18" max="60" placeholder="Age" value={formAge} onChange={(e) => setFormAge(e.target.value)} className="premium-input text-sm" />
+              <select required value={formGender} onChange={(e) => setFormGender(e.target.value)} className="premium-input text-sm">
                 <option value="">Gender</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
               </select>
-              <input required placeholder="Profession" className="premium-input text-sm" />
-              <select required className="premium-input text-sm">
+              <input required placeholder="Profession" value={formOccupation} onChange={(e) => setFormOccupation(e.target.value)} className="premium-input text-sm" />
+              <select required value={formArea} onChange={(e) => setFormArea(e.target.value)} className="premium-input text-sm">
                 <option value="">Preferred Area</option>
                 {areas.map((a) => <option key={a} value={a}>{a}</option>)}
               </select>
-              <input required type="number" placeholder="Max Budget (₹)" className="premium-input text-sm" />
-              <input placeholder="Interests (comma separated)" className="premium-input text-sm sm:col-span-2" />
-              <textarea required rows={3} placeholder="Tell potential roommates about yourself..." className="premium-input text-sm sm:col-span-2 resize-none" />
+              <input required type="number" placeholder="Max Budget (₹)" value={formBudget} onChange={(e) => setFormBudget(e.target.value)} className="premium-input text-sm" />
+              <input placeholder="Interests (comma separated)" value={formLifestyle} onChange={(e) => setFormLifestyle(e.target.value)} className="premium-input text-sm sm:col-span-2" />
+              <textarea required rows={3} placeholder="Tell potential roommates about yourself..." value={formBio} onChange={(e) => setFormBio(e.target.value)} className="premium-input text-sm sm:col-span-2 resize-none" />
               <div className="sm:col-span-2 flex gap-3">
-                <button type="submit" className="btn-premium !py-2.5 !px-8 !text-sm">Post Profile</button>
+                <button type="submit" disabled={submitting} className="btn-premium !py-2.5 !px-8 !text-sm disabled:opacity-50">
+                  {submitting ? "Posting..." : "Post Profile"}
+                </button>
                 <button type="button" onClick={() => setShowForm(false)} className="px-6 py-2.5 text-sm text-gray-500 hover:text-gray-700">Cancel</button>
               </div>
             </form>
@@ -93,7 +142,7 @@ export default function RoommateFinder() {
         )}
 
         {submitted && (
-          <div className="bg-emerald-50 rounded-2xl p-5 mb-8 text-emerald-700 text-sm font-medium animate-slide-up flex items-center gap-3">
+          <div className="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-5 mb-8 text-emerald-700 dark:text-emerald-400 text-sm font-medium animate-slide-up flex items-center gap-3">
             <svg className="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
@@ -110,35 +159,42 @@ export default function RoommateFinder() {
                   {p.avatar}
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 text-sm">{p.name}, {p.age}</h3>
+                  <h3 className="font-semibold text-gray-900 dark:text-white text-sm">{p.name}, {p.age}</h3>
                   <p className="text-xs text-gray-400">{p.occupation}</p>
                 </div>
               </div>
-              <p className="text-sm text-gray-600 mb-4 leading-relaxed">{p.bio}</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">{p.bio}</p>
               {p.lifestyle && (
                 <div className="flex flex-wrap gap-1.5 mb-4">
                   {p.lifestyle.split(", ").map((i) => (
-                    <span key={i} className="pill bg-violet-50 text-violet-600 !text-[10px] !py-0.5 !px-2.5">{i}</span>
+                    <span key={i} className="pill bg-violet-50 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400 !text-[10px] !py-0.5 !px-2.5">{i}</span>
                   ))}
                 </div>
               )}
-              <div className="flex items-center justify-between text-xs text-gray-400 mb-4 pt-3 border-t border-gray-100">
+              <div className="flex items-center justify-between text-xs text-gray-400 mb-4 pt-3 border-t border-gray-100 dark:border-gray-700">
                 <span className="flex items-center gap-1">
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   </svg>
                   {p.area}
                 </span>
-                <span className="font-semibold text-emerald-600">₹{p.budgetMin.toLocaleString()} - ₹{p.budgetMax.toLocaleString()}/mo</span>
+                <span className="font-semibold text-emerald-600 dark:text-emerald-400">₹{p.budgetMin.toLocaleString()} - ₹{p.budgetMax.toLocaleString()}/mo</span>
               </div>
-              <button className="w-full btn-premium !py-2.5 !text-sm !rounded-xl">Connect</button>
+              <a
+                href={`https://wa.me/?text=${encodeURIComponent(`Hi ${p.name}! I found your roommate profile on PG Finder Bangalore. I'm interested in sharing a PG in ${p.area}. Let's connect!`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full btn-premium !py-2.5 !text-sm !rounded-xl block text-center"
+              >
+                Connect via WhatsApp
+              </a>
             </div>
           ))}
         </div>
 
         {filtered.length === 0 && (
           <div className="text-center py-16">
-            <p className="text-gray-400 text-lg">No roommates found matching your criteria 😕</p>
+            <p className="text-gray-400 text-lg">No roommates found matching your criteria</p>
             <p className="text-gray-300 text-sm mt-2">Try adjusting your filters</p>
           </div>
         )}

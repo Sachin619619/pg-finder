@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SWRegister from "@/components/SWRegister";
-import DarkModeStyles from "@/components/DarkModeStyles";
+import BackToTop from "@/components/BackToTop";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -188,24 +188,13 @@ export default function RootLayout({
       <head>
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
         <script
-          dangerouslySetInnerHTML={{
-            __html: `
-(function(){
-  var l=document.createElement('link');
-  l.rel='stylesheet';
-  l.href='/dark-mode.css';
-  document.head.appendChild(l);
-})();
-`,
-          }}
-        />
-        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
       <body className="min-h-full flex flex-col bg-gray-50">
         {children}
+        <BackToTop />
         <SWRegister />
       </body>
     </html>

@@ -15,6 +15,7 @@ export default function WishlistButton({ pgId, size = "sm" }: { pgId: string; si
     e.stopPropagation();
     const result = toggleWishlist(pgId);
     setSaved(result);
+    window.dispatchEvent(new Event("wishlist-update"));
   };
 
   const sizeClass = size === "lg" ? "w-12 h-12" : "w-9 h-9";

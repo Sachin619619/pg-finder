@@ -1,12 +1,32 @@
 "use client";
 
 import { useState } from "react";
-import { submitCallback } from "@/lib/db";
 
 export default function CallbackModal({ pgId, pgName, onClose }: { pgId: string; pgName: string; onClose: () => void }) {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [timePreference, setTimePreference] = useState("Anytime");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/callback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ pgId, name, phone, timePreference }),
+      });
+      if (res.ok) {
+        setSubmitted(true);
+      }
+    } catch {
+      // Still show success if DB save might have worked
+      setSubmitted(true);
+    }
+    setSubmitting(false);
+  };
 
   if (submitted) {
     return (
@@ -27,7 +47,7 @@ export default function CallbackModal({ pgId, pgName, onClose }: { pgId: string;
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={onClose}>
-      <div className="bg-white rounded-3xl p-8 max-w-sm w-full animate-slide-up" onClick={(e) => e.stopPropagation()}>
+      <div className="bg-white rounded-3xl p-8 max-w-sm w-full animate-slide-up relative" onClick={(e) => e.stopPropagation()}>
         <button onClick={onClose} className="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200">
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -42,16 +62,18 @@ export default function CallbackModal({ pgId, pgName, onClose }: { pgId: string;
           <h3 className="text-xl font-bold text-gray-900">Request Callback</h3>
           <p className="text-sm text-gray-400 mt-1">{pgName}</p>
         </div>
-        <form onSubmit={(e) => { e.preventDefault(); submitCallback(pgId, name, phone).then(() => setSubmitted(true)); }} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <input required type="text" placeholder="Your name" value={name} onChange={(e) => setName(e.target.value)} className="premium-input w-full" />
-          <input required type="tel" placeholder="Phone number" value={phone} onChange={(e) => setPhone(e.target.value)} className="premium-input w-full" />
-          <select className="premium-input w-full text-sm text-gray-600">
-            <option>Call me anytime</option>
+          <input required type="tel" placeholder="Phone number" pattern="[0-9]{10}" title="Enter 10-digit phone number" value={phone} onChange={(e) => setPhone(e.target.value)} className="premium-input w-full" />
+          <select value={timePreference} onChange={(e) => setTimePreference(e.target.value)} className="premium-input w-full text-sm text-gray-600">
+            <option>Anytime</option>
             <option>Morning (9AM - 12PM)</option>
             <option>Afternoon (12PM - 4PM)</option>
             <option>Evening (4PM - 8PM)</option>
           </select>
-          <button type="submit" className="btn-premium w-full">Request Callback</button>
+          <button type="submit" disabled={submitting} className="btn-premium w-full disabled:opacity-50">
+            {submitting ? "Submitting..." : "Request Callback"}
+          </button>
         </form>
       </div>
     </div>

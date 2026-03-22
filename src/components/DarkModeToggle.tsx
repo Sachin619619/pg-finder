@@ -6,6 +6,15 @@ export default function DarkModeToggle() {
   const [dark, setDark] = useState(false);
 
   useEffect(() => {
+    // Inject dark-mode.css once (overrides Tailwind utility classes for .dark)
+    if (!document.getElementById("dark-mode-css")) {
+      const link = document.createElement("link");
+      link.id = "dark-mode-css";
+      link.rel = "stylesheet";
+      link.href = "/dark-mode.css";
+      document.head.appendChild(link);
+    }
+
     const saved = localStorage.getItem("pg-dark-mode");
     if (saved === "true") {
       setDark(true);

@@ -1,16 +1,9 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
-import { fetchListings } from "@/lib/db";
+import { useMemo } from "react";
 import type { PGListing } from "@/data/listings";
 
-export default function PriceInsights() {
-  const [listings, setListings] = useState<PGListing[]>([]);
-
-  useEffect(() => {
-    fetchListings().then(setListings);
-  }, []);
-
+export default function PriceInsights({ listings }: { listings: PGListing[] }) {
   const insights = useMemo(() => {
     const areaMap: Record<string, number[]> = {};
     listings.forEach((pg) => {
@@ -31,11 +24,13 @@ export default function PriceInsights() {
 
   const globalMax = Math.max(...insights.map((i) => i.max), 1);
 
+  if (listings.length === 0) return null;
+
   return (
     <section className="py-20 bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <span className="pill bg-violet-50 text-violet-600 !text-xs font-semibold mb-4 inline-block">Price Intelligence</span>
+          <span className="pill bg-violet-50 dark:bg-violet-900/30 text-violet-600 !text-xs font-semibold mb-4 inline-block">Price Intelligence</span>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">
             Area-wise <span className="gradient-text">Price Insights</span>
           </h2>
@@ -58,15 +53,15 @@ export default function PriceInsights() {
               <div className="flex items-center justify-between text-sm">
                 <div>
                   <span className="text-gray-400 text-xs">From</span>
-                  <p className="font-bold text-emerald-600">₹{item.min.toLocaleString()}</p>
+                  <p className="font-bold text-emerald-600 dark:text-emerald-400">₹{item.min.toLocaleString()}</p>
                 </div>
                 <div className="text-center">
                   <span className="text-gray-400 text-xs">Average</span>
-                  <p className="font-bold text-violet-600">₹{item.avg.toLocaleString()}</p>
+                  <p className="font-bold text-violet-600 dark:text-violet-400">₹{item.avg.toLocaleString()}</p>
                 </div>
                 <div className="text-right">
                   <span className="text-gray-400 text-xs">Up to</span>
-                  <p className="font-bold text-rose-500">₹{item.max.toLocaleString()}</p>
+                  <p className="font-bold text-rose-500 dark:text-rose-400">₹{item.max.toLocaleString()}</p>
                 </div>
               </div>
             </div>

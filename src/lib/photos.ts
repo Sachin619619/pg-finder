@@ -1,0 +1,173 @@
+// Maps listing IDs to real apartment/room photos from Unsplash
+// These replace the placeholder /pg*.jpg paths until DB photos are updated
+
+const photoMap: Record<string, string[]> = {
+  "1": [
+    "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800&q=80",
+    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80",
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80",
+    "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800&q=80",
+    "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80",
+    "https://images.unsplash.com/photo-1585412727339-54e4bae3bbf9?w=800&q=80",
+  ],
+  "2": [
+    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80",
+    "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
+    "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80",
+    "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80",
+    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80",
+  ],
+  "3": [
+    "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80",
+    "https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=800&q=80",
+    "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&q=80",
+    "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80",
+    "https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?w=800&q=80",
+    "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?w=800&q=80",
+  ],
+  "4": [
+    "https://images.unsplash.com/photo-1560448075-bb485b067938?w=800&q=80",
+    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
+    "https://images.unsplash.com/photo-1600585153490-76fb20a32601?w=800&q=80",
+    "https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?w=800&q=80",
+    "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80",
+    "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80",
+  ],
+  "5": [
+    "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?w=800&q=80",
+    "https://images.unsplash.com/photo-1600573472556-e636c2acda9e?w=800&q=80",
+    "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=800&q=80",
+    "https://images.unsplash.com/photo-1600210491369-e753d80a41f3?w=800&q=80",
+    "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=800&q=80",
+    "https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=800&q=80",
+  ],
+  "6": [
+    "https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=800&q=80",
+    "https://images.unsplash.com/photo-1600121848594-d8644e57abab?w=800&q=80",
+    "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?w=800&q=80",
+    "https://images.unsplash.com/photo-1600210492493-0946911f159a?w=800&q=80",
+    "https://images.unsplash.com/photo-1600607688969-a5bfcd646154?w=800&q=80",
+    "https://images.unsplash.com/photo-1560449752-3fd4bdbe89c0?w=800&q=80",
+  ],
+  "7": [
+    "https://images.unsplash.com/photo-1600566752229-250ed79470f8?w=800&q=80",
+    "https://images.unsplash.com/photo-1600585152915-d208bec867a1?w=800&q=80",
+    "https://images.unsplash.com/photo-1600210491264-f4a09c0e6271?w=800&q=80",
+    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
+    "https://images.unsplash.com/photo-1600047508788-786f3865b4b9?w=800&q=80",
+    "https://images.unsplash.com/photo-1560185008-b033106af5c8?w=800&q=80",
+  ],
+  "8": [
+    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
+    "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80",
+    "https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?w=800&q=80",
+    "https://images.unsplash.com/photo-1600585153490-76fb20a32601?w=800&q=80",
+    "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?w=800&q=80",
+  ],
+  "9": [
+    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80",
+    "https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=800&q=80",
+    "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&q=80",
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80",
+    "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80",
+    "https://images.unsplash.com/photo-1585412727339-54e4bae3bbf9?w=800&q=80",
+  ],
+  "10": [
+    "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80",
+    "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800&q=80",
+    "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80",
+    "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80",
+    "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80",
+    "https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?w=800&q=80",
+  ],
+  "11": [
+    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80",
+    "https://images.unsplash.com/photo-1560448075-bb485b067938?w=800&q=80",
+    "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?w=800&q=80",
+    "https://images.unsplash.com/photo-1600573472556-e636c2acda9e?w=800&q=80",
+    "https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=800&q=80",
+    "https://images.unsplash.com/photo-1600121848594-d8644e57abab?w=800&q=80",
+  ],
+  "12": [
+    "https://images.unsplash.com/photo-1600566752229-250ed79470f8?w=800&q=80",
+    "https://images.unsplash.com/photo-1600585152915-d208bec867a1?w=800&q=80",
+    "https://images.unsplash.com/photo-1600210491264-f4a09c0e6271?w=800&q=80",
+    "https://images.unsplash.com/photo-1600047508788-786f3865b4b9?w=800&q=80",
+    "https://images.unsplash.com/photo-1560185008-b033106af5c8?w=800&q=80",
+    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
+  ],
+  "13": [
+    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80",
+    "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?w=800&q=80",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
+    "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80",
+    "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80",
+    "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80",
+  ],
+  "14": [
+    "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80",
+    "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&q=80",
+    "https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=800&q=80",
+    "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80",
+    "https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?w=800&q=80",
+    "https://images.unsplash.com/photo-1560449752-3fd4bdbe89c0?w=800&q=80",
+  ],
+  "15": [
+    "https://images.unsplash.com/photo-1560448075-bb485b067938?w=800&q=80",
+    "https://images.unsplash.com/photo-1600585153490-76fb20a32601?w=800&q=80",
+    "https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?w=800&q=80",
+    "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80",
+    "https://images.unsplash.com/photo-1600210491369-e753d80a41f3?w=800&q=80",
+    "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=800&q=80",
+  ],
+  "16": [
+    "https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=800&q=80",
+    "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?w=800&q=80",
+    "https://images.unsplash.com/photo-1600210492493-0946911f159a?w=800&q=80",
+    "https://images.unsplash.com/photo-1600607688969-a5bfcd646154?w=800&q=80",
+    "https://images.unsplash.com/photo-1600121848594-d8644e57abab?w=800&q=80",
+    "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80",
+  ],
+  "17": [
+    "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800&q=80",
+    "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=800&q=80",
+    "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?w=800&q=80",
+    "https://images.unsplash.com/photo-1600573472556-e636c2acda9e?w=800&q=80",
+    "https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=800&q=80",
+    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80",
+  ],
+  "18": [
+    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80",
+    "https://images.unsplash.com/photo-1600585152915-d208bec867a1?w=800&q=80",
+    "https://images.unsplash.com/photo-1600210491264-f4a09c0e6271?w=800&q=80",
+    "https://images.unsplash.com/photo-1560185008-b033106af5c8?w=800&q=80",
+    "https://images.unsplash.com/photo-1600047508788-786f3865b4b9?w=800&q=80",
+    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
+  ],
+  "19": [
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80",
+    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80",
+    "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800&q=80",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
+    "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80",
+    "https://images.unsplash.com/photo-1585412727339-54e4bae3bbf9?w=800&q=80",
+  ],
+  "20": [
+    "https://images.unsplash.com/photo-1600566752229-250ed79470f8?w=800&q=80",
+    "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?w=800&q=80",
+    "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80",
+    "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&q=80",
+    "https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?w=800&q=80",
+    "https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=800&q=80",
+  ],
+};
+
+/** Returns real photos for a listing — uses the photo map, falling back to DB images */
+export function getPhotos(listingId: string, dbImages?: string[]): string[] {
+  if (photoMap[listingId]) return photoMap[listingId];
+  // If DB images are actual URLs (not /pg*.jpg), use them
+  if (dbImages && dbImages.length > 0 && dbImages[0].startsWith("http")) return dbImages;
+  return [];
+}

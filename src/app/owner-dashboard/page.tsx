@@ -25,20 +25,20 @@ export default function OwnerDashboard() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Owner Dashboard 🏠</h1>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Owner Dashboard</h1>
             <p className="text-gray-400 mt-1">Manage your PG listings and track performance</p>
           </div>
           <button className="btn-premium !text-sm">+ Add New PG</button>
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-1 bg-gray-100 rounded-2xl p-1 mb-8 w-fit">
+        <div className="flex gap-1 bg-gray-100 dark:bg-gray-800 rounded-2xl p-1 mb-8 w-fit">
           {(["overview", "listings", "inquiries", "analytics"] as const).map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
               className={`px-5 py-2.5 rounded-xl text-sm font-medium transition-all capitalize ${
-                activeTab === tab ? "bg-white text-gray-900 shadow-sm" : "text-gray-500 hover:text-gray-700"
+                activeTab === tab ? "bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm" : "text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
               }`}
             >
               {tab}
@@ -52,18 +52,18 @@ export default function OwnerDashboard() {
             {/* Stats */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
               {[
-                { label: "Total Views", value: "4,138", change: "+12%", icon: "M15 12a3 3 0 11-6 0 3 3 0 016 0z", color: "violet" },
-                { label: "Inquiries", value: "123", change: "+8%", icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z", color: "blue" },
-                { label: "Occupancy", value: "90%", change: "+5%", icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4", color: "emerald" },
-                { label: "Revenue", value: "₹2.4L", change: "+15%", icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z", color: "amber" },
+                { label: "Total Views", value: "4,138", change: "+12%", icon: "M15 12a3 3 0 11-6 0 3 3 0 016 0z", bgClass: "bg-violet-50 dark:bg-violet-900/30", textClass: "text-violet-500" },
+                { label: "Inquiries", value: "123", change: "+8%", icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z", bgClass: "bg-blue-50 dark:bg-blue-900/30", textClass: "text-blue-500" },
+                { label: "Occupancy", value: "90%", change: "+5%", icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4", bgClass: "bg-emerald-50 dark:bg-emerald-900/30", textClass: "text-emerald-500" },
+                { label: "Revenue", value: "₹2.4L", change: "+15%", icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z", bgClass: "bg-amber-50 dark:bg-amber-900/30", textClass: "text-amber-500" },
               ].map((stat) => (
                 <div key={stat.label} className="premium-card !rounded-2xl p-5">
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-3 bg-${stat.color}-50`}>
-                    <svg className={`w-5 h-5 text-${stat.color}-500`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-3 ${stat.bgClass}`}>
+                    <svg className={`w-5 h-5 ${stat.textClass}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={stat.icon} />
                     </svg>
                   </div>
-                  <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
+                  <p className="text-2xl font-bold text-gray-900 dark:text-white">{stat.value}</p>
                   <div className="flex items-center justify-between mt-1">
                     <p className="text-xs text-gray-400">{stat.label}</p>
                     <span className="text-xs font-medium text-emerald-500">{stat.change}</span>
@@ -74,7 +74,7 @@ export default function OwnerDashboard() {
 
             {/* Recent Inquiries */}
             <div className="premium-card !rounded-2xl p-6">
-              <h2 className="text-lg font-bold text-gray-900 mb-4">Recent Inquiries 📩</h2>
+              <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Recent Inquiries 📩</h2>
               <div className="space-y-3">
                 {mockInquiries.slice(0, 3).map((inq) => (
                   <div key={inq.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
@@ -83,7 +83,7 @@ export default function OwnerDashboard() {
                         {inq.name.charAt(0)}
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-900 text-sm">{inq.name}</p>
+                        <p className="font-semibold text-gray-900 dark:text-white text-sm">{inq.name}</p>
                         <p className="text-xs text-gray-400">{inq.pg} · {inq.time}</p>
                       </div>
                     </div>
@@ -101,7 +101,7 @@ export default function OwnerDashboard() {
 
             {/* Quick Performance Chart (visual bars) */}
             <div className="premium-card !rounded-2xl p-6">
-              <h2 className="text-lg font-bold text-gray-900 mb-4">Views This Week 📊</h2>
+              <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Views This Week 📊</h2>
               <div className="flex items-end gap-3 h-40">
                 {[65, 45, 80, 55, 90, 70, 85].map((val, i) => (
                   <div key={i} className="flex-1 flex flex-col items-center gap-2">
@@ -126,7 +126,7 @@ export default function OwnerDashboard() {
               <div key={listing.id} className="premium-card !rounded-2xl p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="font-bold text-gray-900 text-lg">{listing.name}</h3>
+                    <h3 className="font-bold text-gray-900 dark:text-white text-lg">{listing.name}</h3>
                     <p className="text-sm text-gray-400">{listing.area}</p>
                   </div>
                   <span className="pill bg-emerald-50 text-emerald-600 !text-xs">Active</span>
@@ -169,7 +169,7 @@ export default function OwnerDashboard() {
                       {inq.name.charAt(0)}
                     </div>
                     <div>
-                      <p className="font-semibold text-gray-900">{inq.name}</p>
+                      <p className="font-semibold text-gray-900 dark:text-white">{inq.name}</p>
                       <p className="text-sm text-gray-400">{inq.phone} · {inq.pg}</p>
                     </div>
                   </div>
@@ -198,7 +198,7 @@ export default function OwnerDashboard() {
         {activeTab === "analytics" && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div className="premium-card !rounded-2xl p-6">
-              <h3 className="font-bold text-gray-900 mb-4">Traffic Sources</h3>
+              <h3 className="font-bold text-gray-900 dark:text-white mb-4">Traffic Sources</h3>
               <div className="space-y-4">
                 {[
                   { source: "Google Search", pct: 45, color: "bg-blue-500" },
@@ -219,7 +219,7 @@ export default function OwnerDashboard() {
               </div>
             </div>
             <div className="premium-card !rounded-2xl p-6">
-              <h3 className="font-bold text-gray-900 mb-4">Conversion Funnel</h3>
+              <h3 className="font-bold text-gray-900 dark:text-white mb-4">Conversion Funnel</h3>
               <div className="space-y-4">
                 {[
                   { step: "Page Views", value: 4138, pct: 100 },
@@ -244,7 +244,7 @@ export default function OwnerDashboard() {
               </div>
             </div>
             <div className="premium-card !rounded-2xl p-6 lg:col-span-2">
-              <h3 className="font-bold text-gray-900 mb-4">Monthly Revenue Trend 💰</h3>
+              <h3 className="font-bold text-gray-900 dark:text-white mb-4">Monthly Revenue Trend 💰</h3>
               <div className="flex items-end gap-4 h-48">
                 {[
                   { month: "Oct", value: 180000 },
