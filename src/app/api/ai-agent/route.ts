@@ -2,9 +2,8 @@ import { NextResponse } from "next/server";
 import { listings } from "@/data/listings";
 
 const MINIMAX_API_KEY = process.env.MINIMAX_API_KEY;
-
-// MiniMax OpenAI-compatible endpoint
-const API_URL = "https://api.minimaxi.chat/v1/chat/completions";
+const API_URL = "https://api.minimax.io/v1/text/chatcompletion_v2";
+const MODEL = "MiniMax-M2.5";
 
 const SYSTEM_PROMPT = `You are PG Finder AI — a smart, friendly assistant that helps people find PG (Paying Guest) accommodations in Bangalore, India.
 
@@ -78,53 +77,31 @@ export async function POST(req: Request) {
       ...messages,
     ];
 
-    // Try primary endpoint first, then fallback
-    const endpoints = [
-      API_URL,
-      "https://api.minimax.chat/v1/chat/completions",
-      "https://api.minimaxi.chat/v1/text/chatcompletion_v2",
-    ];
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${MINIMAX_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: MODEL,
+        messages: fullMessages,
+        temperature: 0.7,
+        max_tokens: 4096,
+      }),
+    });
 
-    let response: Response | null = null;
-    let lastError = "";
+    const data = await response.json();
 
-    for (const url of endpoints) {
-      try {
-        response = await fetch(url, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${MINIMAX_API_KEY}`,
-          },
-          body: JSON.stringify({
-            model: "MiniMax-Text-01",
-            messages: fullMessages,
-            temperature: 0.7,
-            max_tokens: 2048,
-          }),
-        });
-
-        if (response.ok) break;
-
-        lastError = await response.text();
-        console.error(`MiniMax API error (${url}):`, lastError);
-        response = null;
-      } catch (e) {
-        console.error(`MiniMax fetch error (${url}):`, e);
-        lastError = String(e);
-        response = null;
-      }
-    }
-
-    if (!response || !response.ok) {
-      console.error("All MiniMax endpoints failed:", lastError);
+    // Check MiniMax-specific error format
+    if (data.base_resp?.status_code && data.base_resp.status_code !== 0) {
+      console.error("MiniMax API error:", data.base_resp);
       return NextResponse.json(
-        { error: "AI service temporarily unavailable" },
+        { error: data.base_resp.status_msg || "AI service error" },
         { status: 502 }
       );
     }
 
-    const data = await response.json();
     const reply =
       data.choices?.[0]?.message?.content ||
       "Sorry, I couldn't process that. Please try again!";
