@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SWRegister from "@/components/SWRegister";
 import BackToTop from "@/components/BackToTop";
+import AIAgent from "@/components/AIAgent";
+import { AuthProvider } from "@/lib/auth";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -193,9 +195,12 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-gray-50">
-        {children}
-        <BackToTop />
-        <SWRegister />
+        <AuthProvider>
+          {children}
+          <AIAgent />
+          <BackToTop />
+          <SWRegister />
+        </AuthProvider>
       </body>
     </html>
   );
