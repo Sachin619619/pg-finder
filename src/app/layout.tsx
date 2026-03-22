@@ -187,7 +187,18 @@ export default function RootLayout({
     >
       <head>
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
-        <link rel="stylesheet" href="/dark-mode.css" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+(function(){
+  var l=document.createElement('link');
+  l.rel='stylesheet';
+  l.href='/dark-mode.css';
+  document.head.appendChild(l);
+})();
+`,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
