@@ -50,6 +50,7 @@ function useCounter(end: number, duration = 1500) {
   const started = useRef(false);
 
   useEffect(() => {
+    started.current = false;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !started.current) {
@@ -140,7 +141,7 @@ export default function Home() {
     });
 
     return result;
-  }, [filters, sortBy]);
+  }, [listings, filters, sortBy]);
 
   const areaCount = useMemo(() => {
     const counts: Record<string, number> = {};
@@ -148,7 +149,7 @@ export default function Home() {
       counts[pg.area] = (counts[pg.area] || 0) + 1;
     });
     return counts;
-  }, []);
+  }, [listings]);
 
   return (
     <>
