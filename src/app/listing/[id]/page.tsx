@@ -71,7 +71,7 @@ export default function ListingPage() {
           <span>/</span>
           <Link href={`/area/${pg.area.toLowerCase().replace(/\s+/g, "-")}`} className="hover:text-violet-600">{pg.area}</Link>
           <span>/</span>
-          <span className="text-gray-900">{pg.name}</span>
+          <span className="text-gray-900 dark:text-gray-200">{pg.name}</span>
         </nav>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -111,12 +111,12 @@ export default function ListingPage() {
                 </div>
                 <div className="flex items-center gap-4">
                   <ShareButtons pgName={pg.name} pgArea={pg.area} pgPrice={pg.price} />
-                  <div className="flex items-center gap-1 bg-yellow-50 px-3 py-2 rounded-xl">
+                  <div className="flex items-center gap-1 bg-yellow-50 dark:bg-yellow-900/30 px-3 py-2 rounded-xl">
                     <svg className="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
-                    <span className="text-lg font-bold text-gray-900">{pg.rating}</span>
-                    <span className="text-sm text-gray-500">({pg.reviews})</span>
+                    <span className="text-lg font-bold text-gray-900 dark:text-amber-400">{pg.rating}</span>
+                    <span className="text-sm text-gray-500 dark:text-gray-400">({pg.reviews})</span>
                   </div>
                 </div>
               </div>
@@ -124,13 +124,13 @@ export default function ListingPage() {
 
             {/* Quick Info Badges */}
             <div className="flex flex-wrap gap-3">
-              <span className="px-4 py-2 bg-violet-50 text-violet-700 rounded-xl font-medium">{typeLabels[pg.type]}</span>
-              <span className={`px-4 py-2 rounded-xl font-medium ${pg.gender === "male" ? "bg-blue-50 text-blue-700" : pg.gender === "female" ? "bg-pink-50 text-pink-700" : "bg-purple-50 text-purple-700"}`}>
+              <span className="px-4 py-2 bg-violet-50 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 rounded-xl font-medium">{typeLabels[pg.type]}</span>
+              <span className={`px-4 py-2 rounded-xl font-medium ${pg.gender === "male" ? "bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300" : pg.gender === "female" ? "bg-pink-50 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300" : "bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300"}`}>
                 {genderLabels[pg.gender]}
               </span>
-              {pg.furnished && <span className="px-4 py-2 bg-green-50 text-green-700 rounded-xl font-medium">✨ Fully Furnished</span>}
-              {pg.foodIncluded && <span className="px-4 py-2 bg-orange-50 text-orange-700 rounded-xl font-medium">🍽️ Food Included</span>}
-              {pg.acAvailable && <span className="px-4 py-2 bg-blue-50 text-blue-700 rounded-xl font-medium">❄️ AC Available</span>}
+              {pg.furnished && <span className="px-4 py-2 bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-xl font-medium">✨ Fully Furnished</span>}
+              {pg.foodIncluded && <span className="px-4 py-2 bg-orange-50 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-xl font-medium">🍽️ Food Included</span>}
+              {pg.acAvailable && <span className="px-4 py-2 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-xl font-medium">❄️ AC Available</span>}
             </div>
 
             {/* Description */}
@@ -184,9 +184,9 @@ export default function ListingPage() {
             {/* Price Card */}
             <div className="premium-card !rounded-2xl p-6 sticky top-24">
               <div className="text-center mb-6">
-                <p className="text-sm text-gray-500 mb-1">Monthly Rent</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Monthly Rent</p>
                 <p className="text-4xl font-bold text-gray-900 dark:text-white">₹{pg.price.toLocaleString()}</p>
-                <p className="text-sm text-gray-400 mt-1">per month / per person</p>
+                <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">per month / per person</p>
               </div>
 
               <div className="space-y-3 mb-6">

@@ -10,7 +10,7 @@ export default function ReviewSection({ reviews, pgName }: { reviews: Review[]; 
   return (
     <div className="premium-card !rounded-2xl p-6 sm:p-8">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-bold text-gray-900">Reviews ({reviews.length})</h2>
+        <h2 className="text-xl font-bold text-gray-900 dark:text-white">Reviews ({reviews.length})</h2>
         <button onClick={() => setShowForm(!showForm)} className="btn-premium !py-2 !px-5 !text-sm">
           Write a Review
         </button>
@@ -49,7 +49,7 @@ export default function ReviewSection({ reviews, pgName }: { reviews: Review[]; 
       {reviews.length > 0 ? (
         <div className="space-y-5">
           {reviews.map((r) => (
-            <div key={r.id} className="border-b border-gray-100 pb-5 last:border-0 last:pb-0">
+            <div key={r.id} className="border-b border-gray-100 dark:border-gray-700 pb-5 last:border-0 last:pb-0">
               <div className="flex items-start justify-between mb-2">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-gradient-to-br from-violet-400 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
@@ -57,9 +57,9 @@ export default function ReviewSection({ reviews, pgName }: { reviews: Review[]; 
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="font-semibold text-gray-900 text-sm">{r.name}</span>
+                      <span className="font-semibold text-gray-900 dark:text-white text-sm">{r.name}</span>
                       {r.verified && (
-                        <span className="pill !py-0.5 !px-2 bg-emerald-50 text-emerald-600 !text-[10px]">
+                        <span className="pill !py-0.5 !px-2 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 !text-[10px]">
                           <svg className="w-3 h-3 mr-0.5 inline" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
@@ -78,7 +78,7 @@ export default function ReviewSection({ reviews, pgName }: { reviews: Review[]; 
                   ))}
                 </div>
               </div>
-              <p className="text-sm text-gray-600 leading-relaxed ml-[52px]">{r.comment}</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed ml-[52px]">{r.comment}</p>
             </div>
           ))}
         </div>

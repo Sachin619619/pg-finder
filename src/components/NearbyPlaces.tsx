@@ -40,12 +40,12 @@ const nearbyCategories = [
 ];
 
 const colorMap: Record<string, string> = {
-  emerald: "bg-emerald-50 text-emerald-600",
-  orange: "bg-orange-50 text-orange-600",
-  red: "bg-red-50 text-red-600",
-  blue: "bg-blue-50 text-blue-600",
-  amber: "bg-amber-50 text-amber-600",
-  violet: "bg-violet-50 text-violet-600",
+  emerald: "bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400",
+  orange: "bg-orange-50 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400",
+  red: "bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400",
+  blue: "bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400",
+  amber: "bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400",
+  violet: "bg-violet-50 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400",
 };
 
 export default function NearbyPlaces({ area }: { area: string }) {
