@@ -1,4 +1,4 @@
-const CACHE_NAME = "pg-finder-v2";
+const CACHE_NAME = "pg-finder-v3";
 const STATIC_ASSETS = [
   "/",
   "/manifest.json",
