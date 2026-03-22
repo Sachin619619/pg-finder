@@ -170,7 +170,7 @@ export default function AIAgent() {
 
       {/* Chat Panel */}
       {open && (
-        <div className="fixed bottom-24 right-4 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[420px] h-[70vh] max-h-[600px] flex flex-col bg-white dark:bg-gray-900 rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden animate-slide-up">
+        <div className="fixed bottom-24 right-4 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[420px] h-[70vh] max-h-[600px] flex flex-col bg-white dark:bg-[#0f0a1e] rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-700/50 overflow-hidden animate-slide-up backdrop-blur-none">
           {/* Header */}
           <div className="px-5 py-3.5 bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-500 flex items-center gap-3">
             <div className="w-9 h-9 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center">

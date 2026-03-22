@@ -5,68 +5,23 @@ const MINIMAX_API_KEY = process.env.MINIMAX_API_KEY;
 const API_URL = "https://api.minimax.io/v1/text/chatcompletion_v2";
 const MODEL = "MiniMax-M2.7-highspeed";
 
-// Build compact PG data string
+// Compact PG data
 const pgData = listings.map(l =>
-  `${l.id}|${l.name}|${l.area}|₹${l.price}|${l.type}|${l.gender}|${l.amenities.join(",")}|${l.rating}⭐|${l.contactName}|${l.contactPhone}|food:${l.foodIncluded}|wifi:${l.wifiIncluded}|ac:${l.acAvailable}|metro:${l.distanceFromMetro || "N/A"}`
+  `${l.id}|${l.name}|${l.area}|₹${l.price}|${l.type}|${l.gender}|${l.amenities.join(",")}|${l.rating}★|${l.contactName}|${l.contactPhone}|food:${l.foodIncluded ? "Y" : "N"}|wifi:${l.wifiIncluded ? "Y" : "N"}|ac:${l.acAvailable ? "Y" : "N"}`
 ).join("\n");
 
-const SYSTEM_PROMPT = `You are PG Finder AI for Bangalore. You help users find, save, book PGs.
+// Keep system prompt SHORT so model follows format
+const SYSTEM_PROMPT = `You are PG Finder AI for Bangalore. Ultra concise.
 
-PG DATABASE (id|name|area|price|roomType|gender|amenities|rating|ownerName|ownerPhone|food|wifi|ac|metro):
-${pgData}
+RULES:
+1. Write MAX 1 sentence (under 15 words)
+2. When recommending PGs, ALWAYS add on next line: RESULTS_JSON:["pg-1","pg-5"]
+3. For actions add: ACTION_JSON:{"action":"save","data":{"pgId":"pg-1"}}
+4. NEVER describe individual PGs in text — UI renders cards automatically
+5. Use REAL PG IDs from the database provided
 
-RESPONSE FORMAT — you MUST follow this EXACTLY:
-1. Write ONE short sentence (max 15 words)
-2. On the NEXT LINE, write RESULTS_JSON: followed by matching PG ID array
-3. If user wants an action, write ACTION_JSON: followed by the action object
-
-EXAMPLE RESPONSES:
-
-User: "PGs under 8000"
-Assistant:
-Found 4 budget PGs under ₹8K 🏠
-RESULTS_JSON:["pg-4","pg-8","pg-14","pg-18"]
-
-User: "Female PGs with food"
-Assistant:
-Here are female PGs with meals included 🍽️
-RESULTS_JSON:["pg-9","pg-11"]
-
-User: "Save Zolo Haven"
-Assistant:
-Saved Zolo Haven! ❤️
-ACTION_JSON:{"action":"save","data":{"pgId":"pg-5"}}
-
-User: "Book CozyStay"
-Assistant:
-Opening booking for CozyStay 🎉
-ACTION_JSON:{"action":"navigate","data":{"url":"/booking/pg-1"}}
-
-User: "Call ORR Connect owner"
-Assistant:
-Calling Naveen 📞
-ACTION_JSON:{"action":"call","data":{"phone":"9632587410","name":"Naveen"}}
-
-User: "WhatsApp Zolo Haven owner"
-Assistant:
-Opening WhatsApp for Priya 💬
-ACTION_JSON:{"action":"whatsapp","data":{"phone":"9845612370","pgName":"Zolo Haven"}}
-
-User: "Show saved PGs"
-Assistant:
-Opening your saved PGs ❤️
-ACTION_JSON:{"action":"navigate","data":{"url":"/saved"}}
-
-User: "Find roommates"
-Assistant:
-Let's find you a roommate! 🤝
-ACTION_JSON:{"action":"navigate","data":{"url":"/roommate-finder"}}
-
-CRITICAL RULES:
-- ALWAYS include RESULTS_JSON with real PG IDs when recommending PGs
-- Filter PGs accurately by price, area, gender, amenities from the database
-- Keep text to ONE sentence, never describe individual PGs
-- The UI will render PG cards automatically from the IDs you provide`;
+Actions: navigate (url), save (pgId), call (phone,name), whatsapp (phone,pgName)
+Nav URLs: /saved, /roommate-finder, /booking/PG_ID, /listing/PG_ID`;
 
 type Message = {
   role: "system" | "user" | "assistant";
@@ -84,9 +39,21 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Messages array required" }, { status: 400 });
     }
 
+    // Inject PG database as context in first user message
+    const firstUserIdx = messages.findIndex(m => m.role === "user");
+    const messagesWithData = messages.map((m, i) => {
+      if (i === firstUserIdx) {
+        return {
+          ...m,
+          content: `[PG DATABASE - use these IDs to answer]\n${pgData}\n\n[USER QUERY]: ${m.content}`,
+        };
+      }
+      return m;
+    });
+
     const fullMessages: Message[] = [
       { role: "system", content: SYSTEM_PROMPT },
-      ...messages,
+      ...messagesWithData,
     ];
 
     const response = await fetch(API_URL, {
@@ -111,21 +78,15 @@ export async function POST(req: Request) {
     }
 
     const reply = data.choices?.[0]?.message?.content || "Sorry, try again!";
-    console.log("Raw AI reply:", reply);
 
-    // Extract PG IDs — handle both quoted and unquoted formats
+    // Extract PG IDs — handle quoted, unquoted, and spaced formats
     let matchedPGs: string[] = [];
     const resultsMatch = reply.match(/RESULTS_JSON:\s*\[([^\]]*)\]/);
     if (resultsMatch) {
       const raw = resultsMatch[1];
-      // Try JSON parse first (quoted IDs)
-      try {
-        matchedPGs = JSON.parse(`[${raw}]`);
-      } catch {
-        // Fallback: extract pg-XX patterns from unquoted list
-        const idMatches = raw.match(/pg-\d+/g);
-        if (idMatches) matchedPGs = idMatches;
-      }
+      // Extract all pg-XX patterns regardless of format
+      const idMatches = raw.match(/pg-\d+/g);
+      if (idMatches) matchedPGs = idMatches;
     }
 
     // Extract action
@@ -135,10 +96,11 @@ export async function POST(req: Request) {
       try { action = JSON.parse(actionMatch[1]); } catch {}
     }
 
-    // Clean reply — remove JSON lines
+    // Clean reply
     const cleanReply = reply
       .replace(/RESULTS_JSON:\s*\[[^\]]*\]/g, "")
       .replace(/ACTION_JSON:\s*\{[^\n]*\}/g, "")
+      .replace(/\[PG DATABASE[\s\S]*?\[USER QUERY\]:\s*/g, "")
       .replace(/\n{2,}/g, "\n")
       .trim();
 
