@@ -35,11 +35,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const fetchProfile = async (userId: string) => {
+  const fetchProfile = async (u: User) => {
     const { data } = await supabase
       .from("profiles")
       .select("*")
-      .eq("id", userId)
+      .eq("id", u.id)
       .single();
     if (data) {
       setProfile({
@@ -51,6 +51,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         avatar: data.avatar,
         createdAt: data.created_at,
       });
+    } else {
+      // Fallback: build profile from auth user metadata
+      const meta = u.user_metadata || {};
+      setProfile({
+        id: u.id,
+        email: u.email || "",
+        name: meta.name || u.email?.split("@")[0] || "User",
+        phone: "",
+        role: meta.role || "tenant",
+        createdAt: u.created_at,
+      });
     }
   };
 
@@ -59,7 +70,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     supabase.auth.getSession().then(({ data: { session: s } }) => {
       setSession(s);
       setUser(s?.user ?? null);
-      if (s?.user) fetchProfile(s.user.id);
+      if (s?.user) fetchProfile(s.user);
       setLoading(false);
     });
 
@@ -68,7 +79,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setSession(s);
       setUser(s?.user ?? null);
       if (s?.user) {
-        fetchProfile(s.user.id);
+        fetchProfile(s.user);
       } else {
         setProfile(null);
       }
