@@ -113,13 +113,19 @@ export async function POST(req: Request) {
     const reply = data.choices?.[0]?.message?.content || "Sorry, try again!";
     console.log("Raw AI reply:", reply);
 
-    // Extract PG IDs
+    // Extract PG IDs — handle both quoted and unquoted formats
     let matchedPGs: string[] = [];
     const resultsMatch = reply.match(/RESULTS_JSON:\s*\[([^\]]*)\]/);
     if (resultsMatch) {
+      const raw = resultsMatch[1];
+      // Try JSON parse first (quoted IDs)
       try {
-        matchedPGs = JSON.parse(`[${resultsMatch[1]}]`);
-      } catch {}
+        matchedPGs = JSON.parse(`[${raw}]`);
+      } catch {
+        // Fallback: extract pg-XX patterns from unquoted list
+        const idMatches = raw.match(/pg-\d+/g);
+        if (idMatches) matchedPGs = idMatches;
+      }
     }
 
     // Extract action
