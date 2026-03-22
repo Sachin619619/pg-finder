@@ -355,7 +355,7 @@ export default function Home() {
                     <PGCard pg={pg} />
                     <button
                       onClick={(e) => { e.preventDefault(); toggleCompare(pg); }}
-                      className={`absolute top-4 left-14 z-10 pill text-[11px] transition-all shadow-sm backdrop-blur-sm ${
+                      className={`absolute top-14 left-4 z-10 pill text-[11px] transition-all shadow-sm backdrop-blur-sm ${
                         compareList.find((c) => c.id === pg.id)
                           ? "bg-violet-600 text-white shadow-violet-500/30"
                           : "bg-white/80 text-gray-600 hover:bg-violet-50 border border-white/50"
