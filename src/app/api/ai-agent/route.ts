@@ -1,32 +1,100 @@
 import { NextResponse } from "next/server";
-import { listings } from "@/data/listings";
+import { listings, type PGListing } from "@/data/listings";
 
 const MINIMAX_API_KEY = process.env.MINIMAX_API_KEY;
 const API_URL = "https://api.minimax.io/v1/text/chatcompletion_v2";
 const MODEL = "MiniMax-M2.7-highspeed";
 
-// Compact PG data
-const pgData = listings.map(l =>
-  `${l.id}|${l.name}|${l.area}|₹${l.price}|${l.type}|${l.gender}|${l.amenities.join(",")}|${l.rating}★|${l.contactName}|${l.contactPhone}|food:${l.foodIncluded ? "Y" : "N"}|wifi:${l.wifiIncluded ? "Y" : "N"}|ac:${l.acAvailable ? "Y" : "N"}`
-).join("\n");
+const SYSTEM_PROMPT = `You are PG Finder AI for Bangalore. You parse user intent and return structured JSON.
 
-// Keep system prompt SHORT so model follows format
-const SYSTEM_PROMPT = `You are PG Finder AI for Bangalore. Ultra concise.
+ALWAYS respond in this EXACT format — nothing else:
+{"intent":"INTENT","text":"short 1-line reply","filters":{"area":"","maxPrice":0,"minPrice":0,"gender":"","amenities":[],"type":"","food":false,"wifi":false,"ac":false},"action":null}
+
+INTENTS:
+- "search" — user wants to find/browse PGs. Fill filters object.
+- "action" — user wants to save/book/call/navigate. Fill action object.
+- "chat" — general question, no PG search needed.
+
+For "action" intent, set action to one of:
+{"type":"save","pgName":"..."}
+{"type":"navigate","url":"/saved"}
+{"type":"navigate","url":"/roommate-finder"}
+{"type":"navigate","url":"/booking/PG_NAME"}
+{"type":"call","pgName":"..."}
+{"type":"whatsapp","pgName":"..."}
+
+EXAMPLES:
+User: "PGs under 8000" → {"intent":"search","text":"Budget PGs under ₹8K 🏠","filters":{"maxPrice":8000},"action":null}
+User: "Female PGs in Koramangala with food" → {"intent":"search","text":"Female PGs in Koramangala with meals 🍽️","filters":{"area":"Koramangala","gender":"female","food":true},"action":null}
+User: "Show saved" → {"intent":"action","text":"Opening saved PGs ❤️","filters":{},"action":{"type":"navigate","url":"/saved"}}
+User: "Call Zolo Haven owner" → {"intent":"action","text":"Calling Zolo Haven owner 📞","filters":{},"action":{"type":"call","pgName":"Zolo Haven"}}
+User: "What areas are good for IT workers?" → {"intent":"chat","text":"Whitefield, Bellandur, and Electronic City are top picks for IT professionals — close to tech parks with good PG options! 💻","filters":{},"action":null}
 
 RULES:
-1. Write MAX 1 sentence (under 15 words)
-2. When recommending PGs, ALWAYS add on next line: RESULTS_JSON:["pg-1","pg-5"]
-3. For actions add: ACTION_JSON:{"action":"save","data":{"pgId":"pg-1"}}
-4. NEVER describe individual PGs in text — UI renders cards automatically
-5. Use REAL PG IDs from the database provided
-
-Actions: navigate (url), save (pgId), call (phone,name), whatsapp (phone,pgName)
-Nav URLs: /saved, /roommate-finder, /booking/PG_ID, /listing/PG_ID`;
+- ONLY output valid JSON, nothing else
+- "text" must be 1 short sentence (max 15 words)
+- For filters, only include fields that user mentioned
+- area values: Koramangala, HSR Layout, Indiranagar, Whitefield, etc.
+- gender: male, female, coed
+- type: single, double, triple`;
 
 type Message = {
   role: "system" | "user" | "assistant";
   content: string;
 };
+
+// Server-side PG filtering
+function filterPGs(filters: Record<string, unknown>): PGListing[] {
+  let results = [...listings];
+
+  if (filters.area) {
+    const area = (filters.area as string).toLowerCase();
+    results = results.filter(pg => pg.area.toLowerCase().includes(area));
+  }
+  if (filters.maxPrice) {
+    results = results.filter(pg => pg.price <= (filters.maxPrice as number));
+  }
+  if (filters.minPrice) {
+    results = results.filter(pg => pg.price >= (filters.minPrice as number));
+  }
+  if (filters.gender) {
+    const g = (filters.gender as string).toLowerCase();
+    results = results.filter(pg => pg.gender === g || pg.gender === "coed");
+  }
+  if (filters.type) {
+    results = results.filter(pg => pg.type === filters.type || pg.type === "any");
+  }
+  if (filters.food) {
+    results = results.filter(pg => pg.foodIncluded);
+  }
+  if (filters.wifi) {
+    results = results.filter(pg => pg.wifiIncluded);
+  }
+  if (filters.ac) {
+    results = results.filter(pg => pg.acAvailable);
+  }
+  if (filters.amenities && Array.isArray(filters.amenities) && filters.amenities.length > 0) {
+    results = results.filter(pg =>
+      (filters.amenities as string[]).every(a =>
+        pg.amenities.some(pa => pa.toLowerCase().includes(a.toLowerCase()))
+      )
+    );
+  }
+
+  // Sort by rating
+  results.sort((a, b) => b.rating - a.rating);
+
+  return results.slice(0, 8);
+}
+
+// Find PG by name for actions
+function findPGByName(name: string): PGListing | undefined {
+  const lower = name.toLowerCase();
+  return listings.find(pg =>
+    pg.name.toLowerCase().includes(lower) ||
+    lower.includes(pg.name.toLowerCase().split(" ")[0])
+  );
+}
 
 export async function POST(req: Request) {
   if (!MINIMAX_API_KEY) {
@@ -39,21 +107,9 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Messages array required" }, { status: 400 });
     }
 
-    // Inject PG database as context in first user message
-    const firstUserIdx = messages.findIndex(m => m.role === "user");
-    const messagesWithData = messages.map((m, i) => {
-      if (i === firstUserIdx) {
-        return {
-          ...m,
-          content: `[PG DATABASE - use these IDs to answer]\n${pgData}\n\n[USER QUERY]: ${m.content}`,
-        };
-      }
-      return m;
-    });
-
     const fullMessages: Message[] = [
       { role: "system", content: SYSTEM_PROMPT },
-      ...messagesWithData,
+      ...messages,
     ];
 
     const response = await fetch(API_URL, {
@@ -65,8 +121,8 @@ export async function POST(req: Request) {
       body: JSON.stringify({
         model: MODEL,
         messages: fullMessages,
-        temperature: 0.2,
-        max_tokens: 1024,
+        temperature: 0.1,
+        max_tokens: 512,
       }),
     });
 
@@ -77,40 +133,57 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: data.base_resp.status_msg || "AI error" }, { status: 502 });
     }
 
-    const reply = data.choices?.[0]?.message?.content || "Sorry, try again!";
+    const rawReply = data.choices?.[0]?.message?.content || "";
 
-    // Extract PG IDs — handle quoted, unquoted, and spaced formats
-    let matchedPGs: string[] = [];
-    const resultsMatch = reply.match(/RESULTS_JSON:\s*\[([^\]]*)\]/);
-    if (resultsMatch) {
-      const raw = resultsMatch[1];
-      // Extract all pg-XX patterns regardless of format
-      const idMatches = raw.match(/pg-\d+/g);
-      if (idMatches) matchedPGs = idMatches;
+    // Parse the JSON response from AI
+    let parsed;
+    try {
+      // Extract JSON from response (handle markdown code blocks too)
+      const jsonStr = rawReply.replace(/```json\s*/g, "").replace(/```/g, "").trim();
+      parsed = JSON.parse(jsonStr);
+    } catch {
+      // Fallback: try to find JSON in response
+      const jsonMatch = rawReply.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        try { parsed = JSON.parse(jsonMatch[0]); } catch {}
+      }
     }
 
-    // Extract action
+    if (!parsed) {
+      // If AI didn't return JSON, just return text
+      return NextResponse.json({
+        reply: rawReply.slice(0, 200),
+        listings: [],
+        action: null,
+      });
+    }
+
+    const replyText = parsed.text || "Here you go! 🎯";
+    let matchedListings: PGListing[] = [];
     let action = null;
-    const actionMatch = reply.match(/ACTION_JSON:\s*(\{[^\n]*\})/);
-    if (actionMatch) {
-      try { action = JSON.parse(actionMatch[1]); } catch {}
+
+    if (parsed.intent === "search" && parsed.filters) {
+      matchedListings = filterPGs(parsed.filters);
     }
 
-    // Clean reply
-    const cleanReply = reply
-      .replace(/RESULTS_JSON:\s*\[[^\]]*\]/g, "")
-      .replace(/ACTION_JSON:\s*\{[^\n]*\}/g, "")
-      .replace(/\[PG DATABASE[\s\S]*?\[USER QUERY\]:\s*/g, "")
-      .replace(/\n{2,}/g, "\n")
-      .trim();
-
-    // Get full listing data
-    const matchedListings = matchedPGs
-      .map((id: string) => listings.find((l) => l.id === id))
-      .filter(Boolean);
+    if (parsed.intent === "action" && parsed.action) {
+      const act = parsed.action;
+      if (act.type === "navigate") {
+        action = { action: "navigate", data: { url: act.url } };
+      } else if (act.type === "save" && act.pgName) {
+        const pg = findPGByName(act.pgName);
+        if (pg) action = { action: "save", data: { pgId: pg.id } };
+      } else if (act.type === "call" && act.pgName) {
+        const pg = findPGByName(act.pgName);
+        if (pg) action = { action: "call", data: { phone: pg.contactPhone, name: pg.contactName } };
+      } else if (act.type === "whatsapp" && act.pgName) {
+        const pg = findPGByName(act.pgName);
+        if (pg) action = { action: "whatsapp", data: { phone: pg.contactPhone, pgName: pg.name } };
+      }
+    }
 
     return NextResponse.json({
-      reply: cleanReply,
+      reply: replyText,
       listings: matchedListings,
       action,
     });
