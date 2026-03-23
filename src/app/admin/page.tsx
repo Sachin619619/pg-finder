@@ -5,6 +5,15 @@ import { useRouter } from "next/navigation";
 import Header from "@/components/Header";
 import { useAuth } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
+import { authFetch } from "@/lib/auth-fetch";
+
+const adminAction = async (action: string, params: Record<string, unknown>) => {
+  const res = await authFetch("/api/admin", {
+    method: "POST",
+    body: JSON.stringify({ action, ...params }),
+  });
+  return res.json();
+};
 
 type AdminListing = {
   id: string;
@@ -221,19 +230,18 @@ export default function AdminPage() {
   };
 
   const updateAgentRequestStatus = async (id: number, status: "approved" | "rejected" | "paid", note?: string) => {
-    const updates: Record<string, unknown> = { status };
-    if (note) updates.admin_note = note;
-    await supabase.from("agent_requests").update(updates).eq("id", id);
-    setAgentRequests(agentRequests.map(r => r.id === id ? { ...r, status, admin_note: note || r.admin_note } : r));
+    const result = await adminAction("update-agent-request", { id, status, admin_note: note || undefined });
+    if (result.success) {
+      setAgentRequests(agentRequests.map(r => r.id === id ? { ...r, status, admin_note: note || r.admin_note } : r));
+    }
     setRejectingId(null);
     setRejectNote("");
   };
 
   const handleVerifyAgent = async (agentId: string, action: "approve" | "reject") => {
     try {
-      const res = await fetch("/api/verify-agent", {
+      const res = await authFetch("/api/verify-agent", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ agentId, action }),
       });
       const data = await res.json();
@@ -245,9 +253,8 @@ export default function AdminPage() {
 
   const handleApproveListing = async (listingId: string, action: "approve" | "reject") => {
     try {
-      const res = await fetch("/api/approve-listing", {
+      const res = await authFetch("/api/approve-listing", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ listingId, action }),
       });
       const data = await res.json();
@@ -260,31 +267,40 @@ export default function AdminPage() {
   };
 
   const toggleVerify = async (reviewId: string, current: boolean) => {
-    await supabase.from("reviews").update({ verified: !current }).eq("id", reviewId);
-    setReviews(reviews.map((r) => r.id === reviewId ? { ...r, verified: !current } : r));
+    const result = await adminAction("toggle-verify-review", { id: reviewId, verified: !current });
+    if (result.success) {
+      setReviews(reviews.map((r) => r.id === reviewId ? { ...r, verified: !current } : r));
+    }
   };
 
   const deleteReview = async (reviewId: string) => {
-    await supabase.from("reviews").delete().eq("id", reviewId);
-    setReviews(reviews.filter((r) => r.id !== reviewId));
+    const result = await adminAction("delete-review", { id: reviewId });
+    if (result.success) {
+      setReviews(reviews.filter((r) => r.id !== reviewId));
+    }
   };
 
   const deleteListing = async (id: string) => {
     if (!confirm("Delete this listing?")) return;
-    await supabase.from("listings").delete().eq("id", id);
-    setListings(listings.filter((l) => l.id !== id));
+    const result = await adminAction("delete-listing", { id });
+    if (result.success) {
+      setListings(listings.filter((l) => l.id !== id));
+    }
   };
 
   const updateListing = async () => {
     if (!editingListing) return;
-    await supabase.from("listings").update({
+    const result = await adminAction("update-listing", {
+      id: editingListing.id,
       name: editingListing.name,
       area: editingListing.area,
       price: editingListing.price,
       contact_phone: editingListing.contact_phone,
-    }).eq("id", editingListing.id);
-    setListings(listings.map((l) => l.id === editingListing.id ? editingListing : l));
-    setEditingListing(null);
+    });
+    if (result.success) {
+      setListings(listings.map((l) => l.id === editingListing.id ? editingListing : l));
+      setEditingListing(null);
+    }
   };
 
   if (authLoading || (!profile)) {
@@ -292,7 +308,7 @@ export default function AdminPage() {
       <>
         <Header />
         <main className="min-h-screen flex items-center justify-center">
-          <div className="animate-spin w-8 h-8 border-4 border-violet-500 border-t-transparent rounded-full" />
+          <div className="animate-spin w-8 h-8 border-4 border-[#1B1C15] border-t-transparent rounded-full" />
         </main>
       </>
     );
@@ -313,82 +329,84 @@ export default function AdminPage() {
       <Header />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 overflow-x-hidden">
         <div className="flex items-center justify-between mb-6">
-          <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">🛡️ Admin Panel</h1>
-            <p className="text-gray-400 mt-1 text-sm">Manage listings, reviews, callbacks & users</p>
+          <div className="flex items-center gap-3">
+            <div className="w-11 h-11 bg-[#1B1C15] rounded-2xl flex items-center justify-center shadow-lg shadow-black/10">
+              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>
+            </div>
+            <div>
+              <h1 className="text-xl sm:text-2xl font-bold text-[#1B1C15] tracking-tight">Admin Panel</h1>
+              <p className="text-[#999] text-xs mt-0.5">Manage listings, reviews, callbacks & users</p>
+            </div>
           </div>
-          <span className="pill bg-red-50 dark:bg-red-900/30 text-red-600 !text-xs font-semibold">Admin</span>
+          <span className="px-3 py-1.5 bg-[#1B1C15] text-white text-[10px] font-bold uppercase tracking-wider rounded-xl">Admin</span>
         </div>
 
-        {/* Tabs — grid on mobile, flex on desktop */}
-        <div className="grid grid-cols-4 sm:flex gap-1 bg-gray-100 dark:bg-gray-800 rounded-2xl p-1 mb-6">
+        {/* Tabs — horizontal scroll on mobile */}
+        <div className="flex gap-1.5 overflow-x-auto pb-1 mb-6 scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
           {tabs.map((t) => (
             <button
               key={t.key}
               onClick={() => setTab(t.key)}
-              className={`px-3 py-2 sm:px-5 sm:py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-all capitalize whitespace-nowrap text-center ${
-                tab === t.key ? "bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm" : "text-gray-500 hover:text-gray-700"
+              className={`flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-semibold transition-all capitalize whitespace-nowrap shrink-0 ${
+                tab === t.key ? "bg-[#1B1C15] text-white shadow-lg shadow-black/15" : "bg-[#F4EDD9] text-[#666] hover:bg-[#ebe4d0] border border-[#e8e0cc]/60"
               }`}
             >
-              {t.icon} {t.key}{t.key !== "dashboard" ? ` (${t.count})` : ""}
+              <span className="text-sm">{t.icon}</span>
+              <span>{t.key}</span>
+              {t.key !== "dashboard" && <span className={`ml-0.5 px-1.5 py-0.5 rounded-md text-[10px] font-bold ${tab === t.key ? "bg-white/20 text-white" : "bg-black/5 text-[#888]"}`}>{t.count}</span>}
             </button>
           ))}
         </div>
 
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <div className="animate-spin w-8 h-8 border-4 border-violet-500 border-t-transparent rounded-full" />
+            <div className="animate-spin w-8 h-8 border-4 border-[#1B1C15] border-t-transparent rounded-full" />
           </div>
         ) : (
           <>
             {/* DASHBOARD TAB */}
             {tab === "dashboard" && (
-              <div className="space-y-6">
+              <div className="space-y-5">
                 {/* Key Metrics */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                  <div className="premium-card !rounded-2xl p-4 text-center">
-                    <p className="text-xs text-gray-400 mb-1">Total Listings</p>
-                    <p className="text-3xl font-extrabold text-violet-600">{dashboardStats.totalListings}</p>
-                  </div>
-                  <div className="premium-card !rounded-2xl p-4 text-center">
-                    <p className="text-xs text-gray-400 mb-1">Total Users</p>
-                    <p className="text-3xl font-extrabold text-blue-600">{dashboardStats.totalUsers}</p>
-                  </div>
-                  <div className="premium-card !rounded-2xl p-4 text-center">
-                    <p className="text-xs text-gray-400 mb-1">Reviews</p>
-                    <p className="text-3xl font-extrabold text-amber-600">{dashboardStats.totalReviews}</p>
-                  </div>
-                  <div className="premium-card !rounded-2xl p-4 text-center">
-                    <p className="text-xs text-gray-400 mb-1">Callbacks</p>
-                    <p className="text-3xl font-extrabold text-emerald-600">{dashboardStats.totalCallbacks}</p>
-                  </div>
+                  {[
+                    { label: "Total Listings", value: dashboardStats.totalListings, color: "from-[#1B1C15] to-[#333]", icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg> },
+                    { label: "Total Users", value: dashboardStats.totalUsers, color: "from-blue-500 to-blue-600", icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" /></svg> },
+                    { label: "Reviews", value: dashboardStats.totalReviews, color: "from-amber-500 to-orange-500", icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" /></svg> },
+                    { label: "Callbacks", value: dashboardStats.totalCallbacks, color: "from-emerald-500 to-green-600", icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg> },
+                  ].map((stat) => (
+                    <div key={stat.label} className={`bg-gradient-to-br ${stat.color} rounded-2xl p-4 text-white relative overflow-hidden`}>
+                      <div className="absolute top-3 right-3 opacity-20">{stat.icon}</div>
+                      <p className="text-[11px] text-white/70 font-medium mb-1">{stat.label}</p>
+                      <p className="text-3xl font-extrabold">{stat.value}</p>
+                    </div>
+                  ))}
                 </div>
 
                 {/* User Breakdown */}
-                <div className="premium-card !rounded-2xl p-5">
-                  <h3 className="font-bold text-gray-900 dark:text-white text-sm mb-4">👥 User Breakdown</h3>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                    <div className="bg-emerald-50 dark:bg-emerald-900/20 rounded-xl p-3 text-center">
-                      <p className="text-2xl font-extrabold text-emerald-600">{dashboardStats.tenants}</p>
-                      <p className="text-xs text-emerald-600 font-medium mt-1">Tenants</p>
+                <div className="bg-[#FFFAEB] border border-[#e8e0cc] rounded-2xl p-5">
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="w-8 h-8 bg-[#1B1C15] rounded-xl flex items-center justify-center">
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" /></svg>
                     </div>
-                    <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-3 text-center">
-                      <p className="text-2xl font-extrabold text-blue-600">{dashboardStats.owners}</p>
-                      <p className="text-xs text-blue-600 font-medium mt-1">Owners</p>
-                    </div>
-                    <div className="bg-orange-50 dark:bg-orange-900/20 rounded-xl p-3 text-center">
-                      <p className="text-2xl font-extrabold text-orange-600">{dashboardStats.agents}</p>
-                      <p className="text-xs text-orange-600 font-medium mt-1">Agents</p>
-                    </div>
-                    <div className="bg-red-50 dark:bg-red-900/20 rounded-xl p-3 text-center">
-                      <p className="text-2xl font-extrabold text-red-600">{dashboardStats.admins}</p>
-                      <p className="text-xs text-red-600 font-medium mt-1">Admins</p>
-                    </div>
+                    <h3 className="font-bold text-[#1B1C15] text-sm">User Breakdown</h3>
                   </div>
-                  {/* User bar */}
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                    {[
+                      { label: "Tenants", value: dashboardStats.tenants, bg: "bg-emerald-500/10", text: "text-emerald-600", ring: "ring-emerald-500/20" },
+                      { label: "Owners", value: dashboardStats.owners, bg: "bg-blue-500/10", text: "text-blue-600", ring: "ring-blue-500/20" },
+                      { label: "Agents", value: dashboardStats.agents, bg: "bg-orange-500/10", text: "text-orange-600", ring: "ring-orange-500/20" },
+                      { label: "Admins", value: dashboardStats.admins, bg: "bg-red-500/10", text: "text-red-600", ring: "ring-red-500/20" },
+                    ].map((item) => (
+                      <div key={item.label} className={`${item.bg} ring-1 ${item.ring} rounded-xl p-3.5 text-center`}>
+                        <p className={`text-2xl font-extrabold ${item.text}`}>{item.value}</p>
+                        <p className={`text-[11px] ${item.text} font-semibold mt-0.5 opacity-70`}>{item.label}</p>
+                      </div>
+                    ))}
+                  </div>
                   {dashboardStats.totalUsers > 0 && (
                     <div className="mt-4">
-                      <div className="flex rounded-full overflow-hidden h-3">
+                      <div className="flex rounded-full overflow-hidden h-2.5 ring-1 ring-black/5">
                         {dashboardStats.tenants > 0 && <div className="bg-emerald-500" style={{ width: `${(dashboardStats.tenants / dashboardStats.totalUsers) * 100}%` }} />}
                         {dashboardStats.owners > 0 && <div className="bg-blue-500" style={{ width: `${(dashboardStats.owners / dashboardStats.totalUsers) * 100}%` }} />}
                         {dashboardStats.agents > 0 && <div className="bg-orange-500" style={{ width: `${(dashboardStats.agents / dashboardStats.totalUsers) * 100}%` }} />}
@@ -399,43 +417,53 @@ export default function AdminPage() {
                 </div>
 
                 {/* Agent & Payout Stats */}
-                <div className="premium-card !rounded-2xl p-5">
-                  <h3 className="font-bold text-gray-900 dark:text-white text-sm mb-4">🤝 Agent Activity</h3>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                    <div className="bg-violet-50 dark:bg-violet-900/20 rounded-xl p-3 text-center">
-                      <p className="text-2xl font-extrabold text-violet-600">{dashboardStats.totalAgentRequests}</p>
-                      <p className="text-xs text-violet-600 font-medium mt-1">Total Requests</p>
+                <div className="bg-[#FFFAEB] border border-[#e8e0cc] rounded-2xl p-5">
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="w-8 h-8 bg-[#1B1C15] rounded-xl flex items-center justify-center">
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" /></svg>
                     </div>
-                    <div className="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-3 text-center">
+                    <h3 className="font-bold text-[#1B1C15] text-sm">Agent Activity</h3>
+                  </div>
+                  <div className="grid grid-cols-3 gap-2.5">
+                    <div className="bg-[#F4EDD9] ring-1 ring-[#e8e0cc] rounded-xl p-3.5 text-center">
+                      <p className="text-2xl font-extrabold text-[#1B1C15]">{dashboardStats.totalAgentRequests}</p>
+                      <p className="text-[11px] text-[#888] font-semibold mt-0.5">Requests</p>
+                    </div>
+                    <div className="bg-amber-500/10 ring-1 ring-amber-500/20 rounded-xl p-3.5 text-center">
                       <p className="text-2xl font-extrabold text-amber-600">{dashboardStats.pendingRequests}</p>
-                      <p className="text-xs text-amber-600 font-medium mt-1">Pending</p>
+                      <p className="text-[11px] text-amber-600/70 font-semibold mt-0.5">Pending</p>
                     </div>
-                    <div className="bg-emerald-50 dark:bg-emerald-900/20 rounded-xl p-3 text-center">
-                      <p className="text-2xl font-extrabold text-emerald-600">₹{dashboardStats.totalPayout.toLocaleString()}</p>
-                      <p className="text-xs text-emerald-600 font-medium mt-1">Total Paid</p>
+                    <div className="bg-emerald-500/10 ring-1 ring-emerald-500/20 rounded-xl p-3.5 text-center">
+                      <p className="text-xl font-extrabold text-emerald-600">₹{dashboardStats.totalPayout.toLocaleString()}</p>
+                      <p className="text-[11px] text-emerald-600/70 font-semibold mt-0.5">Paid Out</p>
                     </div>
                   </div>
-                  <div className="grid grid-cols-2 gap-3 mt-3">
-                    <div className="bg-red-50 dark:bg-red-900/20 rounded-xl p-3 text-center">
+                  <div className="grid grid-cols-2 gap-2.5 mt-2.5">
+                    <div className="bg-red-500/10 ring-1 ring-red-500/20 rounded-xl p-3.5 text-center">
                       <p className="text-2xl font-extrabold text-red-600">{dashboardStats.agentWarnings}</p>
-                      <p className="text-xs text-red-600 font-medium mt-1">Warnings Issued</p>
+                      <p className="text-[11px] text-red-600/70 font-semibold mt-0.5">Warnings</p>
                     </div>
-                    <div className="bg-red-50 dark:bg-red-900/20 rounded-xl p-3 text-center">
+                    <div className="bg-red-500/10 ring-1 ring-red-500/20 rounded-xl p-3.5 text-center">
                       <p className="text-2xl font-extrabold text-red-600">{dashboardStats.suspendedAgents}</p>
-                      <p className="text-xs text-red-600 font-medium mt-1">Suspended/Banned</p>
+                      <p className="text-[11px] text-red-600/70 font-semibold mt-0.5">Suspended</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Listings Stats */}
-                <div className="premium-card !rounded-2xl p-5">
-                  <h3 className="font-bold text-gray-900 dark:text-white text-sm mb-4">🏠 Listing Insights</h3>
-                  <div className="grid grid-cols-2 gap-3 mb-4">
-                    <div className="bg-violet-50 dark:bg-violet-900/20 rounded-xl p-3 text-center">
-                      <p className="text-2xl font-extrabold text-violet-600">₹{dashboardStats.avgPrice.toLocaleString()}</p>
-                      <p className="text-xs text-violet-600 font-medium mt-1">Avg Price/mo</p>
+                <div className="bg-[#FFFAEB] border border-[#e8e0cc] rounded-2xl p-5">
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="w-8 h-8 bg-[#1B1C15] rounded-xl flex items-center justify-center">
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>
                     </div>
-                    <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-3 text-center">
+                    <h3 className="font-bold text-[#1B1C15] text-sm">Listing Insights</h3>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3 mb-4">
+                    <div className="bg-[#F4EDD9] rounded-xl p-3 text-center">
+                      <p className="text-2xl font-extrabold text-[#1B1C15]">₹{dashboardStats.avgPrice.toLocaleString()}</p>
+                      <p className="text-xs text-[#1B1C15] font-medium mt-1">Avg Price/mo</p>
+                    </div>
+                    <div className="bg-blue-50 rounded-xl p-3 text-center">
                       <p className="text-2xl font-extrabold text-blue-600">{dashboardStats.totalAlerts}</p>
                       <p className="text-xs text-blue-600 font-medium mt-1">Price Alerts</p>
                     </div>
@@ -446,14 +474,14 @@ export default function AdminPage() {
                       <div className="space-y-2">
                         {dashboardStats.topAreas.map((a) => (
                           <div key={a.area} className="flex items-center gap-3">
-                            <span className="text-xs text-gray-600 dark:text-gray-300 w-28 truncate">{a.area}</span>
-                            <div className="flex-1 bg-gray-100 dark:bg-gray-800 rounded-full h-2.5 overflow-hidden">
+                            <span className="text-xs text-gray-600 w-28 truncate">{a.area}</span>
+                            <div className="flex-1 bg-gray-100 rounded-full h-2.5 overflow-hidden">
                               <div
-                                className="bg-gradient-to-r from-violet-500 to-purple-500 h-full rounded-full"
+                                className="bg-[#1B1C15] h-full rounded-full"
                                 style={{ width: `${(a.count / dashboardStats.totalListings) * 100}%` }}
                               />
                             </div>
-                            <span className="text-xs font-bold text-gray-700 dark:text-gray-300 w-6 text-right">{a.count}</span>
+                            <span className="text-xs font-bold text-gray-700 w-6 text-right">{a.count}</span>
                           </div>
                         ))}
                       </div>
@@ -462,21 +490,26 @@ export default function AdminPage() {
                 </div>
 
                 {/* Recent Users */}
-                <div className="premium-card !rounded-2xl p-5">
-                  <h3 className="font-bold text-gray-900 dark:text-white text-sm mb-4">🆕 Recent Users</h3>
+                <div className="bg-[#FFFAEB] border border-[#e8e0cc] rounded-2xl p-5">
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="w-8 h-8 bg-[#1B1C15] rounded-xl flex items-center justify-center">
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    </div>
+                    <h3 className="font-bold text-[#1B1C15] text-sm">Recent Users</h3>
+                  </div>
                   <div className="space-y-3">
                     {dashboardStats.recentUsers.map((u, i) => (
                       <div key={i} className="flex items-center justify-between gap-3">
                         <div className="min-w-0 flex-1">
-                          <p className="text-sm font-medium text-gray-900 dark:text-white truncate">{u.name}</p>
+                          <p className="text-sm font-medium text-gray-900 truncate">{u.name}</p>
                           <p className="text-[10px] text-gray-400 truncate">{u.email}</p>
                         </div>
                         <div className="flex items-center gap-2 shrink-0">
                           <span className={`pill !text-[10px] ${
-                            u.role === "admin" ? "bg-red-50 text-red-600 dark:bg-red-900/30" :
-                            u.role === "owner" ? "bg-blue-50 text-blue-600 dark:bg-blue-900/30" :
-                            u.role === "agent" ? "bg-orange-50 text-orange-600 dark:bg-orange-900/30" :
-                            "bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30"
+                            u.role === "admin" ? "bg-red-50 text-red-600" :
+                            u.role === "owner" ? "bg-blue-50 text-blue-600" :
+                            u.role === "agent" ? "bg-orange-50 text-orange-600" :
+                            "bg-emerald-50 text-emerald-600"
                           }`}>{u.role}</span>
                           <span className="text-[10px] text-gray-400">{new Date(u.created_at).toLocaleDateString("en-IN", { day: "numeric", month: "short" })}</span>
                         </div>
@@ -492,8 +525,8 @@ export default function AdminPage() {
             {tab === "listings" && (
               <div className="space-y-4">
                 {editingListing && (
-                  <div className="premium-card !rounded-2xl p-5 border-2 border-violet-500 mb-6">
-                    <h3 className="font-bold text-gray-900 dark:text-white mb-4">✏️ Edit Listing</h3>
+                  <div className="premium-card !rounded-2xl p-5 border-2 border-[#1B1C15] mb-6">
+                    <h3 className="font-bold text-gray-900 mb-4">✏️ Edit Listing</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <label className="text-xs font-semibold text-gray-500 block mb-1">Name</label>
@@ -514,7 +547,7 @@ export default function AdminPage() {
                     </div>
                     <div className="flex gap-3 mt-4">
                       <button onClick={updateListing} className="btn-premium !py-2 !px-5 !text-sm">Save Changes</button>
-                      <button onClick={() => setEditingListing(null)} className="px-5 py-2 text-sm text-gray-500 border border-gray-200 dark:border-gray-700 rounded-xl">Cancel</button>
+                      <button onClick={() => setEditingListing(null)} className="px-5 py-2 text-sm text-gray-500 border border-gray-200 rounded-xl">Cancel</button>
                     </div>
                   </div>
                 )}
@@ -523,27 +556,27 @@ export default function AdminPage() {
                   <div className="mb-6">
                     <div className="flex items-center gap-2 mb-3">
                       <span className="text-lg">⏳</span>
-                      <h3 className="font-bold text-gray-900 dark:text-white text-sm">Pending Approval ({pendingListings.length})</h3>
+                      <h3 className="font-bold text-gray-900 text-sm">Pending Approval ({pendingListings.length})</h3>
                     </div>
                     <div className="space-y-3">
                       {pendingListings.map((l) => (
-                        <div key={l.id} className="premium-card !rounded-2xl p-4 border-2 border-amber-200 dark:border-amber-800/30 bg-amber-50/30 dark:bg-amber-900/10">
+                        <div key={l.id} className="premium-card !rounded-2xl p-4 border-2 border-amber-200 bg-amber-50/30">
                           <div className="flex items-start justify-between gap-3">
                             <div className="min-w-0 flex-1">
-                              <h3 className="font-semibold text-gray-900 dark:text-white text-sm truncate">{l.name}</h3>
+                              <h3 className="font-semibold text-gray-900 text-sm truncate">{l.name}</h3>
                               <p className="text-xs text-gray-400 mt-0.5">📍 {l.area}</p>
                             </div>
                             <span className="pill bg-amber-50 text-amber-600 !text-[10px] shrink-0">⏳ Pending</span>
                           </div>
-                          <div className="flex items-center gap-3 mt-3">
-                            <span className="text-sm font-bold text-gray-900 dark:text-white">₹{l.price?.toLocaleString()}/mo</span>
-                            <span className="pill bg-violet-50 text-violet-600 !text-[10px]">{l.gender}</span>
-                            <span className="text-xs text-gray-400">{l.contact_phone}</span>
+                          <div className="flex flex-wrap items-center gap-2 mt-3">
+                            <span className="text-sm font-bold text-gray-900">₹{l.price?.toLocaleString()}/mo</span>
+                            <span className="pill bg-[#F4EDD9] text-[#1B1C15] !text-[10px]">{l.gender}</span>
+                            <span className="text-xs text-gray-400 truncate">{l.contact_phone}</span>
                           </div>
-                          <div className="flex gap-2 mt-3 pt-3 border-t border-amber-100 dark:border-amber-800/20">
-                            <button onClick={() => handleApproveListing(l.id, "approve")} className="flex-1 py-2 text-xs bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 rounded-xl font-medium">✅ Approve</button>
-                            <button onClick={() => handleApproveListing(l.id, "reject")} className="flex-1 py-2 text-xs bg-red-50 dark:bg-red-900/30 text-red-600 rounded-xl font-medium">❌ Reject</button>
-                            <button onClick={() => setEditingListing(l)} className="flex-1 py-2 text-xs bg-violet-50 dark:bg-violet-900/30 text-violet-600 rounded-xl font-medium">✏️ Edit</button>
+                          <div className="grid grid-cols-3 gap-2 mt-3 pt-3 border-t border-amber-100">
+                            <button onClick={() => handleApproveListing(l.id, "approve")} className="py-2 text-xs bg-emerald-50 text-emerald-600 rounded-xl font-medium">✅ Approve</button>
+                            <button onClick={() => handleApproveListing(l.id, "reject")} className="py-2 text-xs bg-red-50 text-red-600 rounded-xl font-medium">❌ Reject</button>
+                            <button onClick={() => setEditingListing(l)} className="py-2 text-xs bg-[#F4EDD9] text-[#1B1C15] rounded-xl font-medium">✏️ Edit</button>
                           </div>
                         </div>
                       ))}
@@ -556,14 +589,14 @@ export default function AdminPage() {
                   <div key={l.id} className="premium-card !rounded-2xl p-4">
                     <div className="flex items-start justify-between gap-3">
                       <div className="min-w-0 flex-1">
-                        <h3 className="font-semibold text-gray-900 dark:text-white text-sm truncate">{l.name}</h3>
+                        <h3 className="font-semibold text-gray-900 text-sm truncate">{l.name}</h3>
                         <p className="text-xs text-gray-400 mt-0.5">📍 {l.area}</p>
                       </div>
                       <div className="flex items-center gap-2 shrink-0">
                         <span className={`pill !text-[10px] ${
-                          l.status === "active" ? "bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30" :
-                          l.status === "rejected" ? "bg-red-50 text-red-600 dark:bg-red-900/30" :
-                          l.status === "pending" ? "bg-amber-50 text-amber-600 dark:bg-amber-900/30" :
+                          l.status === "active" ? "bg-emerald-50 text-emerald-600" :
+                          l.status === "rejected" ? "bg-red-50 text-red-600" :
+                          l.status === "pending" ? "bg-amber-50 text-amber-600" :
                           "bg-gray-100 text-gray-500"
                         }`}>
                           {l.status === "active" ? "✅ Active" :
@@ -574,18 +607,18 @@ export default function AdminPage() {
                         <span className="pill bg-amber-50 text-amber-600 !text-[10px]">⭐ {l.rating}</span>
                       </div>
                     </div>
-                    <div className="flex items-center gap-3 mt-3">
-                      <span className="text-sm font-bold text-gray-900 dark:text-white">₹{l.price?.toLocaleString()}/mo</span>
-                      <span className="pill bg-violet-50 text-violet-600 !text-[10px]">{l.gender}</span>
-                      <span className="text-xs text-gray-400">{l.contact_phone}</span>
+                    <div className="flex flex-wrap items-center gap-2 mt-3">
+                      <span className="text-sm font-bold text-gray-900">₹{l.price?.toLocaleString()}/mo</span>
+                      <span className="pill bg-[#F4EDD9] text-[#1B1C15] !text-[10px]">{l.gender}</span>
+                      <span className="text-xs text-gray-400 truncate">{l.contact_phone}</span>
                     </div>
-                    <div className="flex gap-2 mt-3 pt-3 border-t border-gray-100 dark:border-gray-800">
-                      <button onClick={() => setEditingListing(l)} className="flex-1 py-2 text-xs bg-violet-50 dark:bg-violet-900/30 text-violet-600 rounded-xl font-medium">✏️ Edit</button>
-                      <button onClick={() => deleteListing(l.id)} className="flex-1 py-2 text-xs bg-red-50 dark:bg-red-900/30 text-red-600 rounded-xl font-medium">🗑️ Delete</button>
+                    <div className={`grid gap-2 mt-3 pt-3 border-t border-gray-100 ${l.status === "pending" ? "grid-cols-2" : "grid-cols-2"}`}>
+                      <button onClick={() => setEditingListing(l)} className="py-2 text-xs bg-[#F4EDD9] text-[#1B1C15] rounded-xl font-medium">✏️ Edit</button>
+                      <button onClick={() => deleteListing(l.id)} className="py-2 text-xs bg-red-50 text-red-600 rounded-xl font-medium">🗑️ Delete</button>
                       {l.status === "pending" && (
                         <>
-                          <button onClick={() => handleApproveListing(l.id, "approve")} className="flex-1 py-2 text-xs bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 rounded-xl font-medium">✅ Approve</button>
-                          <button onClick={() => handleApproveListing(l.id, "reject")} className="flex-1 py-2 text-xs bg-red-50 dark:bg-red-900/30 text-red-500 rounded-xl font-medium">❌ Reject</button>
+                          <button onClick={() => handleApproveListing(l.id, "approve")} className="py-2 text-xs bg-emerald-50 text-emerald-600 rounded-xl font-medium">✅ Approve</button>
+                          <button onClick={() => handleApproveListing(l.id, "reject")} className="py-2 text-xs bg-red-50 text-red-500 rounded-xl font-medium">❌ Reject</button>
                         </>
                       )}
                     </div>
@@ -601,7 +634,7 @@ export default function AdminPage() {
                 {reviews.map((r) => (
                   <div key={r.id} className="premium-card !rounded-2xl p-4">
                     <div className="flex items-center gap-2 flex-wrap mb-2">
-                      <span className="font-semibold text-gray-900 dark:text-white text-sm">{r.name}</span>
+                      <span className="font-semibold text-gray-900 text-sm">{r.name}</span>
                       <span className="pill bg-amber-50 text-amber-600 !text-[10px]">{"⭐".repeat(r.rating)}</span>
                       {r.verified ? (
                         <span className="pill bg-emerald-50 text-emerald-600 !text-[10px]">✅ Verified</span>
@@ -609,9 +642,9 @@ export default function AdminPage() {
                         <span className="pill bg-gray-100 text-gray-500 !text-[10px]">Unverified</span>
                       )}
                     </div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">{r.comment}</p>
+                    <p className="text-sm text-gray-600 mb-1">{r.comment}</p>
                     <p className="text-xs text-gray-400 mb-3">For: {r.pg_name} · {r.date}</p>
-                    <div className="flex gap-2 pt-3 border-t border-gray-100 dark:border-gray-800">
+                    <div className="flex gap-2 pt-3 border-t border-gray-100">
                       <button
                         onClick={() => toggleVerify(r.id, r.verified)}
                         className={`flex-1 py-2 text-xs rounded-xl font-medium ${
@@ -635,10 +668,10 @@ export default function AdminPage() {
                   <div key={c.id} className="premium-card !rounded-2xl p-4">
                     <div className="flex items-start justify-between gap-3">
                       <div className="min-w-0 flex-1">
-                        <h3 className="font-semibold text-gray-900 dark:text-white text-sm">{c.name}</h3>
+                        <h3 className="font-semibold text-gray-900 text-sm">{c.name}</h3>
                         <p className="text-xs text-gray-400 mt-0.5">{c.pg_name} · {new Date(c.created_at).toLocaleDateString()}</p>
                       </div>
-                      <a href={`tel:${c.phone}`} className="px-3 py-1.5 text-xs bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 rounded-xl font-medium shrink-0">📞 {c.phone}</a>
+                      <a href={`tel:${c.phone}`} className="px-3 py-1.5 text-xs bg-emerald-50 text-emerald-600 rounded-xl font-medium shrink-0">📞 {c.phone}</a>
                     </div>
                   </div>
                 ))}
@@ -653,7 +686,7 @@ export default function AdminPage() {
                   <div key={a.id} className="premium-card !rounded-2xl p-4">
                     <div className="flex items-start justify-between gap-3">
                       <div className="min-w-0 flex-1">
-                        <p className="font-medium text-gray-900 dark:text-white text-sm truncate">{a.email}</p>
+                        <p className="font-medium text-gray-900 text-sm truncate">{a.email}</p>
                         <p className="text-xs text-gray-400 mt-0.5">📍 {a.area || "All Areas"} · Max ₹{a.max_price?.toLocaleString() || "Any"}</p>
                       </div>
                       <span className="text-[10px] text-gray-400 shrink-0">{new Date(a.created_at).toLocaleDateString()}</span>
@@ -671,15 +704,15 @@ export default function AdminPage() {
                   <div key={u.id} className="premium-card !rounded-2xl p-4">
                     <div className="flex items-center justify-between gap-3">
                       <div className="min-w-0 flex-1">
-                        <h3 className="font-semibold text-gray-900 dark:text-white text-sm">{u.name}</h3>
+                        <h3 className="font-semibold text-gray-900 text-sm">{u.name}</h3>
                         <p className="text-xs text-gray-400 mt-0.5 truncate">{u.email}</p>
                       </div>
                       <div className="flex items-center gap-2 shrink-0">
                         <span className={`pill !text-[10px] ${
-                          u.role === "admin" ? "bg-red-50 text-red-600 dark:bg-red-900/30" :
-                          u.role === "owner" ? "bg-blue-50 text-blue-600 dark:bg-blue-900/30" :
-                          u.role === "agent" ? "bg-orange-50 text-orange-600 dark:bg-orange-900/30" :
-                          "bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30"
+                          u.role === "admin" ? "bg-red-50 text-red-600" :
+                          u.role === "owner" ? "bg-blue-50 text-blue-600" :
+                          u.role === "agent" ? "bg-orange-50 text-orange-600" :
+                          "bg-emerald-50 text-emerald-600"
                         }`}>{u.role}</span>
                         <span className="text-[10px] text-gray-400">{new Date(u.created_at).toLocaleDateString()}</span>
                       </div>
@@ -698,14 +731,14 @@ export default function AdminPage() {
                   <div>
                     <div className="flex items-center gap-2 mb-3">
                       <span className="text-lg">🛡️</span>
-                      <h3 className="font-bold text-gray-900 dark:text-white text-sm">Agent Verification ({agentUsers.filter(a => a.verified === false).length} pending)</h3>
+                      <h3 className="font-bold text-gray-900 text-sm">Agent Verification ({agentUsers.filter(a => a.verified === false).length} pending)</h3>
                     </div>
                     <div className="space-y-3 mb-6">
                       {agentUsers.map((agent) => (
-                        <div key={agent.id} className={`premium-card !rounded-2xl p-4 ${agent.verified === false ? "border-2 border-amber-200 dark:border-amber-800/30 bg-amber-50/30 dark:bg-amber-900/10" : ""}`}>
+                        <div key={agent.id} className={`premium-card !rounded-2xl p-4 ${agent.verified === false ? "border-2 border-amber-200 bg-amber-50/30" : ""}`}>
                           <div className="flex items-center justify-between gap-3">
                             <div className="min-w-0 flex-1">
-                              <h4 className="font-semibold text-gray-900 dark:text-white text-sm">{agent.name}</h4>
+                              <h4 className="font-semibold text-gray-900 text-sm">{agent.name}</h4>
                               <p className="text-xs text-gray-400 mt-0.5 truncate">{agent.email}</p>
                               <p className="text-[10px] text-gray-400 mt-0.5">Joined: {new Date(agent.created_at).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}</p>
                             </div>
@@ -715,19 +748,19 @@ export default function AdminPage() {
                                   <span className="pill bg-amber-50 text-amber-600 !text-[10px]">⏳ Pending</span>
                                   <button
                                     onClick={() => handleVerifyAgent(agent.id, "approve")}
-                                    className="px-3 py-1.5 text-xs bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 rounded-lg font-medium"
+                                    className="px-3 py-1.5 text-xs bg-emerald-50 text-emerald-600 rounded-lg font-medium"
                                   >
                                     ✅ Approve
                                   </button>
                                   <button
                                     onClick={() => handleVerifyAgent(agent.id, "reject")}
-                                    className="px-3 py-1.5 text-xs bg-red-50 dark:bg-red-900/30 text-red-600 rounded-lg font-medium"
+                                    className="px-3 py-1.5 text-xs bg-red-50 text-red-600 rounded-lg font-medium"
                                   >
                                     ❌ Reject
                                   </button>
                                 </>
                               ) : (
-                                <span className="pill bg-emerald-50 text-emerald-600 !text-[10px] dark:bg-emerald-900/30">✅ Verified</span>
+                                <span className="pill bg-emerald-50 text-emerald-600 !text-[10px]">✅ Verified</span>
                               )}
                             </div>
                           </div>
@@ -741,7 +774,7 @@ export default function AdminPage() {
                 <div className="grid grid-cols-2 gap-3">
                   <div className="premium-card !rounded-2xl p-4 text-center">
                     <p className="text-xs text-gray-400">Total Requests</p>
-                    <p className="text-2xl font-extrabold text-violet-600 mt-1">{agentRequests.length}</p>
+                    <p className="text-2xl font-extrabold text-[#1B1C15] mt-1">{agentRequests.length}</p>
                   </div>
                   <div className="premium-card !rounded-2xl p-4 text-center">
                     <p className="text-xs text-gray-400">Pending</p>
@@ -760,7 +793,7 @@ export default function AdminPage() {
                 {agentRequests.length === 0 ? (
                   <div className="premium-card !rounded-2xl p-6 text-center py-16">
                     <span className="text-5xl block mb-4">🤝</span>
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">No Agent Requests</h3>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">No Agent Requests</h3>
                     <p className="text-gray-400">No agents have onboarded PGs yet.</p>
                   </div>
                 ) : (
@@ -769,14 +802,14 @@ export default function AdminPage() {
                       <div key={r.id} className="premium-card !rounded-2xl p-4">
                         <div className="flex items-start justify-between gap-3 mb-3">
                           <div className="min-w-0 flex-1">
-                            <h3 className="font-semibold text-gray-900 dark:text-white text-sm">{r.pg_name}</h3>
+                            <h3 className="font-semibold text-gray-900 text-sm">{r.pg_name}</h3>
                             <p className="text-xs text-gray-400">📍 {r.pg_area}</p>
                           </div>
                           <span className={`pill !text-[10px] shrink-0 ${
-                            r.status === "paid" ? "bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30" :
-                            r.status === "approved" ? "bg-blue-50 text-blue-600 dark:bg-blue-900/30" :
-                            r.status === "rejected" ? "bg-red-50 text-red-600 dark:bg-red-900/30" :
-                            "bg-amber-50 text-amber-600 dark:bg-amber-900/30"
+                            r.status === "paid" ? "bg-emerald-50 text-emerald-600" :
+                            r.status === "approved" ? "bg-blue-50 text-blue-600" :
+                            r.status === "rejected" ? "bg-red-50 text-red-600" :
+                            "bg-amber-50 text-amber-600"
                           }`}>
                             {r.status}
                           </span>
@@ -784,28 +817,28 @@ export default function AdminPage() {
                         <div className="grid grid-cols-2 gap-2 text-xs mb-3">
                           <div>
                             <span className="text-gray-400">Agent:</span>
-                            <p className="text-gray-700 dark:text-gray-300 font-medium">{r.agent_name}</p>
+                            <p className="text-gray-700 font-medium">{r.agent_name}</p>
                             <p className="text-[10px] text-gray-400 truncate">{r.agent_email}</p>
                           </div>
                           <div>
                             <span className="text-gray-400">Owner:</span>
-                            <p className="text-gray-700 dark:text-gray-300 font-medium">{r.owner_name}</p>
-                            <a href={`tel:${r.owner_phone}`} className="text-[10px] text-violet-500">📞 {r.owner_phone}</a>
+                            <p className="text-gray-700 font-medium">{r.owner_name}</p>
+                            <a href={`tel:${r.owner_phone}`} className="text-[10px] text-[#1B1C15]">📞 {r.owner_phone}</a>
                           </div>
                         </div>
-                        <div className="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-gray-800">
+                        <div className="flex items-center justify-between pt-3 border-t border-gray-100">
                           <span className="font-bold text-emerald-600 text-sm">₹{r.payout_amount}</span>
                           {r.status === "pending" && (
                             <div className="flex gap-2">
                               <button
                                 onClick={() => updateAgentRequestStatus(r.id, "approved")}
-                                className="px-3 py-1.5 text-xs bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 rounded-lg font-medium"
+                                className="px-3 py-1.5 text-xs bg-emerald-50 text-emerald-600 rounded-lg font-medium"
                               >
                                 ✅ Approve
                               </button>
                               <button
                                 onClick={() => setRejectingId(r.id)}
-                                className="px-3 py-1.5 text-xs bg-red-50 dark:bg-red-900/30 text-red-600 rounded-lg"
+                                className="px-3 py-1.5 text-xs bg-red-50 text-red-600 rounded-lg"
                               >
                                 ❌ Reject
                               </button>
@@ -814,7 +847,7 @@ export default function AdminPage() {
                           {r.status === "approved" && (
                             <button
                               onClick={() => updateAgentRequestStatus(r.id, "paid")}
-                              className="px-3 py-1.5 text-xs bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 rounded-lg font-medium"
+                              className="px-3 py-1.5 text-xs bg-emerald-50 text-emerald-600 rounded-lg font-medium"
                             >
                               💸 Mark Paid
                             </button>
@@ -832,8 +865,8 @@ export default function AdminPage() {
                 {rejectingId && (
                   <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
                     <div className="absolute inset-0 bg-black/60 backdrop-blur-md" onClick={() => setRejectingId(null)} />
-                    <div className="relative w-full max-w-md bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-2xl">
-                      <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">❌ Reject Agent Request</h3>
+                    <div className="relative w-full max-w-md bg-white rounded-3xl p-6 shadow-2xl">
+                      <h3 className="text-lg font-bold text-gray-900 mb-4">❌ Reject Agent Request</h3>
                       <p className="text-sm text-gray-400 mb-4">Provide a reason so the agent knows why it was rejected.</p>
                       <textarea
                         value={rejectNote}
@@ -849,7 +882,7 @@ export default function AdminPage() {
                         >
                           Reject Request
                         </button>
-                        <button onClick={() => { setRejectingId(null); setRejectNote(""); }} className="px-5 py-2.5 text-sm text-gray-500 border border-gray-200 dark:border-gray-700 rounded-xl">
+                        <button onClick={() => { setRejectingId(null); setRejectNote(""); }} className="px-5 py-2.5 text-sm text-gray-500 border border-gray-200 rounded-xl">
                           Cancel
                         </button>
                       </div>
