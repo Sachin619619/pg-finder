@@ -1,8 +1,9 @@
-# https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /
-
 Disallow: /api/
+Disallow: /admin
 Disallow: /owner-dashboard
+Disallow: /agent-dashboard
+Disallow: /profile
 
-Sitemap: https://pg-finder-eight.vercel.app/sitemap.xml
+Sitemap: https://castleliving.in/sitemap.xml

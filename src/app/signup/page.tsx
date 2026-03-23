@@ -9,14 +9,22 @@ import { supabase } from "@/lib/supabase";
 import type { UserRole } from "@/lib/auth";
 
 export default function SignUpPage() {
-  const { signUp } = useAuth();
+  const { signUp, user, loading: authLoading } = useAuth();
   const router = useRouter();
+
+  // Redirect if already logged in
+  useEffect(() => {
+    if (!authLoading && user) {
+      router.replace("/");
+    }
+  }, [authLoading, user, router]);
 
   // Steps: "form" → "otp" → "success"
   const [step, setStep] = useState<"form" | "otp" | "success">("form");
 
   // Form state
   const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState<UserRole>("tenant");
@@ -31,6 +39,9 @@ export default function SignUpPage() {
   const [countdown, setCountdown] = useState(0);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
+  // Set page title
+  useEffect(() => { document.title = "Create Account | Castle"; }, []);
+
   // Countdown timer for resend
   useEffect(() => {
     if (countdown <= 0) return;
@@ -44,7 +55,7 @@ export default function SignUpPage() {
     setError("");
     setLoading(true);
 
-    const { error: err } = await signUp(email, password, name, role);
+    const { error: err } = await signUp(email, password, name, role, username || undefined);
     if (err) {
       setError(err);
       setLoading(false);
@@ -147,7 +158,7 @@ export default function SignUpPage() {
             <div className="w-24 h-24 bg-emerald-50 dark:bg-emerald-900/30 rounded-3xl flex items-center justify-center mx-auto mb-6 animate-bounce">
               <span className="text-6xl">🎉</span>
             </div>
-            <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white mb-3">Welcome to PG Finder!</h1>
+            <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white mb-3">Welcome to Castle!</h1>
             <p className="text-gray-400 mb-2">Your account has been verified successfully ✅</p>
             <p className="text-sm text-gray-400 mb-8">You&apos;re now signed in as <strong className="text-violet-600">{email}</strong></p>
             <button onClick={() => router.push("/")} className="btn-premium !py-4 !px-10">
@@ -269,23 +280,29 @@ export default function SignUpPage() {
               <span className="text-white text-2xl font-bold">P</span>
             </div>
             <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">Create Account ✨</h1>
-            <p className="text-gray-400 mt-2">Join PG Finder to find or list PGs</p>
+            <p className="text-gray-400 mt-2">Join Castle to find or list PGs</p>
           </div>
 
           <div className="premium-card !rounded-3xl p-8">
             {error && (
               <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-2xl text-sm text-red-600 dark:text-red-400">
-                ⚠️ {error}
+                <p>⚠️ {error}</p>
+                {error.toLowerCase().includes("already exists") && (
+                  <Link href="/login" className="inline-block mt-2 text-violet-600 dark:text-violet-400 font-semibold hover:underline text-xs">
+                    → Go to Sign In
+                  </Link>
+                )}
               </div>
             )}
 
             {/* Role selector */}
             <div className="mb-6">
               <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">I am a...</label>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-3 gap-3">
                 {[
                   { value: "tenant" as UserRole, label: "🏠 Tenant", desc: "Looking for a PG" },
                   { value: "owner" as UserRole, label: "👤 PG Owner", desc: "List my PG" },
+                  { value: "agent" as UserRole, label: "🤝 Agent", desc: "Onboard PGs & earn" },
                 ].map((r) => (
                   <button
                     key={r.value}
@@ -307,10 +324,13 @@ export default function SignUpPage() {
 
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Full Name</label>
+                <label htmlFor="signup-name" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Full Name</label>
                 <input
+                  id="signup-name"
                   type="text"
                   required
+                  aria-required="true"
+                  autoComplete="name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Sachin Kumar"
@@ -319,10 +339,37 @@ export default function SignUpPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Email</label>
+                <label htmlFor="signup-username" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                  Username {(role === "owner" || role === "agent") && <span className="text-red-400">*</span>}
+                </label>
+                <div className="relative">
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">@</span>
+                  <input
+                    id="signup-username"
+                    type="text"
+                    required={role === "owner" || role === "agent"}
+                    aria-required={role === "owner" || role === "agent"}
+                    autoComplete="username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value.toLowerCase().replace(/[^a-z0-9_]/g, ""))}
+                    placeholder="sachin_kumar"
+                    className="premium-input w-full !pl-8"
+                    maxLength={20}
+                  />
+                </div>
+                <p className="text-[11px] text-gray-400 mt-1">
+                  {role === "owner" ? "Agents will use this to send you PG claims" : "Unique username for your profile"}
+                </p>
+              </div>
+
+              <div>
+                <label htmlFor="signup-email" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Email</label>
                 <input
+                  id="signup-email"
                   type="email"
                   required
+                  aria-required="true"
+                  autoComplete="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
@@ -331,10 +378,13 @@ export default function SignUpPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Password</label>
+                <label htmlFor="signup-password" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Password</label>
                 <input
+                  id="signup-password"
                   type="password"
                   required
+                  aria-required="true"
+                  autoComplete="new-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Min 6 characters"

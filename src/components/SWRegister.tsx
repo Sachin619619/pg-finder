@@ -8,21 +8,31 @@ export default function SWRegister() {
   useEffect(() => {
     if (!("serviceWorker" in navigator)) return;
 
-    navigator.serviceWorker.register("/sw.js").then((reg) => {
-      // Check for updates every 60 seconds
-      setInterval(() => reg.update(), 60_000);
+    navigator.serviceWorker
+      .register("/sw.js", { scope: "/" })
+      .then((reg) => {
+        console.log("[SW] Registered with scope:", reg.scope);
 
-      reg.addEventListener("updatefound", () => {
-        const newSW = reg.installing;
-        if (!newSW) return;
-        newSW.addEventListener("statechange", () => {
-          if (newSW.state === "installed" && navigator.serviceWorker.controller) {
-            // New version available
-            setShowUpdate(true);
-          }
+        // Check for updates every 60 seconds
+        setInterval(() => reg.update(), 60_000);
+
+        reg.addEventListener("updatefound", () => {
+          const newSW = reg.installing;
+          if (!newSW) return;
+          newSW.addEventListener("statechange", () => {
+            if (
+              newSW.state === "installed" &&
+              navigator.serviceWorker.controller
+            ) {
+              // New version available
+              setShowUpdate(true);
+            }
+          });
         });
+      })
+      .catch((err) => {
+        console.warn("[SW] Registration failed:", err);
       });
-    });
   }, []);
 
   if (!showUpdate) return null;

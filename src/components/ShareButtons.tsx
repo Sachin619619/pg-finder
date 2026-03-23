@@ -5,7 +5,7 @@ import { useState } from "react";
 export default function ShareButtons({ pgName, pgArea, pgPrice }: { pgName: string; pgArea: string; pgPrice: number }) {
   const [copied, setCopied] = useState(false);
   const url = typeof window !== "undefined" ? window.location.href : "";
-  const text = `Check out ${pgName} in ${pgArea} — ₹${pgPrice.toLocaleString()}/mo on PG Finder!`;
+  const text = `Check out ${pgName} in ${pgArea} — ₹${pgPrice.toLocaleString()}/mo on Castle!`;
 
   const copyLink = () => {
     navigator.clipboard.writeText(url);
@@ -19,6 +19,7 @@ export default function ShareButtons({ pgName, pgArea, pgPrice }: { pgName: stri
       <a
         href={`https://wa.me/?text=${encodeURIComponent(text + " " + url)}`}
         target="_blank"
+        rel="noopener noreferrer"
         className="w-9 h-9 rounded-xl bg-green-50 flex items-center justify-center hover:bg-green-100 transition group"
         title="WhatsApp"
       >
@@ -29,6 +30,7 @@ export default function ShareButtons({ pgName, pgArea, pgPrice }: { pgName: stri
       <a
         href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`}
         target="_blank"
+        rel="noopener noreferrer"
         className="w-9 h-9 rounded-xl bg-sky-50 flex items-center justify-center hover:bg-sky-100 transition"
         title="Twitter"
       >

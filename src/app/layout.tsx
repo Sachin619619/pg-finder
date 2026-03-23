@@ -2,9 +2,15 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SWRegister from "@/components/SWRegister";
+import InstallPrompt from "@/components/InstallPrompt";
 import BackToTop from "@/components/BackToTop";
+import ScrollProgress from "@/components/ScrollProgress";
 import AIAgent from "@/components/AIAgent";
+import CookieConsent from "@/components/CookieConsent";
+import ProgressBarProvider from "@/components/ProgressBar";
 import { AuthProvider } from "@/lib/auth";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
+import { ToastProvider } from "@/components/Toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,14 +22,14 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const BASE_URL = "https://pg-finder-eight.vercel.app";
+const BASE_URL = "https://castleliving.in";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
     default:
-      "PG Finder Bangalore | Find PGs, Hostels & Co-living Spaces Near You",
-    template: "%s | PG Finder Bangalore",
+      "Castle | Find PGs, Hostels & Co-living Spaces Near You",
+    template: "%s | Castle",
   },
   description:
     "Find the best PG in Bangalore — verified PG accommodations, hostels and co-living spaces in Koramangala, HSR Layout, Indiranagar, Whitefield & more. Compare prices, amenities & reviews. No brokerage.",
@@ -51,14 +57,14 @@ export const metadata: Metadata = {
     "single room PG Bangalore",
     "shared accommodation Bangalore",
   ],
-  authors: [{ name: "PG Finder Bangalore" }],
-  creator: "PG Finder Bangalore",
-  publisher: "PG Finder Bangalore",
+  authors: [{ name: "Castle" }],
+  creator: "Castle",
+  publisher: "Castle",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "PG Finder",
+    title: "Castle",
   },
   robots: {
     index: true,
@@ -75,8 +81,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     url: BASE_URL,
-    siteName: "PG Finder Bangalore",
-    title: "PG Finder Bangalore | Find PGs, Hostels & Co-living Spaces",
+    siteName: "Castle",
+    title: "Castle | Find PGs, Hostels & Co-living Spaces",
     description:
       "Bangalore's #1 PG finder. Browse 20+ verified PGs across Koramangala, HSR Layout, Indiranagar, Whitefield & more. Compare prices, check reviews, zero brokerage.",
     images: [
@@ -84,13 +90,13 @@ export const metadata: Metadata = {
         url: "/icons/icon-512.png",
         width: 512,
         height: 512,
-        alt: "PG Finder Bangalore",
+        alt: "Castle",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "PG Finder Bangalore | Find PGs, Hostels & Co-living Spaces",
+    title: "Castle | Find PGs, Hostels & Co-living Spaces",
     description:
       "Bangalore's #1 PG finder. Browse 20+ verified PGs across Koramangala, HSR Layout, Indiranagar & more. Compare prices, zero brokerage.",
     images: ["/icons/icon-512.png"],
@@ -117,7 +123,7 @@ const jsonLd = {
       "@type": "WebSite",
       "@id": `${BASE_URL}/#website`,
       url: BASE_URL,
-      name: "PG Finder Bangalore",
+      name: "Castle",
       description:
         "Find the best PG accommodations, hostels and co-living spaces across Bangalore.",
       publisher: {
@@ -135,7 +141,7 @@ const jsonLd = {
     {
       "@type": "Organization",
       "@id": `${BASE_URL}/#organization`,
-      name: "PG Finder Bangalore",
+      name: "Castle",
       url: BASE_URL,
       logo: {
         "@type": "ImageObject",
@@ -152,7 +158,7 @@ const jsonLd = {
     {
       "@type": "LocalBusiness",
       "@id": `${BASE_URL}/#localbusiness`,
-      name: "PG Finder Bangalore",
+      name: "Castle",
       description:
         "Bangalore's most trusted platform to find PG accommodations, hostels, and co-living spaces. Verified listings with reviews and transparent pricing.",
       url: BASE_URL,
@@ -188,18 +194,45 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
+        <link rel="preconnect" href="https://images.unsplash.com" />
+        <link rel="preconnect" href="https://zffbeascmbtzqavccvqb.supabase.co" />
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var d=localStorage.getItem('pg-dark-mode');var dark=d!==null?d==='true':window.matchMedia('(prefers-color-scheme:dark)').matches;if(dark)document.documentElement.classList.add('dark')}catch(e){}})()`,
+          }}
+        />
+        {process.env.NEXT_PUBLIC_ADSENSE_PUB_ID && (
+          <script
+            async
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-${process.env.NEXT_PUBLIC_ADSENSE_PUB_ID}`}
+            crossOrigin="anonymous"
+          />
+        )}
       </head>
       <body className="min-h-full flex flex-col bg-gray-50">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-violet-600 focus:text-white focus:rounded-xl focus:font-semibold focus:shadow-lg focus:outline-none"
+        >
+          Skip to main content
+        </a>
+        <GoogleAnalytics />
         <AuthProvider>
-          {children}
-          <AIAgent />
-          <BackToTop />
-          <SWRegister />
+          <ToastProvider>
+            <ScrollProgress />
+            <ProgressBarProvider />
+            {children}
+            <AIAgent />
+            <BackToTop />
+            <SWRegister />
+            <InstallPrompt />
+            <CookieConsent />
+          </ToastProvider>
         </AuthProvider>
       </body>
     </html>

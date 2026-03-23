@@ -2,9 +2,10 @@
 
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { supabase } from "./supabase";
+import { sendWelcomeEmail } from "./email";
 import type { User, Session } from "@supabase/supabase-js";
 
-export type UserRole = "tenant" | "owner" | "admin";
+export type UserRole = "tenant" | "owner" | "agent" | "admin";
 
 export type UserProfile = {
   id: string;
@@ -13,6 +14,9 @@ export type UserProfile = {
   phone: string;
   role: UserRole;
   avatar?: string;
+  username?: string | null;
+  currentPgId?: string | null;
+  verified?: boolean;
   createdAt: string;
 };
 
@@ -21,7 +25,7 @@ type AuthContextType = {
   profile: UserProfile | null;
   session: Session | null;
   loading: boolean;
-  signUp: (email: string, password: string, name: string, role: UserRole) => Promise<{ error: string | null }>;
+  signUp: (email: string, password: string, name: string, role: UserRole, username?: string) => Promise<{ error: string | null }>;
   signIn: (email: string, password: string) => Promise<{ error: string | null }>;
   signOut: () => Promise<void>;
   updateProfile: (updates: Partial<UserProfile>) => Promise<boolean>;
@@ -49,6 +53,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         phone: data.phone || "",
         role: data.role || "tenant",
         avatar: data.avatar,
+        username: data.username || null,
+        currentPgId: data.current_pg_id || null,
+        verified: data.verified ?? (data.role !== "agent"),
         createdAt: data.created_at,
       });
     } else {
@@ -60,6 +67,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         name: meta.name || u.email?.split("@")[0] || "User",
         phone: "",
         role: meta.role || "tenant",
+        verified: (meta.role || "tenant") !== "agent",
         createdAt: u.created_at,
       });
     }
@@ -88,17 +96,34 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return () => subscription.unsubscribe();
   }, []);
 
-  const signUp = async (email: string, password: string, name: string, role: UserRole) => {
+  const signUp = async (email: string, password: string, name: string, role: UserRole, username?: string) => {
+    // If username provided, check uniqueness first
+    if (username) {
+      const { data: existing } = await supabase
+        .from("profiles")
+        .select("id")
+        .eq("username", username.toLowerCase().trim())
+        .single();
+      if (existing) {
+        return { error: "This username is already taken. Please choose another." };
+      }
+    }
+
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
         data: { name, role },
-        emailRedirectTo: "https://pg-finder-eight.vercel.app/login",
+        emailRedirectTo: "https://castleliving.in/login",
       },
     });
 
     if (error) return { error: error.message };
+
+    // Supabase returns a user with empty identities when email already exists
+    if (data.user && data.user.identities && data.user.identities.length === 0) {
+      return { error: "An account with this email already exists. Please sign in instead." };
+    }
 
     // Create profile row
     if (data.user) {
@@ -109,7 +134,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         role,
         phone: "",
         avatar: null,
+        username: username ? username.toLowerCase().trim() : null,
+        verified: role !== "agent",
       });
+
+      // Send welcome email (non-blocking)
+      sendWelcomeEmail(email, name).catch(() => {});
     }
 
     return { error: null };
@@ -137,11 +167,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const updateProfile = async (updates: Partial<UserProfile>) => {
     if (!user) return false;
-    const { error } = await supabase.from("profiles").update({
-      name: updates.name,
-      phone: updates.phone,
-      avatar: updates.avatar,
-    }).eq("id", user.id);
+    const updateData: Record<string, unknown> = {};
+    if (updates.name !== undefined) updateData.name = updates.name;
+    if (updates.phone !== undefined) updateData.phone = updates.phone;
+    if (updates.avatar !== undefined) updateData.avatar = updates.avatar;
+    if (updates.username !== undefined) updateData.username = updates.username;
+    const { error } = await supabase.from("profiles").update(updateData).eq("id", user.id);
     if (!error && profile) {
       setProfile({ ...profile, ...updates });
     }

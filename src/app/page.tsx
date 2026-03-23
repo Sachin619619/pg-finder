@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, useEffect, useRef } from "react";
+import { useDebounce } from "@/lib/hooks";
 import Header from "@/components/Header";
 import SearchFilters from "@/components/SearchFilters";
 import PGCard from "@/components/PGCard";
@@ -9,6 +10,12 @@ import CompareDrawer from "@/components/CompareDrawer";
 import PriceInsights from "@/components/PriceInsights";
 import Testimonials from "@/components/Testimonials";
 import PriceAlertBanner from "@/components/PriceAlertBanner";
+import HeroAnimations from "@/components/HeroAnimations";
+import SparkleTrail from "@/components/SparkleTrail";
+import ScrollReveal from "@/components/ScrollReveal";
+import AdBanner from "@/components/AdBanner";
+import AnimatedBanner from "@/components/AnimatedBanner";
+import RecentlyViewed from "@/components/RecentlyViewed";
 import { fetchListings } from "@/lib/db";
 import type { PGListing } from "@/data/listings";
 
@@ -82,6 +89,7 @@ export default function Home() {
   const [compareList, setCompareList] = useState<PGListing[]>([]);
   const [listings, setListings] = useState<PGListing[]>([]);
   const [loading, setLoading] = useState(true);
+  const debouncedSearch = useDebounce(filters.search, 300);
 
   useEffect(() => {
     fetchListings()
@@ -113,8 +121,8 @@ export default function Home() {
 
   const filtered = useMemo(() => {
     let result = listings.filter((pg) => {
-      if (filters.search) {
-        const q = filters.search.toLowerCase();
+      if (debouncedSearch) {
+        const q = debouncedSearch.toLowerCase();
         const match =
           pg.name.toLowerCase().includes(q) ||
           pg.area.toLowerCase().includes(q) ||
@@ -146,7 +154,7 @@ export default function Home() {
     });
 
     return result;
-  }, [listings, filters, sortBy]);
+  }, [listings, filters, debouncedSearch, sortBy]);
 
   const areaCount = useMemo(() => {
     const counts: Record<string, number> = {};
@@ -159,13 +167,18 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         {/* ===== PREMIUM HERO WITH AURORA ===== */}
         <section className="hero-gradient text-white pt-36 pb-28 sm:pt-44 sm:pb-36 relative overflow-hidden">
           {/* Aurora orbs */}
           <div className="absolute top-0 left-[15%] w-[500px] h-[500px] bg-violet-600/15 rounded-full blur-[120px] orb-1" />
           <div className="absolute bottom-0 right-[10%] w-[600px] h-[600px] bg-fuchsia-500/10 rounded-full blur-[150px] orb-2" />
           <div className="absolute top-[30%] right-[30%] w-[400px] h-[400px] bg-blue-500/8 rounded-full blur-[100px] orb-1" style={{ animationDelay: "5s" }} />
+
+          {/* Canvas animations — birds, stars, shooting stars, particles */}
+          <HeroAnimations />
+          {/* Sparkle trail on mouse move */}
+          <SparkleTrail />
 
           {/* Grid pattern overlay */}
           <div className="absolute inset-0 opacity-[0.03]" style={{
@@ -181,7 +194,7 @@ export default function Home() {
           <div className="absolute bottom-[20%] right-[8%] w-3 h-3 bg-emerald-400/30 rounded-full animate-float" style={{ animationDelay: "2.5s" }} />
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="max-w-3xl">
+            <div className="max-w-3xl animate-fade-in-up">
               {/* Status badge */}
               <div className="inline-flex items-center gap-2.5 bg-white/[0.06] backdrop-blur-xl rounded-full px-5 py-2.5 mb-10 border border-white/[0.08] shadow-lg shadow-black/10">
                 <span className="relative flex h-2.5 w-2.5">
@@ -243,9 +256,9 @@ export default function Home() {
                 <div
                   key={s.label}
                   ref={s.ref}
-                  className="glass-dark rounded-2xl p-4 text-center hover-lift cursor-default"
+                  className="glass-dark rounded-2xl p-4 text-center hover-lift cursor-default group"
                 >
-                  <span className="text-lg mb-1 block">{s.icon}</span>
+                  <span className="text-lg mb-1 block group-hover:animate-wave">{s.icon}</span>
                   <span className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">{s.value}</span>
                   <span className="block text-[11px] font-medium text-white/30 uppercase tracking-widest mt-1">{s.label}</span>
                 </div>
@@ -263,7 +276,7 @@ export default function Home() {
                   "🔒 Verified Listings", "⭐ 4.3 Average Rating", "📞 Instant Callbacks",
                   "🏠 20+ Premium PGs", "💰 No Brokerage", "🛡️ Safe & Secure",
                   "📍 15+ Areas", "🔥 Updated Daily", "❤️ 500+ Happy Tenants",
-                  "🏆 #1 PG Finder in Bangalore",
+                  "🏆 #1 Castle in Bangalore",
                 ].map((item) => (
                   <span key={`${setIdx}-${item}`} className="text-sm font-medium text-white/25 flex items-center gap-2">
                     {item}
@@ -274,6 +287,11 @@ export default function Home() {
             ))}
           </div>
         </section>
+
+        {/* Dynamic Banner — after trust marquee */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedBanner seed={1} style="marquee" />
+        </div>
 
         {/* ===== AREA PILLS WITH EMOJI ===== */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 relative z-10">
@@ -303,6 +321,9 @@ export default function Home() {
             ))}
           </div>
         </section>
+
+        {/* ===== RECENTLY VIEWED ===== */}
+        <RecentlyViewed />
 
         {/* ===== FILTERS + LISTINGS ===== */}
         <section id="listings" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
@@ -354,17 +375,27 @@ export default function Home() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
               {[1, 2, 3, 4, 5, 6].map((i) => (
                 <div key={i} className="premium-card !rounded-2xl overflow-hidden animate-pulse">
-                  <div className="h-52 bg-gray-200 dark:bg-gray-700" />
+                  <div className="h-52 bg-gray-200 dark:bg-gray-800 rounded-t-2xl" />
                   <div className="p-5 space-y-3">
-                    <div className="flex justify-between">
-                      <div className="h-5 bg-gray-200 dark:bg-gray-700 rounded w-3/4" />
-                      <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded-xl w-14" />
+                    <div className="flex justify-between items-start">
+                      <div className="space-y-2 flex-1">
+                        <div className="h-5 bg-gray-200 dark:bg-gray-800 rounded-xl w-3/4" />
+                        <div className="h-3 bg-gray-200 dark:bg-gray-800 rounded w-1/2" />
+                      </div>
+                      <div className="h-8 bg-gray-200 dark:bg-gray-800 rounded-xl w-16" />
                     </div>
-                    <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/2" />
-                    <div className="flex gap-2">
-                      <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded-full w-16" />
-                      <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded-full w-14" />
-                      <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded-full w-12" />
+                    <div className="h-5 bg-gray-200 dark:bg-gray-800 rounded-lg w-28" />
+                    <div className="flex gap-2 pt-1">
+                      <div className="h-2.5 w-2.5 bg-gray-200 dark:bg-gray-800 rounded-full" />
+                      <div className="h-2.5 w-2.5 bg-gray-200 dark:bg-gray-800 rounded-full" />
+                      <div className="h-2.5 w-2.5 bg-gray-200 dark:bg-gray-800 rounded-full" />
+                      <div className="h-2.5 w-2.5 bg-gray-200 dark:bg-gray-800 rounded-full" />
+                      <div className="h-2.5 w-2.5 bg-gray-200 dark:bg-gray-800 rounded-full" />
+                    </div>
+                    <div className="flex gap-2 pt-2">
+                      <div className="h-6 bg-gray-200 dark:bg-gray-800 rounded-full w-16" />
+                      <div className="h-6 bg-gray-200 dark:bg-gray-800 rounded-full w-14" />
+                      <div className="h-6 bg-gray-200 dark:bg-gray-800 rounded-full w-12" />
                     </div>
                   </div>
                 </div>
@@ -374,41 +405,78 @@ export default function Home() {
             viewMode === "map" ? (
               <MapView listings={filtered} />
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 stagger-children">
-                {filtered.map((pg) => (
-                  <div key={pg.id} className="relative">
-                    <PGCard pg={pg} />
-                    <button
-                      onClick={(e) => { e.preventDefault(); toggleCompare(pg); }}
-                      className={`absolute top-16 right-4 z-10 pill text-[11px] transition-all shadow-sm backdrop-blur-sm ${
-                        compareList.find((c) => c.id === pg.id)
-                          ? "bg-violet-600 text-white shadow-violet-500/30"
-                          : "bg-white/80 text-gray-600 hover:bg-violet-50 border border-white/50"
-                      }`}
-                    >
-                      {compareList.find((c) => c.id === pg.id) ? "✓ Added" : "⚖️ Compare"}
-                    </button>
+              <>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 stagger-children">
+                  {filtered.map((pg, index) => (
+                    <div key={pg.id}>
+                      <div className="relative">
+                        <PGCard pg={pg} priority={index < 3} />
+                        <button
+                          onClick={(e) => { e.preventDefault(); toggleCompare(pg); }}
+                          aria-label={compareList.find((c) => c.id === pg.id) ? `Remove ${pg.name} from compare` : `Add ${pg.name} to compare`}
+                          className={`absolute top-16 right-4 z-10 pill text-[11px] transition-all shadow-sm backdrop-blur-sm ${
+                            compareList.find((c) => c.id === pg.id)
+                              ? "bg-violet-600 text-white shadow-violet-500/30"
+                              : "bg-white/80 text-gray-600 hover:bg-violet-50 border border-white/50"
+                          }`}
+                        >
+                          {compareList.find((c) => c.id === pg.id) ? "✓ Added" : "⚖️ Compare"}
+                        </button>
+                      </div>
+                      {/* In-feed ad after every 6th listing */}
+                      {index === 5 && filtered.length > 6 && (
+                        <div className="mt-7">
+                          <AdBanner size="in-feed" slot="1234567890" />
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+                {/* Bottom banner ad after listings */}
+                {filtered.length > 3 && (
+                  <div className="mt-10">
+                    <AdBanner size="banner" slot="0987654321" />
                   </div>
-                ))}
-              </div>
+                )}
+              </>
             )
           ) : (
             <div className="text-center py-24">
-              <div className="w-24 h-24 bg-violet-50 dark:bg-violet-900/20 rounded-3xl flex items-center justify-center mx-auto mb-6">
-                <span className="text-5xl">🔍</span>
+              <div className="w-28 h-28 bg-violet-50 dark:bg-violet-900/20 rounded-3xl flex items-center justify-center mx-auto mb-6 relative">
+                <span className="text-5xl">🏠</span>
+                <div className="absolute -bottom-1 -right-1 w-10 h-10 bg-red-50 dark:bg-red-900/30 rounded-full flex items-center justify-center border-4 border-white dark:border-gray-900">
+                  <svg className="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </div>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">No PGs found</h3>
-              <p className="text-gray-400 mb-6">Try adjusting your filters or explore a different area.</p>
-              <button onClick={() => setFilters(defaultFilters)} className="btn-premium">
-                Clear All Filters
-              </button>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">No PGs match your filters</h3>
+              <p className="text-gray-400 mb-2">We couldn&apos;t find any PGs matching your current criteria.</p>
+              <p className="text-gray-300 dark:text-gray-500 text-sm mb-8">Try broadening your search or removing some filters.</p>
+              <div className="flex items-center justify-center gap-3">
+                <button onClick={() => setFilters(defaultFilters)} className="btn-premium">
+                  Clear Filters
+                </button>
+                <button
+                  onClick={() => setFilters({ ...defaultFilters, search: "" })}
+                  className="px-6 py-3 rounded-2xl text-sm font-medium bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all"
+                >
+                  Browse All PGs
+                </button>
+              </div>
             </div>
           )}
         </section>
 
+        {/* Dynamic Banner — between listings and areas */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedBanner seed={2} style="floating" />
+        </div>
+
         {/* ===== BENTO AREAS GRID ===== */}
         <section id="areas" className="bg-white dark:bg-gray-950 py-24 border-t border-gray-100 dark:border-gray-800">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <ScrollReveal>
             <div className="text-center mb-14">
               <span className="pill bg-violet-50 dark:bg-violet-900/30 text-violet-600 !text-xs font-semibold mb-4 inline-block">Popular Neighborhoods</span>
               <h2 className="text-3xl sm:text-5xl font-extrabold text-gray-900 dark:text-white mb-4 tracking-tight">
@@ -416,22 +484,23 @@ export default function Home() {
               </h2>
               <p className="text-gray-400 max-w-md mx-auto">Browse PGs across Bangalore&apos;s most popular neighbourhoods</p>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 stagger-children">
+            </ScrollReveal>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
               {Object.entries(areaCount).map(([area, count], i) => (
+                <ScrollReveal key={area} delay={i * 80} direction={i % 2 === 0 ? "up" : "scale"}>
                 <button
-                  key={area}
                   onClick={() => {
                     setFilters({ ...defaultFilters, area });
                     document.getElementById("listings")?.scrollIntoView({ behavior: "smooth" });
                   }}
-                  className={`premium-card !rounded-2xl p-5 text-left group relative overflow-hidden ${
+                  className={`w-full premium-card !rounded-2xl p-5 text-left group relative overflow-hidden card-shimmer magnetic-card ${
                     i === 0 ? "sm:col-span-2 sm:row-span-2" : ""
                   }`}
                 >
                   {/* Gradient background on hover */}
                   <div className="absolute inset-0 bg-gradient-to-br from-violet-500/5 to-fuchsia-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="relative z-10">
-                    <span className={`${i === 0 ? "text-4xl" : "text-2xl"} block mb-3`}>{areaEmojis[area] || "📍"}</span>
+                    <span className={`${i === 0 ? "text-4xl" : "text-2xl"} block mb-3 group-hover:animate-wiggle`}>{areaEmojis[area] || "📍"}</span>
                     <p className={`font-bold text-gray-900 dark:text-white ${i === 0 ? "text-xl" : "text-[15px]"} group-hover:text-violet-600 transition-colors`}>{area}</p>
                     <p className="text-xs text-gray-400 mt-1">{count} PGs available</p>
                     {i === 0 && (
@@ -439,19 +508,36 @@ export default function Home() {
                     )}
                   </div>
                 </button>
+                </ScrollReveal>
               ))}
             </div>
           </div>
         </section>
 
         {/* ===== PRICE DROP ALERT ===== */}
-        <PriceAlertBanner />
+        <ScrollReveal direction="scale">
+          <PriceAlertBanner />
+        </ScrollReveal>
+
+        {/* Dynamic Banner — after price alert */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedBanner seed={3} style="split" />
+        </div>
 
         {/* ===== PRICE INSIGHTS ===== */}
-        <PriceInsights listings={listings} />
+        <ScrollReveal direction="left">
+          <PriceInsights listings={listings} />
+        </ScrollReveal>
 
         {/* ===== TESTIMONIALS ===== */}
-        <Testimonials />
+        <ScrollReveal direction="right">
+          <Testimonials />
+        </ScrollReveal>
+
+        {/* Dynamic Banner — before how it works */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedBanner seed={4} style="pulse" />
+        </div>
 
         {/* ===== HOW IT WORKS — VISUAL STEPS ===== */}
         <section className="py-24 relative overflow-hidden">
@@ -460,6 +546,7 @@ export default function Home() {
           <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-fuchsia-500/[0.03] rounded-full blur-[100px]" />
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <ScrollReveal>
             <div className="text-center mb-16">
               <span className="pill bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 !text-xs font-semibold mb-4 inline-block">Simple Process</span>
               <h2 className="text-3xl sm:text-5xl font-extrabold text-gray-900 dark:text-white mb-4 tracking-tight">
@@ -467,6 +554,7 @@ export default function Home() {
               </h2>
               <p className="text-gray-400 max-w-md mx-auto">Find and move into your PG in 3 simple steps</p>
             </div>
+            </ScrollReveal>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 relative">
               {/* Connecting line */}
@@ -476,16 +564,18 @@ export default function Home() {
                 { step: "01", title: "Search & Filter", desc: "Browse PGs by area, budget, amenities, and room type. Use our smart filters to narrow down.", emoji: "🔍", gradient: "from-violet-500 to-indigo-500" },
                 { step: "02", title: "Compare & Choose", desc: "Compare up to 3 PGs side by side. Check ratings, reviews, and amenities at a glance.", emoji: "⚖️", gradient: "from-fuchsia-500 to-pink-500" },
                 { step: "03", title: "Contact & Move In", desc: "Call or WhatsApp the PG owner directly. Schedule a visit and move in hassle-free.", emoji: "🏠", gradient: "from-orange-500 to-amber-500" },
-              ].map((item) => (
-                <div key={item.step} className="premium-card !rounded-3xl p-8 text-center group relative">
+              ].map((item, idx) => (
+                <ScrollReveal key={item.step} delay={idx * 150} direction="up">
+                <div className="premium-card !rounded-3xl p-8 text-center group relative card-shimmer pulse-glow">
                   {/* Step number circle */}
                   <div className={`w-14 h-14 bg-gradient-to-br ${item.gradient} rounded-2xl flex items-center justify-center mx-auto mb-5 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg`}>
-                    <span className="text-2xl">{item.emoji}</span>
+                    <span className="text-2xl group-hover:animate-wave">{item.emoji}</span>
                   </div>
                   <span className="text-[10px] font-extrabold text-violet-400 tracking-[0.2em] uppercase">Step {item.step}</span>
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white mt-2 mb-3">{item.title}</h3>
                   <p className="text-sm text-gray-400 leading-relaxed">{item.desc}</p>
                 </div>
+                </ScrollReveal>
               ))}
             </div>
           </div>
@@ -502,11 +592,11 @@ export default function Home() {
               <div className="sm:col-span-2">
                 <div className="flex items-center gap-3 mb-5">
                   <div className="w-11 h-11 bg-gradient-to-br from-violet-600 to-fuchsia-500 rounded-xl flex items-center justify-center shadow-lg shadow-violet-500/20">
-                    <span className="text-white font-bold text-lg">P</span>
+                    <span className="text-white text-lg">🏰</span>
                   </div>
                   <div>
-                    <span className="text-white font-bold text-xl block leading-none">PG Finder</span>
-                    <span className="text-[10px] text-violet-400 font-semibold uppercase tracking-widest">Bangalore</span>
+                    <span className="text-white font-bold text-xl block leading-none">Castle</span>
+                    <span className="text-[10px] text-violet-400 font-semibold uppercase tracking-widest">Find Your Home</span>
                   </div>
                 </div>
                 <p className="text-sm leading-relaxed max-w-xs text-gray-500 mb-6">
@@ -514,11 +604,15 @@ export default function Home() {
                 </p>
                 {/* Social links */}
                 <div className="flex items-center gap-3">
-                  {["Twitter", "Instagram", "LinkedIn"].map((s) => (
-                    <div key={s} className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-gray-500 hover:text-white hover:bg-white/[0.08] transition-all cursor-pointer">
-                      <span className="text-xs font-bold">{s.charAt(0)}</span>
-                    </div>
-                  ))}
+                  <a href="#" aria-label="Twitter" className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-gray-500 hover:text-white hover:bg-white/[0.08] transition-all cursor-pointer">
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                  </a>
+                  <a href="#" aria-label="Instagram" className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-gray-500 hover:text-white hover:bg-white/[0.08] transition-all cursor-pointer">
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                  </a>
+                  <a href="#" aria-label="LinkedIn" className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-gray-500 hover:text-white hover:bg-white/[0.08] transition-all cursor-pointer">
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                  </a>
                 </div>
               </div>
               <div>
@@ -547,6 +641,8 @@ export default function Home() {
                     { label: "Find Roommates", href: "/roommate-finder" },
                     { label: "Owner Dashboard", href: "/owner-dashboard" },
                     { label: "Saved PGs", href: "/saved" },
+                    { label: "FAQ", href: "/faq" },
+                    { label: "Contact Us", href: "/contact" },
                   ].map((item) => (
                     <li key={item.label}>
                       <a href={item.href} className="hover:text-white transition-colors flex items-center gap-2">
@@ -559,7 +655,12 @@ export default function Home() {
               </div>
             </div>
             <div className="border-t border-white/[0.04] pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <p className="text-xs text-gray-600">&copy; 2026 PG Finder Bangalore. All rights reserved.</p>
+              <p className="text-xs text-gray-600">&copy; 2026 Castle. All rights reserved.</p>
+              <div className="flex items-center gap-4">
+                <a href="/privacy" className="text-xs text-gray-600 hover:text-white transition-colors">Privacy Policy</a>
+                <span className="text-gray-800">·</span>
+                <a href="/terms" className="text-xs text-gray-600 hover:text-white transition-colors">Terms of Service</a>
+              </div>
               <p className="text-xs text-gray-700 flex items-center gap-1.5">
                 Made with <span className="text-red-500">❤️</span> in Bangalore
               </p>

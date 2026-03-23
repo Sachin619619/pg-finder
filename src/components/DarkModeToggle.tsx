@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 
 export default function DarkModeToggle() {
   const [dark, setDark] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     // Inject dark-mode.css once (overrides Tailwind utility classes for .dark)
@@ -15,11 +16,33 @@ export default function DarkModeToggle() {
       document.head.appendChild(link);
     }
 
+    // Determine initial dark mode state
     const saved = localStorage.getItem("pg-dark-mode");
-    if (saved === "true") {
-      setDark(true);
-      document.documentElement.classList.add("dark");
+    let shouldBeDark = false;
+
+    if (saved !== null) {
+      // User has an explicit preference saved
+      shouldBeDark = saved === "true";
+    } else {
+      // No saved preference — fall back to system preference
+      shouldBeDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     }
+
+    // Apply immediately
+    document.documentElement.classList.toggle("dark", shouldBeDark);
+    setDark(shouldBeDark);
+    setMounted(true);
+
+    // Listen for system preference changes (only when no explicit user preference)
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleSystemChange = (e: MediaQueryListEvent) => {
+      if (localStorage.getItem("pg-dark-mode") === null) {
+        document.documentElement.classList.toggle("dark", e.matches);
+        setDark(e.matches);
+      }
+    };
+    mediaQuery.addEventListener("change", handleSystemChange);
+    return () => mediaQuery.removeEventListener("change", handleSystemChange);
   }, []);
 
   const toggle = () => {
@@ -29,11 +52,25 @@ export default function DarkModeToggle() {
     localStorage.setItem("pg-dark-mode", String(next));
   };
 
+  // Prevent hydration mismatch — render a placeholder until mounted
+  if (!mounted) {
+    return (
+      <button
+        className="w-10 h-10 rounded-xl flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+        title="Toggle dark mode"
+        aria-label="Toggle dark mode"
+      >
+        <span className="w-5 h-5" />
+      </button>
+    );
+  }
+
   return (
     <button
       onClick={toggle}
       className="w-10 h-10 rounded-xl flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-800 transition"
       title={dark ? "Light mode" : "Dark mode"}
+      aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
     >
       {dark ? (
         <svg className="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">

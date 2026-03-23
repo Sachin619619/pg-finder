@@ -13,7 +13,7 @@ const testimonials = [
   {
     name: "Sneha Patil",
     role: "Data Analyst at Wipro",
-    text: "As a woman moving to Bangalore for the first time, safety was my top priority. PG Finder's verified listings and detailed reviews gave me confidence.",
+    text: "As a woman moving to Bangalore for the first time, safety was my top priority. Castle's verified listings and detailed reviews gave me confidence.",
     avatar: "SP",
     rating: 5,
     area: "HSR Layout",
@@ -40,7 +40,7 @@ const testimonials = [
   {
     name: "Amit Verma",
     role: "MBA Student",
-    text: "Switched from NoBroker to PG Finder. The UI is so much better and I found my PG without paying any brokerage. Clean and trustworthy.",
+    text: "Switched from NoBroker to Castle. The UI is so much better and I found my PG without paying any brokerage. Clean and trustworthy.",
     avatar: "AV",
     rating: 5,
     area: "BTM Layout",
@@ -49,7 +49,7 @@ const testimonials = [
   {
     name: "Priya Nair",
     role: "HR at Amazon",
-    text: "I recommend PG Finder to every new joiner at our office. The verified badges and callback feature make it super convenient for newcomers.",
+    text: "I recommend Castle to every new joiner at our office. The verified badges and callback feature make it super convenient for newcomers.",
     avatar: "PN",
     rating: 5,
     area: "Bellandur",

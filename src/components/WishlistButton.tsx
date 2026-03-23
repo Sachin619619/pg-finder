@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { isWishlisted, toggleWishlist } from "@/lib/store";
 
-export default function WishlistButton({ pgId, size = "sm" }: { pgId: string; size?: "sm" | "lg" }) {
+export default function WishlistButton({ pgId, pgName, size = "sm" }: { pgId: string; pgName?: string; size?: "sm" | "lg" }) {
   const [saved, setSaved] = useState(false);
 
   useEffect(() => {
@@ -29,6 +29,7 @@ export default function WishlistButton({ pgId, size = "sm" }: { pgId: string; si
           ? "bg-red-50 text-red-500 shadow-lg shadow-red-500/20 scale-110"
           : "bg-white/80 backdrop-blur-sm text-gray-400 hover:text-red-500 hover:bg-red-50 shadow-md"
       }`}
+      aria-label={saved ? `Remove${pgName ? ` ${pgName}` : ""} from wishlist` : `Save${pgName ? ` ${pgName}` : ""} to wishlist`}
       title={saved ? "Remove from wishlist" : "Save to wishlist"}
     >
       <svg

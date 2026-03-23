@@ -1,10 +1,17 @@
+export type RoomOption = {
+  type: "single" | "double" | "triple";
+  price: number;
+  available: boolean;
+};
+
 export type PGListing = {
   id: string;
   name: string;
   area: string;
   locality: string;
-  price: number;
-  type: "single" | "double" | "triple" | "any";
+  price: number; // Base/lowest price (for sorting & display)
+  type: "single" | "double" | "triple" | "any"; // Primary type (backward compat)
+  roomOptions?: RoomOption[]; // Multiple room types with prices
   gender: "male" | "female" | "coed";
   amenities: string[];
   rating: number;

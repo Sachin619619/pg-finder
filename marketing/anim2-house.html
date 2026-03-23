@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&display=swap');
+body { font-family: 'Inter', sans-serif; width: 500px; height: 500px; overflow: hidden; }
+.scene {
+  width: 500px; height: 500px;
+  background: linear-gradient(180deg, #1e0f45 0%, #2d1b69 30%, #7c3aed 70%, #a855f7 100%);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+
+/* Moon */
+.moon {
+  position: absolute; top: 40px; right: 60px;
+  width: 60px; height: 60px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fef3c7, #fde68a);
+  box-shadow: 0 0 40px rgba(253,230,138,0.4), 0 0 80px rgba(253,230,138,0.15);
+  animation: moon-glow 4s ease-in-out infinite;
+}
+@keyframes moon-glow {
+  0%, 100% { box-shadow: 0 0 40px rgba(253,230,138,0.4), 0 0 80px rgba(253,230,138,0.15); }
+  50% { box-shadow: 0 0 60px rgba(253,230,138,0.6), 0 0 120px rgba(253,230,138,0.25); }
+}
+
+/* Stars */
+.star { position: absolute; background: white; border-radius: 50%; animation: twinkle 2s ease-in-out infinite; }
+.s1 { top: 30px; left: 40px; width: 3px; height: 3px; animation-delay: 0s; }
+.s2 { top: 60px; left: 120px; width: 2px; height: 2px; animation-delay: 0.5s; }
+.s3 { top: 20px; left: 200px; width: 2px; height: 2px; animation-delay: 1s; }
+.s4 { top: 80px; left: 300px; width: 3px; height: 3px; animation-delay: 0.3s; }
+.s5 { top: 50px; left: 380px; width: 2px; height: 2px; animation-delay: 1.2s; }
+.s6 { top: 100px; left: 60px; width: 2px; height: 2px; animation-delay: 0.7s; }
+.s7 { top: 110px; left: 250px; width: 2px; height: 2px; animation-delay: 1.5s; }
+.s8 { top: 40px; left: 450px; width: 3px; height: 3px; animation-delay: 0.9s; }
+@keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+/* Clouds */
+.cloud {
+  position: absolute; background: rgba(255,255,255,0.06); border-radius: 100px;
+  animation: drift 20s linear infinite;
+}
+.c1 { top: 120px; width: 180px; height: 40px; animation-delay: 0s; left: -200px; }
+.c2 { top: 80px; width: 140px; height: 30px; animation-delay: 7s; left: -200px; opacity: 0.5; }
+.c3 { top: 160px; width: 200px; height: 35px; animation-delay: 14s; left: -200px; opacity: 0.4; }
+@keyframes drift { 0% { left: -200px; } 100% { left: 600px; } }
+
+/* Birds flock */
+.bird { position: absolute; animation: fly-bird 10s linear infinite; opacity: 0; }
+.bird svg { fill: none; stroke-linecap: round; }
+.b1 { top: 130px; }
+.b1 svg { width: 22px; height: 14px; stroke: rgba(255,255,255,0.5); stroke-width: 1.8; }
+.b2 { top: 118px; animation-delay: 0.3s; }
+.b2 svg { width: 16px; height: 10px; stroke: rgba(255,255,255,0.35); stroke-width: 1.5; }
+.b3 { top: 140px; animation-delay: 0.6s; }
+.b3 svg { width: 14px; height: 9px; stroke: rgba(255,255,255,0.25); stroke-width: 1.5; }
+.b4 { top: 125px; animation-delay: 0.9s; }
+.b4 svg { width: 12px; height: 8px; stroke: rgba(255,255,255,0.2); stroke-width: 1.5; }
+.b5 { top: 145px; animation-delay: 1.2s; }
+.b5 svg { width: 10px; height: 7px; stroke: rgba(255,255,255,0.15); stroke-width: 1.5; }
+
+@keyframes fly-bird {
+  0% { left: -30px; opacity: 0; }
+  5% { opacity: 1; }
+  90% { opacity: 1; }
+  95% { opacity: 0; }
+  100% { left: 530px; opacity: 0; }
+}
+
+/* Wing flap via CSS animation */
+.bird svg path { animation: flap 0.35s ease-in-out infinite alternate; }
+@keyframes flap {
+  0% { d: path("M1 7 Q5.5 1 11 7 Q16.5 1 21 7"); }
+  100% { d: path("M1 7 Q5.5 5.5 11 7 Q16.5 5.5 21 7"); }
+}
+
+/* House */
+.house-container { position: relative; z-index: 10; margin-top: 20px; }
+.house {
+  width: 180px; height: 180px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.04));
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 44px;
+  display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+  animation: house-float 4s ease-in-out infinite;
+}
+@keyframes house-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.house svg { width: 85px; height: 85px; color: white; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2)); }
+
+/* Window glow */
+.window-glow {
+  position: absolute; width: 16px; height: 16px; border-radius: 3px;
+  background: #fde68a; box-shadow: 0 0 12px rgba(253,230,138,0.6);
+  animation: window-flicker 5s ease-in-out infinite;
+}
+.w1 { bottom: 55px; left: 72px; animation-delay: 0s; }
+.w2 { bottom: 55px; right: 72px; animation-delay: 1.5s; }
+@keyframes window-flicker {
+  0%, 100% { opacity: 0.7; } 30% { opacity: 1; } 50% { opacity: 0.8; } 70% { opacity: 1; } 90% { opacity: 0.6; }
+}
+
+/* Smoke from chimney */
+.smoke {
+  position: absolute; top: -15px; right: 55px;
+  width: 8px; height: 8px; background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+  animation: smoke-rise 3s ease-out infinite;
+}
+.smoke2 { animation-delay: 1s; right: 58px; }
+.smoke3 { animation-delay: 2s; right: 52px; }
+@keyframes smoke-rise {
+  0% { transform: translateY(0) scale(1); opacity: 0.4; }
+  100% { transform: translateY(-60px) translateX(10px) scale(3); opacity: 0; }
+}
+
+/* Text */
+.text-block { position: relative; z-index: 10; text-align: center; margin-top: 24px; }
+.title { color: white; font-size: 38px; font-weight: 900; letter-spacing: -1px; text-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+.subtitle { color: rgba(255,255,255,0.5); font-size: 13px; font-weight: 800; letter-spacing: 6px; text-transform: uppercase; margin-top: 4px; }
+</style>
+</head>
+<body>
+<div class="scene">
+  <!-- Moon -->
+  <div class="moon"></div>
+
+  <!-- Stars -->
+  <div class="star s1"></div><div class="star s2"></div><div class="star s3"></div><div class="star s4"></div>
+  <div class="star s5"></div><div class="star s6"></div><div class="star s7"></div><div class="star s8"></div>
+
+  <!-- Clouds -->
+  <div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div>
+
+  <!-- Birds -->
+  <div class="bird b1"><svg viewBox="0 0 22 14"><path d="M1 7 Q5.5 1 11 7 Q16.5 1 21 7"/></svg></div>
+  <div class="bird b2"><svg viewBox="0 0 22 14"><path d="M1 7 Q5.5 1 11 7 Q16.5 1 21 7"/></svg></div>
+  <div class="bird b3"><svg viewBox="0 0 22 14"><path d="M1 7 Q5.5 1 11 7 Q16.5 1 21 7"/></svg></div>
+  <div class="bird b4"><svg viewBox="0 0 22 14"><path d="M1 7 Q5.5 1 11 7 Q16.5 1 21 7"/></svg></div>
+  <div class="bird b5"><svg viewBox="0 0 22 14"><path d="M1 7 Q5.5 1 11 7 Q16.5 1 21 7"/></svg></div>
+
+  <!-- House -->
+  <div class="house-container">
+    <div class="house">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+      </svg>
+      <div class="window-glow w1"></div>
+      <div class="window-glow w2"></div>
+      <div class="smoke"></div>
+      <div class="smoke smoke2"></div>
+      <div class="smoke smoke3"></div>
+    </div>
+  </div>
+
+  <!-- Text -->
+  <div class="text-block">
+    <div class="title">Castle</div>
+    <div class="subtitle">Bangalore</div>
+  </div>
+</div>
+</body>
+</html>

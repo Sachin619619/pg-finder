@@ -33,14 +33,23 @@ function mapListing(row: Record<string, unknown>): PGListing {
 }
 
 export async function fetchListings(): Promise<PGListing[]> {
+  // Include listings with status "active" or null (legacy listings without status)
   const { data, error } = await supabase
     .from("listings")
     .select("*")
+    .or("status.eq.active,status.is.null")
     .order("rating", { ascending: false });
 
   if (error) {
     console.error("Error fetching listings:", error);
-    return [];
+    // Fallback: try without status filter in case column doesn't exist yet
+    const { data: fallbackData, error: fallbackError } = await supabase
+      .from("listings")
+      .select("*")
+      .neq("status", "agent_draft")
+      .order("rating", { ascending: false });
+    if (fallbackError) return [];
+    return (fallbackData || []).map(mapListing);
   }
   return (data || []).map(mapListing);
 }
@@ -67,6 +76,10 @@ export type Review = {
   comment: string;
   date: string;
   verified: boolean;
+  userId?: string | null;
+  isResident?: boolean;
+  reply?: string | null;
+  replyDate?: string | null;
 };
 
 function mapReview(row: Record<string, unknown>): Review {
@@ -78,6 +91,10 @@ function mapReview(row: Record<string, unknown>): Review {
     comment: row.comment as string,
     date: row.date as string,
     verified: row.verified as boolean,
+    userId: (row.user_id as string) || null,
+    isResident: (row.is_resident as boolean) || false,
+    reply: (row.reply as string) || null,
+    replyDate: (row.reply_date as string) || null,
   };
 }
 
@@ -100,6 +117,8 @@ export async function addReview(review: {
   name: string;
   rating: number;
   comment: string;
+  userId?: string;
+  isResident?: boolean;
 }): Promise<Review | null> {
   const id = `r${Date.now()}`;
   const { data, error } = await supabase
@@ -111,7 +130,9 @@ export async function addReview(review: {
       rating: review.rating,
       comment: review.comment,
       date: new Date().toISOString().split("T")[0],
-      verified: false,
+      verified: review.isResident || false,
+      user_id: review.userId || null,
+      is_resident: review.isResident || false,
     })
     .select()
     .single();

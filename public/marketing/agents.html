@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Castle — For Agents</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #0a0a0a; color: #fff;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 40px 20px; gap: 60px;
+  }
+  h2.label { font-size: 13px; text-transform: uppercase; letter-spacing: 3px; color: #666; margin-bottom: -30px; }
+  .slide {
+    width: 1080px; height: 1080px;
+    border-radius: 12px; overflow: hidden; position: relative; flex-shrink: 0;
+  }
+  .slide-num {
+    position: absolute; top: 30px; right: 30px;
+    background: rgba(0,0,0,0.25); color: rgba(255,255,255,0.6);
+    font-size: 14px; font-weight: 700; padding: 6px 14px; border-radius: 100px;
+    backdrop-filter: blur(10px);
+  }
+  .light .slide-num { background: rgba(0,0,0,0.06); color: rgba(0,0,0,0.35); }
+
+  /* ── SLIDE 1: Hook ── */
+  .s1 {
+    background: linear-gradient(160deg, #0c0a1e 0%, #1a1040 40%, #120d30 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+  }
+  .s1 .badge {
+    padding: 12px 28px; background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.3);
+    border-radius: 100px; font-size: 15px; font-weight: 700; color: #818cf8;
+    letter-spacing: 2px; text-transform: uppercase; margin-bottom: 50px;
+  }
+  .s1 h1 {
+    font-size: 66px; font-weight: 900; line-height: 1.1; letter-spacing: -2px; max-width: 820px;
+  }
+  .s1 h1 span { color: #818cf8; }
+  .s1 .sub {
+    margin-top: 30px; font-size: 22px; color: rgba(255,255,255,0.4); max-width: 560px; line-height: 1.6;
+  }
+  .s1 .arrow { position: absolute; bottom: 60px; right: 70px; }
+  .s1 .arrow svg { width: 50px; height: 50px; stroke: rgba(255,255,255,0.25); stroke-width: 2; fill: none; }
+
+  /* ── SLIDE 2: Pain ── */
+  .s2 {
+    background: #FAFAF5; color: #1a1a1a;
+    display: flex; flex-direction: column; justify-content: center; padding: 100px;
+  }
+  .s2 h1 { font-size: 58px; font-weight: 900; line-height: 1.15; letter-spacing: -2px; }
+  .s2 .pains { margin-top: 55px; display: flex; flex-direction: column; gap: 28px; }
+  .s2 .pain {
+    display: flex; align-items: center; gap: 22px; font-size: 23px; color: #555; font-weight: 500;
+  }
+  .s2 .pain .ic {
+    width: 52px; height: 52px; border-radius: 16px; background: #eef2ff;
+    display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0;
+  }
+
+  /* ── SLIDE 3: What You Get ── */
+  .s3 {
+    background: linear-gradient(160deg, #0c0a1e 0%, #1a1040 40%, #120d30 100%);
+    display: flex; flex-direction: column; padding: 90px;
+  }
+  .s3 .top-badge {
+    padding: 10px 22px; background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.25);
+    border-radius: 100px; font-size: 14px; font-weight: 700; color: #818cf8;
+    width: fit-content; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 35px;
+  }
+  .s3 h1 { font-size: 54px; font-weight: 900; line-height: 1.15; letter-spacing: -1.5px; }
+  .s3 h1 span { color: #818cf8; }
+  .s3 .items { margin-top: 55px; display: flex; flex-direction: column; gap: 28px; }
+  .s3 .item { display: flex; align-items: flex-start; gap: 24px; }
+  .s3 .item-ic {
+    width: 60px; height: 60px; border-radius: 18px; flex-shrink: 0;
+    background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.25);
+    display: flex; align-items: center; justify-content: center; font-size: 28px;
+  }
+  .s3 .item-text h3 { font-size: 23px; font-weight: 800; }
+  .s3 .item-text p { font-size: 17px; color: rgba(255,255,255,0.4); margin-top: 5px; }
+
+  /* ── SLIDE 4: Dashboard ── */
+  .s4 {
+    background: #FAFAF5; color: #1a1a1a;
+    display: flex; flex-direction: column; padding: 80px;
+  }
+  .s4 h1 { font-size: 50px; font-weight: 900; letter-spacing: -1.5px; margin-bottom: 14px; }
+  .s4 .sub { font-size: 19px; color: #888; margin-bottom: 40px; }
+  .s4 .dash {
+    flex: 1; background: #fff; border-radius: 24px; border: 1px solid #e5e5e5;
+    padding: 36px; display: flex; flex-direction: column; gap: 20px;
+  }
+  .s4 .dash-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-bottom: 18px; border-bottom: 1px solid #f0f0f0;
+  }
+  .s4 .dash-header h3 { font-size: 20px; font-weight: 800; }
+  .s4 .dash-header .role {
+    padding: 8px 18px; background: #eef2ff; color: #4f46e5;
+    border-radius: 100px; font-size: 14px; font-weight: 700;
+  }
+  .s4 .dash-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  .s4 .stat {
+    background: #f9fafb; border-radius: 16px; padding: 22px; text-align: center;
+  }
+  .s4 .stat .num { font-size: 34px; font-weight: 900; }
+  .s4 .stat .lbl { font-size: 13px; color: #888; font-weight: 600; margin-top: 5px; }
+  .s4 .listings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; flex: 1; }
+  .s4 .listing-item {
+    background: #f9fafb; border-radius: 16px; padding: 22px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .s4 .listing-item .li-top { display: flex; justify-content: space-between; align-items: center; }
+  .s4 .listing-item .li-name { font-weight: 700; font-size: 16px; }
+  .s4 .listing-item .li-area { font-size: 13px; color: #888; }
+  .s4 .listing-item .li-price { font-size: 17px; font-weight: 800; color: #4f46e5; }
+  .s4 .badge-live {
+    padding: 4px 12px; background: #dcfce7; color: #16a34a;
+    border-radius: 100px; font-size: 12px; font-weight: 700;
+  }
+  .s4 .badge-pending {
+    padding: 4px 12px; background: #fef9c3; color: #a16207;
+    border-radius: 100px; font-size: 12px; font-weight: 700;
+  }
+
+  /* ── SLIDE 5: Earn Model ── */
+  .s5 {
+    background: linear-gradient(160deg, #0c0a1e 0%, #1a1040 40%, #120d30 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 100px;
+  }
+  .s5 .money { font-size: 80px; margin-bottom: 30px; }
+  .s5 h1 { font-size: 58px; font-weight: 900; letter-spacing: -2px; line-height: 1.15; }
+  .s5 h1 span { color: #818cf8; }
+  .s5 .earn-cards {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px;
+    margin-top: 60px; width: 100%;
+  }
+  .s5 .earn-card {
+    background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.2);
+    border-radius: 24px; padding: 36px 24px;
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+  }
+  .s5 .earn-card .ec-icon { font-size: 38px; }
+  .s5 .earn-card h3 { font-size: 19px; font-weight: 800; }
+  .s5 .earn-card p { font-size: 15px; color: rgba(255,255,255,0.4); line-height: 1.4; }
+
+  /* ── SLIDE 6: Trust ── */
+  .s6 {
+    background: #FAFAF5; color: #1a1a1a;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 90px;
+  }
+  .s6 h1 { font-size: 54px; font-weight: 900; letter-spacing: -1.5px; line-height: 1.15; margin-bottom: 50px; }
+  .s6 .points { display: flex; flex-direction: column; gap: 24px; width: 100%; max-width: 700px; }
+  .s6 .point {
+    display: flex; align-items: center; gap: 22px; text-align: left;
+    background: #fff; border: 1px solid #e5e5e5; border-radius: 20px; padding: 28px 32px;
+  }
+  .s6 .point .pi {
+    width: 52px; height: 52px; border-radius: 16px; background: #eef2ff; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 24px;
+  }
+  .s6 .point .pt h3 { font-size: 20px; font-weight: 800; }
+  .s6 .point .pt p { font-size: 16px; color: #777; margin-top: 4px; }
+
+  /* ── SLIDE 7: CTA ── */
+  .s7 {
+    background: linear-gradient(160deg, #0c0a1e 0%, #1e1350 40%, #150e38 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 100px;
+  }
+  .s7 h1 { font-size: 62px; font-weight: 900; letter-spacing: -2px; line-height: 1.1; max-width: 800px; }
+  .s7 h1 span { color: #818cf8; }
+  .s7 .url { margin-top: 40px; font-size: 24px; font-weight: 700; color: rgba(255,255,255,0.4); }
+  .s7 .cta {
+    margin-top: 35px; padding: 22px 60px;
+    background: linear-gradient(135deg, #4f46e5, #6366f1);
+    border-radius: 100px; font-size: 22px; font-weight: 800; color: white;
+    box-shadow: 0 16px 50px rgba(99,102,241,0.4); border: none;
+  }
+  .s7 .bottom {
+    position: absolute; bottom: 55px;
+    display: flex; align-items: center; gap: 14px;
+    color: rgba(255,255,255,0.25); font-size: 15px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+  }
+  .s7 .bottom .dot {
+    width: 38px; height: 38px; background: linear-gradient(135deg, #4f46e5, #6366f1);
+    border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    font-weight: 900; color: #fff; font-size: 17px;
+  }
+</style>
+</head>
+<body>
+
+<!-- AGENT SLIDE 1: Hook -->
+<h2 class="label">Agent Slide 1</h2>
+<div class="slide s1">
+  <div class="slide-num">1/7</div>
+  <div class="badge">For PG Agents</div>
+  <h1>Manage <span>multiple PGs</span> from one dashboard</h1>
+  <p class="sub">List PGs for owners. Earn per deal. Scale your business with Castle.</p>
+  <div class="arrow"><svg viewBox="0 0 50 50"><path d="M12 25h26M30 17l8 8-8 8"/></svg></div>
+</div>
+
+<!-- AGENT SLIDE 2: Pain -->
+<h2 class="label">Agent Slide 2</h2>
+<div class="slide s2 light">
+  <div class="slide-num">2/7</div>
+  <h1>Managing PGs the old way? You're losing money.</h1>
+  <div class="pains">
+    <div class="pain"><div class="ic">📋</div>Tracking leads across WhatsApp, calls & paper</div>
+    <div class="pain"><div class="ic">🏃</div>Running between PGs to show rooms physically</div>
+    <div class="pain"><div class="ic">📵</div>Missing enquiries because you were busy</div>
+    <div class="pain"><div class="ic">💰</div>No system to track your earnings per PG</div>
+    <div class="pain"><div class="ic">🤯</div>Owners asking for updates you don't have</div>
+  </div>
+</div>
+
+<!-- AGENT SLIDE 3: What You Get -->
+<h2 class="label">Agent Slide 3</h2>
+<div class="slide s3">
+  <div class="slide-num">3/7</div>
+  <div class="top-badge">What You Get</div>
+  <h1>Your own <span>agent hub</span></h1>
+  <div class="items">
+    <div class="item">
+      <div class="item-ic">🏢</div>
+      <div class="item-text">
+        <h3>Multi-PG Management</h3>
+        <p>List & manage multiple PGs from a single dashboard</p>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-ic">📊</div>
+      <div class="item-text">
+        <h3>Lead Tracking</h3>
+        <p>See every enquiry, callback & stay request in real-time</p>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-ic">✏️</div>
+      <div class="item-text">
+        <h3>Edit Listings Instantly</h3>
+        <p>Update photos, pricing & availability on the fly</p>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-ic">🤖</div>
+      <div class="item-text">
+        <h3>AI Handles Enquiries</h3>
+        <p>Castle AI answers tenant questions 24/7 — even when you're offline</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AGENT SLIDE 4: Dashboard -->
+<h2 class="label">Agent Slide 4</h2>
+<div class="slide s4 light">
+  <div class="slide-num">4/7</div>
+  <h1>Your agent dashboard</h1>
+  <p class="sub">All your PGs, leads & performance at a glance.</p>
+  <div class="dash">
+    <div class="dash-header">
+      <h3>👤 Rajesh Kumar — Agent</h3>
+      <div class="role">🔑 Verified Agent</div>
+    </div>
+    <div class="dash-stats">
+      <div class="stat"><div class="num">8</div><div class="lbl">PGs Listed</div></div>
+      <div class="stat"><div class="num">34</div><div class="lbl">Active Leads</div></div>
+      <div class="stat"><div class="num">₹24K</div><div class="lbl">This Month</div></div>
+    </div>
+    <div class="listings-grid">
+      <div class="listing-item">
+        <div class="li-top"><span class="li-name">Sunshine PG</span><span class="badge-live">Live</span></div>
+        <div class="li-area">📍 Koramangala</div>
+        <div class="li-price">₹7,500 — ₹12,000</div>
+      </div>
+      <div class="listing-item">
+        <div class="li-top"><span class="li-name">Green Valley PG</span><span class="badge-live">Live</span></div>
+        <div class="li-area">📍 HSR Layout</div>
+        <div class="li-price">₹6,000 — ₹9,500</div>
+      </div>
+      <div class="listing-item">
+        <div class="li-top"><span class="li-name">Metro PG</span><span class="badge-pending">Pending</span></div>
+        <div class="li-area">📍 BTM Layout</div>
+        <div class="li-price">₹5,500 — ₹8,000</div>
+      </div>
+      <div class="listing-item">
+        <div class="li-top"><span class="li-name">Royal Residency</span><span class="badge-live">Live</span></div>
+        <div class="li-area">📍 Indiranagar</div>
+        <div class="li-price">₹10,000 — ₹15,000</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AGENT SLIDE 5: Earn Model -->
+<h2 class="label">Agent Slide 5</h2>
+<div class="slide s5">
+  <div class="slide-num">5/7</div>
+  <div class="money">💰</div>
+  <h1>Scale your <span>earnings</span></h1>
+  <div class="earn-cards">
+    <div class="earn-card">
+      <div class="ec-icon">🏢</div>
+      <h3>List More PGs</h3>
+      <p>No limit on how many PGs you can manage</p>
+    </div>
+    <div class="earn-card">
+      <div class="ec-icon">📈</div>
+      <h3>Track Performance</h3>
+      <p>See which PGs get the most leads & optimize</p>
+    </div>
+    <div class="earn-card">
+      <div class="ec-icon">🤝</div>
+      <h3>Close More Deals</h3>
+      <p>Direct tenant connections mean faster closures</p>
+    </div>
+  </div>
+</div>
+
+<!-- AGENT SLIDE 6: Why Castle -->
+<h2 class="label">Agent Slide 6</h2>
+<div class="slide s6 light">
+  <div class="slide-num">6/7</div>
+  <h1>Why agents choose Castle</h1>
+  <div class="points">
+    <div class="point">
+      <div class="pi">🆓</div>
+      <div class="pt"><h3>Free to List</h3><p>No upfront costs — list unlimited PGs for free</p></div>
+    </div>
+    <div class="point">
+      <div class="pi">⚡</div>
+      <div class="pt"><h3>Instant Visibility</h3><p>Your PGs go live on Castle + AI search immediately</p></div>
+    </div>
+    <div class="point">
+      <div class="pi">📱</div>
+      <div class="pt"><h3>Works on Mobile</h3><p>Manage everything from your phone — no laptop needed</p></div>
+    </div>
+    <div class="point">
+      <div class="pi">🏆</div>
+      <div class="pt"><h3>Verified Agent Badge</h3><p>Build trust — tenants prefer verified agents</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- AGENT SLIDE 7: CTA -->
+<h2 class="label">Agent Slide 7</h2>
+<div class="slide s7">
+  <div class="slide-num">7/7</div>
+  <h1>Become a Castle agent. <span>Start earning today.</span></h1>
+  <div class="url">castleliving.in</div>
+  <div class="cta">Join as Agent — It's Free</div>
+  <div class="bottom"><div class="dot">C</div>Castle</div>
+</div>
+
+</body>
+</html>

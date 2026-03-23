@@ -2,8 +2,14 @@
 
 import { useState, useEffect, useMemo } from "react";
 import Header from "@/components/Header";
+import Link from "next/link";
+import AnimatedBanner from "@/components/AnimatedBanner";
 import { fetchRoommateProfiles, fetchAreas, addRoommateProfile } from "@/lib/db";
 import type { RoommateProfile } from "@/lib/db";
+
+function sanitize(str: string, maxLen: number): string {
+  return str.replace(/[<>&"'/]/g, "").trim().slice(0, maxLen);
+}
 
 const gradients = [
   "from-violet-400 to-purple-500",
@@ -34,6 +40,8 @@ export default function RoommateFinder() {
   const [formLifestyle, setFormLifestyle] = useState("");
   const [formBio, setFormBio] = useState("");
 
+  useEffect(() => { document.title = "Find Roommates in Bangalore | Castle"; }, []);
+
   useEffect(() => {
     fetchRoommateProfiles().then(setProfiles);
     fetchAreas().then(setAreas);
@@ -50,18 +58,28 @@ export default function RoommateFinder() {
     e.preventDefault();
     setSubmitting(true);
     const budget = Number(formBudget);
+    const safeName = sanitize(formName, 100);
+    const safeOccupation = sanitize(formOccupation, 100);
+    const safeLifestyle = sanitize(formLifestyle, 50);
+    const safeBio = sanitize(formBio, 500);
+
+    if (!safeName || !safeOccupation || !safeBio) {
+      setSubmitting(false);
+      return;
+    }
+
     const success = await addRoommateProfile({
-      name: formName,
+      name: safeName,
       age: Number(formAge),
       gender: formGender,
-      occupation: formOccupation,
+      occupation: safeOccupation,
       area: formArea,
       budgetMin: Math.round(budget * 0.7),
       budgetMax: budget,
       moveInDate: new Date().toISOString().split("T")[0],
-      lifestyle: formLifestyle,
-      bio: formBio,
-      avatar: formName.charAt(0).toUpperCase(),
+      lifestyle: safeLifestyle,
+      bio: safeBio,
+      avatar: safeName.charAt(0).toUpperCase(),
       gradient: gradients[Math.floor(Math.random() * gradients.length)],
     });
     if (success) {
@@ -76,7 +94,14 @@ export default function RoommateFinder() {
   return (
     <>
       <Header />
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 animate-fade-in-up">
+        {/* Breadcrumb */}
+        <nav className="mb-6 text-sm text-gray-500 flex items-center gap-2">
+          <Link href="/" className="hover:text-violet-600 transition-colors">Home</Link>
+          <span>/</span>
+          <span className="text-gray-900 dark:text-white font-medium">Find Roommates</span>
+        </nav>
+
         {/* Hero */}
         <div className="text-center mb-12">
           <span className="pill bg-pink-50 text-pink-600 !text-xs font-semibold mb-4 inline-block">Find Your Perfect Match</span>
@@ -130,7 +155,7 @@ export default function RoommateFinder() {
               </select>
               <input required type="number" placeholder="Max Budget (₹)" value={formBudget} onChange={(e) => setFormBudget(e.target.value)} className="premium-input text-sm" />
               <input placeholder="Interests (comma separated)" value={formLifestyle} onChange={(e) => setFormLifestyle(e.target.value)} className="premium-input text-sm sm:col-span-2" />
-              <textarea required rows={3} placeholder="Tell potential roommates about yourself..." value={formBio} onChange={(e) => setFormBio(e.target.value)} className="premium-input text-sm sm:col-span-2 resize-none" />
+              <textarea required rows={3} maxLength={500} placeholder="Tell potential roommates about yourself... (max 500 chars)" value={formBio} onChange={(e) => setFormBio(e.target.value)} className="premium-input text-sm sm:col-span-2 resize-none" />
               <div className="sm:col-span-2 flex gap-3">
                 <button type="submit" disabled={submitting} className="btn-premium !py-2.5 !px-8 !text-sm disabled:opacity-50">
                   {submitting ? "Posting..." : "Post Profile"}
@@ -181,7 +206,7 @@ export default function RoommateFinder() {
                 <span className="font-semibold text-emerald-600 dark:text-emerald-400">₹{p.budgetMin.toLocaleString()} - ₹{p.budgetMax.toLocaleString()}/mo</span>
               </div>
               <a
-                href={`https://wa.me/?text=${encodeURIComponent(`Hi ${p.name}! I found your roommate profile on PG Finder Bangalore. I'm interested in sharing a PG in ${p.area}. Let's connect!`)}`}
+                href={`https://wa.me/?text=${encodeURIComponent(`Hi ${p.name}! I found your roommate profile on Castle. I'm interested in sharing a PG in ${p.area}. Let's connect!`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full btn-premium !py-2.5 !text-sm !rounded-xl block text-center"
@@ -193,11 +218,32 @@ export default function RoommateFinder() {
         </div>
 
         {filtered.length === 0 && (
-          <div className="text-center py-16">
-            <p className="text-gray-400 text-lg">No roommates found matching your criteria</p>
-            <p className="text-gray-300 text-sm mt-2">Try adjusting your filters</p>
+          <div className="text-center py-24">
+            <div className="w-28 h-28 bg-pink-50 dark:bg-pink-900/20 rounded-3xl flex items-center justify-center mx-auto mb-6">
+              <svg className="w-14 h-14 text-pink-300 dark:text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">No roommates found</h3>
+            <p className="text-gray-400 mb-2">No one matches your current filters yet.</p>
+            <p className="text-gray-300 dark:text-gray-500 text-sm mb-8">Try adjusting your filters or be the first to post a profile!</p>
+            <div className="flex items-center justify-center gap-3">
+              <button
+                onClick={() => { setGenderFilter(""); setAreaFilter(""); setBudgetMax(50000); }}
+                className="px-6 py-3 rounded-2xl text-sm font-medium bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all"
+              >
+                Clear Filters
+              </button>
+              <button
+                onClick={() => setShowForm(true)}
+                className="btn-premium !py-3 !px-6 !text-sm"
+              >
+                Post Your Profile
+              </button>
+            </div>
           </div>
         )}
+        <AnimatedBanner seed={20} />
       </main>
     </>
   );

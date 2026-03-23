@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import PGCard from "@/components/PGCard";
 import type { Metadata } from "next";
 import Link from "next/link";
+import AnimatedBanner from "@/components/AnimatedBanner";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -23,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const allListings = await fetchListings();
   const areaListings = allListings.filter((l) => l.area === area);
   return {
-    title: `PG in ${area} | ${areaListings.length}+ PGs & Hostels | PG Finder Bangalore`,
+    title: `PG in ${area} | ${areaListings.length}+ PGs & Hostels | Castle`,
     description: `Find the best PG accommodations in ${area}, Bangalore. ${areaListings.length}+ verified PGs with food, WiFi, AC. Compare prices starting from ₹${Math.min(...areaListings.map((l) => l.price)).toLocaleString()}/month.`,
   };
 }
@@ -93,7 +94,7 @@ export default async function AreaPage({ params }: Props) {
           <h2 className="text-2xl font-bold text-gray-900 mb-4">About PGs in {area}</h2>
           <div className="text-gray-600 space-y-3 leading-relaxed">
             <p>
-              {area} is one of the most popular residential areas in Bangalore for working professionals
+              {area}{" "}is one of the most popular residential areas in Bangalore for working professionals
               and students. With excellent connectivity, vibrant food scene, and proximity to major IT parks,
               it&apos;s a top choice for PG accommodation.
             </p>
@@ -120,6 +121,7 @@ export default async function AreaPage({ params }: Props) {
             ))}
           </div>
         </div>
+        <AnimatedBanner seed={70} />
       </main>
     </>
   );

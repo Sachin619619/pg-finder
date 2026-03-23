@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Castle — For PG Owners</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #0a0a0a;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    gap: 60px;
+  }
+  h2.label { font-size: 13px; text-transform: uppercase; letter-spacing: 3px; color: #666; margin-bottom: -30px; }
+  .slide {
+    width: 1080px; height: 1080px;
+    border-radius: 12px; overflow: hidden; position: relative; flex-shrink: 0;
+  }
+  .slide-num {
+    position: absolute; top: 30px; right: 30px;
+    background: rgba(0,0,0,0.25); color: rgba(255,255,255,0.6);
+    font-size: 14px; font-weight: 700; padding: 6px 14px; border-radius: 100px;
+    backdrop-filter: blur(10px);
+  }
+  .light .slide-num { background: rgba(0,0,0,0.06); color: rgba(0,0,0,0.35); }
+
+  /* ── SLIDE 1: Hook ── */
+  .s1 {
+    background: linear-gradient(160deg, #0a1a0a 0%, #0d2818 40%, #0a2010 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+  }
+  .s1 .badge {
+    padding: 12px 28px; background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.3);
+    border-radius: 100px; font-size: 15px; font-weight: 700; color: #4ade80;
+    letter-spacing: 2px; text-transform: uppercase; margin-bottom: 50px;
+  }
+  .s1 h1 {
+    font-size: 68px; font-weight: 900; line-height: 1.1; letter-spacing: -2px; max-width: 800px;
+  }
+  .s1 h1 span { color: #4ade80; }
+  .s1 .sub {
+    margin-top: 30px; font-size: 22px; color: rgba(255,255,255,0.4); max-width: 550px; line-height: 1.6;
+  }
+  .s1 .arrow {
+    position: absolute; bottom: 60px; right: 70px;
+  }
+  .s1 .arrow svg { width: 50px; height: 50px; stroke: rgba(255,255,255,0.25); stroke-width: 2; fill: none; }
+
+  /* ── SLIDE 2: Pain Points ── */
+  .s2 {
+    background: #FAFAF5; color: #1a1a1a;
+    display: flex; flex-direction: column; justify-content: center; padding: 100px;
+  }
+  .s2 h1 { font-size: 60px; font-weight: 900; line-height: 1.15; letter-spacing: -2px; }
+  .s2 .pains { margin-top: 60px; display: flex; flex-direction: column; gap: 28px; }
+  .s2 .pain {
+    display: flex; align-items: center; gap: 22px; font-size: 24px; color: #555; font-weight: 500;
+  }
+  .s2 .pain .ic {
+    width: 52px; height: 52px; border-radius: 16px; background: #fef2f2;
+    display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0;
+  }
+
+  /* ── SLIDE 3: Solution ── */
+  .s3 {
+    background: linear-gradient(160deg, #0a1a0a 0%, #0d2818 40%, #0a2010 100%);
+    display: flex; flex-direction: column; padding: 90px;
+  }
+  .s3 .top-badge {
+    padding: 10px 22px; background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.25);
+    border-radius: 100px; font-size: 14px; font-weight: 700; color: #4ade80;
+    width: fit-content; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 35px;
+  }
+  .s3 h1 { font-size: 56px; font-weight: 900; line-height: 1.15; letter-spacing: -1.5px; }
+  .s3 h1 span { color: #4ade80; }
+  .s3 .steps { margin-top: 55px; display: flex; flex-direction: column; gap: 30px; }
+  .s3 .step {
+    display: flex; align-items: flex-start; gap: 24px;
+  }
+  .s3 .step-num {
+    width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0;
+    background: rgba(34,197,94,0.15); border: 2px solid rgba(34,197,94,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; font-weight: 900; color: #4ade80;
+  }
+  .s3 .step-text h3 { font-size: 24px; font-weight: 800; }
+  .s3 .step-text p { font-size: 18px; color: rgba(255,255,255,0.4); margin-top: 6px; }
+
+  /* ── SLIDE 4: Dashboard Preview ── */
+  .s4 {
+    background: #FAFAF5; color: #1a1a1a;
+    display: flex; flex-direction: column; padding: 80px;
+  }
+  .s4 h1 { font-size: 52px; font-weight: 900; letter-spacing: -1.5px; margin-bottom: 16px; }
+  .s4 .sub { font-size: 19px; color: #888; margin-bottom: 45px; }
+  .s4 .dash {
+    flex: 1; background: #fff; border-radius: 24px; border: 1px solid #e5e5e5;
+    padding: 40px; display: flex; flex-direction: column; gap: 24px;
+  }
+  .s4 .dash-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-bottom: 20px; border-bottom: 1px solid #f0f0f0;
+  }
+  .s4 .dash-header h3 { font-size: 22px; font-weight: 800; }
+  .s4 .dash-header .status {
+    padding: 8px 18px; background: #dcfce7; color: #16a34a;
+    border-radius: 100px; font-size: 14px; font-weight: 700;
+  }
+  .s4 .dash-stats { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px; }
+  .s4 .stat {
+    background: #f9fafb; border-radius: 16px; padding: 24px; text-align: center;
+  }
+  .s4 .stat .num { font-size: 36px; font-weight: 900; color: #1a1a1a; }
+  .s4 .stat .lbl { font-size: 14px; color: #888; font-weight: 600; margin-top: 6px; }
+  .s4 .dash-rows { display: flex; flex-direction: column; gap: 12px; flex: 1; }
+  .s4 .dash-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 24px; background: #f9fafb; border-radius: 14px;
+  }
+  .s4 .dash-row .name { font-weight: 700; font-size: 17px; }
+  .s4 .dash-row .detail { font-size: 14px; color: #888; }
+  .s4 .dash-row .badge-green {
+    padding: 6px 14px; background: #dcfce7; color: #16a34a;
+    border-radius: 100px; font-size: 13px; font-weight: 700;
+  }
+  .s4 .dash-row .badge-yellow {
+    padding: 6px 14px; background: #fef9c3; color: #a16207;
+    border-radius: 100px; font-size: 13px; font-weight: 700;
+  }
+
+  /* ── SLIDE 5: Features ── */
+  .s5 {
+    background: linear-gradient(160deg, #0a1a0a 0%, #0d2818 40%, #0a2010 100%);
+    display: flex; flex-direction: column; padding: 90px;
+  }
+  .s5 h1 { font-size: 54px; font-weight: 900; letter-spacing: -1.5px; margin-bottom: 50px; }
+  .s5 h1 span { color: #4ade80; }
+  .s5 .feats { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; flex: 1; }
+  .s5 .feat {
+    background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.15);
+    border-radius: 24px; padding: 34px; display: flex; flex-direction: column; gap: 14px;
+  }
+  .s5 .feat .fi {
+    width: 56px; height: 56px; border-radius: 16px;
+    background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.25);
+    display: flex; align-items: center; justify-content: center; font-size: 26px;
+  }
+  .s5 .feat h3 { font-size: 21px; font-weight: 800; }
+  .s5 .feat p { font-size: 16px; color: rgba(255,255,255,0.4); line-height: 1.5; }
+
+  /* ── SLIDE 6: Social Proof / Numbers ── */
+  .s6 {
+    background: #FAFAF5; color: #1a1a1a;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 100px;
+  }
+  .s6 h1 { font-size: 54px; font-weight: 900; letter-spacing: -1.5px; line-height: 1.15; margin-bottom: 60px; }
+  .s6 .nums { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; width: 100%; }
+  .s6 .num-card {
+    background: #fff; border: 1px solid #e5e5e5; border-radius: 24px;
+    padding: 44px 30px; display: flex; flex-direction: column; align-items: center; gap: 10px;
+  }
+  .s6 .num-card .big { font-size: 52px; font-weight: 900; color: #16a34a; }
+  .s6 .num-card .txt { font-size: 18px; font-weight: 600; color: #555; }
+
+  /* ── SLIDE 7: CTA ── */
+  .s7 {
+    background: linear-gradient(160deg, #0a1a0a 0%, #0d3320 40%, #0a2515 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 100px;
+  }
+  .s7 h1 { font-size: 64px; font-weight: 900; letter-spacing: -2px; line-height: 1.1; max-width: 800px; }
+  .s7 h1 span { color: #4ade80; }
+  .s7 .url { margin-top: 40px; font-size: 24px; font-weight: 700; color: rgba(255,255,255,0.4); }
+  .s7 .cta {
+    margin-top: 35px; padding: 22px 60px;
+    background: linear-gradient(135deg, #16a34a, #22c55e);
+    border-radius: 100px; font-size: 22px; font-weight: 800; color: white;
+    box-shadow: 0 16px 50px rgba(34,197,94,0.4); border: none;
+  }
+  .s7 .bottom {
+    position: absolute; bottom: 55px;
+    display: flex; align-items: center; gap: 14px;
+    color: rgba(255,255,255,0.25); font-size: 15px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+  }
+  .s7 .bottom .dot {
+    width: 38px; height: 38px; background: linear-gradient(135deg, #16a34a, #22c55e);
+    border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    font-weight: 900; color: #fff; font-size: 17px;
+  }
+</style>
+</head>
+<body>
+
+<!-- OWNER SLIDE 1: Hook -->
+<h2 class="label">Owner Slide 1</h2>
+<div class="slide s1">
+  <div class="slide-num">1/7</div>
+  <div class="badge">For PG Owners</div>
+  <h1>Still relying on <span>brokers</span> to fill your PG?</h1>
+  <p class="sub">There's a smarter way. Zero commission. Direct tenants. Full control.</p>
+  <div class="arrow"><svg viewBox="0 0 50 50"><path d="M12 25h26M30 17l8 8-8 8"/></svg></div>
+</div>
+
+<!-- OWNER SLIDE 2: Pain Points -->
+<h2 class="label">Owner Slide 2</h2>
+<div class="slide s2 light">
+  <div class="slide-num">2/7</div>
+  <h1>The old way is broken.</h1>
+  <div class="pains">
+    <div class="pain"><div class="ic">💸</div>Paying 1-2 months rent as broker commission</div>
+    <div class="pain"><div class="ic">📉</div>Rooms lying vacant for weeks with no visibility</div>
+    <div class="pain"><div class="ic">📞</div>Endless calls from unserious enquiries</div>
+    <div class="pain"><div class="ic">😤</div>No way to showcase your PG's best features</div>
+    <div class="pain"><div class="ic">🔄</div>Managing everything on WhatsApp & paper</div>
+  </div>
+</div>
+
+<!-- OWNER SLIDE 3: How It Works -->
+<h2 class="label">Owner Slide 3</h2>
+<div class="slide s3">
+  <div class="slide-num">3/7</div>
+  <div class="top-badge">How It Works</div>
+  <h1>List your PG in <span>3 easy steps</span></h1>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-text">
+        <h3>Create Your Listing</h3>
+        <p>Add photos, rooms, pricing, amenities & location — takes 5 minutes</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-text">
+        <h3>Get Verified</h3>
+        <p>We verify your listing — verified badge builds instant trust with tenants</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-text">
+        <h3>Start Getting Tenants</h3>
+        <p>Receive direct callbacks, stay requests & enquiries — zero middlemen</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OWNER SLIDE 4: Dashboard -->
+<h2 class="label">Owner Slide 4</h2>
+<div class="slide s4 light">
+  <div class="slide-num">4/7</div>
+  <h1>Your PG, your dashboard.</h1>
+  <p class="sub">Track everything from one place — no spreadsheets needed.</p>
+  <div class="dash">
+    <div class="dash-header">
+      <h3>🏠 Sunshine PG — Koramangala</h3>
+      <div class="status">✅ Verified</div>
+    </div>
+    <div class="dash-stats">
+      <div class="stat"><div class="num">48</div><div class="lbl">Views</div></div>
+      <div class="stat"><div class="num">12</div><div class="lbl">Enquiries</div></div>
+      <div class="stat"><div class="num">5</div><div class="lbl">Callbacks</div></div>
+      <div class="stat"><div class="num">3</div><div class="lbl">Stay Requests</div></div>
+    </div>
+    <div class="dash-rows">
+      <div class="dash-row">
+        <div><div class="name">Priya Sharma</div><div class="detail">Female · Double sharing · ₹7,500 budget</div></div>
+        <div class="badge-green">Stay Request</div>
+      </div>
+      <div class="dash-row">
+        <div><div class="name">Rahul Verma</div><div class="detail">Male · Single room · Callback requested</div></div>
+        <div class="badge-yellow">Callback</div>
+      </div>
+      <div class="dash-row">
+        <div><div class="name">Ananya K</div><div class="detail">Female · Triple sharing · Moving in April</div></div>
+        <div class="badge-green">Stay Request</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OWNER SLIDE 5: Features -->
+<h2 class="label">Owner Slide 5</h2>
+<div class="slide s5">
+  <div class="slide-num">5/7</div>
+  <h1>Built for <span>PG owners</span></h1>
+  <div class="feats">
+    <div class="feat">
+      <div class="fi">📸</div>
+      <h3>Photo Gallery</h3>
+      <p>Upload room photos, common areas & amenities to attract tenants</p>
+    </div>
+    <div class="feat">
+      <div class="fi">📞</div>
+      <h3>Direct Callbacks</h3>
+      <p>Tenants request callbacks — you call when it suits you</p>
+    </div>
+    <div class="feat">
+      <div class="fi">✏️</div>
+      <h3>Edit Anytime</h3>
+      <p>Update pricing, availability & details instantly from your dashboard</p>
+    </div>
+    <div class="feat">
+      <div class="fi">⭐</div>
+      <h3>Collect Reviews</h3>
+      <p>Real tenant reviews boost your credibility & fill rooms faster</p>
+    </div>
+    <div class="feat">
+      <div class="fi">🔔</div>
+      <h3>Instant Alerts</h3>
+      <p>Get notified immediately when someone shows interest</p>
+    </div>
+    <div class="feat">
+      <div class="fi">🆓</div>
+      <h3>100% Free</h3>
+      <p>No listing fee, no commission, no hidden charges — completely free</p>
+    </div>
+  </div>
+</div>
+
+<!-- OWNER SLIDE 6: Numbers -->
+<h2 class="label">Owner Slide 6</h2>
+<div class="slide s6 light">
+  <div class="slide-num">6/7</div>
+  <h1>Why owners love Castle</h1>
+  <div class="nums">
+    <div class="num-card"><div class="big">₹0</div><div class="txt">Commission — forever free</div></div>
+    <div class="num-card"><div class="big">5 min</div><div class="txt">To create your listing</div></div>
+    <div class="num-card"><div class="big">10x</div><div class="txt">More visibility than WhatsApp</div></div>
+    <div class="num-card"><div class="big">24/7</div><div class="txt">AI chatbot handles enquiries</div></div>
+  </div>
+</div>
+
+<!-- OWNER SLIDE 7: CTA -->
+<h2 class="label">Owner Slide 7</h2>
+<div class="slide s7">
+  <div class="slide-num">7/7</div>
+  <h1>List your PG today. <span>Fill it tomorrow.</span></h1>
+  <div class="url">castleliving.in/add-listing</div>
+  <div class="cta">List My PG — Free Forever</div>
+  <div class="bottom"><div class="dot">C</div>Castle</div>
+</div>
+
+</body>
+</html>

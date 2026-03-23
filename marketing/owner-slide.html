@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, initial-scale=1.0">
+<title>Castle - List Your PG Free</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1080px;
+    height: 1920px;
+    overflow: hidden;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, #052e16 0%, #064e3b 30%, #047857 55%, #065f46 75%, #052e16 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 8s ease-in-out infinite;
+    color: #fff;
+    position: relative;
+  }
+
+  @keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  /* Floating particles */
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    animation: floatUp linear infinite;
+  }
+  .particle:nth-child(1) { width: 6px; height: 6px; left: 12%; background: rgba(52,211,153,0.4); animation-duration: 12s; animation-delay: 0s; }
+  .particle:nth-child(2) { width: 8px; height: 8px; left: 28%; background: rgba(16,185,129,0.3); animation-duration: 15s; animation-delay: 2s; }
+  .particle:nth-child(3) { width: 5px; height: 5px; left: 42%; background: rgba(110,231,183,0.35); animation-duration: 10s; animation-delay: 4s; }
+  .particle:nth-child(4) { width: 10px; height: 10px; left: 62%; background: rgba(52,211,153,0.25); animation-duration: 14s; animation-delay: 1s; }
+  .particle:nth-child(5) { width: 7px; height: 7px; left: 78%; background: rgba(16,185,129,0.3); animation-duration: 11s; animation-delay: 3s; }
+  .particle:nth-child(6) { width: 4px; height: 4px; left: 38%; background: rgba(167,243,208,0.3); animation-duration: 13s; animation-delay: 5s; }
+  .particle:nth-child(7) { width: 9px; height: 9px; left: 52%; background: rgba(52,211,153,0.2); animation-duration: 16s; animation-delay: 0.5s; }
+  .particle:nth-child(8) { width: 6px; height: 6px; left: 88%; background: rgba(110,231,183,0.3); animation-duration: 12s; animation-delay: 6s; }
+
+  @keyframes floatUp {
+    0% { transform: translateY(1920px) scale(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-100px) scale(1.2); opacity: 0; }
+  }
+
+  /* Glow orbs */
+  .glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+  }
+  .glow-orb.orb1 { width: 400px; height: 400px; top: 180px; left: -100px; background: rgba(16,185,129,0.12); animation: orbFloat1 6s ease-in-out infinite; }
+  .glow-orb.orb2 { width: 350px; height: 350px; bottom: 280px; right: -80px; background: rgba(52,211,153,0.1); animation: orbFloat2 8s ease-in-out infinite; }
+  .glow-orb.orb3 { width: 300px; height: 300px; top: 50%; left: 50%; transform: translate(-50%,-50%); background: rgba(110,231,183,0.07); animation: orbFloat3 7s ease-in-out infinite; }
+
+  @keyframes orbFloat1 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(30px,-40px); } }
+  @keyframes orbFloat2 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-25px,35px); } }
+  @keyframes orbFloat3 { 0%,100% { transform: translate(-50%,-50%) scale(1); } 50% { transform: translate(-50%,-50%) scale(1.15); } }
+
+  .container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px 60px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Logo */
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    opacity: 0;
+    animation: fadeSlideDown 0.8s ease-out 0.3s forwards;
+  }
+  .logo-icon {
+    font-size: 52px;
+    filter: drop-shadow(0 0 20px rgba(52,211,153,0.5));
+  }
+  .logo-text {
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, #a7f3d0, #fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Badge */
+  .badge {
+    margin-top: 60px;
+    padding: 14px 36px;
+    background: rgba(16,185,129,0.12);
+    border: 1px solid rgba(52,211,153,0.25);
+    border-radius: 50px;
+    font-size: 26px;
+    font-weight: 600;
+    color: #6ee7b7;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeSlideDown 0.8s ease-out 0.6s forwards;
+  }
+
+  /* Headline */
+  .headline {
+    margin-top: 65px;
+    text-align: center;
+    opacity: 0;
+    animation: fadeScaleIn 1s ease-out 0.9s forwards;
+  }
+  .headline h1 {
+    font-size: 92px;
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -3px;
+    background: linear-gradient(135deg, #fff 0%, #a7f3d0 50%, #34d399 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 4px 30px rgba(52,211,153,0.3));
+  }
+  .headline .free {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .headline p {
+    margin-top: 20px;
+    font-size: 36px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.7);
+  }
+
+  /* Steps */
+  .steps {
+    margin-top: 70px;
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .step {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    padding: 32px 36px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 24px;
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  .step:nth-child(1) { animation: slideInLeft 0.7s ease-out 1.4s forwards; }
+  .step:nth-child(2) { animation: slideInLeft 0.7s ease-out 1.8s forwards; }
+  .step:nth-child(3) { animation: slideInLeft 0.7s ease-out 2.2s forwards; }
+
+  .step-num {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #059669, #10b981);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    font-weight: 800;
+    box-shadow: 0 4px 20px rgba(16,185,129,0.4);
+  }
+  .step-icon {
+    font-size: 44px;
+  }
+  .step-text {
+    font-size: 33px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.92);
+    line-height: 1.3;
+  }
+
+  /* Stats */
+  .stats {
+    margin-top: 60px;
+    display: flex;
+    gap: 16px;
+    opacity: 0;
+    animation: fadeSlideUp 0.8s ease-out 2.6s forwards;
+  }
+  .stat {
+    padding: 18px 28px;
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 18px;
+    text-align: center;
+  }
+  .stat-value {
+    font-size: 34px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #fff, #6ee7b7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .stat-label {
+    font-size: 20px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.5);
+    margin-top: 4px;
+  }
+
+  /* CTA */
+  .cta-area {
+    margin-top: auto;
+    text-align: center;
+    opacity: 0;
+    animation: fadeSlideUp 0.8s ease-out 3.0s forwards;
+    width: 100%;
+  }
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 30px 70px;
+    background: linear-gradient(135deg, #059669, #10b981, #34d399);
+    background-size: 200% 200%;
+    animation: btnGlow 3s ease-in-out infinite;
+    border-radius: 24px;
+    font-size: 38px;
+    font-weight: 800;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+    box-shadow: 0 8px 40px rgba(16,185,129,0.45), 0 0 80px rgba(16,185,129,0.15);
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-btn::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.12) 50%, transparent 60%);
+    animation: shimmer 3s ease-in-out infinite;
+  }
+  .cta-url {
+    margin-top: 24px;
+    font-size: 28px;
+    color: rgba(255,255,255,0.4);
+    font-weight: 500;
+  }
+
+  @keyframes btnGlow {
+    0%,100% { background-position: 0% 50%; box-shadow: 0 8px 40px rgba(16,185,129,0.45), 0 0 80px rgba(16,185,129,0.15); }
+    50% { background-position: 100% 50%; box-shadow: 0 8px 60px rgba(52,211,153,0.55), 0 0 120px rgba(52,211,153,0.25); }
+  }
+  @keyframes shimmer {
+    0% { transform: translateX(-100%) rotate(25deg); }
+    100% { transform: translateX(100%) rotate(25deg); }
+  }
+
+  /* Animations */
+  @keyframes fadeSlideDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeScaleIn {
+    from { opacity: 0; transform: scale(0.85); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  @keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-40px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+</style>
+</head>
+<body>
+  <!-- Particles -->
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+
+  <!-- Glow orbs -->
+  <div class="glow-orb orb1"></div>
+  <div class="glow-orb orb2"></div>
+  <div class="glow-orb orb3"></div>
+
+  <div class="container">
+    <div class="logo">
+      <span class="logo-icon">🏠</span>
+      <span class="logo-text">Castle</span>
+    </div>
+
+    <div class="badge">For PG Owners</div>
+
+    <div class="headline">
+      <h1>List Your PG<br><span class="free">Free</span></h1>
+      <p>Get verified tenants in hours</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <span class="step-icon">📝</span>
+        <span class="step-text">Add your PG details & photos</span>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <span class="step-icon">📍</span>
+        <span class="step-text">Pin your location on map</span>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <span class="step-icon">🏠</span>
+        <span class="step-text">Start getting tenant requests</span>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-value">500+</div>
+        <div class="stat-label">PGs Listed</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">2000+</div>
+        <div class="stat-label">Tenants</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">Bangalore</div>
+        <div class="stat-label">& Growing</div>
+      </div>
+    </div>
+
+    <div class="cta-area">
+      <div class="cta-btn">List Now →</div>
+      <div class="cta-url">castleliving.in</div>
+    </div>
+  </div>
+</body>
+</html>

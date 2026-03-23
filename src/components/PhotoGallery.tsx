@@ -98,12 +98,13 @@ export default function PhotoGallery({ pgName, images }: { pgName: string; image
       {/* Lightbox */}
       {lightbox && (
         <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4" onClick={() => setLightbox(false)}>
-          <button className="absolute top-6 right-6 w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-white/20 z-10">
+          <button aria-label="Close gallery" className="absolute top-6 right-6 w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-white/20 z-10">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
           <button
+            aria-label="Previous photo"
             className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-white/20 z-10"
             onClick={(e) => { e.stopPropagation(); setActiveIdx((activeIdx - 1 + photoCount) % photoCount); }}
           >
@@ -112,6 +113,7 @@ export default function PhotoGallery({ pgName, images }: { pgName: string; image
             </svg>
           </button>
           <button
+            aria-label="Next photo"
             className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-white/20 z-10"
             onClick={(e) => { e.stopPropagation(); setActiveIdx((activeIdx + 1) % photoCount); }}
           >

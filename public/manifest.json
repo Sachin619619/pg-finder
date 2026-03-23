@@ -1,13 +1,14 @@
 {
-  "name": "PG Finder Bangalore",
-  "short_name": "PG Finder",
-  "description": "Find the best PG accommodations, hostels & co-living spaces across Bangalore",
+  "name": "Castle — PG Finder Bangalore",
+  "short_name": "Castle",
+  "description": "Find the best PG accommodations, hostels & co-living spaces across Bangalore. Compare prices, amenities & reviews.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0f0a1e",
   "theme_color": "#7c3aed",
   "orientation": "portrait-primary",
   "scope": "/",
+  "id": "/",
   "icons": [
     {
       "src": "/icons/icon-192.png",
@@ -25,5 +26,6 @@
   "screenshots": [],
   "categories": ["lifestyle", "utilities"],
   "lang": "en",
-  "dir": "ltr"
+  "dir": "ltr",
+  "prefer_related_applications": false
 }

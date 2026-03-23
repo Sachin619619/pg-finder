@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+body { font-family: 'Inter', sans-serif; width: 1080px; height: 1080px; overflow: hidden; }
+.card {
+  width: 1080px; height: 1080px;
+  background: linear-gradient(135deg, #0a0a1a 0%, #120b2e 30%, #1e0f45 60%, #0d0d2b 100%);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.orb1 { position: absolute; top: -100px; left: -100px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(108,60,233,0.3), transparent 70%); border-radius: 50%; }
+.orb2 { position: absolute; bottom: -150px; right: -100px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(232,121,249,0.2), transparent 70%); border-radius: 50%; }
+.orb3 { position: absolute; top: 40%; left: 60%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(59,130,246,0.15), transparent 70%); border-radius: 50%; }
+.content { position: relative; z-index: 10; text-align: center; padding: 60px; }
+.badge { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.06); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); border-radius: 100px; padding: 12px 28px; margin-bottom: 50px; }
+.badge .dot { width: 10px; height: 10px; background: #34d399; border-radius: 50%; }
+.badge span { color: rgba(255,255,255,0.7); font-size: 20px; font-weight: 600; }
+.logo { width: 100px; height: 100px; background: linear-gradient(135deg, #7c3aed, #a855f7, #ec4899); border-radius: 28px; display: flex; align-items: center; justify-content: center; margin: 0 auto 40px; box-shadow: 0 20px 60px rgba(108,60,233,0.4); }
+.logo span { color: white; font-size: 52px; font-weight: 900; }
+h1 { color: white; font-size: 72px; font-weight: 900; line-height: 1.1; margin-bottom: 20px; letter-spacing: -2px; }
+h1 .gradient { background: linear-gradient(135deg, #a855f7, #ec4899, #f97316); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.subtitle { color: rgba(255,255,255,0.4); font-size: 26px; line-height: 1.6; max-width: 700px; margin: 0 auto 50px; }
+.stats { display: flex; gap: 40px; justify-content: center; }
+.stat { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 20px; padding: 24px 36px; text-align: center; }
+.stat .num { color: white; font-size: 36px; font-weight: 900; display: block; }
+.stat .label { color: rgba(255,255,255,0.3); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-top: 6px; display: block; }
+.url { position: absolute; bottom: 50px; color: rgba(255,255,255,0.25); font-size: 18px; font-weight: 600; letter-spacing: 1px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="orb1"></div>
+  <div class="orb2"></div>
+  <div class="orb3"></div>
+  <div class="content">
+    <div class="badge">
+      <div class="dot"></div>
+      <span>Now Live in Bangalore</span>
+    </div>
+    <div class="logo"><span>P</span></div>
+    <h1>Find Your<br><span class="gradient">Perfect PG</span><br>in Bangalore</h1>
+    <p class="subtitle">Verified PGs, hostels & co-living spaces across 15+ areas. Compare prices, read reviews, zero brokerage.</p>
+    <div class="stats">
+      <div class="stat"><span class="num">20+</span><span class="label">Verified PGs</span></div>
+      <div class="stat"><span class="num">15+</span><span class="label">Areas</span></div>
+      <div class="stat"><span class="num">4.3</span><span class="label">Avg Rating</span></div>
+      <div class="stat"><span class="num">0</span><span class="label">Brokerage</span></div>
+    </div>
+  </div>
+  <div class="url">castleliving.in</div>
+</div>
+</body>
+</html>

@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { fetchListings, fetchAreas } from "@/lib/db";
 
-const BASE_URL = "https://pg-finder-eight.vercel.app";
+const BASE_URL = "https://castleliving.in";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
@@ -15,16 +15,40 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1.0,
     },
     {
+      url: `${BASE_URL}/login`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.3,
+    },
+    {
+      url: `${BASE_URL}/signup`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.3,
+    },
+    {
+      url: `${BASE_URL}/saved`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.5,
+    },
+    {
       url: `${BASE_URL}/roommate-finder`,
       lastModified: now,
       changeFrequency: "daily",
       priority: 0.8,
     },
     {
-      url: `${BASE_URL}/owner-dashboard`,
+      url: `${BASE_URL}/privacy`,
       lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.5,
+      changeFrequency: "yearly",
+      priority: 0.2,
+    },
+    {
+      url: `${BASE_URL}/terms`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.2,
     },
   ];
 
@@ -50,7 +74,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${BASE_URL}/listing/${listing.id}`,
       lastModified: now,
       changeFrequency: "weekly" as const,
-      priority: 0.6,
+      priority: 0.7,
     }));
   } catch {
     // If DB is unavailable, skip dynamic listing pages

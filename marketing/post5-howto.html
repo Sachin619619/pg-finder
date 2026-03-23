@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+body { font-family: 'Inter', sans-serif; width: 1080px; height: 1080px; overflow: hidden; }
+.card {
+  width: 1080px; height: 1080px;
+  background: linear-gradient(160deg, #faf5ff 0%, #f5f3ff 30%, #eef2ff 60%, #f0fdf4 100%);
+  display: flex; flex-direction: column;
+  position: relative; overflow: hidden; padding: 70px;
+}
+.orb1 { position: absolute; top: -80px; left: 50%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(168,85,247,0.08), transparent 70%); border-radius: 50%; }
+.header { display: flex; align-items: center; gap: 18px; margin-bottom: 20px; position: relative; z-index: 2; }
+.logo { width: 56px; height: 56px; background: linear-gradient(135deg, #7c3aed, #a855f7); border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 30px rgba(124,58,237,0.25); }
+.logo span { color: white; font-size: 28px; font-weight: 900; }
+.brand { color: #1f2937; font-size: 22px; font-weight: 800; }
+.tag { color: #059669; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 10px; position: relative; z-index: 2; }
+h1 { color: #111827; font-size: 54px; font-weight: 900; line-height: 1.15; margin-bottom: 55px; letter-spacing: -2px; position: relative; z-index: 2; }
+h1 .gradient { background: linear-gradient(135deg, #7c3aed, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.steps { display: flex; flex-direction: column; gap: 28px; flex: 1; position: relative; z-index: 2; }
+.step { display: flex; align-items: center; gap: 32px; }
+.step-num {
+  width: 80px; height: 80px; border-radius: 24px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 40px; flex-shrink: 0;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+.step-num.s1 { background: linear-gradient(135deg, #7c3aed, #6d28d9); }
+.step-num.s2 { background: linear-gradient(135deg, #ec4899, #db2777); }
+.step-num.s3 { background: linear-gradient(135deg, #f97316, #ea580c); }
+.step-content { flex: 1; }
+.step-content h3 { color: #111827; font-size: 26px; font-weight: 800; margin-bottom: 6px; }
+.step-content p { color: #6b7280; font-size: 18px; line-height: 1.5; }
+.connector { width: 4px; height: 28px; background: linear-gradient(to bottom, #e5e7eb, #d1d5db); margin-left: 38px; border-radius: 100px; }
+.bottom-cta {
+  background: linear-gradient(135deg, #0a0a1a, #1e0f45);
+  border-radius: 24px; padding: 36px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 40px; position: relative; z-index: 2;
+}
+.bottom-cta .text { color: white; font-size: 24px; font-weight: 800; }
+.bottom-cta .sub { color: rgba(255,255,255,0.4); font-size: 15px; margin-top: 4px; }
+.bottom-cta .btn { background: linear-gradient(135deg, #7c3aed, #a855f7); color: white; font-size: 18px; font-weight: 700; padding: 16px 36px; border-radius: 16px; box-shadow: 0 8px 24px rgba(124,58,237,0.3); }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="orb1"></div>
+  <div class="header">
+    <div class="logo"><span>P</span></div>
+    <span class="brand">Castle</span>
+  </div>
+  <p class="tag">Simple Process</p>
+  <h1>Find Your PG in<br><span class="gradient">3 Easy Steps</span></h1>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num s1">🔍</div>
+      <div class="step-content">
+        <h3>Search & Filter</h3>
+        <p>Browse by area, budget, room type, food, AC & more. Find PGs matching your exact needs.</p>
+      </div>
+    </div>
+    <div class="connector"></div>
+    <div class="step">
+      <div class="step-num s2">⚖️</div>
+      <div class="step-content">
+        <h3>Compare & Choose</h3>
+        <p>Compare up to 3 PGs side by side. Check ratings, reviews, photos & amenities at a glance.</p>
+      </div>
+    </div>
+    <div class="connector"></div>
+    <div class="step">
+      <div class="step-num s3">🏠</div>
+      <div class="step-content">
+        <h3>Contact & Move In</h3>
+        <p>Call or WhatsApp the PG owner directly. Schedule a visit and move in — zero brokerage!</p>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-cta">
+    <div>
+      <div class="text">Start Your PG Search Today</div>
+      <div class="sub">100% Free. No sign-up required.</div>
+    </div>
+    <div class="btn">Visit Now →</div>
+  </div>
+</div>
+</body>
+</html>

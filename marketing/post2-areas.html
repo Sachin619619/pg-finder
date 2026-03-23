@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+body { font-family: 'Inter', sans-serif; width: 1080px; height: 1080px; overflow: hidden; }
+.card {
+  width: 1080px; height: 1080px;
+  background: linear-gradient(160deg, #0f0826 0%, #1a0e3a 40%, #0d0d2b 100%);
+  display: flex; flex-direction: column;
+  position: relative; overflow: hidden; padding: 70px;
+}
+.orb1 { position: absolute; top: -80px; right: -80px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(168,85,247,0.25), transparent 70%); border-radius: 50%; }
+.orb2 { position: absolute; bottom: -100px; left: -50px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(236,72,153,0.15), transparent 70%); border-radius: 50%; }
+.header { display: flex; align-items: center; gap: 18px; margin-bottom: 16px; position: relative; z-index: 2; }
+.logo { width: 56px; height: 56px; background: linear-gradient(135deg, #7c3aed, #a855f7); border-radius: 16px; display: flex; align-items: center; justify-content: center; }
+.logo span { color: white; font-size: 28px; font-weight: 900; }
+.brand { color: white; font-size: 22px; font-weight: 800; }
+.tag { color: #a78bfa; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 10px; position: relative; z-index: 2; }
+h1 { color: white; font-size: 56px; font-weight: 900; line-height: 1.1; margin-bottom: 45px; letter-spacing: -2px; position: relative; z-index: 2; }
+h1 .gradient { background: linear-gradient(135deg, #a855f7, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; flex: 1; position: relative; z-index: 2; }
+.area {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 20px; padding: 28px 24px; display: flex; flex-direction: column;
+  transition: all 0.3s;
+}
+.area .emoji { font-size: 36px; margin-bottom: 14px; }
+.area .name { color: white; font-size: 20px; font-weight: 800; margin-bottom: 4px; }
+.area .count { color: rgba(255,255,255,0.35); font-size: 14px; font-weight: 600; }
+.area .price { color: #34d399; font-size: 14px; font-weight: 700; margin-top: auto; padding-top: 12px; }
+.footer { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; position: relative; z-index: 2; }
+.footer .url { color: rgba(255,255,255,0.25); font-size: 16px; font-weight: 600; }
+.footer .cta { background: linear-gradient(135deg, #7c3aed, #a855f7); color: white; font-size: 16px; font-weight: 700; padding: 14px 32px; border-radius: 14px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="orb1"></div>
+  <div class="orb2"></div>
+  <div class="header">
+    <div class="logo"><span>P</span></div>
+    <span class="brand">Castle</span>
+  </div>
+  <p class="tag">Popular Neighborhoods</p>
+  <h1>Explore PGs in<br><span class="gradient">15+ Areas</span></h1>
+  <div class="grid">
+    <div class="area"><span class="emoji">🏙️</span><span class="name">Koramangala</span><span class="count">3 PGs</span><span class="price">From ₹7,500/mo</span></div>
+    <div class="area"><span class="emoji">🎵</span><span class="name">Indiranagar</span><span class="count">2 PGs</span><span class="price">From ₹8,000/mo</span></div>
+    <div class="area"><span class="emoji">💻</span><span class="name">HSR Layout</span><span class="count">2 PGs</span><span class="price">From ₹7,000/mo</span></div>
+    <div class="area"><span class="emoji">🏢</span><span class="name">Whitefield</span><span class="count">2 PGs</span><span class="price">From ₹6,500/mo</span></div>
+    <div class="area"><span class="emoji">⚡</span><span class="name">Electronic City</span><span class="count">2 PGs</span><span class="price">From ₹5,500/mo</span></div>
+    <div class="area"><span class="emoji">🌊</span><span class="name">Bellandur</span><span class="count">2 PGs</span><span class="price">From ₹7,000/mo</span></div>
+  </div>
+  <div class="footer">
+    <span class="url">castleliving.in</span>
+    <span class="cta">Browse All Areas →</span>
+  </div>
+</div>
+</body>
+</html>

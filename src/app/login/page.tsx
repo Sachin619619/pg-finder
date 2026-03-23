@@ -8,7 +8,7 @@ import { useAuth } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
 
 export default function LoginPage() {
-  const { signIn } = useAuth();
+  const { signIn, user, loading: authLoading } = useAuth();
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,6 +24,16 @@ export default function LoginPage() {
   const [verifying, setVerifying] = useState(false);
   const [countdown, setCountdown] = useState(0);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+
+  // Set page title
+  useEffect(() => { document.title = "Sign In | Castle"; }, []);
+
+  // Redirect if already logged in
+  useEffect(() => {
+    if (!authLoading && user) {
+      router.replace("/");
+    }
+  }, [authLoading, user, router]);
 
   // Countdown timer
   useEffect(() => {
@@ -239,7 +249,7 @@ export default function LoginPage() {
               <span className="text-white text-2xl font-bold">P</span>
             </div>
             <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">Welcome back 👋</h1>
-            <p className="text-gray-400 mt-2">Sign in to your PG Finder account</p>
+            <p className="text-gray-400 mt-2">Sign in to your Castle account</p>
           </div>
 
           <div className="premium-card !rounded-3xl p-8">
@@ -274,10 +284,13 @@ export default function LoginPage() {
 
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Email</label>
+                <label htmlFor="login-email" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Email</label>
                 <input
+                  id="login-email"
                   type="email"
                   required
+                  aria-required="true"
+                  autoComplete="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
@@ -286,16 +299,25 @@ export default function LoginPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Password</label>
+                <label htmlFor="login-password" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Password</label>
                 <input
+                  id="login-password"
                   type="password"
                   required
+                  aria-required="true"
+                  autoComplete="current-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
                   className="premium-input w-full"
                   minLength={6}
                 />
+              </div>
+
+              <div className="flex justify-end">
+                <Link href="/forgot-password" className="text-xs text-violet-600 font-semibold hover:underline">
+                  Forgot password?
+                </Link>
               </div>
 
               <button

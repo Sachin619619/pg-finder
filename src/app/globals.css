@@ -34,6 +34,13 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ===== FOCUS STYLES FOR ACCESSIBILITY ===== */
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 /* ===== PREMIUM GLASS CARD ===== */
 .glass-card {
   background: var(--glass-bg);
@@ -166,6 +173,15 @@ html {
   box-shadow: 0 0 30px rgba(108, 60, 233, 0.2), 0 0 60px rgba(108, 60, 233, 0.08);
 }
 
+/* ===== FADE IN UP ===== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up {
+  animation: fadeInUp 0.4s ease-out;
+}
+
 /* ===== SLIDE UP ===== */
 @keyframes slideUp {
   from { transform: translateY(24px); opacity: 0; }
@@ -238,7 +254,8 @@ html {
   left: 100%;
 }
 .btn-premium:active {
-  transform: translateY(-1px) scale(0.99);
+  transform: translateY(-1px) scale(0.95);
+  transition-duration: 0.1s;
 }
 
 /* ===== PILL BADGE ===== */
@@ -474,4 +491,172 @@ html {
 }
 @keyframes rainbow-spin {
   to { --angle: 360deg; }
+}
+
+/* ===== SPARKLE FADE (for mouse trail) ===== */
+@keyframes sparkle-fade {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.8) translateY(-10px); opacity: 0.6; }
+  100% { transform: scale(0) translateY(-25px); opacity: 0; }
+}
+
+/* ===== CARD SHIMMER ON HOVER ===== */
+.card-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.card-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+  transition: none;
+  pointer-events: none;
+}
+.card-shimmer:hover::after {
+  animation: card-shine 0.8s ease forwards;
+}
+@keyframes card-shine {
+  0% { left: -60%; }
+  100% { left: 120%; }
+}
+
+/* ===== PULSE GLOW ===== */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(124, 58, 237, 0.2); }
+  50% { box-shadow: 0 0 40px rgba(124, 58, 237, 0.4), 0 0 80px rgba(124, 58, 237, 0.1); }
+}
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* ===== WIGGLE ===== */
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
+}
+.hover-wiggle:hover {
+  animation: wiggle 0.4s ease-in-out;
+}
+
+/* ===== BOUNCE IN ===== */
+@keyframes bounce-in {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.08); }
+  70% { transform: scale(0.95); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.animate-bounce-in {
+  animation: bounce-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ===== GRADIENT BORDER ANIMATION ===== */
+@keyframes border-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animated-border {
+  position: relative;
+}
+.animated-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(270deg, #7c3aed, #ec4899, #f97316, #7c3aed);
+  background-size: 400% 400%;
+  animation: border-flow 4s ease infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.animated-border:hover::before {
+  opacity: 1;
+}
+
+/* ===== TYPEWRITER CURSOR ===== */
+@keyframes blink-cursor {
+  0%, 50% { border-color: #a855f7; }
+  51%, 100% { border-color: transparent; }
+}
+
+/* ===== CONFETTI POP ===== */
+@keyframes confetti {
+  0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+  100% { transform: translateY(-200px) rotate(720deg) scale(0); opacity: 0; }
+}
+
+/* ===== WAVE FOR EMOJI ===== */
+@keyframes wave {
+  0%, 100% { transform: rotate(0deg); }
+  10% { transform: rotate(14deg); }
+  20% { transform: rotate(-8deg); }
+  30% { transform: rotate(14deg); }
+  40% { transform: rotate(-4deg); }
+  50% { transform: rotate(10deg); }
+  60%, 100% { transform: rotate(0deg); }
+}
+.animate-wave {
+  animation: wave 2.5s ease-in-out infinite;
+  transform-origin: 70% 70%;
+  display: inline-block;
+}
+
+/* ===== MAGNETIC PULL ON HOVER ===== */
+.magnetic-card {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.magnetic-card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* ===== AREA CARD GRADIENT SWEEP ===== */
+.area-card-glow {
+  position: relative;
+  overflow: hidden;
+}
+.area-card-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(124,58,237,0.08) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.area-card-glow:hover::after {
+  opacity: 1;
+}
+
+/* ===== ANIMATED BANNER ===== */
+@keyframes bannerFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-8px) rotate(5deg); }
+  50% { transform: translateY(-4px) rotate(-3deg); }
+  75% { transform: translateY(-10px) rotate(2deg); }
+}
+
+@keyframes bannerShimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes bannerMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.33%); }
+}
+
+@keyframes bannerMarqueeReverse {
+  0% { transform: translateX(-33.33%); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes bannerPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
 }
