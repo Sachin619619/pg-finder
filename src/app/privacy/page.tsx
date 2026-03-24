@@ -8,21 +8,21 @@ export default function PrivacyPolicyPage() {
   useEffect(() => { document.title = "Privacy Policy | Castle"; }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-[#0a0a12]">
+    <div className="min-h-screen bg-gray-50">
       <Header />
 
       <main className="pt-28 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           {/* Page Header */}
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-100/80 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 text-xs font-semibold mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F4EDD9]/80 text-[#1B1C15] text-xs font-semibold mb-4">
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
               </svg>
               Legal
             </div>
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white mb-3">Privacy Policy</h1>
-            <p className="text-gray-500 dark:text-gray-400 text-sm">Last updated: March 23, 2026</p>
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3">Privacy Policy</h1>
+            <p className="text-gray-500 text-sm">Last updated: March 23, 2026</p>
           </div>
 
           {/* Content */}
@@ -30,20 +30,20 @@ export default function PrivacyPolicyPage() {
 
             {/* Introduction */}
             <section>
-              <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-                Welcome to <strong className="text-gray-900 dark:text-white">Castle</strong> (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;). Castle is a PG/hostel/co-living finder platform operating in Bangalore, India, accessible at{" "}
-                <a href="https://castleliving.in" className="text-violet-600 dark:text-violet-400 underline underline-offset-2">castleliving.in</a>.
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Welcome to <strong className="text-gray-900">Castle</strong> (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;). Castle is a PG/hostel/co-living finder platform operating in Bangalore, India, accessible at{" "}
+                <a href="https://castleliving.in" className="text-[#1B1C15] underline underline-offset-2">castleliving.in</a>.
                 We are committed to protecting your personal information and your right to privacy. This Privacy Policy explains what information we collect, how we use it, and what rights you have in relation to it.
               </p>
             </section>
 
             {/* 1. Information We Collect */}
             <section>
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-gradient-to-br from-violet-600 to-fuchsia-500 rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">1</span>
+              <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">1</span>
                 Information We Collect
               </h2>
-              <div className="space-y-4 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+              <div className="space-y-4 text-sm text-gray-600 leading-relaxed">
                 <p>We collect information that you provide directly to us when you create an account, list a property, search for accommodations, or communicate with other users. This includes:</p>
                 <ul className="list-none space-y-2.5 pl-2">
                   {[
@@ -58,7 +58,7 @@ export default function PrivacyPolicyPage() {
                     "Reviews and ratings submitted on the platform",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2.5">
-                      <span className="w-1.5 h-1.5 bg-violet-500 rounded-full mt-1.5 shrink-0" />
+                      <span className="w-1.5 h-1.5 bg-[#1B1C15] rounded-full mt-1.5 shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -68,13 +68,13 @@ export default function PrivacyPolicyPage() {
 
             {/* 2. How We Store Your Data */}
             <section>
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-gradient-to-br from-violet-600 to-fuchsia-500 rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">2</span>
+              <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">2</span>
                 How We Store Your Data
               </h2>
-              <div className="space-y-3 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+              <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
                 <p>
-                  We use <strong className="text-gray-900 dark:text-white">Supabase</strong> as our primary backend and database service. Supabase provides a secure PostgreSQL database with built-in authentication. Your data is stored in Supabase-managed servers with enterprise-grade security, including:
+                  We use <strong className="text-gray-900">Supabase</strong> as our primary backend and database service. Supabase provides a secure PostgreSQL database with built-in authentication. Your data is stored in Supabase-managed servers with enterprise-grade security, including:
                 </p>
                 <ul className="list-none space-y-2.5 pl-2">
                   {[
@@ -84,7 +84,7 @@ export default function PrivacyPolicyPage() {
                     "Regular automated backups of all data",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2.5">
-                      <span className="w-1.5 h-1.5 bg-violet-500 rounded-full mt-1.5 shrink-0" />
+                      <span className="w-1.5 h-1.5 bg-[#1B1C15] rounded-full mt-1.5 shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -94,11 +94,11 @@ export default function PrivacyPolicyPage() {
 
             {/* 3. Cookies & Local Storage */}
             <section>
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-gradient-to-br from-violet-600 to-fuchsia-500 rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">3</span>
+              <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">3</span>
                 Cookies &amp; Local Storage
               </h2>
-              <div className="space-y-3 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+              <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
                 <p>We use cookies and browser localStorage to enhance your experience on Castle:</p>
                 <ul className="list-none space-y-2.5 pl-2">
                   {[
@@ -109,7 +109,7 @@ export default function PrivacyPolicyPage() {
                     "Saved/bookmarked PGs — stored locally for quick access",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2.5">
-                      <span className="w-1.5 h-1.5 bg-violet-500 rounded-full mt-1.5 shrink-0" />
+                      <span className="w-1.5 h-1.5 bg-[#1B1C15] rounded-full mt-1.5 shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -120,11 +120,11 @@ export default function PrivacyPolicyPage() {
 
             {/* 4. Third-Party Services */}
             <section>
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-gradient-to-br from-violet-600 to-fuchsia-500 rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">4</span>
+              <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">4</span>
                 Third-Party Services
               </h2>
-              <div className="space-y-3 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+              <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
                 <p>Castle integrates with the following third-party services to provide a better experience:</p>
                 <div className="grid sm:grid-cols-2 gap-4 mt-4">
                   {[
@@ -145,9 +145,9 @@ export default function PrivacyPolicyPage() {
                       desc: "Our hosting provider. Vercel may collect basic analytics data such as page views and performance metrics.",
                     },
                   ].map((service) => (
-                    <div key={service.name} className="bg-gray-50 dark:bg-white/[0.03] border border-gray-100 dark:border-white/[0.06] rounded-xl p-4">
-                      <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-1.5">{service.name}</h4>
-                      <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">{service.desc}</p>
+                    <div key={service.name} className="bg-gray-50 border border-gray-100 rounded-xl p-4">
+                      <h4 className="text-sm font-semibold text-gray-900 mb-1.5">{service.name}</h4>
+                      <p className="text-xs text-gray-500 leading-relaxed">{service.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -156,11 +156,11 @@ export default function PrivacyPolicyPage() {
 
             {/* 5. Data Security */}
             <section>
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-gradient-to-br from-violet-600 to-fuchsia-500 rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">5</span>
+              <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">5</span>
                 Data Security
               </h2>
-              <div className="space-y-3 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+              <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
                 <p>We take the security of your personal data seriously and implement the following measures:</p>
                 <ul className="list-none space-y-2.5 pl-2">
                   {[
@@ -172,7 +172,7 @@ export default function PrivacyPolicyPage() {
                     "Admin access is restricted and monitored",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2.5">
-                      <span className="w-1.5 h-1.5 bg-violet-500 rounded-full mt-1.5 shrink-0" />
+                      <span className="w-1.5 h-1.5 bg-[#1B1C15] rounded-full mt-1.5 shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -183,11 +183,11 @@ export default function PrivacyPolicyPage() {
 
             {/* 6. Your Rights */}
             <section>
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-gradient-to-br from-violet-600 to-fuchsia-500 rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">6</span>
+              <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">6</span>
                 Your Rights
               </h2>
-              <div className="space-y-3 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+              <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
                 <p>As a user of Castle, you have the following rights regarding your personal data:</p>
                 <ul className="list-none space-y-2.5 pl-2">
                   {[
@@ -199,7 +199,7 @@ export default function PrivacyPolicyPage() {
                     "Opt-out — You can opt out of promotional communications and notifications",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2.5">
-                      <span className="w-1.5 h-1.5 bg-violet-500 rounded-full mt-1.5 shrink-0" />
+                      <span className="w-1.5 h-1.5 bg-[#1B1C15] rounded-full mt-1.5 shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -209,40 +209,40 @@ export default function PrivacyPolicyPage() {
 
             {/* 7. Data Retention */}
             <section>
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-gradient-to-br from-violet-600 to-fuchsia-500 rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">7</span>
+              <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">7</span>
                 Data Retention
               </h2>
-              <div className="space-y-3 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+              <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
                 <p>We retain your personal data for as long as your account is active or as needed to provide our services. If you delete your account, we will remove your personal data within 30 days, except where we are required to retain it by law.</p>
               </div>
             </section>
 
             {/* 8. Changes to This Policy */}
             <section>
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-gradient-to-br from-violet-600 to-fuchsia-500 rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">8</span>
+              <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">8</span>
                 Changes to This Policy
               </h2>
-              <div className="space-y-3 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+              <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
                 <p>We may update this Privacy Policy from time to time to reflect changes in our practices or for legal reasons. We will notify you of any material changes by posting the updated policy on this page and updating the &quot;Last updated&quot; date. We encourage you to review this page periodically.</p>
               </div>
             </section>
 
             {/* 9. Contact Us */}
             <section>
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-gradient-to-br from-violet-600 to-fuchsia-500 rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">9</span>
+              <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">9</span>
                 Contact Us
               </h2>
-              <div className="space-y-3 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+              <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
                 <p>If you have any questions or concerns about this Privacy Policy or our data practices, please contact us:</p>
-                <div className="bg-gray-50 dark:bg-white/[0.03] border border-gray-100 dark:border-white/[0.06] rounded-xl p-5 mt-3">
+                <div className="bg-gray-50 border border-gray-100 rounded-xl p-5 mt-3">
                   <div className="space-y-2 text-sm">
-                    <p><strong className="text-gray-900 dark:text-white">Castle</strong></p>
+                    <p><strong className="text-gray-900">Castle</strong></p>
                     <p>Bangalore, Karnataka, India</p>
-                    <p>Email: <a href="mailto:support@castle.in" className="text-violet-600 dark:text-violet-400 underline underline-offset-2">support@castle.in</a></p>
-                    <p>Website: <a href="https://castleliving.in" className="text-violet-600 dark:text-violet-400 underline underline-offset-2">castleliving.in</a></p>
+                    <p>Email: <a href="mailto:support@castle.in" className="text-[#1B1C15] underline underline-offset-2">support@castle.in</a></p>
+                    <p>Website: <a href="https://castleliving.in" className="text-[#1B1C15] underline underline-offset-2">castleliving.in</a></p>
                   </div>
                 </div>
               </div>
@@ -252,11 +252,11 @@ export default function PrivacyPolicyPage() {
 
           {/* Bottom navigation */}
           <div className="mt-8 flex items-center justify-center gap-6 text-sm">
-            <Link href="/terms" className="text-violet-600 dark:text-violet-400 hover:underline underline-offset-2 font-medium">
+            <Link href="/terms" className="text-[#1B1C15] hover:underline underline-offset-2 font-medium">
               Terms of Service
             </Link>
-            <span className="text-gray-300 dark:text-gray-700">|</span>
-            <Link href="/" className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">
+            <span className="text-gray-300">|</span>
+            <Link href="/" className="text-gray-500 hover:text-gray-700">
               Back to Home
             </Link>
           </div>

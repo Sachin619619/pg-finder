@@ -78,13 +78,31 @@ type ResidentRequest = {
   created_at: string;
 };
 
+type BookingRequest = {
+  id: string;
+  pg_id: string;
+  user_id: string;
+  user_name: string;
+  user_email: string;
+  user_phone: string;
+  move_in_date: string;
+  room_type: string;
+  duration_months: number;
+  notes: string;
+  total_amount: number;
+  status: string;
+  created_at: string;
+  pg_name?: string;
+};
+
 export default function OwnerDashboard() {
   const { user, profile, loading: authLoading } = useAuth();
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState<"overview" | "listings" | "residents" | "inquiries" | "analytics">("overview");
+  const [activeTab, setActiveTab] = useState<"overview" | "listings" | "residents" | "bookings" | "inquiries" | "analytics">("overview");
   const [listings, setListings] = useState<OwnerListing[]>([]);
   const [callbacks, setCallbacks] = useState<Callback[]>([]);
   const [residentRequests, setResidentRequests] = useState<ResidentRequest[]>([]);
+  const [bookingRequests, setBookingRequests] = useState<BookingRequest[]>([]);
   const [claimNotifications, setClaimNotifications] = useState<ClaimNotification[]>([]);
   const [acceptingClaim, setAcceptingClaim] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -143,6 +161,20 @@ export default function OwnerDashboard() {
       .order("created_at", { ascending: false });
     setResidentRequests((resData || []) as ResidentRequest[]);
 
+    // Fetch booking requests for owner's PGs
+    const ownerListingIds = (listingsData || []).map((l: { id: string }) => l.id);
+    if (ownerListingIds.length > 0) {
+      const { data: bookingsData } = await supabase
+        .from("bookings")
+        .select("*")
+        .in("pg_id", ownerListingIds)
+        .order("created_at", { ascending: false });
+      setBookingRequests((bookingsData || []).map((b: Record<string, unknown>) => ({
+        ...b,
+        pg_name: nameMap[b.pg_id as string] || "Unknown",
+      })) as BookingRequest[]);
+    }
+
     // Fetch claim notifications for this owner
     const { data: claimData } = await supabase
       .from("claim_notifications")
@@ -190,6 +222,22 @@ export default function OwnerDashboard() {
       const data = await res.json();
       if (data.success) {
         setResidentRequests(prev => prev.map(r => r.id === requestId ? { ...r, status: action } : r));
+      }
+    } catch {
+      // silently fail
+    }
+  };
+
+  const handleBookingAction = async (bookingId: string, action: "confirmed" | "cancelled") => {
+    try {
+      const res = await fetch("/api/booking-action", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ booking_id: bookingId, action, owner_id: user?.id }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setBookingRequests(prev => prev.map(b => b.id === bookingId ? { ...b, status: action } : b));
       }
     } catch {
       // silently fail
@@ -371,16 +419,16 @@ export default function OwnerDashboard() {
           {/* Header skeleton */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 animate-pulse">
             <div className="space-y-2">
-              <div className="h-8 bg-gray-200 dark:bg-gray-800 rounded-xl w-56" />
-              <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded w-36" />
+              <div className="h-8 bg-gray-200 rounded-xl w-56" />
+              <div className="h-4 bg-gray-200 rounded w-36" />
             </div>
-            <div className="h-10 bg-gray-200 dark:bg-gray-800 rounded-2xl w-32" />
+            <div className="h-10 bg-gray-200 rounded-2xl w-32" />
           </div>
 
           {/* Tabs skeleton */}
-          <div className="grid grid-cols-5 gap-1 bg-gray-100 dark:bg-gray-800 rounded-2xl p-1 mb-8 animate-pulse">
+          <div className="grid grid-cols-5 gap-1 bg-gray-100 rounded-2xl p-1 mb-8 animate-pulse">
             {[1, 2, 3, 4, 5].map((i) => (
-              <div key={i} className="h-10 bg-gray-200 dark:bg-gray-700 rounded-xl" />
+              <div key={i} className="h-10 bg-gray-200 rounded-xl" />
             ))}
           </div>
 
@@ -388,8 +436,8 @@ export default function OwnerDashboard() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8 animate-pulse">
             {[1, 2, 3].map((i) => (
               <div key={i} className="premium-card !rounded-2xl p-5 space-y-3">
-                <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded w-24" />
-                <div className="h-8 bg-gray-200 dark:bg-gray-800 rounded-xl w-32" />
+                <div className="h-4 bg-gray-200 rounded w-24" />
+                <div className="h-8 bg-gray-200 rounded-xl w-32" />
               </div>
             ))}
           </div>
@@ -398,18 +446,18 @@ export default function OwnerDashboard() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-pulse">
             {[1, 2, 3].map((i) => (
               <div key={i} className="premium-card !rounded-2xl overflow-hidden">
-                <div className="h-40 bg-gray-200 dark:bg-gray-800 rounded-t-2xl" />
+                <div className="h-40 bg-gray-200 rounded-t-2xl" />
                 <div className="p-5 space-y-3">
-                  <div className="h-5 bg-gray-200 dark:bg-gray-800 rounded-xl w-3/4" />
-                  <div className="h-3 bg-gray-200 dark:bg-gray-800 rounded w-1/2" />
+                  <div className="h-5 bg-gray-200 rounded-xl w-3/4" />
+                  <div className="h-3 bg-gray-200 rounded w-1/2" />
                   <div className="flex gap-2 pt-1">
-                    <div className="h-2.5 w-2.5 bg-gray-200 dark:bg-gray-800 rounded-full" />
-                    <div className="h-2.5 w-2.5 bg-gray-200 dark:bg-gray-800 rounded-full" />
-                    <div className="h-2.5 w-2.5 bg-gray-200 dark:bg-gray-800 rounded-full" />
+                    <div className="h-2.5 w-2.5 bg-gray-200 rounded-full" />
+                    <div className="h-2.5 w-2.5 bg-gray-200 rounded-full" />
+                    <div className="h-2.5 w-2.5 bg-gray-200 rounded-full" />
                   </div>
                   <div className="flex justify-between items-center pt-2">
-                    <div className="h-5 bg-gray-200 dark:bg-gray-800 rounded-lg w-20" />
-                    <div className="h-8 bg-gray-200 dark:bg-gray-800 rounded-xl w-16" />
+                    <div className="h-5 bg-gray-200 rounded-lg w-20" />
+                    <div className="h-8 bg-gray-200 rounded-xl w-16" />
                   </div>
                 </div>
               </div>
@@ -426,14 +474,14 @@ export default function OwnerDashboard() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 overflow-x-hidden">
         {/* Breadcrumb */}
         <nav className="mb-6 text-sm text-gray-500 flex items-center gap-2">
-          <Link href="/" className="hover:text-violet-600 transition-colors">Home</Link>
+          <Link href="/" className="hover:text-[#1B1C15] transition-colors">Home</Link>
           <span>/</span>
-          <span className="text-gray-900 dark:text-white font-medium">Owner Dashboard</span>
+          <span className="text-gray-900 font-medium">Owner Dashboard</span>
         </nav>
 
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div className="min-w-0">
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white truncate">Owner Dashboard 📊</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 truncate">Owner Dashboard 📊</h1>
             <p className="text-gray-400 mt-1 text-sm">Welcome back, {profile?.name || "Owner"}!</p>
           </div>
           <Link href="/add-listing" className="btn-premium !py-2.5 !px-5 !text-sm flex items-center gap-2 shrink-0 w-fit">
@@ -445,13 +493,13 @@ export default function OwnerDashboard() {
         </div>
 
         {/* Tabs */}
-        <div className="grid grid-cols-5 gap-1 bg-gray-100 dark:bg-gray-800 rounded-2xl p-1 mb-8">
-          {(["overview", "listings", "residents", "inquiries", "analytics"] as const).map((tab) => (
+        <div className="grid grid-cols-6 gap-1 bg-gray-100 rounded-2xl p-1 mb-8">
+          {(["overview", "listings", "bookings", "residents", "inquiries", "analytics"] as const).map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
               className={`px-2 sm:px-5 py-2.5 rounded-xl text-[11px] sm:text-sm font-medium transition-all capitalize text-center ${
-                activeTab === tab ? "bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm" : "text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+                activeTab === tab ? "bg-white text-gray-900 shadow-sm" : "text-gray-500 hover:text-gray-700"
               }`}
             >
               {tab}
@@ -463,17 +511,17 @@ export default function OwnerDashboard() {
         {claimNotifications.filter(n => n.status === "pending").length > 0 && (
           <div className="space-y-3 mb-6">
             {claimNotifications.filter(n => n.status === "pending").map((notif) => (
-              <div key={notif.id} className="premium-card !rounded-2xl p-5 border-2 border-emerald-300 dark:border-emerald-700 bg-emerald-50/50 dark:bg-emerald-900/10 animate-pulse-once">
+              <div key={notif.id} className="premium-card !rounded-2xl p-5 border-2 border-emerald-300 bg-emerald-50/50 animate-pulse-once">
                 <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center shrink-0">
                     <svg className="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
                       <path d="M22 2L11 13" /><path d="M22 2L15 22L11 13L2 9L22 2Z" />
                     </svg>
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-gray-900 dark:text-white text-sm">New PG Claim Request</h3>
+                    <h3 className="font-semibold text-gray-900 text-sm">New PG Claim Request</h3>
                     <p className="text-xs text-gray-400 mt-0.5">
-                      Agent <strong className="text-violet-600">{notif.agent_name}</strong> has listed <strong className="text-gray-900 dark:text-white">&quot;{notif.listing_name}&quot;</strong> in {notif.listing_area} and wants you to claim it.
+                      Agent <strong className="text-[#1B1C15]">{notif.agent_name}</strong> has listed <strong className="text-gray-900">&quot;{notif.listing_name}&quot;</strong> in {notif.listing_area} and wants you to claim it.
                     </p>
                     <div className="flex items-center gap-2 mt-3">
                       <button
@@ -485,7 +533,7 @@ export default function OwnerDashboard() {
                       </button>
                       <button
                         onClick={() => handleDismissClaim(notif.id)}
-                        className="px-4 py-2 rounded-xl text-xs font-semibold bg-gray-100 dark:bg-gray-800 text-gray-500 hover:bg-gray-200 transition"
+                        className="px-4 py-2 rounded-xl text-xs font-semibold bg-gray-100 text-gray-500 hover:bg-gray-200 transition"
                       >
                         Dismiss
                       </button>
@@ -498,15 +546,15 @@ export default function OwnerDashboard() {
         )}
 
         {/* Claim PG Banner */}
-        <div className="premium-card !rounded-2xl p-5 mb-6 border border-dashed border-violet-300 dark:border-violet-700 bg-violet-50/50 dark:bg-violet-900/10">
+        <div className="premium-card !rounded-2xl p-5 mb-6 border border-dashed border-[#e8e0cc] bg-[#F4EDD9]/50">
           <div className="flex items-start gap-3 mb-3">
-            <div className="w-9 h-9 rounded-xl bg-violet-100 dark:bg-violet-900/40 flex items-center justify-center shrink-0">
-              <svg className="w-5 h-5 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+            <div className="w-9 h-9 rounded-xl bg-[#F4EDD9] flex items-center justify-center shrink-0">
+              <svg className="w-5 h-5 text-[#1B1C15]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
                 <path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3" /><line x1="8" y1="12" x2="16" y2="12" />
               </svg>
             </div>
             <div>
-              <h3 className="font-semibold text-gray-900 dark:text-white text-sm">Claim Your PG</h3>
+              <h3 className="font-semibold text-gray-900 text-sm">Claim Your PG</h3>
               <p className="text-xs text-gray-400 mt-0.5">Got a claim code from an agent? Enter it below to link the PG to your account.</p>
             </div>
           </div>
@@ -522,19 +570,19 @@ export default function OwnerDashboard() {
             <button
               onClick={handleClaim}
               disabled={claiming || !claimInput.trim()}
-              className="px-5 py-2.5 bg-violet-600 text-white rounded-xl text-sm font-semibold hover:bg-violet-700 transition disabled:opacity-50 shrink-0"
+              className="px-5 py-2.5 bg-[#1B1C15] text-white rounded-xl text-sm font-semibold hover:bg-[#2a2b22] transition disabled:opacity-50 shrink-0"
             >
               {claiming ? "Claiming..." : "Claim"}
             </button>
           </div>
           {claimResult?.success && (
-            <div className="mt-3 p-3 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl text-sm text-emerald-700 dark:text-emerald-400 flex items-center gap-2">
+            <div className="mt-3 p-3 bg-emerald-50 rounded-xl text-sm text-emerald-700 flex items-center gap-2">
               <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
               &quot;{claimResult.name}&quot; has been linked to your account!
             </div>
           )}
           {claimResult?.error && (
-            <div className="mt-3 p-3 bg-red-50 dark:bg-red-900/20 rounded-xl text-sm text-red-600 dark:text-red-400 flex items-center gap-2">
+            <div className="mt-3 p-3 bg-red-50 rounded-xl text-sm text-red-600 flex items-center gap-2">
               <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
               {claimResult.error}
             </div>
@@ -547,10 +595,10 @@ export default function OwnerDashboard() {
             {/* Stats */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-5">
               {[
-                { label: "Total Views", value: totalViews.toLocaleString(), change: "+12%", icon: "M15 12a3 3 0 11-6 0 3 3 0 016 0z", bgClass: "bg-violet-50 dark:bg-violet-900/30", textClass: "text-violet-500" },
-                { label: "Inquiries", value: String(callbacks.length), change: `+${callbacks.length}`, icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z", bgClass: "bg-blue-50 dark:bg-blue-900/30", textClass: "text-blue-500" },
-                { label: "Occupancy", value: `${avgOccupancy}%`, change: "+5%", icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4", bgClass: "bg-emerald-50 dark:bg-emerald-900/30", textClass: "text-emerald-500" },
-                { label: "Revenue", value: `₹${(totalRevenue / 1000).toFixed(0)}K`, change: "+15%", icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z", bgClass: "bg-amber-50 dark:bg-amber-900/30", textClass: "text-amber-500" },
+                { label: "Total Views", value: totalViews.toLocaleString(), change: "+12%", icon: "M15 12a3 3 0 11-6 0 3 3 0 016 0z", bgClass: "bg-[#F4EDD9]", textClass: "text-[#1B1C15]" },
+                { label: "Inquiries", value: String(callbacks.length), change: `+${callbacks.length}`, icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z", bgClass: "bg-blue-50", textClass: "text-blue-500" },
+                { label: "Occupancy", value: `${avgOccupancy}%`, change: "+5%", icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4", bgClass: "bg-emerald-50", textClass: "text-emerald-500" },
+                { label: "Revenue", value: `₹${(totalRevenue / 1000).toFixed(0)}K`, change: "+15%", icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z", bgClass: "bg-amber-50", textClass: "text-amber-500" },
               ].map((stat) => (
                 <div key={stat.label} className="premium-card !rounded-2xl p-5">
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-3 ${stat.bgClass}`}>
@@ -558,7 +606,7 @@ export default function OwnerDashboard() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={stat.icon} />
                     </svg>
                   </div>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-white">{stat.value}</p>
+                  <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
                   <div className="flex items-center justify-between mt-1">
                     <p className="text-xs text-gray-400">{stat.label}</p>
                     <span className="text-xs font-medium text-emerald-500">{stat.change}</span>
@@ -569,23 +617,23 @@ export default function OwnerDashboard() {
 
             {/* Recent Inquiries */}
             <div className="premium-card !rounded-2xl p-6">
-              <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Recent Inquiries 📩</h2>
+              <h2 className="text-lg font-bold text-gray-900 mb-4">Recent Inquiries 📩</h2>
               {callbacks.length === 0 ? (
                 <p className="text-gray-400 text-center py-6">No inquiries yet. Share your PG listings to get started!</p>
               ) : (
                 <div className="space-y-3">
                   {callbacks.slice(0, 5).map((inq) => (
-                    <div key={inq.id} className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                    <div key={inq.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-gradient-to-br from-violet-400 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                        <div className="w-10 h-10 bg-[#1B1C15] rounded-full flex items-center justify-center text-white font-bold text-sm">
                           {inq.name.charAt(0)}
                         </div>
                         <div>
-                          <p className="font-semibold text-gray-900 dark:text-white text-sm">{inq.name}</p>
+                          <p className="font-semibold text-gray-900 text-sm">{inq.name}</p>
                           <p className="text-xs text-gray-400">{inq.pg_name} · {new Date(inq.created_at).toLocaleDateString()}</p>
                         </div>
                       </div>
-                      <a href={`tel:${inq.phone}`} className="pill bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 !text-xs">
+                      <a href={`tel:${inq.phone}`} className="pill bg-emerald-50 text-emerald-600 !text-xs">
                         📞 {inq.phone}
                       </a>
                     </div>
@@ -593,6 +641,45 @@ export default function OwnerDashboard() {
                 </div>
               )}
             </div>
+
+            {/* Pending Bookings in Overview */}
+            {bookingRequests.filter(b => b.status === "pending").length > 0 && (
+              <div className="premium-card !rounded-2xl p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-lg font-bold text-gray-900">Pending Bookings 📩</h2>
+                  <button onClick={() => setActiveTab("bookings")} className="text-xs font-medium text-[#1B1C15] hover:underline">View All →</button>
+                </div>
+                <div className="space-y-3">
+                  {bookingRequests.filter(b => b.status === "pending").slice(0, 3).map((booking) => (
+                    <div key={booking.id} className="flex items-center justify-between p-4 bg-amber-50 rounded-xl border border-amber-100">
+                      <div className="flex items-center gap-3 min-w-0">
+                        <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0">
+                          {booking.user_name.charAt(0)}
+                        </div>
+                        <div className="min-w-0">
+                          <p className="font-semibold text-gray-900 text-sm truncate">{booking.user_name}</p>
+                          <p className="text-xs text-gray-500">{booking.pg_name} · Move-in: {booking.move_in_date} · {booking.room_type}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2 shrink-0">
+                        <button
+                          onClick={() => handleBookingAction(booking.id, "confirmed")}
+                          className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-500 text-white hover:bg-emerald-600 transition"
+                        >
+                          ✅ Accept
+                        </button>
+                        <button
+                          onClick={() => handleBookingAction(booking.id, "cancelled")}
+                          className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-red-50 text-red-600 hover:bg-red-100 transition"
+                        >
+                          ❌
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         )}
 
@@ -603,14 +690,14 @@ export default function OwnerDashboard() {
               <div key={listing.id} className="premium-card !rounded-2xl p-5 sm:p-6">
                 <div className="flex items-start justify-between gap-2">
                   <div className="min-w-0">
-                    <h3 className="font-bold text-gray-900 dark:text-white text-base sm:text-lg truncate">{listing.name}</h3>
+                    <h3 className="font-bold text-gray-900 text-base sm:text-lg truncate">{listing.name}</h3>
                     <p className="text-sm text-gray-400 truncate">{listing.area} · ₹{listing.price.toLocaleString()}/mo</p>
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
                     <span className={`pill !text-[10px] ${
-                      listing.status === "active" ? "bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30" :
-                      listing.status === "rejected" ? "bg-red-50 text-red-600 dark:bg-red-900/30" :
-                      listing.status === "pending" ? "bg-amber-50 text-amber-600 dark:bg-amber-900/30" :
+                      listing.status === "active" ? "bg-emerald-50 text-emerald-600" :
+                      listing.status === "rejected" ? "bg-red-50 text-red-600" :
+                      listing.status === "pending" ? "bg-amber-50 text-amber-600" :
                       "bg-gray-100 text-gray-500"
                     }`}>
                       {listing.status === "active" ? "✅ Active" :
@@ -618,27 +705,27 @@ export default function OwnerDashboard() {
                        listing.status === "pending" ? "⏳ Pending" :
                        listing.status || "Active"}
                     </span>
-                    <span className="pill bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 !text-xs">⭐ {listing.rating}</span>
+                    <span className="pill bg-emerald-50 text-emerald-600 !text-xs">⭐ {listing.rating}</span>
                   </div>
                 </div>
                 <div className="grid grid-cols-3 gap-4 mt-5">
-                  <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-xl">
-                    <p className="text-xl font-bold text-gray-900 dark:text-white">₹{listing.price.toLocaleString()}</p>
+                  <div className="text-center p-3 bg-gray-50 rounded-xl">
+                    <p className="text-xl font-bold text-gray-900">₹{listing.price.toLocaleString()}</p>
                     <p className="text-xs text-gray-400">Rent/mo</p>
                   </div>
-                  <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-xl">
-                    <p className="text-xl font-bold text-gray-900 dark:text-white">{listing.reviews}</p>
+                  <div className="text-center p-3 bg-gray-50 rounded-xl">
+                    <p className="text-xl font-bold text-gray-900">{listing.reviews}</p>
                     <p className="text-xs text-gray-400">Reviews</p>
                   </div>
-                  <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-xl">
-                    <p className="text-xl font-bold text-gray-900 dark:text-white capitalize">{listing.gender}</p>
+                  <div className="text-center p-3 bg-gray-50 rounded-xl">
+                    <p className="text-xl font-bold text-gray-900 capitalize">{listing.gender}</p>
                     <p className="text-xs text-gray-400">Type</p>
                   </div>
                 </div>
                 {/* Room Availability Toggles */}
                 {listing.room_options && listing.room_options.length > 0 && (
-                  <div className="mt-5 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
-                    <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">🛏️ Room Availability</h4>
+                  <div className="mt-5 p-4 bg-gray-50 rounded-xl">
+                    <h4 className="text-sm font-semibold text-gray-700 mb-3">🛏️ Room Availability</h4>
                     <div className="flex flex-wrap gap-3">
                       {listing.room_options.map(room => (
                         <button
@@ -647,8 +734,8 @@ export default function OwnerDashboard() {
                           disabled={updatingAvailability === `${listing.id}-${room.type}`}
                           className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all border-2 ${
                             room.available
-                              ? "border-emerald-300 dark:border-emerald-700 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400"
-                              : "border-red-300 dark:border-red-700 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400"
+                              ? "border-emerald-300 bg-emerald-50 text-emerald-700"
+                              : "border-red-300 bg-red-50 text-red-600"
                           } hover:opacity-80 disabled:opacity-50`}
                         >
                           {updatingAvailability === `${listing.id}-${room.type}` ? (
@@ -671,7 +758,7 @@ export default function OwnerDashboard() {
                   <Link href={`/listing/${listing.id}`} className="btn-premium !py-2 !px-5 !text-sm">View</Link>
                   <button
                     onClick={() => openEditModal(listing.id)}
-                    className="px-5 py-2 text-sm font-semibold text-violet-600 hover:text-violet-700 border border-violet-200 dark:border-violet-700 rounded-xl hover:bg-violet-50 dark:hover:bg-violet-900/20 transition"
+                    className="px-5 py-2 text-sm font-semibold text-[#1B1C15] hover:text-[#1B1C15] border border-[#e8e0cc] rounded-xl hover:bg-[#F4EDD9] transition"
                   >
                     ✏️ Edit
                   </button>
@@ -679,18 +766,18 @@ export default function OwnerDashboard() {
                     onClick={() => setPhotoListingId(photoListingId === listing.id ? null : listing.id)}
                     className={`px-5 py-2 text-sm font-semibold rounded-xl transition ${
                       photoListingId === listing.id
-                        ? "bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 border border-violet-300 dark:border-violet-700"
-                        : "text-gray-500 hover:text-gray-700 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
+                        ? "bg-[#F4EDD9] text-[#1B1C15] border border-[#e8e0cc]"
+                        : "text-gray-500 hover:text-gray-700 border border-gray-200 hover:bg-gray-50"
                     }`}
                   >
                     📸 {photoListingId === listing.id ? "Hide Photos" : "Manage Photos"}
                   </button>
-                  <Link href={`/chat/${listing.id}`} className="px-5 py-2 text-sm text-gray-500 hover:text-gray-700 border border-gray-200 dark:border-gray-700 rounded-xl">💬 Messages</Link>
+                  <Link href={`/chat/${listing.id}`} className="px-5 py-2 text-sm text-gray-500 hover:text-gray-700 border border-gray-200 rounded-xl">💬 Messages</Link>
                 </div>
 
                 {/* Collapsible Photo Upload Section */}
                 {photoListingId === listing.id && (
-                  <div className="mt-5 p-5 bg-gray-50 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 animate-in fade-in slide-in-from-top-2 duration-200">
+                  <div className="mt-5 p-5 bg-gray-50 rounded-xl border border-gray-200 animate-in fade-in slide-in-from-top-2 duration-200">
                     <PhotoUpload
                       pgId={listing.id}
                       existingPhotos={listing.images || []}
@@ -712,11 +799,127 @@ export default function OwnerDashboard() {
           </div>
         )}
 
+        {/* Bookings Tab */}
+        {activeTab === "bookings" && (
+          <div className="space-y-4">
+            <div className="flex items-center justify-between mb-2">
+              <h2 className="text-lg font-bold text-gray-900">
+                Booking Requests ({bookingRequests.filter(b => b.status === "pending").length} pending)
+              </h2>
+            </div>
+
+            {bookingRequests.length === 0 ? (
+              <div className="premium-card !rounded-2xl p-10 text-center">
+                <span className="text-5xl block mb-4">📩</span>
+                <p className="text-gray-400 mb-2">No booking requests yet</p>
+                <p className="text-xs text-gray-400">When tenants click &quot;Book Now&quot; on your PG, their requests will appear here</p>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {[...bookingRequests].sort((a, b) => {
+                  const order: Record<string, number> = { pending: 0, confirmed: 1, cancelled: 2, completed: 3 };
+                  return (order[a.status] ?? 4) - (order[b.status] ?? 4);
+                }).map((booking) => (
+                  <div key={booking.id} className={`premium-card !rounded-2xl p-5 transition-all ${
+                    booking.status === "pending" ? "border-2 border-amber-200" :
+                    booking.status === "confirmed" ? "border border-emerald-200 opacity-80" :
+                    "opacity-50"
+                  }`}>
+                    <div className="flex flex-col gap-3">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div className="flex items-center gap-3 min-w-0">
+                          <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0 ${
+                            booking.status === "pending" ? "bg-gradient-to-br from-amber-400 to-orange-500" :
+                            booking.status === "confirmed" ? "bg-gradient-to-br from-emerald-400 to-teal-500" :
+                            "bg-gradient-to-br from-gray-400 to-gray-500"
+                          }`}>
+                            {booking.user_name.charAt(0)}
+                          </div>
+                          <div className="min-w-0">
+                            <p className="font-semibold text-gray-900 text-sm truncate">{booking.user_name}</p>
+                            <p className="text-xs text-gray-400 truncate">{booking.user_email} {booking.user_phone && `• ${booking.user_phone}`}</p>
+                            <div className="flex items-center gap-2 mt-1 flex-wrap">
+                              <span className="text-xs text-[#1B1C15] font-medium truncate">🏠 {booking.pg_name}</span>
+                              <span className="text-[10px] text-gray-400">
+                                {new Date(booking.created_at).toLocaleDateString("en-IN", { day: "numeric", month: "short" })}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-2 shrink-0">
+                          {booking.status === "pending" && (
+                            <>
+                              <button
+                                onClick={() => handleBookingAction(booking.id, "confirmed")}
+                                className="px-4 py-2 rounded-xl text-xs font-semibold bg-emerald-500 text-white hover:bg-emerald-600 transition-all hover:-translate-y-0.5 active:translate-y-0"
+                              >
+                                ✅ Accept
+                              </button>
+                              <button
+                                onClick={() => handleBookingAction(booking.id, "cancelled")}
+                                className="px-4 py-2 rounded-xl text-xs font-semibold bg-red-50 text-red-600 hover:bg-red-100 transition-all hover:-translate-y-0.5 active:translate-y-0"
+                              >
+                                ❌ Reject
+                              </button>
+                            </>
+                          )}
+                          {booking.status === "confirmed" && (
+                            <span className="px-3 py-1.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-600">
+                              ✅ Accepted
+                            </span>
+                          )}
+                          {booking.status === "cancelled" && (
+                            <span className="px-3 py-1.5 rounded-full text-[10px] font-semibold bg-red-50 text-red-500">
+                              Rejected
+                            </span>
+                          )}
+                          {booking.status === "completed" && (
+                            <span className="px-3 py-1.5 rounded-full text-[10px] font-semibold bg-blue-50 text-blue-600">
+                              Moved In
+                            </span>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Booking details */}
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-[#F4EDD9] rounded-xl p-3 text-xs">
+                        <div>
+                          <span className="text-gray-500">Move-in</span>
+                          <p className="font-semibold text-gray-900">{booking.move_in_date || "Flexible"}</p>
+                        </div>
+                        <div>
+                          <span className="text-gray-500">Room</span>
+                          <p className="font-semibold text-gray-900 capitalize">{booking.room_type}</p>
+                        </div>
+                        <div>
+                          <span className="text-gray-500">Duration</span>
+                          <p className="font-semibold text-gray-900">{booking.duration_months} month{booking.duration_months > 1 ? "s" : ""}</p>
+                        </div>
+                        <div>
+                          <span className="text-gray-500">Rent</span>
+                          <p className="font-semibold text-gray-900">₹{(booking.total_amount || 0).toLocaleString()}/mo</p>
+                        </div>
+                      </div>
+
+                      {booking.notes && (
+                        <div className="text-xs text-gray-500 bg-gray-50 rounded-xl p-3">
+                          💬 <span className="text-gray-700">{booking.notes}</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
         {/* Residents Tab */}
         {activeTab === "residents" && (
           <div className="space-y-4">
             <div className="flex items-center justify-between mb-2">
-              <h2 className="text-lg font-bold text-gray-900 dark:text-white">
+              <h2 className="text-lg font-bold text-gray-900">
                 Resident Requests ({residentRequests.filter(r => r.status === "pending").length} pending)
               </h2>
             </div>
@@ -735,8 +938,8 @@ export default function OwnerDashboard() {
                   return (order[a.status] ?? 3) - (order[b.status] ?? 3);
                 }).map((req) => (
                   <div key={req.id} className={`premium-card !rounded-2xl p-5 transition-all ${
-                    req.status === "pending" ? "border-2 border-amber-200 dark:border-amber-800/40" :
-                    req.status === "approved" ? "border border-emerald-200 dark:border-emerald-800/30 opacity-80" :
+                    req.status === "pending" ? "border-2 border-amber-200" :
+                    req.status === "approved" ? "border border-emerald-200 opacity-80" :
                     "opacity-50"
                   }`}>
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -749,10 +952,10 @@ export default function OwnerDashboard() {
                           {req.user_name.charAt(0)}
                         </div>
                         <div className="min-w-0">
-                          <p className="font-semibold text-gray-900 dark:text-white text-sm truncate">{req.user_name}</p>
+                          <p className="font-semibold text-gray-900 text-sm truncate">{req.user_name}</p>
                           <p className="text-xs text-gray-400 truncate">{req.user_email}</p>
                           <div className="flex items-center gap-2 mt-1 flex-wrap">
-                            <span className="text-xs text-violet-500 font-medium truncate">🏠 {req.pg_name}</span>
+                            <span className="text-xs text-[#1B1C15] font-medium truncate">🏠 {req.pg_name}</span>
                             <span className="text-[10px] text-gray-400">
                               {new Date(req.created_at).toLocaleDateString("en-IN", { day: "numeric", month: "short" })}
                             </span>
@@ -771,19 +974,19 @@ export default function OwnerDashboard() {
                             </button>
                             <button
                               onClick={() => handleResidentAction(req.id, "rejected")}
-                              className="px-4 py-2 rounded-xl text-xs font-semibold bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 hover:bg-red-100 transition-all hover:-translate-y-0.5 active:translate-y-0"
+                              className="px-4 py-2 rounded-xl text-xs font-semibold bg-red-50 text-red-600 hover:bg-red-100 transition-all hover:-translate-y-0.5 active:translate-y-0"
                             >
                               ❌ Reject
                             </button>
                           </>
                         )}
                         {req.status === "approved" && (
-                          <span className="px-3 py-1.5 rounded-full text-[10px] font-semibold bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600">
+                          <span className="px-3 py-1.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-600">
                             ✅ Approved
                           </span>
                         )}
                         {req.status === "rejected" && (
-                          <span className="px-3 py-1.5 rounded-full text-[10px] font-semibold bg-red-50 dark:bg-red-900/20 text-red-500">
+                          <span className="px-3 py-1.5 rounded-full text-[10px] font-semibold bg-red-50 text-red-500">
                             Rejected
                           </span>
                         )}
@@ -799,32 +1002,32 @@ export default function OwnerDashboard() {
         {/* Inquiries Tab */}
         {activeTab === "inquiries" && (
           <div className="premium-card !rounded-2xl overflow-hidden">
-            <div className="p-5 border-b border-gray-100 dark:border-gray-800">
-              <h2 className="font-bold text-gray-900 dark:text-white">All Inquiries ({callbacks.length})</h2>
+            <div className="p-5 border-b border-gray-100">
+              <h2 className="font-bold text-gray-900">All Inquiries ({callbacks.length})</h2>
             </div>
             {callbacks.length === 0 ? (
               <p className="text-gray-400 text-center py-10">No inquiries yet</p>
             ) : (
-              <div className="divide-y divide-gray-100 dark:divide-gray-800">
+              <div className="divide-y divide-gray-100">
                 {callbacks.map((inq) => (
-                  <div key={inq.id} className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition">
+                  <div key={inq.id} className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-gray-50 transition">
                     <div className="flex items-center gap-3 min-w-0">
-                      <div className="w-10 h-10 bg-gradient-to-br from-violet-400 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0">
+                      <div className="w-10 h-10 bg-[#1B1C15] rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0">
                         {inq.name.charAt(0)}
                       </div>
                       <div className="min-w-0">
-                        <p className="font-semibold text-gray-900 dark:text-white text-sm truncate">{inq.name}</p>
+                        <p className="font-semibold text-gray-900 text-sm truncate">{inq.name}</p>
                         <p className="text-xs text-gray-400 truncate">{inq.phone} · {inq.pg_name}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3 shrink-0 ml-[52px] sm:ml-0">
                       <span className="text-xs text-gray-400">{new Date(inq.created_at).toLocaleDateString()}</span>
-                      <a href={`tel:${inq.phone}`} className="w-8 h-8 rounded-lg bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 flex items-center justify-center hover:bg-emerald-100">
+                      <a href={`tel:${inq.phone}`} className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center hover:bg-emerald-100">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                         </svg>
                       </a>
-                      <a href={`https://wa.me/91${inq.phone}`} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-lg bg-green-50 dark:bg-green-900/30 text-green-600 flex items-center justify-center hover:bg-green-100">
+                      <a href={`https://wa.me/91${inq.phone}`} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-lg bg-green-50 text-green-600 flex items-center justify-center hover:bg-green-100">
                         💬
                       </a>
                     </div>
@@ -839,7 +1042,7 @@ export default function OwnerDashboard() {
         {activeTab === "analytics" && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div className="premium-card !rounded-2xl p-6">
-              <h3 className="font-bold text-gray-900 dark:text-white mb-4">Listings by Area 📍</h3>
+              <h3 className="font-bold text-gray-900 mb-4">Listings by Area 📍</h3>
               <div className="space-y-4">
                 {Object.entries(
                   listings.reduce((acc: Record<string, number>, l) => {
@@ -849,18 +1052,18 @@ export default function OwnerDashboard() {
                 ).map(([area, count]) => (
                   <div key={area}>
                     <div className="flex justify-between text-sm mb-1">
-                      <span className="text-gray-600 dark:text-gray-400">{area}</span>
-                      <span className="font-medium text-gray-900 dark:text-white">{count} PGs</span>
+                      <span className="text-gray-600">{area}</span>
+                      <span className="font-medium text-gray-900">{count} PGs</span>
                     </div>
-                    <div className="h-2 bg-gray-100 dark:bg-gray-700 rounded-full">
-                      <div className="h-full rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500" style={{ width: `${(count / listings.length) * 100}%` }} />
+                    <div className="h-2 bg-gray-100 rounded-full">
+                      <div className="h-full rounded-full bg-[#1B1C15]" style={{ width: `${(count / listings.length) * 100}%` }} />
                     </div>
                   </div>
                 ))}
               </div>
             </div>
             <div className="premium-card !rounded-2xl p-6">
-              <h3 className="font-bold text-gray-900 dark:text-white mb-4">Price Distribution 💰</h3>
+              <h3 className="font-bold text-gray-900 mb-4">Price Distribution 💰</h3>
               <div className="space-y-4">
                 {[
                   { range: "Under ₹8K", min: 0, max: 8000 },
@@ -872,10 +1075,10 @@ export default function OwnerDashboard() {
                   return (
                     <div key={bucket.range}>
                       <div className="flex justify-between text-sm mb-1">
-                        <span className="text-gray-600 dark:text-gray-400">{bucket.range}</span>
-                        <span className="font-medium text-gray-900 dark:text-white">{count}</span>
+                        <span className="text-gray-600">{bucket.range}</span>
+                        <span className="font-medium text-gray-900">{count}</span>
                       </div>
-                      <div className="h-2 bg-gray-100 dark:bg-gray-700 rounded-full">
+                      <div className="h-2 bg-gray-100 rounded-full">
                         <div className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-400" style={{ width: `${listings.length ? (count / listings.length) * 100 : 0}%` }} />
                       </div>
                     </div>
@@ -884,7 +1087,7 @@ export default function OwnerDashboard() {
               </div>
             </div>
             <div className="premium-card !rounded-2xl p-6 lg:col-span-2">
-              <h3 className="font-bold text-gray-900 dark:text-white mb-4">Inquiry Trend 📈</h3>
+              <h3 className="font-bold text-gray-900 mb-4">Inquiry Trend 📈</h3>
               {callbacks.length === 0 ? (
                 <p className="text-gray-400 text-center py-6">No data yet</p>
               ) : (
@@ -894,7 +1097,7 @@ export default function OwnerDashboard() {
                     return (
                       <div key={day} className="flex-1 flex flex-col items-center gap-2">
                         <div
-                          className="w-full bg-gradient-to-t from-violet-500 to-fuchsia-400 rounded-t-lg transition-all hover:opacity-80"
+                          className="w-full bg-[#1B1C15] rounded-t-lg transition-all hover:opacity-80"
                           style={{ height: `${pct}%` }}
                         />
                         <span className="text-[10px] text-gray-400">{day}</span>
@@ -911,11 +1114,11 @@ export default function OwnerDashboard() {
         {editingListingId && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
             <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={closeEditModal} />
-            <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white dark:bg-gray-900 rounded-3xl shadow-2xl">
-              <div className="sticky top-0 bg-white dark:bg-gray-900 z-10 p-6 pb-4 border-b border-gray-100 dark:border-gray-800 rounded-t-3xl">
+            <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white rounded-3xl shadow-2xl">
+              <div className="sticky top-0 bg-white z-10 p-6 pb-4 border-b border-gray-100 rounded-t-3xl">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-xl font-bold text-gray-900 dark:text-white">Edit Listing</h2>
-                  <button onClick={closeEditModal} className="w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-500 hover:text-gray-700 transition">
+                  <h2 className="text-xl font-bold text-gray-900">Edit Listing</h2>
+                  <button onClick={closeEditModal} className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-gray-500 hover:text-gray-700 transition">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
                   </button>
                 </div>
@@ -923,13 +1126,13 @@ export default function OwnerDashboard() {
 
               {editFetching ? (
                 <div className="flex items-center justify-center py-20">
-                  <div className="animate-spin w-8 h-8 border-4 border-violet-500 border-t-transparent rounded-full" />
+                  <div className="animate-spin w-8 h-8 border-4 border-[#1B1C15] border-t-transparent rounded-full" />
                 </div>
               ) : editForm ? (
                 <div className="p-6 space-y-5">
                   {/* PG Name */}
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1.5">PG Name</label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-1.5">PG Name</label>
                     <input
                       type="text"
                       value={editForm.name}
@@ -941,7 +1144,7 @@ export default function OwnerDashboard() {
 
                   {/* Room Prices */}
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Room Pricing</label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Room Pricing</label>
                     <div className="space-y-3">
                       {editForm.room_options.map((room, idx) => (
                         <div key={room.type} className="flex items-center gap-3">
@@ -950,9 +1153,9 @@ export default function OwnerDashboard() {
                               type="checkbox"
                               checked={room.available}
                               onChange={(e) => updateRoomOption(idx, "available", e.target.checked)}
-                              className="w-4 h-4 rounded border-gray-300 text-violet-600 focus:ring-violet-500"
+                              className="w-4 h-4 rounded border-gray-300 text-[#1B1C15] focus:ring-[#1B1C15]/20"
                             />
-                            <span className="text-sm font-medium text-gray-700 dark:text-gray-300 capitalize">{room.type}</span>
+                            <span className="text-sm font-medium text-gray-700 capitalize">{room.type}</span>
                           </label>
                           <div className="relative flex-1">
                             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">₹</span>
@@ -972,7 +1175,7 @@ export default function OwnerDashboard() {
 
                   {/* Description */}
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1.5">Description</label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-1.5">Description</label>
                     <textarea
                       value={editForm.description}
                       onChange={(e) => setEditForm({ ...editForm, description: e.target.value })}
@@ -984,7 +1187,7 @@ export default function OwnerDashboard() {
 
                   {/* Contact Phone */}
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1.5">Contact Phone</label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-1.5">Contact Phone</label>
                     <input
                       type="tel"
                       value={editForm.contact_phone}
@@ -996,7 +1199,7 @@ export default function OwnerDashboard() {
 
                   {/* Toggles */}
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">Facilities</label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-3">Facilities</label>
                     <div className="grid grid-cols-2 gap-3">
                       {([
                         { key: "food_included", label: "Food Included", icon: "🍽️" },
@@ -1010,12 +1213,12 @@ export default function OwnerDashboard() {
                           onClick={() => setEditForm({ ...editForm, [key]: !editForm[key] })}
                           className={`flex items-center gap-2.5 p-3 rounded-xl border-2 transition-all text-left ${
                             editForm[key]
-                              ? "border-violet-400 bg-violet-50 dark:bg-violet-900/20 dark:border-violet-600"
-                              : "border-gray-200 dark:border-gray-700 hover:border-gray-300"
+                              ? "border-[#8a8070] bg-[#F4EDD9]"
+                              : "border-gray-200 hover:border-gray-300"
                           }`}
                         >
                           <span className="text-lg">{icon}</span>
-                          <span className={`text-sm font-medium ${editForm[key] ? "text-violet-700 dark:text-violet-300" : "text-gray-500"}`}>{label}</span>
+                          <span className={`text-sm font-medium ${editForm[key] ? "text-[#1B1C15]" : "text-gray-500"}`}>{label}</span>
                         </button>
                       ))}
                     </div>
@@ -1023,7 +1226,7 @@ export default function OwnerDashboard() {
 
                   {/* Amenities */}
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Amenities</label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Amenities</label>
                     <div className="flex flex-wrap gap-2">
                       {amenityOptions.map((a) => (
                         <button
@@ -1032,8 +1235,8 @@ export default function OwnerDashboard() {
                           onClick={() => toggleEditAmenity(a)}
                           className={`px-3 py-1.5 rounded-full text-xs font-medium border transition-all ${
                             editForm.amenities.includes(a)
-                              ? "bg-violet-100 dark:bg-violet-900/30 border-violet-300 dark:border-violet-600 text-violet-700 dark:text-violet-300"
-                              : "bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-500 hover:border-gray-300"
+                              ? "bg-[#F4EDD9] border-[#e8e0cc] text-[#1B1C15]"
+                              : "bg-gray-50 border-gray-200 text-gray-500 hover:border-gray-300"
                           }`}
                         >
                           {a}
@@ -1044,7 +1247,7 @@ export default function OwnerDashboard() {
 
                   {/* Available From */}
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1.5">Available From</label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-1.5">Available From</label>
                     <input
                       type="date"
                       value={editForm.available_from}
@@ -1055,13 +1258,13 @@ export default function OwnerDashboard() {
 
                   {/* Error / Success */}
                   {editError && (
-                    <div className="p-3 bg-red-50 dark:bg-red-900/20 rounded-xl text-sm text-red-600 dark:text-red-400 flex items-center gap-2">
+                    <div className="p-3 bg-red-50 rounded-xl text-sm text-red-600 flex items-center gap-2">
                       <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
                       {editError}
                     </div>
                   )}
                   {editSuccess && (
-                    <div className="p-3 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl text-sm text-emerald-700 dark:text-emerald-400 flex items-center gap-2">
+                    <div className="p-3 bg-emerald-50 rounded-xl text-sm text-emerald-700 flex items-center gap-2">
                       <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
                       Listing updated successfully!
                     </div>
@@ -1085,7 +1288,7 @@ export default function OwnerDashboard() {
                     </button>
                     <button
                       onClick={closeEditModal}
-                      className="px-6 py-2.5 text-sm font-medium text-gray-500 hover:text-gray-700 border border-gray-200 dark:border-gray-700 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition"
+                      className="px-6 py-2.5 text-sm font-medium text-gray-500 hover:text-gray-700 border border-gray-200 rounded-xl hover:bg-gray-50 transition"
                     >
                       Cancel
                     </button>

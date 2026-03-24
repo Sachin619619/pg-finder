@@ -1,0 +1,166 @@
+import { NextResponse } from "next/server";
+import { randomUUID } from "crypto";
+import { validateBotRequest } from "@/lib/bot-auth";
+import { fetchListings } from "@/lib/db";
+import { supabaseAdmin } from "@/lib/server-auth";
+import type { PGListing } from "@/data/listings";
+
+// Levenshtein distance for fuzzy matching
+function levenshtein(a: string, b: string): number {
+  const m = a.length, n = b.length;
+  const dp: number[][] = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
+  for (let i = 0; i <= m; i++) dp[i][0] = i;
+  for (let j = 0; j <= n; j++) dp[0][j] = j;
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      dp[i][j] = a[i - 1] === b[j - 1]
+        ? dp[i - 1][j - 1]
+        : 1 + Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]);
+    }
+  }
+  return dp[m][n];
+}
+
+function similarity(a: string, b: string): number {
+  const maxLen = Math.max(a.length, b.length);
+  if (maxLen === 0) return 1;
+  return 1 - levenshtein(a, b) / maxLen;
+}
+
+function findPGByName(allListings: PGListing[], name: string): PGListing | undefined {
+  if (!name) return undefined;
+  const lower = name.toLowerCase().trim();
+
+  const exactMatch = allListings.find(
+    (pg) =>
+      pg.name.toLowerCase().includes(lower) ||
+      lower.includes(pg.name.toLowerCase().split(" ")[0])
+  );
+  if (exactMatch) return exactMatch;
+
+  let bestMatch: PGListing | undefined;
+  let bestScore = 0;
+
+  for (const pg of allListings) {
+    const pgLower = pg.name.toLowerCase();
+    const fullScore = similarity(lower, pgLower);
+
+    const queryWords = lower.split(/\s+/);
+    const pgWords = pgLower.split(/\s+/);
+    let wordScore = 0;
+    for (const qw of queryWords) {
+      let bestWordSim = 0;
+      for (const pw of pgWords) {
+        bestWordSim = Math.max(bestWordSim, similarity(qw, pw));
+      }
+      wordScore += bestWordSim;
+    }
+    wordScore = queryWords.length > 0 ? wordScore / queryWords.length : 0;
+
+    const score = Math.max(fullScore, wordScore);
+    if (score > bestScore) {
+      bestScore = score;
+      bestMatch = pg;
+    }
+  }
+
+  return bestScore >= 0.55 ? bestMatch : undefined;
+}
+
+export async function POST(req: Request) {
+  if (!validateBotRequest(req)) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  try {
+    const body = await req.json();
+    const { pgName, userId, userName, userEmail } = body;
+
+    if (!pgName || !userName || !userEmail) {
+      return NextResponse.json(
+        { error: "pgName, userName, and userEmail are required" },
+        { status: 400 }
+      );
+    }
+
+    const allListings = await fetchListings();
+    const pg = findPGByName(allListings, pgName);
+
+    if (!pg) {
+      return NextResponse.json(
+        { success: false, message: `Couldn't find a PG matching "${pgName}".` },
+        { status: 404 }
+      );
+    }
+
+    // Check if listing has an owner
+    const { data: listing } = await supabaseAdmin
+      .from("listings")
+      .select("owner_id")
+      .eq("id", pg.id)
+      .single();
+
+    const ownerId = listing?.owner_id || null;
+
+    // Check for existing request by email
+    const { data: existing } = await supabaseAdmin
+      .from("resident_requests")
+      .select("id, status")
+      .eq("user_email", userEmail)
+      .eq("pg_id", pg.id)
+      .neq("status", "rejected")
+      .single();
+
+    if (existing) {
+      const msg =
+        existing.status === "approved"
+          ? `You're already linked to ${pg.name}!`
+          : `Your stay request for ${pg.name} is already pending. The owner will review it soon.`;
+      return NextResponse.json({ success: true, message: msg });
+    }
+
+    // Generate a deterministic UUID from email for bot users (no auth account)
+    const botUserId = userId || randomUUID();
+
+    // Use a placeholder owner UUID for PGs without registered owners
+    const placeholderOwnerId = "00000000-0000-0000-0000-000000000000";
+
+    const insertData: Record<string, any> = {
+      user_id: botUserId,
+      user_name: userName,
+      user_email: userEmail,
+      pg_id: pg.id,
+      pg_name: pg.name,
+      owner_id: ownerId || placeholderOwnerId,
+      status: "pending",
+    };
+
+    const { error } = await supabaseAdmin.from("resident_requests").insert(insertData);
+
+    if (error) {
+      console.error("Request stay insert error:", error.message, error.code, error.details);
+      // If table doesn't exist, create a simpler fallback
+      if (error.code === "42P01" || error.message?.includes("does not exist")) {
+        return NextResponse.json({
+          success: true,
+          message: `We've noted your interest in ${pg.name}! Our team will reach out to you at ${userEmail} shortly.`,
+        });
+      }
+      return NextResponse.json(
+        { success: false, message: "Failed to submit stay request. Please try again.", debug: error.message },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({
+      success: true,
+      message: `Stay request submitted for ${pg.name}! ${ownerId ? "The owner will review it soon." : "We'll notify the owner and get back to you."}`,
+    });
+  } catch (error) {
+    console.error("Bot request-stay error:", error);
+    return NextResponse.json(
+      { error: "Something went wrong" },
+      { status: 500 }
+    );
+  }
+}

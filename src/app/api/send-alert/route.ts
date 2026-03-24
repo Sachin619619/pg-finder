@@ -66,14 +66,14 @@ export async function POST(req: Request) {
           subject: `🏠 New PGs in ${area} within your budget!`,
           html: `
             <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-              <h2 style="color: #7c3aed;">New PGs in ${area}!</h2>
+              <h2 style="color: #1B1C15;">New PGs in ${area}!</h2>
               <p>Hi! We found PGs matching your criteria (under ₹${sub.max_price?.toLocaleString()}/month):</p>
               ${matchedListings
                 .filter((l: { price: number }) => l.price <= sub.max_price)
                 .map((l: { name: string; price: number; id: string }) => `
                   <div style="padding: 12px; border: 1px solid #e5e7eb; border-radius: 12px; margin: 8px 0;">
                     <strong>${l.name}</strong> — ₹${l.price.toLocaleString()}/month
-                    <br><a href="https://castleliving.in/listing/${l.id}" style="color: #7c3aed;">View Details →</a>
+                    <br><a href="https://castleliving.in/listing/${l.id}" style="color: #1B1C15;">View Details →</a>
                   </div>
                 `).join("")}
               <p style="color: #9ca3af; font-size: 12px; margin-top: 20px;">

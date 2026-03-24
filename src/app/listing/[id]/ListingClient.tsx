@@ -173,20 +173,20 @@ export default function ListingClient() {
         <Header />
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-24">
           <div className="animate-pulse">
-            <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-48 mb-6" />
+            <div className="h-4 bg-gray-200 rounded w-48 mb-6" />
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               <div className="lg:col-span-2 space-y-6">
-                <div className="h-80 bg-gray-200 dark:bg-gray-700 rounded-2xl" />
-                <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded w-2/3" />
-                <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/3" />
+                <div className="h-80 bg-gray-200 rounded-2xl" />
+                <div className="h-8 bg-gray-200 rounded w-2/3" />
+                <div className="h-4 bg-gray-200 rounded w-1/3" />
                 <div className="flex gap-3">
-                  <div className="h-10 bg-gray-200 dark:bg-gray-700 rounded-xl w-32" />
-                  <div className="h-10 bg-gray-200 dark:bg-gray-700 rounded-xl w-28" />
-                  <div className="h-10 bg-gray-200 dark:bg-gray-700 rounded-xl w-36" />
+                  <div className="h-10 bg-gray-200 rounded-xl w-32" />
+                  <div className="h-10 bg-gray-200 rounded-xl w-28" />
+                  <div className="h-10 bg-gray-200 rounded-xl w-36" />
                 </div>
               </div>
               <div className="space-y-4">
-                <div className="h-96 bg-gray-200 dark:bg-gray-700 rounded-2xl" />
+                <div className="h-96 bg-gray-200 rounded-2xl" />
               </div>
             </div>
           </div>
@@ -201,9 +201,9 @@ export default function ListingClient() {
         <Header />
         <div className="max-w-7xl mx-auto px-4 py-20 text-center">
           <div className="text-6xl mb-6">🏠</div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">PG Not Found</h1>
-          <p className="text-gray-500 dark:text-gray-400 mb-6">This listing may have been removed or doesn&apos;t exist.</p>
-          <Link href="/" className="inline-flex items-center gap-2 px-6 py-3 bg-violet-600 text-white rounded-xl font-medium hover:bg-violet-700 transition">
+          <h1 className="text-2xl font-bold text-gray-900 mb-3">PG Not Found</h1>
+          <p className="text-gray-500 mb-6">This listing may have been removed or doesn&apos;t exist.</p>
+          <Link href="/" className="inline-flex items-center gap-2 px-6 py-3 bg-[#1B1C15] text-white rounded-xl font-medium hover:bg-[#2a2b22] transition">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
@@ -267,11 +267,11 @@ export default function ListingClient() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-24 animate-fade-in-up">
         {/* Breadcrumb */}
         <nav className="mb-6 text-sm text-gray-500 flex items-center gap-2">
-          <Link href="/" className="hover:text-violet-600">Home</Link>
+          <Link href="/" className="hover:text-[#1B1C15]">Home</Link>
           <span>/</span>
-          <Link href={`/area/${pg.area.toLowerCase().replace(/\s+/g, "-")}`} className="hover:text-violet-600">{pg.area}</Link>
+          <Link href={`/area/${pg.area.toLowerCase().replace(/\s+/g, "-")}`} className="hover:text-[#1B1C15]">{pg.area}</Link>
           <span>/</span>
-          <span className="text-gray-900 dark:text-gray-200">{pg.name}</span>
+          <span className="text-gray-900">{pg.name}</span>
         </nav>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -300,7 +300,7 @@ export default function ListingClient() {
             <div>
               <div className="flex items-start justify-between">
                 <div>
-                  <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{pg.name}</h1>
+                  <h1 className="text-3xl font-bold text-gray-900">{pg.name}</h1>
                   <p className="text-gray-500 mt-1 flex items-center gap-1">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -316,8 +316,8 @@ export default function ListingClient() {
                     onClick={() => !isReported && setShowReportModal(true)}
                     className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-medium transition-all ${
                       isReported
-                        ? "bg-red-50 dark:bg-red-900/20 text-red-500 cursor-default"
-                        : "bg-gray-100 dark:bg-gray-800 text-gray-500 hover:bg-red-50 hover:text-red-500 dark:hover:bg-red-900/20 dark:hover:text-red-400"
+                        ? "bg-red-50 text-red-500 cursor-default"
+                        : "bg-gray-100 text-gray-500 hover:bg-red-50 hover:text-red-500"
                     }`}
                     aria-label={isReported ? "You have reported this listing" : "Report this listing"}
                     title={isReported ? "You have reported this listing" : "Report this listing"}
@@ -328,12 +328,12 @@ export default function ListingClient() {
                     </svg>
                     {isReported ? "Reported" : "Report"}
                   </button>
-                  <div className="flex items-center gap-1 bg-yellow-50 dark:bg-yellow-900/30 px-3 py-2 rounded-xl">
+                  <div className="flex items-center gap-1 bg-yellow-50 px-3 py-2 rounded-xl">
                     <svg className="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
-                    <span className="text-lg font-bold text-gray-900 dark:text-amber-400">{pg.rating}</span>
-                    <span className="text-sm text-gray-500 dark:text-gray-400">({pg.reviews})</span>
+                    <span className="text-lg font-bold text-gray-900">{pg.rating}</span>
+                    <span className="text-sm text-gray-500">({pg.reviews})</span>
                   </div>
                 </div>
               </div>
@@ -342,10 +342,10 @@ export default function ListingClient() {
             {/* Room Options */}
             {pg.roomOptions && pg.roomOptions.length > 0 && (
               <div className="premium-card !rounded-2xl p-6">
-                <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">🛏️ Room Options</h2>
+                <h2 className="text-lg font-semibold text-gray-900 mb-4">🛏️ Room Options</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {pg.roomOptions.map(r => (
-                    <div key={r.type} className={`relative p-4 rounded-xl border-2 text-center transition-all ${r.available ? "border-violet-500 bg-violet-50 dark:bg-violet-900/20" : "border-gray-200 dark:border-gray-700 opacity-60"}`}>
+                    <div key={r.type} className={`relative p-4 rounded-xl border-2 text-center transition-all ${r.available ? "border-[#1B1C15] bg-[#F4EDD9]" : "border-gray-200 opacity-60"}`}>
                       {/* Availability Badge */}
                       <div className="absolute -top-2.5 left-1/2 -translate-x-1/2">
                         <span className={`inline-flex items-center gap-1 text-[10px] font-bold px-3 py-1 rounded-full shadow-sm ${
@@ -357,10 +357,10 @@ export default function ListingClient() {
                           {r.available ? "AVAILABLE" : "FULL"}
                         </span>
                       </div>
-                      <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1 mt-2">
+                      <p className="text-sm font-semibold text-gray-700 mb-1 mt-2">
                         {r.type === "single" ? "Single Room" : r.type === "double" ? "Double Sharing" : "Triple Sharing"}
                       </p>
-                      <p className="text-2xl font-bold text-gray-900 dark:text-white">₹{r.price.toLocaleString()}</p>
+                      <p className="text-2xl font-bold text-gray-900">₹{r.price.toLocaleString()}</p>
                       <p className="text-xs text-gray-400">/month</p>
                     </div>
                   ))}
@@ -370,27 +370,27 @@ export default function ListingClient() {
 
             {/* Quick Info Badges */}
             <div className="flex flex-wrap gap-3">
-              <span className="px-4 py-2 bg-violet-50 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 rounded-xl font-medium">{typeLabels[pg.type]}</span>
-              <span className={`px-4 py-2 rounded-xl font-medium ${pg.gender === "male" ? "bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300" : pg.gender === "female" ? "bg-pink-50 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300" : "bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300"}`}>
+              <span className="px-4 py-2 bg-[#F4EDD9] text-[#1B1C15] rounded-xl font-medium">{typeLabels[pg.type]}</span>
+              <span className={`px-4 py-2 rounded-xl font-medium ${pg.gender === "male" ? "bg-blue-50 text-blue-700" : pg.gender === "female" ? "bg-pink-50 text-pink-700" : "bg-[#F4EDD9] text-[#1B1C15]"}`}>
                 {genderLabels[pg.gender]}
               </span>
-              {pg.furnished && <span className="px-4 py-2 bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-xl font-medium">✨ Fully Furnished</span>}
-              {pg.foodIncluded && <span className="px-4 py-2 bg-orange-50 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-xl font-medium">🍽️ Food Included</span>}
-              {pg.acAvailable && <span className="px-4 py-2 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-xl font-medium">❄️ AC Available</span>}
+              {pg.furnished && <span className="px-4 py-2 bg-green-50 text-green-700 rounded-xl font-medium">✨ Fully Furnished</span>}
+              {pg.foodIncluded && <span className="px-4 py-2 bg-orange-50 text-orange-700 rounded-xl font-medium">🍽️ Food Included</span>}
+              {pg.acAvailable && <span className="px-4 py-2 bg-blue-50 text-blue-700 rounded-xl font-medium">❄️ AC Available</span>}
             </div>
 
             {/* Description */}
             <div className="premium-card !rounded-2xl p-6">
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">About this PG</h2>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{pg.description}</p>
+              <h2 className="text-lg font-semibold text-gray-900 mb-3">About this PG</h2>
+              <p className="text-gray-600 leading-relaxed">{pg.description}</p>
             </div>
 
             {/* Amenities */}
             <div className="premium-card !rounded-2xl p-6">
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Amenities</h2>
+              <h2 className="text-lg font-semibold text-gray-900 mb-4">Amenities</h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {pg.amenities.map((a) => (
-                  <div key={a} className="flex items-center gap-2 text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 px-4 py-3 rounded-xl">
+                  <div key={a} className="flex items-center gap-2 text-gray-700 bg-gray-50 px-4 py-3 rounded-xl">
                     <svg className="w-5 h-5 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
@@ -402,15 +402,15 @@ export default function ListingClient() {
 
             {/* Nearby Landmarks */}
             <div className="premium-card !rounded-2xl p-6">
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Nearby Landmarks</h2>
+              <h2 className="text-lg font-semibold text-gray-900 mb-4">Nearby Landmarks</h2>
               <div className="flex flex-wrap gap-2">
                 {pg.nearbyLandmarks.map((l) => (
-                  <span key={l} className="px-3 py-1.5 bg-gray-100 dark:bg-gray-800 rounded-lg text-sm text-gray-700 dark:text-gray-300">{l}</span>
+                  <span key={l} className="px-3 py-1.5 bg-gray-100 rounded-lg text-sm text-gray-700">{l}</span>
                 ))}
               </div>
               {pg.distanceFromMetro && (
                 <p className="mt-3 text-sm text-gray-500 flex items-center gap-1">
-                  <svg className="w-4 h-4 text-violet-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-[#1B1C15]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                   </svg>
                   Nearest Metro: {pg.distanceFromMetro}
@@ -424,7 +424,7 @@ export default function ListingClient() {
             {/* Real Map */}
             {pg.lat && pg.lng && (
               <div className="premium-card !rounded-2xl p-6">
-                <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">📍 Location</h2>
+                <h2 className="text-lg font-semibold text-gray-900 mb-4">📍 Location</h2>
                 <MapEmbed lat={pg.lat} lng={pg.lng} name={pg.name} area={pg.area} />
               </div>
             )}
@@ -438,31 +438,31 @@ export default function ListingClient() {
             {/* I Stay Here — Request to link to PG */}
             {user && (
               <div className={`premium-card !rounded-2xl p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 transition-all ${
-                isCurrentPg ? "border-2 border-emerald-300 dark:border-emerald-700 bg-emerald-50/50 dark:bg-emerald-900/10" :
-                requestStatus === "pending" ? "border-2 border-amber-300 dark:border-amber-700 bg-amber-50/50 dark:bg-amber-900/10" : ""
+                isCurrentPg ? "border-2 border-emerald-300 bg-emerald-50/50" :
+                requestStatus === "pending" ? "border-2 border-amber-300 bg-amber-50/50" : ""
               }`}>
                 <div className="flex items-center gap-3">
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${
-                    isCurrentPg ? "bg-emerald-100 dark:bg-emerald-900/30" :
-                    requestStatus === "pending" ? "bg-amber-100 dark:bg-amber-900/30" :
-                    "bg-violet-100 dark:bg-violet-900/30"
+                    isCurrentPg ? "bg-emerald-100" :
+                    requestStatus === "pending" ? "bg-amber-100" :
+                    "bg-[#F4EDD9]"
                   }`}>
                     <svg className={`w-5 h-5 ${
-                      isCurrentPg ? "text-emerald-600 dark:text-emerald-400" :
-                      requestStatus === "pending" ? "text-amber-600 dark:text-amber-400" :
-                      "text-violet-600 dark:text-violet-400"
+                      isCurrentPg ? "text-emerald-600" :
+                      requestStatus === "pending" ? "text-amber-600" :
+                      "text-[#1B1C15]"
                     }`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                       <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                       <polyline points="9 22 9 12 15 12 15 22" />
                     </svg>
                   </div>
                   <div>
-                    <p className="font-semibold text-gray-900 dark:text-white text-sm">
+                    <p className="font-semibold text-gray-900 text-sm">
                       {isCurrentPg ? "You are a verified resident 🏠" :
                        requestStatus === "pending" ? "Request pending ⏳" :
                        "Do you stay here?"}
                     </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+                    <p className="text-xs text-gray-500 mt-0.5">
                       {isCurrentPg ? "You can write reviews for this PG" :
                        requestStatus === "pending" ? "Waiting for owner to approve your request" :
                        "Request to link yourself — owner will approve"}
@@ -479,24 +479,24 @@ export default function ListingClient() {
                     <button
                       onClick={handleRequestStay}
                       disabled={selectingPg}
-                      className="px-5 py-2.5 rounded-xl text-sm font-semibold transition-all hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 bg-gradient-to-r from-violet-600 to-purple-600 text-white hover:shadow-lg hover:shadow-violet-500/25"
+                      className="px-5 py-2.5 rounded-xl text-sm font-semibold transition-all hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 bg-[#1B1C15] text-white hover:shadow-lg hover:shadow-black/20"
                     >
                       {selectingPg ? "Sending..." : "I Stay Here"}
                     </button>
                   )}
                   {requestStatus === "pending" && (
-                    <span className="px-4 py-2 rounded-xl text-xs font-semibold bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400">
+                    <span className="px-4 py-2 rounded-xl text-xs font-semibold bg-amber-100 text-amber-700">
                       ⏳ Awaiting Approval
                     </span>
                   )}
                   {isCurrentPg && (
                     <div className="flex items-center gap-2">
-                      <span className="px-4 py-2 rounded-xl text-xs font-semibold bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400">
+                      <span className="px-4 py-2 rounded-xl text-xs font-semibold bg-emerald-100 text-emerald-700">
                         ✅ Approved
                       </span>
                       <button
                         onClick={() => setShowRemoveWarning(true)}
-                        className="px-3 py-2 rounded-xl text-xs font-medium text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition"
+                        className="px-3 py-2 rounded-xl text-xs font-medium text-red-500 hover:bg-red-50 transition"
                       >
                         Remove
                       </button>
@@ -524,61 +524,61 @@ export default function ListingClient() {
             {/* Price Card */}
             <div className="premium-card !rounded-2xl p-6 sticky top-24">
               <div className="text-center mb-6">
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Monthly Rent</p>
+                <p className="text-sm text-gray-500 mb-1">Monthly Rent</p>
                 {pg.roomOptions && pg.roomOptions.length > 1 ? (
                   <>
-                    <p className="text-3xl font-bold text-gray-900 dark:text-white">
+                    <p className="text-3xl font-bold text-gray-900">
                       ₹{Math.min(...pg.roomOptions.map(r => r.price)).toLocaleString()} – ₹{Math.max(...pg.roomOptions.map(r => r.price)).toLocaleString()}
                     </p>
-                    <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">depending on room type</p>
+                    <p className="text-sm text-gray-400 mt-1">depending on room type</p>
                   </>
                 ) : (
                   <>
-                    <p className="text-4xl font-bold text-gray-900 dark:text-white">₹{pg.price.toLocaleString()}</p>
-                    <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">per month / per person</p>
+                    <p className="text-4xl font-bold text-gray-900">₹{pg.price.toLocaleString()}</p>
+                    <p className="text-sm text-gray-400 mt-1">per month / per person</p>
                   </>
                 )}
               </div>
 
               <div className="space-y-3 mb-6">
-                <div className="flex justify-between py-2 border-b border-gray-100 dark:border-gray-700">
+                <div className="flex justify-between py-2 border-b border-gray-100">
                   <span className="text-gray-500">Available From</span>
-                  <span className="font-medium text-gray-900 dark:text-white">
+                  <span className="font-medium text-gray-900">
                     {new Date(pg.availableFrom).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}
                   </span>
                 </div>
-                <div className="flex justify-between py-2 border-b border-gray-100 dark:border-gray-700">
+                <div className="flex justify-between py-2 border-b border-gray-100">
                   <span className="text-gray-500">Room Type</span>
-                  <span className="font-medium text-gray-900 dark:text-white">{typeLabels[pg.type]}</span>
+                  <span className="font-medium text-gray-900">{typeLabels[pg.type]}</span>
                 </div>
-                <div className="flex justify-between py-2 border-b border-gray-100 dark:border-gray-700">
+                <div className="flex justify-between py-2 border-b border-gray-100">
                   <span className="text-gray-500">Food</span>
-                  <span className="font-medium text-gray-900 dark:text-white">{pg.foodIncluded ? "✅ Included" : "❌ Not Included"}</span>
+                  <span className="font-medium text-gray-900">{pg.foodIncluded ? "✅ Included" : "❌ Not Included"}</span>
                 </div>
                 <div className="flex justify-between py-2">
                   <span className="text-gray-500">WiFi</span>
-                  <span className="font-medium text-gray-900 dark:text-white">{pg.wifiIncluded ? "✅ Included" : "❌ Not Included"}</span>
+                  <span className="font-medium text-gray-900">{pg.wifiIncluded ? "✅ Included" : "❌ Not Included"}</span>
                 </div>
               </div>
 
               {/* Contact Person */}
-              <div className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800/80 rounded-2xl mb-5">
-                <div className="w-10 h-10 rounded-full bg-violet-100 dark:bg-violet-900/40 flex items-center justify-center shrink-0">
-                  <svg className="w-5 h-5 text-violet-600 dark:text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+              <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-2xl mb-5">
+                <div className="w-10 h-10 rounded-full bg-[#F4EDD9] flex items-center justify-center shrink-0">
+                  <svg className="w-5 h-5 text-[#1B1C15]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                     <circle cx="12" cy="7" r="4" />
                   </svg>
                 </div>
                 <div>
                   <p className="text-[11px] font-medium text-gray-400 uppercase tracking-wider">Contact Person</p>
-                  <p className="font-semibold text-gray-900 dark:text-white text-sm">{pg.contactName}</p>
+                  <p className="font-semibold text-gray-900 text-sm">{pg.contactName}</p>
                 </div>
               </div>
 
               {/* Primary CTA — Book Now */}
               <Link
                 href={`/booking/${pg.id}`}
-                className="w-full relative overflow-hidden bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-500 text-white py-3.5 rounded-2xl font-semibold text-center block transition-all hover:shadow-xl hover:shadow-violet-500/25 hover:-translate-y-0.5 active:translate-y-0"
+                className="w-full relative overflow-hidden bg-[#1B1C15] text-white py-3.5 rounded-2xl font-semibold text-center block transition-all hover:shadow-xl hover:shadow-black/20 hover:-translate-y-0.5 active:translate-y-0"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
@@ -594,9 +594,9 @@ export default function ListingClient() {
                 <a
                   href={`tel:${pg.contactPhone}`}
                   aria-label={`Call ${pg.contactName} about ${pg.name}`}
-                  className="flex items-center justify-center gap-2 py-3 rounded-2xl font-semibold text-sm transition-all hover:-translate-y-0.5 active:translate-y-0 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700"
+                  className="flex items-center justify-center gap-2 py-3 rounded-2xl font-semibold text-sm transition-all hover:-translate-y-0.5 active:translate-y-0 bg-gray-100 text-gray-900 hover:bg-gray-200"
                 >
-                  <svg className="w-4 h-4 text-violet-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                  <svg className="w-4 h-4 text-[#1B1C15]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
                   </svg>
                   Call
@@ -606,7 +606,7 @@ export default function ListingClient() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`Message ${pg.name} on WhatsApp`}
-                  className="flex items-center justify-center gap-2 py-3 rounded-2xl font-semibold text-sm transition-all hover:-translate-y-0.5 active:translate-y-0 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-900/30"
+                  className="flex items-center justify-center gap-2 py-3 rounded-2xl font-semibold text-sm transition-all hover:-translate-y-0.5 active:translate-y-0 bg-emerald-50 text-emerald-700 hover:bg-emerald-100"
                 >
                   <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
@@ -621,7 +621,7 @@ export default function ListingClient() {
                 <button
                   onClick={() => setShowCallback(true)}
                   aria-label={`Request callback from ${pg.name}`}
-                  className="flex items-center justify-center gap-2 py-3 rounded-2xl font-semibold text-sm transition-all hover:-translate-y-0.5 active:translate-y-0 bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400 hover:bg-amber-100 dark:hover:bg-amber-900/30"
+                  className="flex items-center justify-center gap-2 py-3 rounded-2xl font-semibold text-sm transition-all hover:-translate-y-0.5 active:translate-y-0 bg-amber-50 text-amber-700 hover:bg-amber-100"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                     <path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
@@ -631,7 +631,7 @@ export default function ListingClient() {
                 <Link
                   href={`/chat/${pg.id}`}
                   aria-label={`Chat with ${pg.name}`}
-                  className="flex items-center justify-center gap-2 py-3 rounded-2xl font-semibold text-sm transition-all hover:-translate-y-0.5 active:translate-y-0 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-700 dark:text-indigo-400 hover:bg-indigo-100 dark:hover:bg-indigo-900/30"
+                  className="flex items-center justify-center gap-2 py-3 rounded-2xl font-semibold text-sm transition-all hover:-translate-y-0.5 active:translate-y-0 bg-indigo-50 text-indigo-700 hover:bg-indigo-100"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
@@ -645,7 +645,7 @@ export default function ListingClient() {
                 href={pg.mapUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 w-full mt-3 py-2.5 text-sm text-gray-500 dark:text-gray-400 hover:text-violet-600 dark:hover:text-violet-400 transition-colors"
+                className="flex items-center justify-center gap-2 w-full mt-3 py-2.5 text-sm text-gray-500 hover:text-[#1B1C15] transition-colors"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
@@ -660,14 +660,14 @@ export default function ListingClient() {
               </a>
 
               {/* Safety Badge */}
-              <div className="mt-4 p-4 bg-emerald-50/80 dark:bg-emerald-900/15 rounded-2xl border border-emerald-100 dark:border-emerald-800/30">
+              <div className="mt-4 p-4 bg-emerald-50/80 rounded-2xl border border-emerald-100">
                 <div className="flex items-center gap-2 mb-1.5">
                   <svg className="w-4.5 h-4.5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  <span className="font-semibold text-emerald-700 dark:text-emerald-400 text-sm">Castle Verified</span>
+                  <span className="font-semibold text-emerald-700 text-sm">Castle Verified</span>
                 </div>
-                <p className="text-xs text-emerald-600/80 dark:text-emerald-500/80 leading-relaxed">Listing verified by our team — photos, amenities, and pricing are accurate.</p>
+                <p className="text-xs text-emerald-600/80 leading-relaxed">Listing verified by our team — photos, amenities, and pricing are accurate.</p>
               </div>
             </div>
           </div>
@@ -680,22 +680,22 @@ export default function ListingClient() {
       {/* Report Modal */}
       {showReportModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm" onClick={() => setShowReportModal(false)}>
-          <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 max-w-md w-full shadow-2xl animate-slide-up" onClick={e => e.stopPropagation()}>
+          <div className="bg-white rounded-2xl p-6 max-w-md w-full shadow-2xl animate-slide-up" onClick={e => e.stopPropagation()}>
             <div className="flex items-center gap-3 mb-5">
-              <div className="w-11 h-11 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center shrink-0">
+              <div className="w-11 h-11 rounded-full bg-red-100 flex items-center justify-center shrink-0">
                 <svg className="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                   <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
                   <line x1="4" y1="22" x2="4" y2="15" />
                 </svg>
               </div>
               <div>
-                <h3 className="font-bold text-gray-900 dark:text-white text-lg">Report Listing</h3>
+                <h3 className="font-bold text-gray-900 text-lg">Report Listing</h3>
                 <p className="text-xs text-gray-400 mt-0.5">Help us keep the platform safe</p>
               </div>
             </div>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Reason</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1.5">Reason</label>
                 <select
                   value={reportReason}
                   onChange={(e) => setReportReason(e.target.value)}
@@ -710,7 +710,7 @@ export default function ListingClient() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Description (optional)</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1.5">Description (optional)</label>
                 <textarea
                   value={reportDescription}
                   onChange={(e) => setReportDescription(e.target.value)}
@@ -723,7 +723,7 @@ export default function ListingClient() {
             <div className="flex gap-3 mt-5">
               <button
                 onClick={() => setShowReportModal(false)}
-                className="flex-1 py-2.5 rounded-xl text-sm font-semibold text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+                className="flex-1 py-2.5 rounded-xl text-sm font-semibold text-gray-700 bg-gray-100 hover:bg-gray-200 transition"
               >
                 Cancel
               </button>
@@ -742,9 +742,9 @@ export default function ListingClient() {
       {/* Remove PG Warning Modal */}
       {showRemoveWarning && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm" onClick={() => setShowRemoveWarning(false)}>
-          <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 max-w-sm w-full shadow-2xl animate-slide-up" onClick={e => e.stopPropagation()}>
+          <div className="bg-white rounded-2xl p-6 max-w-sm w-full shadow-2xl animate-slide-up" onClick={e => e.stopPropagation()}>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
+              <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center">
                 <svg className="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                   <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
                   <line x1="12" y1="9" x2="12" y2="13" />
@@ -752,12 +752,12 @@ export default function ListingClient() {
                 </svg>
               </div>
               <div>
-                <h3 className="font-bold text-gray-900 dark:text-white">Remove from this PG?</h3>
+                <h3 className="font-bold text-gray-900">Remove from this PG?</h3>
                 <p className="text-xs text-gray-400 mt-0.5">This action cannot be undone easily</p>
               </div>
             </div>
-            <div className="bg-red-50 dark:bg-red-900/10 border border-red-200 dark:border-red-800/30 rounded-xl p-4 mb-5">
-              <ul className="space-y-2 text-sm text-red-700 dark:text-red-400">
+            <div className="bg-red-50 border border-red-200 rounded-xl p-4 mb-5">
+              <ul className="space-y-2 text-sm text-red-700">
                 <li className="flex items-start gap-2">
                   <span className="mt-0.5">⚠️</span>
                   <span>You will <strong>lose access</strong> to write reviews for this PG</span>
@@ -775,7 +775,7 @@ export default function ListingClient() {
             <div className="flex gap-3">
               <button
                 onClick={() => setShowRemoveWarning(false)}
-                className="flex-1 py-2.5 rounded-xl text-sm font-semibold text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+                className="flex-1 py-2.5 rounded-xl text-sm font-semibold text-gray-700 bg-gray-100 hover:bg-gray-200 transition"
               >
                 Cancel
               </button>

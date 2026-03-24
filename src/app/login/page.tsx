@@ -147,19 +147,19 @@ export default function LoginPage() {
         <main className="min-h-screen flex items-center justify-center px-4 pt-20">
           <div className="w-full max-w-md">
             <div className="text-center mb-8">
-              <div className="w-20 h-20 bg-violet-50 dark:bg-violet-900/20 rounded-3xl flex items-center justify-center mx-auto mb-4">
+              <div className="w-20 h-20 bg-[#F4EDD9] rounded-3xl flex items-center justify-center mx-auto mb-4">
                 <span className="text-5xl">📧</span>
               </div>
-              <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">Verify Your Email</h1>
+              <h1 className="text-3xl font-extrabold text-gray-900">Verify Your Email</h1>
               <p className="text-gray-400 mt-2">
                 Enter the 8-digit code sent to<br />
-                <strong className="text-gray-900 dark:text-white">{email}</strong>
+                <strong className="text-gray-900">{email}</strong>
               </p>
             </div>
 
             <div className="premium-card !rounded-3xl p-8">
               {otpError && (
-                <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-2xl text-sm text-red-600 dark:text-red-400">
+                <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-2xl text-sm text-red-600">
                   ⚠️ {otpError}
                 </div>
               )}
@@ -178,9 +178,9 @@ export default function LoginPage() {
                     onKeyDown={(e) => handleOtpKeyDown(i, e)}
                     className={`w-11 h-12 text-center text-xl font-bold rounded-xl border-2 outline-none transition-all ${
                       digit
-                        ? "border-violet-500 bg-violet-50 dark:bg-violet-900/20 text-violet-700 dark:text-violet-300"
-                        : "border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
-                    } focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20`}
+                        ? "border-[#1B1C15] bg-[#F4EDD9] text-[#1B1C15]"
+                        : "border-gray-200 bg-white text-gray-900"
+                    } focus:border-[#1B1C15] focus:ring-2 focus:ring-[#1B1C15]/20`}
                     autoFocus={i === 0}
                   />
                 ))}
@@ -209,13 +209,13 @@ export default function LoginPage() {
               <div className="mt-6 text-center">
                 {countdown > 0 ? (
                   <p className="text-sm text-gray-400">
-                    Resend code in <span className="font-semibold text-violet-600">{countdown}s</span>
+                    Resend code in <span className="font-semibold text-[#1B1C15]">{countdown}s</span>
                   </p>
                 ) : (
                   <button
                     onClick={handleResend}
                     disabled={resending}
-                    className="text-sm text-violet-600 font-semibold hover:underline disabled:opacity-50"
+                    className="text-sm text-[#1B1C15] font-semibold hover:underline disabled:opacity-50"
                   >
                     {resending ? "Sending..." : "📧 Resend OTP Code"}
                   </button>
@@ -226,7 +226,7 @@ export default function LoginPage() {
               <div className="mt-4 text-center">
                 <button
                   onClick={() => { setShowOtp(false); setOtp(["", "", "", "", "", "", "", ""]); setOtpError(""); }}
-                  className="text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                  className="text-xs text-gray-400 hover:text-gray-600"
                 >
                   ← Back to login
                 </button>
@@ -245,27 +245,27 @@ export default function LoginPage() {
       <main className="min-h-screen flex items-center justify-center px-4 pt-20">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-gradient-to-br from-violet-600 to-fuchsia-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-violet-500/20">
+            <div className="w-16 h-16 bg-[#1B1C15] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-black/20">
               <span className="text-white text-2xl font-bold">P</span>
             </div>
-            <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">Welcome back 👋</h1>
+            <h1 className="text-3xl font-extrabold text-gray-900">Welcome back 👋</h1>
             <p className="text-gray-400 mt-2">Sign in to your Castle account</p>
           </div>
 
           <div className="premium-card !rounded-3xl p-8">
             {resent && (
-              <div className="mb-6 p-4 bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 rounded-2xl text-sm text-emerald-600 dark:text-emerald-400">
+              <div className="mb-6 p-4 bg-emerald-50 border border-emerald-200 rounded-2xl text-sm text-emerald-600">
                 ✅ Verification code resent! Check your inbox.
               </div>
             )}
             {error && (
-              <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-2xl text-sm text-red-600 dark:text-red-400">
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-2xl text-sm text-red-600">
                 <p>⚠️ {error}</p>
                 {(error.toLowerCase().includes("confirm") || error.toLowerCase().includes("verif")) && (
                   <div className="mt-3 flex gap-2">
                     <button
                       onClick={() => { setShowOtp(true); }}
-                      className="text-violet-600 dark:text-violet-400 font-semibold hover:underline text-xs"
+                      className="text-[#1B1C15] font-semibold hover:underline text-xs"
                     >
                       🔢 Enter verification code
                     </button>
@@ -273,7 +273,7 @@ export default function LoginPage() {
                     <button
                       onClick={handleResend}
                       disabled={resending}
-                      className="text-violet-600 dark:text-violet-400 font-semibold hover:underline text-xs"
+                      className="text-[#1B1C15] font-semibold hover:underline text-xs"
                     >
                       {resending ? "Sending..." : "📧 Resend code"}
                     </button>
@@ -284,7 +284,7 @@ export default function LoginPage() {
 
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label htmlFor="login-email" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Email</label>
+                <label htmlFor="login-email" className="block text-sm font-semibold text-gray-700 mb-2">Email</label>
                 <input
                   id="login-email"
                   type="email"
@@ -299,7 +299,7 @@ export default function LoginPage() {
               </div>
 
               <div>
-                <label htmlFor="login-password" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Password</label>
+                <label htmlFor="login-password" className="block text-sm font-semibold text-gray-700 mb-2">Password</label>
                 <input
                   id="login-password"
                   type="password"
@@ -315,7 +315,7 @@ export default function LoginPage() {
               </div>
 
               <div className="flex justify-end">
-                <Link href="/forgot-password" className="text-xs text-violet-600 font-semibold hover:underline">
+                <Link href="/forgot-password" className="text-xs text-[#1B1C15] font-semibold hover:underline">
                   Forgot password?
                 </Link>
               </div>
@@ -342,7 +342,7 @@ export default function LoginPage() {
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-400">
                 Don&apos;t have an account?{" "}
-                <Link href="/signup" className="text-violet-600 font-semibold hover:underline">
+                <Link href="/signup" className="text-[#1B1C15] font-semibold hover:underline">
                   Sign Up
                 </Link>
               </p>

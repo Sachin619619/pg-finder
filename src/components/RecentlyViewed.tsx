@@ -54,14 +54,14 @@ export default function RecentlyViewed() {
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
       <div className="flex items-center gap-3 mb-5">
-        <div className="w-9 h-9 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-xl flex items-center justify-center shadow-lg shadow-violet-500/20">
+        <div className="w-9 h-9 bg-[#1B1C15] rounded-xl flex items-center justify-center shadow-lg shadow-black/20">
           <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
             <circle cx="12" cy="12" r="10" />
             <polyline points="12 6 12 12 16 14" />
           </svg>
         </div>
         <div>
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white tracking-tight">Recently Viewed</h2>
+          <h2 className="text-xl font-bold text-gray-900 tracking-tight">Recently Viewed</h2>
           <p className="text-xs text-gray-400">Pick up where you left off</p>
         </div>
       </div>
@@ -72,19 +72,19 @@ export default function RecentlyViewed() {
           <Link
             key={item.id}
             href={`/listing/${item.id}`}
-            className="group flex-shrink-0 w-60 bg-white dark:bg-gray-800/80 rounded-2xl border border-gray-100 dark:border-gray-700/50 p-4 hover:shadow-lg hover:shadow-violet-500/10 hover:border-violet-200 dark:hover:border-violet-700/50 transition-all hover:-translate-y-0.5"
+            className="group flex-shrink-0 w-60 bg-white rounded-2xl border border-gray-100 p-4 hover:shadow-lg hover:shadow-black/10 hover:border-[#d4ccb5]:border-[#3d3829] transition-all hover:-translate-y-0.5"
           >
             <div className="flex items-start justify-between mb-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-violet-100 to-fuchsia-100 dark:from-violet-900/30 dark:to-fuchsia-900/30 rounded-xl flex items-center justify-center">
-                <svg className="w-5 h-5 text-violet-600 dark:text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+              <div className="w-10 h-10 bg-[#F4EDD9] rounded-xl flex items-center justify-center">
+                <svg className="w-5 h-5 text-[#1B1C15]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 21h18M5 21V7l3-3 4 3 4-3 3 3v14M9 21v-4a2 2 0 012-2h2a2 2 0 012 2v4" />
                 </svg>
               </div>
-              <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20 px-2 py-0.5 rounded-full">
+              <span className="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
                 Rs.{item.price.toLocaleString("en-IN")}
               </span>
             </div>
-            <h3 className="text-sm font-bold text-gray-900 dark:text-white truncate group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">
+            <h3 className="text-sm font-bold text-gray-900 truncate group-hover:text-[#1B1C15]:text-[#8a8070] transition-colors">
               {item.name}
             </h3>
             <p className="text-xs text-gray-400 mt-1 flex items-center gap-1">

@@ -295,7 +295,7 @@ export default function AddListingPage() {
       <>
         <Header />
         <main className="max-w-3xl mx-auto px-4 pt-28 pb-16 flex items-center justify-center py-20">
-          <div className="animate-spin w-8 h-8 border-4 border-violet-500 border-t-transparent rounded-full" />
+          <div className="animate-spin w-8 h-8 border-4 border-[#1B1C15] border-t-transparent rounded-full" />
         </main>
       </>
     );
@@ -308,7 +308,7 @@ export default function AddListingPage() {
         <main className="max-w-3xl mx-auto px-4 pt-28 pb-16">
           <div className="text-center py-20">
             <span className="text-5xl block mb-4">🔒</span>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Access Required</h1>
+            <h1 className="text-2xl font-bold text-gray-900 mb-2">Access Required</h1>
             <p className="text-gray-400 mb-6">You need an owner or agent account to list a PG.</p>
             <button onClick={() => router.push("/signup")} className="btn-premium !py-3 !px-8">
               Sign Up
@@ -327,7 +327,7 @@ export default function AddListingPage() {
         <main className="max-w-3xl mx-auto px-4 pt-28 pb-16">
           <div className="text-center py-20">
             <span className="text-5xl block mb-4">⏳</span>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Verification Pending</h1>
+            <h1 className="text-2xl font-bold text-gray-900 mb-2">Verification Pending</h1>
             <p className="text-gray-400 mb-6">Your agent account is pending verification by an admin. You cannot add listings until your account is approved.</p>
             <button onClick={() => router.push("/agent-dashboard")} className="btn-premium !py-3 !px-8">
               Back to Dashboard
@@ -344,19 +344,19 @@ export default function AddListingPage() {
         <Header />
         <main className="max-w-3xl mx-auto px-4 pt-28 pb-16">
           <div className="text-center py-16">
-            <div className="w-20 h-20 bg-emerald-50 dark:bg-emerald-900/30 rounded-3xl flex items-center justify-center mx-auto mb-6">
+            <div className="w-20 h-20 bg-emerald-50 rounded-3xl flex items-center justify-center mx-auto mb-6">
               <svg className="w-10 h-10 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" />
               </svg>
             </div>
-            <h1 className="text-2xl font-extrabold text-gray-900 dark:text-white mb-2">PG Listed Successfully!</h1>
+            <h1 className="text-2xl font-extrabold text-gray-900 mb-2">PG Listed Successfully!</h1>
             {claimCode ? (
               <>
                 <p className="text-gray-400 mb-6">Share this claim code with the PG owner so they can manage their listing.</p>
                 <div className="max-w-sm mx-auto premium-card !rounded-2xl p-6 mb-6">
                   <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">Owner Claim Code</p>
                   <div className="flex items-center justify-center gap-3">
-                    <span className="text-3xl font-mono font-extrabold text-violet-600 tracking-[0.2em]">{claimCode}</span>
+                    <span className="text-3xl font-mono font-extrabold text-[#1B1C15] tracking-[0.2em]">{claimCode}</span>
                     <button
                       onClick={async () => {
                         try {
@@ -377,7 +377,7 @@ export default function AddListingPage() {
                           setTimeout(() => setCopied(false), 2000);
                         }
                       }}
-                      className="p-2 rounded-xl bg-violet-50 dark:bg-violet-900/30 text-violet-600 hover:bg-violet-100 transition"
+                      className="p-2 rounded-xl bg-[#F4EDD9] text-[#1B1C15] hover:bg-[#F4EDD9] transition"
                       title="Copy"
                     >
                       {copied ? (
@@ -396,15 +396,15 @@ export default function AddListingPage() {
                 </div>
                 {/* Send to Owner In-App */}
                 <div className="max-w-sm mx-auto mb-6">
-                  <div className="premium-card !rounded-2xl p-5 border border-emerald-200 dark:border-emerald-800/40 bg-emerald-50/30 dark:bg-emerald-900/10">
+                  <div className="premium-card !rounded-2xl p-5 border border-emerald-200 bg-emerald-50/30">
                     <div className="flex items-center gap-2 mb-3">
                       <svg className="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
                         <path d="M22 2L11 13" /><path d="M22 2L15 22L11 13L2 9L22 2Z" />
                       </svg>
-                      <h3 className="font-semibold text-gray-900 dark:text-white text-sm">Send to Owner</h3>
+                      <h3 className="font-semibold text-gray-900 text-sm">Send to Owner</h3>
                     </div>
                     {claimSent ? (
-                      <div className="flex items-center gap-2 p-3 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl text-sm text-emerald-700 dark:text-emerald-400">
+                      <div className="flex items-center gap-2 p-3 bg-emerald-50 rounded-xl text-sm text-emerald-700">
                         <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
                         Sent to <strong>@{claimSent}</strong>! They&apos;ll see it in their dashboard.
                       </div>
@@ -441,7 +441,7 @@ export default function AddListingPage() {
                           </div>
                           {/* Search results dropdown */}
                           {ownerSearch.length >= 2 && (
-                            <div className="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg z-10 overflow-hidden">
+                            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-xl shadow-lg z-10 overflow-hidden">
                               {searchingOwner ? (
                                 <div className="p-3 text-center text-xs text-gray-400">Searching...</div>
                               ) : ownerResults.length === 0 ? (
@@ -478,13 +478,13 @@ export default function AddListingPage() {
                                       } catch { setError("Failed to send claim"); }
                                       setSendingClaim(false);
                                     }}
-                                    className="w-full flex items-center gap-3 p-3 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition text-left"
+                                    className="w-full flex items-center gap-3 p-3 hover:bg-gray-50 transition text-left"
                                   >
-                                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-violet-400 to-purple-500 flex items-center justify-center text-white font-bold text-xs shrink-0">
+                                    <div className="w-8 h-8 rounded-full bg-[#1B1C15] flex items-center justify-center text-white font-bold text-xs shrink-0">
                                       {owner.name.charAt(0)}
                                     </div>
                                     <div className="min-w-0">
-                                      <p className="text-sm font-medium text-gray-900 dark:text-white truncate">{owner.name}</p>
+                                      <p className="text-sm font-medium text-gray-900 truncate">{owner.name}</p>
                                       <p className="text-xs text-gray-400">@{owner.username}</p>
                                     </div>
                                     <div className="ml-auto shrink-0">
@@ -507,9 +507,9 @@ export default function AddListingPage() {
 
                 {/* OR divider */}
                 <div className="flex items-center gap-3 max-w-sm mx-auto mb-4">
-                  <div className="flex-1 h-px bg-gray-200 dark:bg-gray-700" />
+                  <div className="flex-1 h-px bg-gray-200" />
                   <span className="text-xs text-gray-400 font-medium">OR SHARE MANUALLY</span>
-                  <div className="flex-1 h-px bg-gray-200 dark:bg-gray-700" />
+                  <div className="flex-1 h-px bg-gray-200" />
                 </div>
 
                 <div className="flex flex-col gap-3 items-center mb-4">
@@ -528,7 +528,7 @@ export default function AddListingPage() {
                         } catch { /* ignore */ }
                       }
                     }}
-                    className="w-full max-w-xs px-6 py-2.5 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-xl text-sm font-medium flex items-center justify-center gap-2 transition hover:bg-gray-200 dark:hover:bg-gray-700"
+                    className="w-full max-w-xs px-6 py-2.5 bg-gray-100 text-gray-700 rounded-xl text-sm font-medium flex items-center justify-center gap-2 transition hover:bg-gray-200"
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                       <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
@@ -537,8 +537,8 @@ export default function AddListingPage() {
                   </button>
                 </div>
                 <div className="flex gap-3 justify-center">
-                  <button onClick={() => router.push("/agent-dashboard")} className="px-6 py-2.5 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-xl text-sm font-medium">Go to Dashboard</button>
-                  <button onClick={() => { setSuccess(false); setClaimCode(null); }} className="px-6 py-2.5 bg-violet-50 dark:bg-violet-900/30 text-violet-600 rounded-xl text-sm font-medium">Add Another PG</button>
+                  <button onClick={() => router.push("/agent-dashboard")} className="px-6 py-2.5 bg-gray-100 text-gray-700 rounded-xl text-sm font-medium">Go to Dashboard</button>
+                  <button onClick={() => { setSuccess(false); setClaimCode(null); }} className="px-6 py-2.5 bg-[#F4EDD9] text-[#1B1C15] rounded-xl text-sm font-medium">Add Another PG</button>
                 </div>
               </>
             ) : (
@@ -559,24 +559,24 @@ export default function AddListingPage() {
       <main className="max-w-3xl mx-auto px-4 sm:px-6 pt-28 pb-16">
         {/* Breadcrumb */}
         <nav className="mb-6 text-sm text-gray-500 flex items-center gap-2">
-          <Link href="/" className="hover:text-violet-600 transition-colors">Home</Link>
+          <Link href="/" className="hover:text-[#1B1C15] transition-colors">Home</Link>
           <span>/</span>
-          <span className="text-gray-900 dark:text-white font-medium">Add New PG</span>
+          <span className="text-gray-900 font-medium">Add New PG</span>
         </nav>
 
         <div className="mb-8">
-          <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">Add Your PG</h1>
+          <h1 className="text-3xl font-extrabold text-gray-900">Add Your PG</h1>
           <p className="text-gray-400 mt-1">List your paying guest accommodation on Castle</p>
         </div>
 
         {profile?.role === "agent" && (
-          <div className="premium-card !rounded-2xl p-5 border-2 border-amber-400/40 bg-amber-50/50 dark:bg-amber-900/10 mb-6">
+          <div className="premium-card !rounded-2xl p-5 border-2 border-amber-400/40 bg-amber-50/50 mb-6">
             <div className="flex items-start gap-3">
               <span className="text-2xl mt-0.5">🛡️</span>
               <div>
-                <h3 className="font-bold text-gray-900 dark:text-white text-sm mb-2">Agent Verification Process</h3>
-                <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">Every PG submitted by agents goes through a strict verification before going live:</p>
-                <ul className="space-y-2 text-xs text-gray-600 dark:text-gray-300">
+                <h3 className="font-bold text-gray-900 text-sm mb-2">Agent Verification Process</h3>
+                <p className="text-xs text-gray-500 mb-3">Every PG submitted by agents goes through a strict verification before going live:</p>
+                <ul className="space-y-2 text-xs text-gray-600">
                   <li className="flex items-start gap-2">
                     <span className="text-amber-500 mt-0.5">🤖</span>
                     <span><strong>AI Duplicate & Fake Detection</strong> — Our AI automatically checks for duplicate listings, fake details, suspicious phone numbers, and spam content before submission.</span>
@@ -605,23 +605,23 @@ export default function AddListingPage() {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {error && (
-            <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-2xl text-sm text-red-600 dark:text-red-400">
+            <div className="p-4 bg-red-50 border border-red-200 rounded-2xl text-sm text-red-600">
               {error}
             </div>
           )}
 
           {verifyIssues.length > 0 && (
-            <div className={`p-4 rounded-2xl border text-sm ${riskScore !== null && riskScore >= 40 ? "bg-red-50 dark:bg-red-900/20 border-red-300 dark:border-red-800" : "bg-amber-50 dark:bg-amber-900/20 border-amber-300 dark:border-amber-800"}`}>
+            <div className={`p-4 rounded-2xl border text-sm ${riskScore !== null && riskScore >= 40 ? "bg-red-50 border-red-300" : "bg-amber-50 border-amber-300"}`}>
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-lg">{riskScore !== null && riskScore >= 40 ? "🚫" : "⚠️"}</span>
-                <span className="font-bold text-gray-900 dark:text-white">
+                <span className="font-bold text-gray-900">
                   AI Verification {riskScore !== null && riskScore >= 40 ? "Failed" : "Warnings"}
-                  {riskScore !== null && <span className={`ml-2 text-xs px-2 py-0.5 rounded-full ${riskScore >= 40 ? "bg-red-200 dark:bg-red-800 text-red-700 dark:text-red-200" : "bg-amber-200 dark:bg-amber-800 text-amber-700 dark:text-amber-200"}`}>Risk: {riskScore}/100</span>}
+                  {riskScore !== null && <span className={`ml-2 text-xs px-2 py-0.5 rounded-full ${riskScore >= 40 ? "bg-red-200 text-red-700" : "bg-amber-200 text-amber-700"}`}>Risk: {riskScore}/100</span>}
                 </span>
               </div>
               <ul className="space-y-1 ml-7">
                 {verifyIssues.map((issue, i) => (
-                  <li key={i} className={`${riskScore !== null && riskScore >= 40 ? "text-red-600 dark:text-red-400" : "text-amber-600 dark:text-amber-400"}`}>• {issue}</li>
+                  <li key={i} className={`${riskScore !== null && riskScore >= 40 ? "text-red-600" : "text-amber-600"}`}>• {issue}</li>
                 ))}
               </ul>
             </div>
@@ -629,38 +629,38 @@ export default function AddListingPage() {
 
           {/* PG Name */}
           <div className="premium-card !rounded-2xl p-6">
-            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Basic Details</h2>
+            <h2 className="text-lg font-bold text-gray-900 mb-4">Basic Details</h2>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">PG Name *</label>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">PG Name *</label>
                 <input required value={name} onChange={e => setName(e.target.value)} placeholder="e.g. Sunrise PG for Men" className="premium-input w-full" />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Area *</label>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Area *</label>
                   <select required value={area} onChange={e => setArea(e.target.value)} className="premium-input w-full">
                     <option value="">Select area</option>
                     {areas.map(a => <option key={a} value={a}>{a}</option>)}
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Locality</label>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Locality</label>
                   <input value={locality} onChange={e => setLocality(e.target.value)} placeholder="e.g. Near Silk Board Junction" className="premium-input w-full" />
                 </div>
               </div>
 
               {/* Room Types & Pricing */}
               <div>
-                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">Room Types & Pricing *</label>
+                <label className="block text-sm font-semibold text-gray-700 mb-3">Room Types & Pricing *</label>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {roomOptions.map((room, idx) => (
                     <div
                       key={room.type}
                       className={`p-4 rounded-xl border-2 transition-all ${
                         room.enabled
-                          ? "border-violet-500 bg-violet-50 dark:bg-violet-900/20"
-                          : "border-gray-200 dark:border-gray-700"
+                          ? "border-[#1B1C15] bg-[#F4EDD9]"
+                          : "border-gray-200"
                       }`}
                     >
                       <label className="flex items-center gap-2 cursor-pointer mb-3">
@@ -672,9 +672,9 @@ export default function AddListingPage() {
                             updated[idx] = { ...updated[idx], enabled: !updated[idx].enabled };
                             setRoomOptions(updated);
                           }}
-                          className="w-4 h-4 rounded text-violet-600 focus:ring-violet-500"
+                          className="w-4 h-4 rounded text-[#1B1C15] focus:ring-[#1B1C15]/20"
                         />
-                        <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                        <span className="text-sm font-semibold text-gray-700">
                           {room.type === "single" ? "🛏️ Single" : room.type === "double" ? "🛏️ Double Sharing" : "🛏️ Triple Sharing"}
                         </span>
                       </label>
@@ -702,7 +702,7 @@ export default function AddListingPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Gender</label>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Gender</label>
                 <select value={gender} onChange={e => setGender(e.target.value as typeof gender)} className="premium-input w-full">
                   <option value="male">Male</option>
                   <option value="female">Female</option>
@@ -711,12 +711,12 @@ export default function AddListingPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Available From</label>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Available From</label>
                 <input type="date" value={availableFrom} onChange={e => setAvailableFrom(e.target.value)} className="premium-input w-full" />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Description *</label>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Description *</label>
                 <textarea required rows={4} value={description} onChange={e => setDescription(e.target.value)} placeholder="Describe your PG — rooms, facilities, neighborhood, rules..." className="premium-input w-full resize-none" />
               </div>
             </div>
@@ -724,7 +724,7 @@ export default function AddListingPage() {
 
           {/* Amenities & Features */}
           <div className="premium-card !rounded-2xl p-6">
-            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Amenities & Features</h2>
+            <h2 className="text-lg font-bold text-gray-900 mb-4">Amenities & Features</h2>
 
             {/* Toggle features */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
@@ -740,18 +740,18 @@ export default function AddListingPage() {
                   onClick={() => f.set(!f.value)}
                   className={`p-3 rounded-xl border-2 text-center transition-all ${
                     f.value
-                      ? "border-violet-500 bg-violet-50 dark:bg-violet-900/20"
-                      : "border-gray-200 dark:border-gray-700 hover:border-gray-300"
+                      ? "border-[#1B1C15] bg-[#F4EDD9]"
+                      : "border-gray-200 hover:border-gray-300"
                   }`}
                 >
                   <span className="text-lg block">{f.icon}</span>
-                  <span className="text-xs font-medium text-gray-700 dark:text-gray-300 mt-1 block">{f.label}</span>
+                  <span className="text-xs font-medium text-gray-700 mt-1 block">{f.label}</span>
                 </button>
               ))}
             </div>
 
             {/* Amenities chips */}
-            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Other Amenities</label>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">Other Amenities</label>
             <div className="flex flex-wrap gap-2">
               {amenityOptions.filter(a => !["WiFi", "AC", "Food"].includes(a)).map(a => (
                 <button
@@ -760,8 +760,8 @@ export default function AddListingPage() {
                   onClick={() => toggleAmenity(a)}
                   className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
                     selectedAmenities.includes(a)
-                      ? "bg-violet-600 text-white"
-                      : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200"
+                      ? "bg-[#1B1C15] text-white"
+                      : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                   }`}
                 >
                   {a}
@@ -772,7 +772,7 @@ export default function AddListingPage() {
 
           {/* Photos */}
           <div className="premium-card !rounded-2xl p-6">
-            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-2">PG Photos</h2>
+            <h2 className="text-lg font-bold text-gray-900 mb-2">PG Photos</h2>
             <p className="text-xs text-gray-400 mb-4">Add photos of rooms, common areas, entrance, etc. (up to 10)</p>
 
             <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 mb-3">
@@ -793,7 +793,7 @@ export default function AddListingPage() {
                 <button
                   type="button"
                   onClick={() => photoInputRef.current?.click()}
-                  className="aspect-square rounded-xl border-2 border-dashed border-gray-300 dark:border-gray-600 flex flex-col items-center justify-center gap-1.5 hover:border-violet-400 hover:bg-violet-50 dark:hover:bg-violet-900/10 transition-all"
+                  className="aspect-square rounded-xl border-2 border-dashed border-gray-300 flex flex-col items-center justify-center gap-1.5 hover:border-[#8a8070] hover:bg-[#F4EDD9] transition-all"
                 >
                   <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
                     <rect x="3" y="3" width="18" height="18" rx="2" ry="2" /><circle cx="8.5" cy="8.5" r="1.5" /><polyline points="21 15 16 10 5 21" />
@@ -816,14 +816,14 @@ export default function AddListingPage() {
 
           {/* Contact */}
           <div className="premium-card !rounded-2xl p-6">
-            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Contact Information</h2>
+            <h2 className="text-lg font-bold text-gray-900 mb-4">Contact Information</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label htmlFor="listing-contact-name" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Contact Name *</label>
+                <label htmlFor="listing-contact-name" className="block text-sm font-semibold text-gray-700 mb-2">Contact Name *</label>
                 <input id="listing-contact-name" required aria-required="true" autoComplete="name" value={contactName} onChange={e => setContactName(e.target.value)} placeholder={profile?.name || "Owner name"} className="premium-input w-full" />
               </div>
               <div>
-                <label htmlFor="listing-contact-phone" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Phone Number *</label>
+                <label htmlFor="listing-contact-phone" className="block text-sm font-semibold text-gray-700 mb-2">Phone Number *</label>
                 <input id="listing-contact-phone" required aria-required="true" type="tel" autoComplete="tel" value={contactPhone} onChange={e => setContactPhone(e.target.value)} placeholder="9876543210" className="premium-input w-full" />
               </div>
             </div>
@@ -831,13 +831,13 @@ export default function AddListingPage() {
 
           {/* Location */}
           <div className="premium-card !rounded-2xl p-6">
-            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-2">PG Location</h2>
+            <h2 className="text-lg font-bold text-gray-900 mb-2">PG Location</h2>
             <p className="text-xs text-gray-400 mb-4">Add the exact location so tenants can find this PG on the map</p>
 
             {lat && lng ? (
               <div className="space-y-3">
                 {/* Map preview */}
-                <div className="relative rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700">
+                <div className="relative rounded-xl overflow-hidden border border-gray-200">
                   <iframe
                     src={`https://www.openstreetmap.org/export/embed.html?bbox=${lng - 0.005},${lat - 0.003},${lng + 0.005},${lat + 0.003}&layer=mapnik&marker=${lat},${lng}`}
                     className="w-full h-48"
@@ -849,14 +849,14 @@ export default function AddListingPage() {
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
                   </svg>
                   <div className="min-w-0">
-                    {locationAddress && <p className="text-sm text-gray-700 dark:text-gray-300 truncate">{locationAddress}</p>}
+                    {locationAddress && <p className="text-sm text-gray-700 truncate">{locationAddress}</p>}
                     <p className="text-xs text-gray-400">{lat.toFixed(6)}, {lng.toFixed(6)}</p>
                   </div>
                 </div>
                 <button
                   type="button"
                   onClick={handleGetLocation}
-                  className="text-xs text-violet-600 font-medium hover:underline"
+                  className="text-xs text-[#1B1C15] font-medium hover:underline"
                 >
                   Update Location
                 </button>
@@ -867,7 +867,7 @@ export default function AddListingPage() {
                   type="button"
                   onClick={handleGetLocation}
                   disabled={locationLoading}
-                  className="inline-flex items-center gap-2 px-5 py-3 bg-violet-50 dark:bg-violet-900/20 text-violet-600 rounded-xl text-sm font-medium hover:bg-violet-100 dark:hover:bg-violet-900/30 transition disabled:opacity-50"
+                  className="inline-flex items-center gap-2 px-5 py-3 bg-[#F4EDD9] text-[#1B1C15] rounded-xl text-sm font-medium hover:bg-[#F4EDD9] transition disabled:opacity-50"
                 >
                   {locationLoading ? (
                     <>

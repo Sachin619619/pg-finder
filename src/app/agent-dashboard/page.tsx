@@ -97,11 +97,11 @@ export default function AgentDashboardPage() {
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16">
         {/* Pending Verification Banner */}
         {profile.verified === false && (
-          <div className="mb-6 p-4 rounded-2xl border-2 border-amber-300 dark:border-amber-700 bg-amber-50 dark:bg-amber-900/20 flex items-start gap-3">
+          <div className="mb-6 p-4 rounded-2xl border-2 border-amber-300 bg-amber-50 flex items-start gap-3">
             <span className="text-2xl mt-0.5">⏳</span>
             <div>
-              <h3 className="font-bold text-amber-800 dark:text-amber-300 text-sm">Account Pending Verification</h3>
-              <p className="text-xs text-amber-600 dark:text-amber-400 mt-1">
+              <h3 className="font-bold text-amber-800 text-sm">Account Pending Verification</h3>
+              <p className="text-xs text-amber-600 mt-1">
                 Your agent account is under review by the admin team. You will not be able to add listings until your account is verified. This usually takes 24-48 hours.
               </p>
             </div>
@@ -111,7 +111,7 @@ export default function AgentDashboardPage() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">🤝 Agent Dashboard</h1>
+            <h1 className="text-3xl font-bold text-gray-900">🤝 Agent Dashboard</h1>
             <p className="text-gray-400 mt-1">Welcome back, {profile.name}! Onboard PGs and earn ₹100 per PG.</p>
           </div>
           {profile.verified !== false ? (
@@ -119,7 +119,7 @@ export default function AgentDashboardPage() {
               ➕ Add New PG
             </Link>
           ) : (
-            <span className="py-3 px-6 text-sm flex items-center gap-2 whitespace-nowrap bg-gray-200 dark:bg-gray-700 text-gray-400 rounded-xl cursor-not-allowed" title="Account verification pending">
+            <span className="py-3 px-6 text-sm flex items-center gap-2 whitespace-nowrap bg-gray-200 text-gray-400 rounded-xl cursor-not-allowed" title="Account verification pending">
               🔒 Add New PG
             </span>
           )}
@@ -128,7 +128,7 @@ export default function AgentDashboardPage() {
         {/* Stats Cards */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
           {[
-            { label: "PGs Onboarded", value: totalPGs, icon: "🏠", color: "violet" },
+            { label: "PGs Onboarded", value: totalPGs, icon: "🏠", color: "cream" },
             { label: "Total Earned", value: `₹${totalEarned}`, icon: "💰", color: "emerald" },
             { label: "Pending Payout", value: `₹${pendingPayout}`, icon: "⏳", color: "amber" },
             { label: "Rejected", value: rejectedCount, icon: "❌", color: "red" },
@@ -139,7 +139,7 @@ export default function AgentDashboardPage() {
                 s.color === "emerald" ? "text-emerald-600" :
                 s.color === "amber" ? "text-amber-600" :
                 s.color === "red" ? "text-red-500" :
-                "text-violet-600"
+                "text-[#1B1C15]"
               }`}>{s.value}</p>
               <p className="text-xs text-gray-400 mt-1">{s.label}</p>
             </div>
@@ -148,8 +148,8 @@ export default function AgentDashboardPage() {
 
         {/* How it works — for new agents */}
         {totalPGs === 0 && (
-          <div className="premium-card !rounded-2xl p-6 mb-8 border-2 border-orange-200 dark:border-orange-800/30 bg-orange-50/50 dark:bg-orange-900/10">
-            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">🚀 How Agent Onboarding Works</h2>
+          <div className="premium-card !rounded-2xl p-6 mb-8 border-2 border-orange-200 bg-orange-50/50">
+            <h2 className="text-lg font-bold text-gray-900 mb-4">🚀 How Agent Onboarding Works</h2>
             <div className="grid sm:grid-cols-4 gap-4">
               {[
                 { step: "1", title: "Visit a PG", desc: "Go to a PG physically and talk to the owner about Castle" },
@@ -159,7 +159,7 @@ export default function AgentDashboardPage() {
               ].map((s) => (
                 <div key={s.step} className="text-center">
                   <div className="w-10 h-10 bg-orange-500 text-white rounded-full flex items-center justify-center mx-auto mb-2 font-bold text-lg">{s.step}</div>
-                  <p className="font-semibold text-gray-900 dark:text-white text-sm">{s.title}</p>
+                  <p className="font-semibold text-gray-900 text-sm">{s.title}</p>
                   <p className="text-xs text-gray-400 mt-1">{s.desc}</p>
                 </div>
               ))}
@@ -168,13 +168,13 @@ export default function AgentDashboardPage() {
         )}
 
         {/* Tabs */}
-        <div className="flex gap-1 bg-gray-100 dark:bg-gray-800 rounded-2xl p-1 mb-8 overflow-x-auto">
+        <div className="flex gap-1 bg-gray-100 rounded-2xl p-1 mb-8 overflow-x-auto">
           {(["overview", "my-pgs", "payouts"] as const).map((t) => (
             <button
               key={t}
               onClick={() => setTab(t)}
               className={`px-5 py-2.5 rounded-xl text-sm font-medium transition-all whitespace-nowrap ${
-                tab === t ? "bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm" : "text-gray-500 hover:text-gray-700"
+                tab === t ? "bg-white text-gray-900 shadow-sm" : "text-gray-500 hover:text-gray-700"
               }`}
             >
               {t === "overview" && "📊 "}
@@ -196,7 +196,7 @@ export default function AgentDashboardPage() {
               <div className="space-y-6">
                 {/* Recent activity */}
                 <div className="premium-card !rounded-2xl p-6">
-                  <h3 className="font-bold text-gray-900 dark:text-white mb-4">📋 Recent Activity</h3>
+                  <h3 className="font-bold text-gray-900 mb-4">📋 Recent Activity</h3>
                   {requests.length === 0 ? (
                     <div className="text-center py-10">
                       <span className="text-4xl block mb-3">🏠</span>
@@ -208,11 +208,11 @@ export default function AgentDashboardPage() {
                   ) : (
                     <div className="space-y-3">
                       {requests.slice(0, 5).map((r) => (
-                        <div key={r.id} className="flex items-center justify-between p-4 rounded-xl bg-gray-50 dark:bg-gray-800/50">
+                        <div key={r.id} className="flex items-center justify-between p-4 rounded-xl bg-gray-50">
                           <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-xl bg-violet-100 dark:bg-violet-900/30 flex items-center justify-center text-lg">🏠</div>
+                            <div className="w-10 h-10 rounded-xl bg-[#F4EDD9] flex items-center justify-center text-lg">🏠</div>
                             <div>
-                              <p className="font-semibold text-gray-900 dark:text-white text-sm">{r.pg_name}</p>
+                              <p className="font-semibold text-gray-900 text-sm">{r.pg_name}</p>
                               <p className="text-xs text-gray-400">{r.pg_area} · {new Date(r.created_at).toLocaleDateString()}</p>
                             </div>
                           </div>
@@ -238,8 +238,8 @@ export default function AgentDashboardPage() {
 
                 {/* Tips card */}
                 <div className="premium-card !rounded-2xl p-6">
-                  <h3 className="font-bold text-gray-900 dark:text-white mb-3">💡 Tips for Agents</h3>
-                  <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                  <h3 className="font-bold text-gray-900 mb-3">💡 Tips for Agents</h3>
+                  <ul className="space-y-2 text-sm text-gray-600">
                     <li className="flex items-start gap-2"><span>✅</span> Always get the owner&apos;s consent before adding their PG</li>
                     <li className="flex items-start gap-2"><span>✅</span> Fill in all details accurately — incorrect info may get rejected</li>
                     <li className="flex items-start gap-2"><span>✅</span> Take clear photos of the PG rooms and common areas</li>
@@ -256,7 +256,7 @@ export default function AgentDashboardPage() {
                 {listings.length === 0 ? (
                   <div className="premium-card !rounded-2xl p-6 text-center py-16">
                     <span className="text-5xl block mb-4">🏠</span>
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">No PGs Added Yet</h3>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">No PGs Added Yet</h3>
                     <p className="text-gray-400 mb-6">Visit PGs in your area and onboard them to Castle!</p>
                     <Link href="/add-listing" className="btn-premium !py-3 !px-8">
                       ➕ Add Your First PG
@@ -270,7 +270,7 @@ export default function AgentDashboardPage() {
                         <div key={pg.id} className="premium-card !rounded-2xl p-5">
                           <div className="flex items-start justify-between mb-3">
                             <div>
-                              <h4 className="font-bold text-gray-900 dark:text-white">{pg.name}</h4>
+                              <h4 className="font-bold text-gray-900">{pg.name}</h4>
                               <p className="text-xs text-gray-400 mt-0.5">📍 {pg.area}</p>
                             </div>
                             {req && (
@@ -296,15 +296,15 @@ export default function AgentDashboardPage() {
                           </div>
                           {/* Claim Code / Owner Status */}
                           {pg.claim_code && !pg.owner_id ? (
-                            <div className="mt-3 p-3 bg-violet-50 dark:bg-violet-900/10 rounded-xl border border-violet-100 dark:border-violet-800/30">
-                              <p className="text-[10px] text-violet-400 font-medium mb-1">🔑 Claim Code (share with owner)</p>
+                            <div className="mt-3 p-3 bg-[#F4EDD9] rounded-xl border border-[#e8e0cc]">
+                              <p className="text-[10px] text-[#8a8070] font-medium mb-1">🔑 Claim Code (share with owner)</p>
                               <div className="flex items-center gap-2">
-                                <code className="text-sm font-bold text-violet-700 dark:text-violet-300 tracking-widest">{pg.claim_code}</code>
+                                <code className="text-sm font-bold text-[#1B1C15] tracking-widest">{pg.claim_code}</code>
                                 <button
                                   onClick={() => {
                                     navigator.clipboard.writeText(pg.claim_code!);
                                   }}
-                                  className="text-[10px] text-violet-500 hover:text-violet-700 font-medium underline"
+                                  className="text-[10px] text-[#1B1C15] hover:text-[#1B1C15] font-medium underline"
                                 >
                                   Copy
                                 </button>
@@ -312,18 +312,18 @@ export default function AgentDashboardPage() {
                             </div>
                           ) : pg.owner_id ? (
                             <div className="mt-3 flex items-center gap-1.5">
-                              <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-600 bg-emerald-50 dark:bg-emerald-900/10 px-2.5 py-1 rounded-full">
+                              <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full">
                                 ✅ Owner Linked
                               </span>
                             </div>
                           ) : null}
                           {req?.status === "rejected" && req.admin_note && (
-                            <div className="mt-3 p-3 bg-red-50 dark:bg-red-900/10 rounded-xl">
+                            <div className="mt-3 p-3 bg-red-50 rounded-xl">
                               <p className="text-xs text-red-500 font-medium">Rejection reason:</p>
                               <p className="text-xs text-red-400 mt-0.5">{req.admin_note}</p>
                             </div>
                           )}
-                          <Link href={`/listing/${pg.id}`} className="block mt-3 text-center text-xs text-violet-600 font-semibold hover:underline">
+                          <Link href={`/listing/${pg.id}`} className="block mt-3 text-center text-xs text-[#1B1C15] font-semibold hover:underline">
                             View Listing →
                           </Link>
                         </div>
@@ -349,20 +349,20 @@ export default function AgentDashboardPage() {
                   </div>
                   <div className="premium-card !rounded-2xl p-4 text-center">
                     <p className="text-xs text-gray-400">Per PG Rate</p>
-                    <p className="text-xl font-extrabold text-violet-600 mt-1">₹100</p>
+                    <p className="text-xl font-extrabold text-[#1B1C15] mt-1">₹100</p>
                   </div>
                 </div>
 
                 {requests.length === 0 ? (
                   <div className="premium-card !rounded-2xl p-6 text-center py-16">
                     <span className="text-5xl block mb-4">💰</span>
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">No Payout Requests</h3>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">No Payout Requests</h3>
                     <p className="text-gray-400">Add PGs to earn ₹100 per onboarding!</p>
                   </div>
                 ) : (
                   <div className="premium-card !rounded-2xl overflow-hidden">
                     <table className="w-full text-sm">
-                      <thead className="bg-gray-50 dark:bg-gray-800">
+                      <thead className="bg-gray-50">
                         <tr>
                           <th className="text-left p-4 font-semibold text-gray-500">PG Name</th>
                           <th className="text-left p-4 font-semibold text-gray-500 hidden sm:table-cell">Area</th>
@@ -371,11 +371,11 @@ export default function AgentDashboardPage() {
                           <th className="text-left p-4 font-semibold text-gray-500 hidden sm:table-cell">Date</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
+                      <tbody className="divide-y divide-gray-100">
                         {requests.map((r) => (
-                          <tr key={r.id} className="hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                          <tr key={r.id} className="hover:bg-gray-50">
                             <td className="p-4">
-                              <p className="font-medium text-gray-900 dark:text-white">{r.pg_name}</p>
+                              <p className="font-medium text-gray-900">{r.pg_name}</p>
                               <p className="text-xs text-gray-400 sm:hidden">{r.pg_area}</p>
                             </td>
                             <td className="p-4 text-gray-500 hidden sm:table-cell">{r.pg_area}</td>

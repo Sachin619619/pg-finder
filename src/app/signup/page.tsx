@@ -155,12 +155,12 @@ export default function SignUpPage() {
         <Header />
         <main className="min-h-screen flex items-center justify-center px-4 pt-20">
           <div className="w-full max-w-md text-center">
-            <div className="w-24 h-24 bg-emerald-50 dark:bg-emerald-900/30 rounded-3xl flex items-center justify-center mx-auto mb-6 animate-bounce">
+            <div className="w-24 h-24 bg-emerald-50 rounded-3xl flex items-center justify-center mx-auto mb-6 animate-bounce">
               <span className="text-6xl">🎉</span>
             </div>
-            <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white mb-3">Welcome to Castle!</h1>
+            <h1 className="text-3xl font-extrabold text-gray-900 mb-3">Welcome to Castle!</h1>
             <p className="text-gray-400 mb-2">Your account has been verified successfully ✅</p>
-            <p className="text-sm text-gray-400 mb-8">You&apos;re now signed in as <strong className="text-violet-600">{email}</strong></p>
+            <p className="text-sm text-gray-400 mb-8">You&apos;re now signed in as <strong className="text-[#1B1C15]">{email}</strong></p>
             <button onClick={() => router.push("/")} className="btn-premium !py-4 !px-10">
               🏠 Start Exploring PGs
             </button>
@@ -178,19 +178,19 @@ export default function SignUpPage() {
         <main className="min-h-screen flex items-center justify-center px-4 pt-20">
           <div className="w-full max-w-md">
             <div className="text-center mb-8">
-              <div className="w-20 h-20 bg-violet-50 dark:bg-violet-900/20 rounded-3xl flex items-center justify-center mx-auto mb-4">
+              <div className="w-20 h-20 bg-[#F4EDD9] rounded-3xl flex items-center justify-center mx-auto mb-4">
                 <span className="text-5xl">📧</span>
               </div>
-              <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">Verify Your Email</h1>
+              <h1 className="text-3xl font-extrabold text-gray-900">Verify Your Email</h1>
               <p className="text-gray-400 mt-2">
                 We sent an 8-digit code to<br />
-                <strong className="text-gray-900 dark:text-white">{email}</strong>
+                <strong className="text-gray-900">{email}</strong>
               </p>
             </div>
 
             <div className="premium-card !rounded-3xl p-8">
               {otpError && (
-                <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-2xl text-sm text-red-600 dark:text-red-400">
+                <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-2xl text-sm text-red-600">
                   ⚠️ {otpError}
                 </div>
               )}
@@ -209,9 +209,9 @@ export default function SignUpPage() {
                     onKeyDown={(e) => handleOtpKeyDown(i, e)}
                     className={`w-11 h-12 text-center text-xl font-bold rounded-xl border-2 outline-none transition-all ${
                       digit
-                        ? "border-violet-500 bg-violet-50 dark:bg-violet-900/20 text-violet-700 dark:text-violet-300"
-                        : "border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
-                    } focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20`}
+                        ? "border-[#1B1C15] bg-[#F4EDD9] text-[#1B1C15]"
+                        : "border-gray-200 bg-white text-gray-900"
+                    } focus:border-[#1B1C15] focus:ring-2 focus:ring-[#1B1C15]/20`}
                     autoFocus={i === 0}
                   />
                 ))}
@@ -240,13 +240,13 @@ export default function SignUpPage() {
               <div className="mt-6 text-center">
                 {countdown > 0 ? (
                   <p className="text-sm text-gray-400">
-                    Resend code in <span className="font-semibold text-violet-600">{countdown}s</span>
+                    Resend code in <span className="font-semibold text-[#1B1C15]">{countdown}s</span>
                   </p>
                 ) : (
                   <button
                     onClick={handleResend}
                     disabled={resending}
-                    className="text-sm text-violet-600 font-semibold hover:underline disabled:opacity-50"
+                    className="text-sm text-[#1B1C15] font-semibold hover:underline disabled:opacity-50"
                   >
                     {resending ? "Sending..." : "📧 Resend OTP Code"}
                   </button>
@@ -257,7 +257,7 @@ export default function SignUpPage() {
               <div className="mt-4 text-center">
                 <button
                   onClick={() => { setStep("form"); setOtp(["", "", "", "", "", "", "", ""]); setOtpError(""); }}
-                  className="text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                  className="text-xs text-gray-400 hover:text-gray-600"
                 >
                   ← Change email address
                 </button>
@@ -276,19 +276,19 @@ export default function SignUpPage() {
       <main className="min-h-screen flex items-center justify-center px-4 pt-20 pb-10">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-gradient-to-br from-violet-600 to-fuchsia-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-violet-500/20">
+            <div className="w-16 h-16 bg-[#1B1C15] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-black/20">
               <span className="text-white text-2xl font-bold">P</span>
             </div>
-            <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">Create Account ✨</h1>
+            <h1 className="text-3xl font-extrabold text-gray-900">Create Account ✨</h1>
             <p className="text-gray-400 mt-2">Join Castle to find or list PGs</p>
           </div>
 
           <div className="premium-card !rounded-3xl p-8">
             {error && (
-              <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-2xl text-sm text-red-600 dark:text-red-400">
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-2xl text-sm text-red-600">
                 <p>⚠️ {error}</p>
                 {error.toLowerCase().includes("already exists") && (
-                  <Link href="/login" className="inline-block mt-2 text-violet-600 dark:text-violet-400 font-semibold hover:underline text-xs">
+                  <Link href="/login" className="inline-block mt-2 text-[#1B1C15] font-semibold hover:underline text-xs">
                     → Go to Sign In
                   </Link>
                 )}
@@ -297,7 +297,7 @@ export default function SignUpPage() {
 
             {/* Role selector */}
             <div className="mb-6">
-              <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">I am a...</label>
+              <label className="block text-sm font-semibold text-gray-700 mb-3">I am a...</label>
               <div className="grid grid-cols-3 gap-3">
                 {[
                   { value: "tenant" as UserRole, label: "🏠 Tenant", desc: "Looking for a PG" },
@@ -310,12 +310,12 @@ export default function SignUpPage() {
                     onClick={() => setRole(r.value)}
                     className={`p-4 rounded-2xl border-2 text-left transition-all ${
                       role === r.value
-                        ? "border-violet-500 bg-violet-50 dark:bg-violet-900/20"
-                        : "border-gray-200 dark:border-gray-700 hover:border-violet-200 dark:hover:border-violet-800"
+                        ? "border-[#1B1C15] bg-[#F4EDD9]"
+                        : "border-gray-200 hover:border-[#e8e0cc]"
                     }`}
                   >
                     <span className="text-lg">{r.label.split(" ")[0]}</span>
-                    <p className="font-semibold text-gray-900 dark:text-white text-sm mt-1">{r.label.split(" ").slice(1).join(" ")}</p>
+                    <p className="font-semibold text-gray-900 text-sm mt-1">{r.label.split(" ").slice(1).join(" ")}</p>
                     <p className="text-xs text-gray-400 mt-0.5">{r.desc}</p>
                   </button>
                 ))}
@@ -324,7 +324,7 @@ export default function SignUpPage() {
 
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label htmlFor="signup-name" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Full Name</label>
+                <label htmlFor="signup-name" className="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
                 <input
                   id="signup-name"
                   type="text"
@@ -339,7 +339,7 @@ export default function SignUpPage() {
               </div>
 
               <div>
-                <label htmlFor="signup-username" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                <label htmlFor="signup-username" className="block text-sm font-semibold text-gray-700 mb-2">
                   Username {(role === "owner" || role === "agent") && <span className="text-red-400">*</span>}
                 </label>
                 <div className="relative">
@@ -363,7 +363,7 @@ export default function SignUpPage() {
               </div>
 
               <div>
-                <label htmlFor="signup-email" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Email</label>
+                <label htmlFor="signup-email" className="block text-sm font-semibold text-gray-700 mb-2">Email</label>
                 <input
                   id="signup-email"
                   type="email"
@@ -378,7 +378,7 @@ export default function SignUpPage() {
               </div>
 
               <div>
-                <label htmlFor="signup-password" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Password</label>
+                <label htmlFor="signup-password" className="block text-sm font-semibold text-gray-700 mb-2">Password</label>
                 <input
                   id="signup-password"
                   type="password"
@@ -415,7 +415,7 @@ export default function SignUpPage() {
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-400">
                 Already have an account?{" "}
-                <Link href="/login" className="text-violet-600 font-semibold hover:underline">
+                <Link href="/login" className="text-[#1B1C15] font-semibold hover:underline">
                   Sign In
                 </Link>
               </p>

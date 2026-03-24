@@ -125,7 +125,7 @@ export default function PhotoUpload({ pgId, existingPhotos, onUpdate }: Props) {
 
   return (
     <div>
-      <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">📸 PG Photos</label>
+      <label className="block text-sm font-semibold text-gray-700 mb-3">📸 PG Photos</label>
 
       <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 mb-4">
         {photos.map((url, i) => (
@@ -144,10 +144,10 @@ export default function PhotoUpload({ pgId, existingPhotos, onUpdate }: Props) {
         <button
           onClick={() => inputRef.current?.click()}
           disabled={uploading}
-          className="aspect-square rounded-xl border-2 border-dashed border-gray-300 dark:border-gray-600 flex flex-col items-center justify-center gap-2 hover:border-violet-400 hover:bg-violet-50 dark:hover:bg-violet-900/10 transition-all"
+          className="aspect-square rounded-xl border-2 border-dashed border-gray-300 flex flex-col items-center justify-center gap-2 hover:border-[#8a8070] hover:bg-[#F4EDD9]:bg-[#2a2520] transition-all"
         >
           {uploading ? (
-            <svg className="animate-spin w-6 h-6 text-violet-500" fill="none" viewBox="0 0 24 24">
+            <svg className="animate-spin w-6 h-6 text-[#1B1C15]" fill="none" viewBox="0 0 24 24">
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
             </svg>
@@ -171,7 +171,7 @@ export default function PhotoUpload({ pgId, existingPhotos, onUpdate }: Props) {
         onChange={(e) => handleUpload(e.target.files)}
       />
       {modError && (
-        <div className="mb-3 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl text-sm text-red-600 dark:text-red-400">
+        <div className="mb-3 p-3 bg-red-50 border border-red-200 rounded-xl text-sm text-red-600">
           <div className="flex items-start gap-2">
             <span className="flex-shrink-0">🛡️</span>
             <div>
@@ -181,7 +181,7 @@ export default function PhotoUpload({ pgId, existingPhotos, onUpdate }: Props) {
               ))}
             </div>
           </div>
-          <button onClick={() => setModError("")} className="mt-2 text-xs text-violet-600 hover:underline">Dismiss</button>
+          <button onClick={() => setModError("")} className="mt-2 text-xs text-[#1B1C15] hover:underline">Dismiss</button>
         </div>
       )}
       <p className="text-xs text-gray-400">Upload up to 10 photos. JPG, PNG accepted. Min 200x200px. Max 5MB each.</p>

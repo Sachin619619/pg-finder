@@ -40,18 +40,18 @@ const nearbyCategories = [
 ];
 
 const colorMap: Record<string, string> = {
-  emerald: "bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400",
-  orange: "bg-orange-50 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400",
-  red: "bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400",
-  blue: "bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400",
-  amber: "bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400",
-  violet: "bg-violet-50 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400",
+  emerald: "bg-emerald-50 text-emerald-600",
+  orange: "bg-orange-50 text-orange-600",
+  red: "bg-red-50 text-red-600",
+  blue: "bg-blue-50 text-blue-600",
+  amber: "bg-amber-50 text-amber-600",
+  violet: "bg-[#F4EDD9] text-[#1B1C15]",
 };
 
 export default function NearbyPlaces({ area }: { area: string }) {
   return (
     <div className="premium-card !rounded-2xl p-6 sm:p-8">
-      <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-1">Nearby in {area}</h2>
+      <h2 className="text-xl font-bold text-gray-900 mb-1">Nearby in {area}</h2>
       <p className="text-sm text-gray-400 mb-6">Essential places around this PG</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         {nearbyCategories.map((cat) => (
@@ -62,10 +62,10 @@ export default function NearbyPlaces({ area }: { area: string }) {
               </svg>
             </div>
             <div>
-              <h4 className="font-semibold text-gray-900 dark:text-white text-sm mb-1">{cat.label}</h4>
+              <h4 className="font-semibold text-gray-900 text-sm mb-1">{cat.label}</h4>
               <div className="flex flex-wrap gap-1.5">
                 {cat.items.map((item) => (
-                  <span key={item} className="text-[11px] text-gray-500 bg-gray-50 dark:bg-gray-800 px-2 py-0.5 rounded-md">{item}</span>
+                  <span key={item} className="text-[11px] text-gray-500 bg-gray-50 px-2 py-0.5 rounded-md">{item}</span>
                 ))}
               </div>
             </div>

@@ -54,30 +54,30 @@ export default async function AreaPage({ params }: Props) {
       <Header />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <nav className="mb-6 text-sm text-gray-500 flex items-center gap-2">
-          <Link href="/" className="hover:text-violet-600">Home</Link>
+          <Link href="/" className="hover:text-[#1B1C15]">Home</Link>
           <span>/</span>
           <span className="text-gray-900">{area}</span>
         </nav>
 
         {/* Area Hero */}
-        <div className="bg-gradient-to-r from-violet-600 to-indigo-600 rounded-2xl p-8 text-white mb-8">
+        <div className="bg-[#1B1C15] rounded-2xl p-8 text-white mb-8">
           <h1 className="text-3xl sm:text-4xl font-bold mb-2">PG in {area}</h1>
-          <p className="text-violet-100 mb-6">
+          <p className="text-[#F4EDD9] mb-6">
             Find verified PG accommodations in {area}, Bangalore.
             Browse {areaListings.length} listings with detailed amenities, pricing, and reviews.
           </p>
           <div className="flex flex-wrap gap-4">
             <div className="bg-white/15 rounded-xl px-4 py-3 backdrop-blur-sm">
               <p className="text-2xl font-bold">{areaListings.length}</p>
-              <p className="text-xs text-violet-200">PGs Available</p>
+              <p className="text-xs text-[#d4ccb5]">PGs Available</p>
             </div>
             <div className="bg-white/15 rounded-xl px-4 py-3 backdrop-blur-sm">
               <p className="text-2xl font-bold">₹{avgPrice.toLocaleString()}</p>
-              <p className="text-xs text-violet-200">Avg. Rent/Month</p>
+              <p className="text-xs text-[#d4ccb5]">Avg. Rent/Month</p>
             </div>
             <div className="bg-white/15 rounded-xl px-4 py-3 backdrop-blur-sm">
               <p className="text-2xl font-bold">{avgRating}</p>
-              <p className="text-xs text-violet-200">Avg. Rating</p>
+              <p className="text-xs text-[#d4ccb5]">Avg. Rating</p>
             </div>
           </div>
         </div>
@@ -114,7 +114,7 @@ export default async function AreaPage({ params }: Props) {
               <Link
                 key={a}
                 href={`/area/${a.toLowerCase().replace(/\s+/g, "-")}`}
-                className="px-4 py-2 bg-gray-100 rounded-lg text-sm font-medium text-gray-700 hover:bg-violet-100 hover:text-violet-700 transition"
+                className="px-4 py-2 bg-gray-100 rounded-lg text-sm font-medium text-gray-700 hover:bg-[#F4EDD9] hover:text-[#1B1C15] transition"
               >
                 PG in {a}
               </Link>

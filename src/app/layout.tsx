@@ -1,24 +1,25 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Playfair_Display, DM_Sans } from "next/font/google";
 import "./globals.css";
 import SWRegister from "@/components/SWRegister";
 import InstallPrompt from "@/components/InstallPrompt";
 import BackToTop from "@/components/BackToTop";
 import ScrollProgress from "@/components/ScrollProgress";
-import AIAgent from "@/components/AIAgent";
+// import AIAgent from "@/components/AIAgent"; // Replaced by ActionBot widget
+import ActionBotBridge from "@/components/ActionBotBridge";
 import CookieConsent from "@/components/CookieConsent";
 import ProgressBarProvider from "@/components/ProgressBar";
 import { AuthProvider } from "@/lib/auth";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { ToastProvider } from "@/components/Toast";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const playfairDisplay = Playfair_Display({
+  variable: "--font-serif",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const dmSans = DM_Sans({
+  variable: "--font-sans",
   subsets: ["latin"],
 });
 
@@ -108,7 +109,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#7c3aed",
+  themeColor: "#1B1C15",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
@@ -191,7 +192,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${playfairDisplay.variable} ${dmSans.variable} h-full antialiased`}
     >
       <head>
         <link rel="preconnect" href="https://images.unsplash.com" />
@@ -201,11 +202,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var d=localStorage.getItem('pg-dark-mode');var dark=d!==null?d==='true':window.matchMedia('(prefers-color-scheme:dark)').matches;if(dark)document.documentElement.classList.add('dark')}catch(e){}})()`,
-          }}
-        />
         {process.env.NEXT_PUBLIC_ADSENSE_PUB_ID && (
           <script
             async
@@ -214,10 +210,10 @@ export default function RootLayout({
           />
         )}
       </head>
-      <body className="min-h-full flex flex-col bg-gray-50">
+      <body className="min-h-full flex flex-col bg-[#F4EDD9] overflow-x-hidden">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-violet-600 focus:text-white focus:rounded-xl focus:font-semibold focus:shadow-lg focus:outline-none"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-[#1B1C15] focus:text-white focus:rounded-xl focus:font-semibold focus:shadow-lg focus:outline-none"
         >
           Skip to main content
         </a>
@@ -227,13 +223,20 @@ export default function RootLayout({
             <ScrollProgress />
             <ProgressBarProvider />
             {children}
-            <AIAgent />
+            {/* <AIAgent /> */}
+            <ActionBotBridge />
             <BackToTop />
             <SWRegister />
             <InstallPrompt />
             <CookieConsent />
           </ToastProvider>
         </AuthProvider>
+        <script
+          src="https://actionbot-next.vercel.app/widget.js"
+          data-tenant="castle-674545ded691fc48edc66366bc5a754d"
+          data-api="https://actionbot-next.vercel.app"
+          data-color="#1B1C15"
+        />
       </body>
     </html>
   );

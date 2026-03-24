@@ -8,14 +8,14 @@ export default function TermsOfServicePage() {
   useEffect(() => { document.title = "Terms of Service | Castle"; }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-[#0a0a12]">
+    <div className="min-h-screen bg-gray-50">
       <Header />
 
       <main className="pt-28 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           {/* Page Header */}
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-100/80 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 text-xs font-semibold mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F4EDD9]/80 text-[#1B1C15] text-xs font-semibold mb-4">
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                 <polyline points="14 2 14 8 20 8" />
@@ -25,8 +25,8 @@ export default function TermsOfServicePage() {
               </svg>
               Legal
             </div>
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white mb-3">Terms of Service</h1>
-            <p className="text-gray-500 dark:text-gray-400 text-sm">Last updated: March 23, 2026</p>
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3">Terms of Service</h1>
+            <p className="text-gray-500 text-sm">Last updated: March 23, 2026</p>
           </div>
 
           {/* Content */}
@@ -34,20 +34,20 @@ export default function TermsOfServicePage() {
 
             {/* Introduction */}
             <section>
-              <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-                Welcome to <strong className="text-gray-900 dark:text-white">Castle</strong>. By accessing or using our platform at{" "}
-                <a href="https://castleliving.in" className="text-violet-600 dark:text-violet-400 underline underline-offset-2">castleliving.in</a>,
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Welcome to <strong className="text-gray-900">Castle</strong>. By accessing or using our platform at{" "}
+                <a href="https://castleliving.in" className="text-[#1B1C15] underline underline-offset-2">castleliving.in</a>,
                 you agree to be bound by these Terms of Service (&quot;Terms&quot;). Please read them carefully before using our services. If you do not agree to these Terms, you may not use the platform.
               </p>
             </section>
 
             {/* 1. Platform Overview */}
             <section>
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-gradient-to-br from-violet-600 to-fuchsia-500 rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">1</span>
+              <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">1</span>
                 Platform Overview
               </h2>
-              <div className="space-y-3 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+              <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
                 <p>Castle is a PG, hostel, and co-living finder platform designed to help people in Bangalore, India find suitable accommodation. The platform connects tenants seeking accommodation with property owners and agents who list available spaces.</p>
                 <p>Castle acts solely as an intermediary platform and is not a party to any rental agreement between tenants and property owners/agents. We do not own, manage, or operate any of the listed properties.</p>
               </div>
@@ -55,11 +55,11 @@ export default function TermsOfServicePage() {
 
             {/* 2. User Accounts & Roles */}
             <section>
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-gradient-to-br from-violet-600 to-fuchsia-500 rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">2</span>
+              <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">2</span>
                 User Accounts &amp; Roles
               </h2>
-              <div className="space-y-3 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+              <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
                 <p>Castle supports three user roles, each with specific permissions and responsibilities:</p>
                 <div className="grid sm:grid-cols-3 gap-4 mt-4">
                   {[
@@ -79,16 +79,16 @@ export default function TermsOfServicePage() {
                       items: ["List properties on behalf of owners", "Manage multiple listings", "Access agent dashboard", "Communicate with tenants", "Track leads and inquiries"],
                     },
                   ].map((r) => (
-                    <div key={r.role} className="bg-gray-50 dark:bg-white/[0.03] border border-gray-100 dark:border-white/[0.06] rounded-xl p-4">
+                    <div key={r.role} className="bg-gray-50 border border-gray-100 rounded-xl p-4">
                       <span className={`inline-block px-2.5 py-0.5 rounded-lg text-xs font-semibold mb-3 ${
-                        r.color === "emerald" ? "bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600" :
-                        r.color === "blue" ? "bg-blue-50 dark:bg-blue-900/30 text-blue-600" :
-                        "bg-orange-50 dark:bg-orange-900/30 text-orange-600"
+                        r.color === "emerald" ? "bg-emerald-50 text-emerald-600" :
+                        r.color === "blue" ? "bg-blue-50 text-blue-600" :
+                        "bg-orange-50 text-orange-600"
                       }`}>{r.role}</span>
                       <ul className="space-y-1.5">
                         {r.items.map((item) => (
-                          <li key={item} className="flex items-start gap-2 text-xs text-gray-500 dark:text-gray-400">
-                            <span className="w-1 h-1 bg-violet-500 rounded-full mt-1.5 shrink-0" />
+                          <li key={item} className="flex items-start gap-2 text-xs text-gray-500">
+                            <span className="w-1 h-1 bg-[#1B1C15] rounded-full mt-1.5 shrink-0" />
                             {item}
                           </li>
                         ))}
@@ -102,11 +102,11 @@ export default function TermsOfServicePage() {
 
             {/* 3. Listing Guidelines */}
             <section>
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-gradient-to-br from-violet-600 to-fuchsia-500 rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">3</span>
+              <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">3</span>
                 Listing Guidelines
               </h2>
-              <div className="space-y-3 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+              <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
                 <p>Property owners and agents must adhere to the following guidelines when listing properties on Castle:</p>
                 <ul className="list-none space-y-2.5 pl-2">
                   {[
@@ -120,7 +120,7 @@ export default function TermsOfServicePage() {
                     "Duplicate listings for the same property are not allowed",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2.5">
-                      <span className="w-1.5 h-1.5 bg-violet-500 rounded-full mt-1.5 shrink-0" />
+                      <span className="w-1.5 h-1.5 bg-[#1B1C15] rounded-full mt-1.5 shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -131,11 +131,11 @@ export default function TermsOfServicePage() {
 
             {/* 4. Reviews & Ratings Policy */}
             <section>
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-gradient-to-br from-violet-600 to-fuchsia-500 rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">4</span>
+              <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">4</span>
                 Reviews &amp; Ratings Policy
               </h2>
-              <div className="space-y-3 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+              <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
                 <p>Reviews and ratings are a key part of the Castle community. To maintain trust and transparency:</p>
                 <ul className="list-none space-y-2.5 pl-2">
                   {[
@@ -148,7 +148,7 @@ export default function TermsOfServicePage() {
                     "Users who repeatedly post fraudulent reviews may have their accounts suspended",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2.5">
-                      <span className="w-1.5 h-1.5 bg-violet-500 rounded-full mt-1.5 shrink-0" />
+                      <span className="w-1.5 h-1.5 bg-[#1B1C15] rounded-full mt-1.5 shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -158,11 +158,11 @@ export default function TermsOfServicePage() {
 
             {/* 5. Acceptable Use */}
             <section>
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-gradient-to-br from-violet-600 to-fuchsia-500 rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">5</span>
+              <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">5</span>
                 Acceptable Use
               </h2>
-              <div className="space-y-3 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+              <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
                 <p>When using Castle, you agree not to:</p>
                 <ul className="list-none space-y-2.5 pl-2">
                   {[
@@ -176,7 +176,7 @@ export default function TermsOfServicePage() {
                     "Use the platform to harass, threaten, or discriminate against other users",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2.5">
-                      <span className="w-1.5 h-1.5 bg-violet-500 rounded-full mt-1.5 shrink-0" />
+                      <span className="w-1.5 h-1.5 bg-[#1B1C15] rounded-full mt-1.5 shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -186,11 +186,11 @@ export default function TermsOfServicePage() {
 
             {/* 6. Account Termination */}
             <section>
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-gradient-to-br from-violet-600 to-fuchsia-500 rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">6</span>
+              <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">6</span>
                 Account Termination
               </h2>
-              <div className="space-y-3 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+              <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
                 <p>Castle reserves the right to suspend or terminate your account at any time if:</p>
                 <ul className="list-none space-y-2.5 pl-2">
                   {[
@@ -202,24 +202,24 @@ export default function TermsOfServicePage() {
                     "We are required to do so by law or legal process",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2.5">
-                      <span className="w-1.5 h-1.5 bg-violet-500 rounded-full mt-1.5 shrink-0" />
+                      <span className="w-1.5 h-1.5 bg-[#1B1C15] rounded-full mt-1.5 shrink-0" />
                       {item}
                     </li>
                   ))}
                 </ul>
-                <p>You may also voluntarily delete your account at any time through the account settings. Upon deletion, your personal data will be removed as described in our <Link href="/privacy" className="text-violet-600 dark:text-violet-400 underline underline-offset-2">Privacy Policy</Link>.</p>
+                <p>You may also voluntarily delete your account at any time through the account settings. Upon deletion, your personal data will be removed as described in our <Link href="/privacy" className="text-[#1B1C15] underline underline-offset-2">Privacy Policy</Link>.</p>
               </div>
             </section>
 
             {/* 7. Limitation of Liability */}
             <section>
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-gradient-to-br from-violet-600 to-fuchsia-500 rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">7</span>
+              <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">7</span>
                 Limitation of Liability
               </h2>
-              <div className="space-y-3 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-                <div className="bg-amber-50/50 dark:bg-amber-900/10 border border-amber-200/50 dark:border-amber-800/30 rounded-xl p-5">
-                  <p className="font-semibold text-gray-900 dark:text-white mb-2">Important Notice</p>
+              <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
+                <div className="bg-amber-50/50 border border-amber-200/50 rounded-xl p-5">
+                  <p className="font-semibold text-gray-900 mb-2">Important Notice</p>
                   <p>Castle is a listing and discovery platform only. We do not guarantee the quality, safety, legality, or availability of any listed property. Users are advised to:</p>
                   <ul className="list-none space-y-2 pl-2 mt-3">
                     {[
@@ -242,11 +242,11 @@ export default function TermsOfServicePage() {
 
             {/* 8. Dispute Resolution */}
             <section>
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-gradient-to-br from-violet-600 to-fuchsia-500 rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">8</span>
+              <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">8</span>
                 Dispute Resolution
               </h2>
-              <div className="space-y-3 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+              <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
                 <p>In the event of any dispute arising out of or relating to these Terms or the use of Castle:</p>
                 <ul className="list-none space-y-2.5 pl-2">
                   {[
@@ -257,7 +257,7 @@ export default function TermsOfServicePage() {
                     "The courts of Bangalore, Karnataka shall have exclusive jurisdiction over any legal proceedings",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2.5">
-                      <span className="w-1.5 h-1.5 bg-violet-500 rounded-full mt-1.5 shrink-0" />
+                      <span className="w-1.5 h-1.5 bg-[#1B1C15] rounded-full mt-1.5 shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -267,11 +267,11 @@ export default function TermsOfServicePage() {
 
             {/* 9. Intellectual Property */}
             <section>
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-gradient-to-br from-violet-600 to-fuchsia-500 rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">9</span>
+              <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">9</span>
                 Intellectual Property
               </h2>
-              <div className="space-y-3 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+              <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
                 <p>All content, design, graphics, logos, and trademarks on Castle are the property of Castle or its licensors. You may not copy, reproduce, distribute, or create derivative works from any content on the platform without prior written consent.</p>
                 <p>Property photos and descriptions uploaded by users remain the intellectual property of the respective users, but by uploading them, you grant Castle a non-exclusive, royalty-free license to display them on the platform.</p>
               </div>
@@ -279,29 +279,29 @@ export default function TermsOfServicePage() {
 
             {/* 10. Changes to Terms */}
             <section>
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-gradient-to-br from-violet-600 to-fuchsia-500 rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">10</span>
+              <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">10</span>
                 Changes to These Terms
               </h2>
-              <div className="space-y-3 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+              <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
                 <p>We may revise these Terms at any time by updating this page. By continuing to use Castle after changes are posted, you accept the revised Terms. We encourage you to review this page periodically for the latest information.</p>
               </div>
             </section>
 
             {/* 11. Contact */}
             <section>
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-gradient-to-br from-violet-600 to-fuchsia-500 rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">11</span>
+              <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">11</span>
                 Contact Us
               </h2>
-              <div className="space-y-3 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+              <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
                 <p>If you have any questions about these Terms of Service, please contact us:</p>
-                <div className="bg-gray-50 dark:bg-white/[0.03] border border-gray-100 dark:border-white/[0.06] rounded-xl p-5 mt-3">
+                <div className="bg-gray-50 border border-gray-100 rounded-xl p-5 mt-3">
                   <div className="space-y-2 text-sm">
-                    <p><strong className="text-gray-900 dark:text-white">Castle</strong></p>
+                    <p><strong className="text-gray-900">Castle</strong></p>
                     <p>Bangalore, Karnataka, India</p>
-                    <p>Email: <a href="mailto:support@castle.in" className="text-violet-600 dark:text-violet-400 underline underline-offset-2">support@castle.in</a></p>
-                    <p>Website: <a href="https://castleliving.in" className="text-violet-600 dark:text-violet-400 underline underline-offset-2">castleliving.in</a></p>
+                    <p>Email: <a href="mailto:support@castle.in" className="text-[#1B1C15] underline underline-offset-2">support@castle.in</a></p>
+                    <p>Website: <a href="https://castleliving.in" className="text-[#1B1C15] underline underline-offset-2">castleliving.in</a></p>
                   </div>
                 </div>
               </div>
@@ -311,11 +311,11 @@ export default function TermsOfServicePage() {
 
           {/* Bottom navigation */}
           <div className="mt-8 flex items-center justify-center gap-6 text-sm">
-            <Link href="/privacy" className="text-violet-600 dark:text-violet-400 hover:underline underline-offset-2 font-medium">
+            <Link href="/privacy" className="text-[#1B1C15] hover:underline underline-offset-2 font-medium">
               Privacy Policy
             </Link>
-            <span className="text-gray-300 dark:text-gray-700">|</span>
-            <Link href="/" className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">
+            <span className="text-gray-300">|</span>
+            <Link href="/" className="text-gray-500 hover:text-gray-700">
               Back to Home
             </Link>
           </div>

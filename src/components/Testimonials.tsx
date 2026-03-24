@@ -35,7 +35,7 @@ const testimonials = [
     avatar: "DR",
     rating: 5,
     area: "Indiranagar",
-    gradient: "from-violet-400 to-purple-500",
+    gradient: "from-[#3d3829] to-[#1B1C15]",
   },
   {
     name: "Amit Verma",
@@ -61,13 +61,13 @@ export default function Testimonials() {
   return (
     <section className="py-24 relative overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-50 via-white to-gray-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-violet-500/[0.02] rounded-full blur-[150px]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-gray-50 via-white to-gray-50" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#1B1C15]/[0.02] rounded-full blur-[150px]" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-14">
-          <span className="pill bg-amber-50 dark:bg-amber-900/30 text-amber-600 !text-xs font-semibold mb-4 inline-block">Loved by 500+ Tenants ❤️</span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-gray-900 dark:text-white mb-4 tracking-tight">
+          <span className="pill bg-amber-50 text-amber-600 !text-xs font-semibold mb-4 inline-block">Loved by 500+ Tenants ❤️</span>
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
             What our <span className="gradient-text">tenants say</span>
           </h2>
           <p className="text-gray-400 max-w-md mx-auto">Real stories from people who found their perfect PG through us</p>
@@ -82,7 +82,7 @@ export default function Testimonials() {
             >
               {/* Quote icon */}
               <div className="mb-4">
-                <svg className="w-8 h-8 text-violet-200 dark:text-violet-800" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-8 h-8 text-[#d4ccb5]" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H0z" />
                 </svg>
               </div>
@@ -94,17 +94,17 @@ export default function Testimonials() {
                 ))}
               </div>
 
-              <p className="text-gray-600 dark:text-gray-300 text-[15px] leading-relaxed mb-6">&ldquo;{t.text}&rdquo;</p>
+              <p className="text-gray-600 text-[15px] leading-relaxed mb-6">&ldquo;{t.text}&rdquo;</p>
 
-              <div className="flex items-center gap-3 pt-5 border-t border-gray-100 dark:border-gray-800">
+              <div className="flex items-center gap-3 pt-5 border-t border-gray-100">
                 <div className={`w-11 h-11 bg-gradient-to-br ${t.gradient} rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg`}>
                   {t.avatar}
                 </div>
                 <div className="flex-1">
-                  <p className="font-bold text-gray-900 dark:text-white text-sm">{t.name}</p>
+                  <p className="font-bold text-gray-900 text-sm">{t.name}</p>
                   <p className="text-xs text-gray-400">{t.role}</p>
                 </div>
-                <span className="pill bg-violet-50 dark:bg-violet-900/30 text-violet-600 !text-[10px] border border-violet-100 dark:border-violet-800">📍 {t.area}</span>
+                <span className="pill bg-[#F4EDD9] text-[#1B1C15] !text-[10px] border border-[#e8e0cc]">📍 {t.area}</span>
               </div>
             </div>
           ))}

@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect, useCallback } from "react";
-import DarkModeToggle from "@/components/DarkModeToggle";
 import NotificationBell from "@/components/NotificationBell";
 import { useAuth } from "@/lib/auth";
 import { useToast } from "@/components/Toast";
@@ -36,14 +35,14 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
       <div className="mx-4 mt-3">
-        <div className="glass-card rounded-2xl px-6 py-3 max-w-7xl mx-auto">
+        <div className="rounded-2xl px-6 py-3 max-w-7xl mx-auto bg-[rgba(244,237,217,0.8)] backdrop-blur-[11px] border border-[#e8e0cc]/60">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               {/* Back button — shown on all pages except home */}
               {!isHome && (
                 <button
                   onClick={() => router.back()}
-                  className="w-9 h-9 rounded-xl flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-800 transition-all text-gray-600 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 mr-1"
+                  className="w-9 h-9 rounded-xl flex items-center justify-center hover:bg-[#ebe4d0]:bg-gray-800 transition-all text-[#222] hover:opacity-70 mr-1"
                   aria-label="Go back"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
@@ -52,8 +51,8 @@ export default function Header() {
                 </button>
               )}
             <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-500 rounded-xl flex items-center justify-center shadow-lg shadow-violet-500/20 group-hover:shadow-violet-500/40 transition-all group-hover:scale-105">
-                <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+              <div className="w-10 h-10 bg-[#f5eed8] rounded-xl flex items-center justify-center transition-all group-hover:scale-105">
+                <svg className="w-6 h-6 text-[#1B1C15]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
                   <path d="M3 21h18" />
                   <path d="M5 21V7l3-3 4 3 4-3 3 3v14" />
                   <path d="M9 21v-4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4" />
@@ -63,8 +62,8 @@ export default function Header() {
                 </svg>
               </div>
               <div className="flex flex-col">
-                <span className="text-lg font-bold text-gray-900 dark:text-white tracking-tight leading-none">Castle</span>
-                <span className="text-[10px] font-semibold text-violet-600 uppercase tracking-[0.15em] leading-none mt-0.5">Find Your Home</span>
+                <span className="text-lg font-serif font-bold text-[#1B1C15] tracking-tight leading-none">Castle</span>
+                <span className="text-[10px] font-medium text-[#666] uppercase tracking-[0.15em] leading-none mt-0.5">Find Your Home</span>
               </div>
             </Link>
             </div>
@@ -91,13 +90,12 @@ export default function Header() {
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white rounded-xl hover:bg-gray-100/80 dark:hover:bg-gray-800 transition-all"
+                  className="px-4 py-2 text-[14px] font-normal text-[#222] hover:opacity-60 rounded-xl transition-all"
                 >
                   {item.label}
                 </Link>
               ))}
-              <div className="w-px h-6 bg-gray-200 dark:bg-gray-700 mx-2" />
-              <DarkModeToggle />
+              <div className="w-px h-6 bg-[#ddd5be] mx-2" />
               <NotificationBell />
 
               {/* Auth section */}
@@ -110,75 +108,91 @@ export default function Header() {
                         aria-label="User menu"
                         aria-expanded={userMenuOpen}
                         aria-haspopup="true"
-                        className="flex items-center gap-2 px-3 py-1.5 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
+                        className="flex items-center gap-2 px-3 py-1.5 rounded-xl hover:bg-[#ebe4d0]:bg-gray-800 transition-all"
                       >
-                        <div className="w-8 h-8 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-lg flex items-center justify-center text-white text-sm font-bold">
+                        <div className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-sm font-bold">
                           {profile.name.charAt(0).toUpperCase()}
                         </div>
-                        <span className="text-sm font-medium text-gray-700 dark:text-gray-300 max-w-[100px] truncate">{profile.name}</span>
+                        <span className="text-sm font-normal text-[#222] max-w-[100px] truncate">{profile.name}</span>
                         <svg className={`w-3.5 h-3.5 text-gray-400 transition-transform ${userMenuOpen ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                         </svg>
                       </button>
 
                       {userMenuOpen && (
-                        <div role="menu" className="absolute right-0 top-12 w-56 bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 py-2 z-50 animate-slide-up">
-                          <div className="px-4 py-3 border-b border-gray-100 dark:border-gray-700">
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white">{profile.name}</p>
-                            <p className="text-xs text-gray-400">{profile.email}</p>
-                            <span className={`inline-block mt-1 pill !text-[10px] !py-0.5 ${
-                              profile.role === "admin" ? "bg-red-50 dark:bg-red-900/30 text-red-600" :
-                              profile.role === "owner" ? "bg-blue-50 dark:bg-blue-900/30 text-blue-600" :
-                              profile.role === "agent" ? "bg-orange-50 dark:bg-orange-900/30 text-orange-600" :
-                              "bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600"
-                            }`}>{profile.role}</span>
+                        <div role="menu" className="absolute right-0 top-12 w-60 bg-[#faf6ec] rounded-2xl shadow-2xl shadow-black/10 border border-[#e8e0cc] py-1.5 z-50 animate-slide-up">
+                          <div className="mx-2 mb-1.5 p-3 bg-[#1B1C15] rounded-xl flex items-center gap-3">
+                            <div className="w-9 h-9 bg-white/15 rounded-lg flex items-center justify-center text-white text-sm font-bold shrink-0">
+                              {profile.name.charAt(0).toUpperCase()}
+                            </div>
+                            <div className="min-w-0">
+                              <p className="text-sm font-semibold text-white truncate">{profile.name}</p>
+                              <p className="text-[11px] text-white/50 truncate">{profile.email}</p>
+                            </div>
                           </div>
 
+                          <div className="px-1.5 py-1">
                           {(profile.role === "owner" || profile.role === "admin") && (
                             <>
-                              <Link href="/add-listing" onClick={() => setUserMenuOpen(false)} className="block px-4 py-2.5 text-sm text-violet-600 dark:text-violet-400 font-semibold hover:bg-violet-50 dark:hover:bg-violet-900/20">
-                                ➕ Add New PG
+                              <Link href="/add-listing" onClick={() => setUserMenuOpen(false)} className="flex items-center gap-2.5 px-3 py-2.5 text-sm text-[#333] rounded-xl hover:bg-[#ebe4d0] transition-all">
+                                <svg className="w-4 h-4 text-[#888]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
+                                Add New PG
                               </Link>
-                              <Link href="/owner-dashboard" onClick={() => setUserMenuOpen(false)} className="block px-4 py-2.5 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
-                                📊 Owner Dashboard
+                              <Link href="/owner-dashboard" onClick={() => setUserMenuOpen(false)} className="flex items-center gap-2.5 px-3 py-2.5 text-sm text-[#333] rounded-xl hover:bg-[#ebe4d0] transition-all">
+                                <svg className="w-4 h-4 text-[#888]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg>
+                                Owner Dashboard
                               </Link>
                             </>
                           )}
                           {profile.role === "agent" && (
                             <>
-                              <Link href="/add-listing" onClick={() => setUserMenuOpen(false)} className="block px-4 py-2.5 text-sm text-violet-600 dark:text-violet-400 font-semibold hover:bg-violet-50 dark:hover:bg-violet-900/20">
-                                ➕ Add New PG
+                              <Link href="/add-listing" onClick={() => setUserMenuOpen(false)} className="flex items-center gap-2.5 px-3 py-2.5 text-sm text-[#333] rounded-xl hover:bg-[#ebe4d0] transition-all">
+                                <svg className="w-4 h-4 text-[#888]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
+                                Add New PG
                               </Link>
-                              <Link href="/agent-dashboard" onClick={() => setUserMenuOpen(false)} className="block px-4 py-2.5 text-sm text-orange-600 dark:text-orange-400 font-semibold hover:bg-orange-50 dark:hover:bg-orange-900/20">
-                                🤝 Agent Dashboard
+                              <Link href="/agent-dashboard" onClick={() => setUserMenuOpen(false)} className="flex items-center gap-2.5 px-3 py-2.5 text-sm text-[#333] rounded-xl hover:bg-[#ebe4d0] transition-all">
+                                <svg className="w-4 h-4 text-[#888]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" /></svg>
+                                Agent Dashboard
                               </Link>
                             </>
                           )}
                           {profile.role === "admin" && (
-                            <Link href="/admin" onClick={() => setUserMenuOpen(false)} className="block px-4 py-2.5 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
-                              🛡️ Admin Panel
+                            <Link href="/admin" onClick={() => setUserMenuOpen(false)} className="flex items-center gap-2.5 px-3 py-2.5 text-sm text-[#333] rounded-xl hover:bg-[#ebe4d0] transition-all">
+                              <svg className="w-4 h-4 text-[#888]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>
+                              Admin Panel
                             </Link>
                           )}
-                          <Link href="/profile" onClick={() => setUserMenuOpen(false)} className="block px-4 py-2.5 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
-                            👤 My Profile
-                          </Link>
-                          <Link href="/saved" onClick={() => setUserMenuOpen(false)} className="block px-4 py-2.5 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
-                            ❤️ Saved PGs
-                          </Link>
+                          </div>
 
-                          <div className="border-t border-gray-100 dark:border-gray-700 mt-1 pt-1">
+                          <div className="mx-2 my-1 h-px bg-[#e8e0cc]/60" />
+
+                          <div className="px-1.5 py-1">
+                          <Link href="/profile" onClick={() => setUserMenuOpen(false)} className="flex items-center gap-2.5 px-3 py-2.5 text-sm text-[#333] rounded-xl hover:bg-[#ebe4d0] transition-all">
+                            <svg className="w-4 h-4 text-[#888]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>
+                            My Profile
+                          </Link>
+                          <Link href="/saved" onClick={() => setUserMenuOpen(false)} className="flex items-center gap-2.5 px-3 py-2.5 text-sm text-[#333] rounded-xl hover:bg-[#ebe4d0] transition-all">
+                            <svg className="w-4 h-4 text-[#888]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" /></svg>
+                            Saved PGs
+                          </Link>
+                          </div>
+
+                          <div className="mx-2 my-1 h-px bg-[#e8e0cc]/60" />
+
+                          <div className="px-1.5 py-1">
                             <button
                               onClick={async () => { await signOut(); setUserMenuOpen(false); router.push("/"); }}
-                              className="w-full text-left px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20"
+                              className="flex items-center gap-2.5 w-full px-3 py-2.5 text-sm text-red-500 rounded-xl hover:bg-red-50 transition-all"
                             >
-                              🚪 Sign Out
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" /></svg>
+                              Sign Out
                             </button>
                           </div>
                         </div>
                       )}
                     </div>
                   ) : (
-                    <Link href="/login" className="ml-2 px-5 py-2 text-sm font-medium bg-gradient-to-r from-violet-600 to-fuchsia-500 text-white rounded-xl hover:opacity-90 transition shadow-sm">
+                    <Link href="/login" className="ml-2 px-5 py-2 text-sm font-medium bg-[#1B1C15] text-white rounded-[14px] hover:opacity-90 transition shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_2px_4px_rgba(0,0,0,0.15)]">
                       Sign In
                     </Link>
                   )}
@@ -188,15 +202,14 @@ export default function Header() {
 
             {/* Mobile Menu Button */}
             <div className="md:hidden flex items-center gap-2">
-              <DarkModeToggle />
               <NotificationBell />
               {!loading && user && profile && (
-                <div className="w-8 h-8 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-lg flex items-center justify-center text-white text-xs font-bold">
+                <div className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold">
                   {profile.name.charAt(0).toUpperCase()}
                 </div>
               )}
               {!loading && !user && (
-                <Link href="/login" className="px-3 py-1.5 text-xs font-medium bg-gradient-to-r from-violet-600 to-fuchsia-500 text-white rounded-lg shadow-sm active:scale-95 transition-all z-10 relative whitespace-nowrap">
+                <Link href="/login" className="px-3 py-1.5 text-xs font-medium bg-[#1B1C15] text-white rounded-[10px] shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_2px_4px_rgba(0,0,0,0.15)] active:scale-95 transition-all z-10 relative whitespace-nowrap">
                   Sign In
                 </Link>
               )}
@@ -204,9 +217,9 @@ export default function Header() {
                 onClick={() => setMobileOpen(!mobileOpen)}
                 aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
                 aria-expanded={mobileOpen}
-                className="w-10 h-10 rounded-xl flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+                className="w-10 h-10 rounded-xl flex items-center justify-center hover:bg-[#ebe4d0]:bg-gray-800 transition"
               >
-                <svg className="w-5 h-5 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-[#222]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   {mobileOpen ? (
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   ) : (
@@ -219,51 +232,77 @@ export default function Header() {
 
           {/* Mobile Menu */}
           {mobileOpen && (
-            <div role="menu" className="md:hidden pt-4 pb-2 border-t border-gray-200/50 dark:border-gray-700 mt-3 space-y-1 animate-slide-up">
-              {(profile?.role === "agent" ? [
-                { label: "🤝 Agent Dashboard", href: "/agent-dashboard" },
-                { label: "➕ Add New PG", href: "/add-listing" },
-              ] : profile?.role === "owner" ? [
-                { label: "📊 Owner Dashboard", href: "/owner-dashboard" },
-                { label: "➕ Add New PG", href: "/add-listing" },
-              ] : [
-                { label: "Home", href: "/" },
-                { label: "Browse PGs", href: "/#listings" },
-                { label: "Areas", href: "/#areas" },
-                { label: "Find Roommates", href: "/roommate-finder" },
-                { label: "Saved PGs", href: "/saved" },
-              ]).concat(
-                profile?.role === "admin" ? [
-                  { label: "📊 Owner Dashboard", href: "/owner-dashboard" },
-                  { label: "➕ Add New PG", href: "/add-listing" },
-                  { label: "🛡️ Admin Panel", href: "/admin" },
-                ] : []
-              ).map((item) => (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="block px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition"
-                >
-                  {item.label}
-                </Link>
-              ))}
+            <div role="menu" className="md:hidden pt-4 pb-3 border-t border-[#e8e0cc]/50 mt-3 animate-slide-up">
+              {/* User info card when logged in */}
+              {user && profile && (
+                <div className="mx-2 mb-3 p-3.5 bg-[#1B1C15] rounded-2xl flex items-center gap-3">
+                  <div className="w-10 h-10 bg-white/15 rounded-xl flex items-center justify-center text-white text-sm font-bold shrink-0">
+                    {profile.name.charAt(0).toUpperCase()}
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-sm font-semibold text-white truncate">{profile.name}</p>
+                    <p className="text-[11px] text-white/50 truncate">{profile.email}</p>
+                  </div>
+                  <span className="ml-auto px-2 py-0.5 bg-white/10 rounded-lg text-[10px] font-medium text-white/70 uppercase tracking-wider shrink-0">{profile.role}</span>
+                </div>
+              )}
+
+              {/* Navigation section */}
+              <div className="px-2 mb-2">
+                <p className="px-3 py-1.5 text-[10px] font-semibold text-[#999] uppercase tracking-[0.15em]">Navigate</p>
+                {(profile?.role === "agent" ? [
+                  { label: "Agent Dashboard", href: "/agent-dashboard", icon: <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" /></svg> },
+                  { label: "Add New PG", href: "/add-listing", icon: <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg> },
+                ] : profile?.role === "owner" ? [
+                  { label: "Owner Dashboard", href: "/owner-dashboard", icon: <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg> },
+                  { label: "Add New PG", href: "/add-listing", icon: <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg> },
+                ] : [
+                  { label: "Home", href: "/", icon: <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg> },
+                  { label: "Browse PGs", href: "/#listings", icon: <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg> },
+                  { label: "Areas", href: "/#areas", icon: <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg> },
+                  { label: "Find Roommates", href: "/roommate-finder", icon: <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" /></svg> },
+                  { label: "Saved PGs", href: "/saved", icon: <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" /></svg> },
+                ]).concat(
+                  profile?.role === "admin" ? [
+                    { label: "Owner Dashboard", href: "/owner-dashboard", icon: <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg> },
+                    { label: "Add New PG", href: "/add-listing", icon: <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg> },
+                    { label: "Admin Panel", href: "/admin", icon: <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg> },
+                  ] : []
+                ).map((item) => (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    className={`flex items-center gap-3 px-3 py-3 text-[15px] rounded-xl transition-all active:scale-[0.98] ${pathname === item.href ? "bg-[#1B1C15] text-white font-medium" : "text-[#333] hover:bg-[#ebe4d0] font-normal"}`}
+                  >
+                    <span className={`${pathname === item.href ? "text-white" : "text-[#888]"}`}>{item.icon}</span>
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+
+              {/* Account section */}
               {user && (
-                <>
+                <div className="px-2 mt-1 pt-2 border-t border-[#e8e0cc]/50">
+                  <p className="px-3 py-1.5 text-[10px] font-semibold text-[#999] uppercase tracking-[0.15em]">Account</p>
                   <Link
                     href="/profile"
                     onClick={() => setMobileOpen(false)}
-                    className="block px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+                    className={`flex items-center gap-3 px-3 py-3 text-[15px] rounded-xl transition-all active:scale-[0.98] ${pathname === "/profile" ? "bg-[#1B1C15] text-white font-medium" : "text-[#333] hover:bg-[#ebe4d0] font-normal"}`}
                   >
-                    👤 My Profile
+                    <span className={`${pathname === "/profile" ? "text-white" : "text-[#888]"}`}>
+                      <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>
+                    </span>
+                    My Profile
                   </Link>
                   <button
                     onClick={async () => { await signOut(); setMobileOpen(false); }}
-                    className="block w-full text-left px-4 py-2.5 text-sm font-medium text-red-500 rounded-xl hover:bg-red-50 dark:hover:bg-red-900/20"
+                    className="flex items-center gap-3 w-full px-3 py-3 text-[15px] font-medium text-red-500 rounded-xl hover:bg-red-50 transition-all active:scale-[0.98]"
                   >
-                    🚪 Sign Out
+                    <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" /></svg>
+                    Sign Out
                   </button>
-                </>
+                </div>
               )}
             </div>
           )}
@@ -274,12 +313,12 @@ export default function Header() {
       {showDeleteConfirm && user && (
         <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-md" onClick={() => !deleting && setShowDeleteConfirm(false)} />
-          <div className="relative w-full sm:max-w-[380px] bg-white dark:bg-[#1a1228] sm:rounded-3xl rounded-t-3xl p-6 pb-8 sm:p-8 shadow-2xl shadow-red-500/10 border border-gray-200/10 dark:border-gray-700/30 animate-slide-up">
+          <div className="relative w-full sm:max-w-[380px] bg-white sm:rounded-3xl rounded-t-3xl p-6 pb-8 sm:p-8 shadow-2xl shadow-red-500/10 border border-gray-200/10 animate-slide-up">
             {/* Close button */}
             {!deleting && (
               <button
                 onClick={() => setShowDeleteConfirm(false)}
-                className="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition"
+                className="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-400 hover:text-gray-600:text-gray-200 transition"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -295,11 +334,11 @@ export default function Header() {
                 </svg>
               </div>
 
-              <h3 className="text-xl font-extrabold text-gray-900 dark:text-white mb-1">Delete Your Account?</h3>
+              <h3 className="text-xl font-extrabold text-gray-900 mb-1">Delete Your Account?</h3>
               <p className="text-sm text-gray-400 mb-5">This is permanent and cannot be undone</p>
 
               {/* What gets deleted */}
-              <div className="bg-red-50/50 dark:bg-red-900/10 rounded-2xl p-4 mb-6 text-left">
+              <div className="bg-red-50/50 rounded-2xl p-4 mb-6 text-left">
                 <p className="text-xs font-semibold text-red-500 uppercase tracking-wider mb-2.5">What will be deleted</p>
                 <div className="space-y-2">
                   {[
@@ -310,7 +349,7 @@ export default function Header() {
                   ].map((item) => (
                     <div key={item.text} className="flex items-center gap-2.5">
                       <span className="text-sm">{item.icon}</span>
-                      <span className="text-sm text-gray-600 dark:text-gray-400">{item.text}</span>
+                      <span className="text-sm text-gray-600">{item.text}</span>
                     </div>
                   ))}
                 </div>
@@ -353,7 +392,7 @@ export default function Header() {
                 <button
                   onClick={() => setShowDeleteConfirm(false)}
                   disabled={deleting}
-                  className="w-full py-3.5 bg-gray-100 dark:bg-gray-800/80 text-gray-700 dark:text-gray-300 rounded-2xl font-semibold text-sm hover:bg-gray-200 dark:hover:bg-gray-700 transition disabled:opacity-50"
+                  className="w-full py-3.5 bg-gray-100 text-gray-700 rounded-2xl font-semibold text-sm hover:bg-gray-200:bg-gray-700 transition disabled:opacity-50"
                 >
                   Keep My Account
                 </button>

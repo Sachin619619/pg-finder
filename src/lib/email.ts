@@ -94,7 +94,7 @@ function wrapInTemplate(body: string): string {
         <table width="100%" style="max-width:560px;background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
           <!-- Header -->
           <tr>
-            <td style="background:linear-gradient(135deg,#7c3aed,#a855f7);padding:28px 32px;text-align:center;">
+            <td style="background:linear-gradient(135deg,#1B1C15,#1B1C15);padding:28px 32px;text-align:center;">
               <h1 style="margin:0;color:#ffffff;font-size:26px;font-weight:700;letter-spacing:0.5px;">Castle</h1>
               <p style="margin:4px 0 0;color:#e9d5ff;font-size:13px;">Find your perfect PG</p>
             </td>
@@ -108,12 +108,12 @@ function wrapInTemplate(body: string): string {
           <!-- Footer -->
           <tr>
             <td style="padding:20px 32px;background:#faf5ff;border-top:1px solid #ede9fe;text-align:center;">
-              <p style="margin:0 0 6px;font-size:12px;color:#7c3aed;">
-                <a href="https://castleliving.in" style="color:#7c3aed;text-decoration:none;">Visit Castle</a>
+              <p style="margin:0 0 6px;font-size:12px;color:#1B1C15;">
+                <a href="https://castleliving.in" style="color:#1B1C15;text-decoration:none;">Visit Castle</a>
                 &nbsp;&middot;&nbsp;
-                <a href="https://castleliving.in/listings" style="color:#7c3aed;text-decoration:none;">Browse PGs</a>
+                <a href="https://castleliving.in/listings" style="color:#1B1C15;text-decoration:none;">Browse PGs</a>
                 &nbsp;&middot;&nbsp;
-                <a href="https://castleliving.in/help" style="color:#7c3aed;text-decoration:none;">Help</a>
+                <a href="https://castleliving.in/help" style="color:#1B1C15;text-decoration:none;">Help</a>
               </p>
               <p style="margin:0;font-size:11px;color:#a1a1aa;">You received this because you have an account on Castle.</p>
             </td>
@@ -146,7 +146,7 @@ export function sendWelcomeEmail(to: string, name: string) {
         <li>Request callbacks from owners</li>
         <li>Compare prices and amenities</li>
       </ul>
-      <a href="https://castleliving.in/listings" style="display:inline-block;background:#7c3aed;color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;">
+      <a href="https://castleliving.in/listings" style="display:inline-block;background:#1B1C15;color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;">
         Explore PGs
       </a>
     `),
@@ -173,7 +173,7 @@ export function sendBookingConfirmation(to: string, name: string, pgName: string
         </tr>
         <tr>
           <td style="padding:10px 12px;color:#6b7280;font-size:13px;">Amount</td>
-          <td style="padding:10px 12px;color:#7c3aed;font-size:16px;font-weight:700;text-align:right;">&#8377;${amount.toLocaleString("en-IN")}</td>
+          <td style="padding:10px 12px;color:#1B1C15;font-size:16px;font-weight:700;text-align:right;">&#8377;${amount.toLocaleString("en-IN")}</td>
         </tr>
       </table>
       <p style="margin:0;color:#6b7280;font-size:13px;line-height:1.6;">
@@ -201,12 +201,12 @@ export function sendCallbackNotification(
       <div style="background:#faf5ff;border:1px solid #ede9fe;border-radius:8px;padding:16px;margin:0 0 24px;">
         <p style="margin:0 0 8px;color:#6b7280;font-size:13px;">Tenant Details</p>
         <p style="margin:0 0 4px;color:#1e1b4b;font-size:15px;font-weight:600;">${tenantName}</p>
-        <p style="margin:0;color:#7c3aed;font-size:15px;font-weight:600;">${tenantPhone}</p>
+        <p style="margin:0;color:#1B1C15;font-size:15px;font-weight:600;">${tenantPhone}</p>
       </div>
       <p style="margin:0 0 20px;color:#4b5563;font-size:14px;line-height:1.6;">
         Please call them back at the earliest to secure the booking.
       </p>
-      <a href="tel:${tenantPhone}" style="display:inline-block;background:#7c3aed;color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;">
+      <a href="tel:${tenantPhone}" style="display:inline-block;background:#1B1C15;color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;">
         Call Now
       </a>
     `),
@@ -228,7 +228,7 @@ export function sendListingApproved(to: string, ownerName: string, pgName: strin
       <p style="margin:0 0 20px;color:#4b5563;font-size:14px;line-height:1.6;">
         Tenants can now find, view, and request callbacks for your property. Make sure your contact details are up to date.
       </p>
-      <a href="https://castleliving.in/listings" style="display:inline-block;background:#7c3aed;color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;">
+      <a href="https://castleliving.in/listings" style="display:inline-block;background:#1B1C15;color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;">
         View Your Listing
       </a>
     `),
@@ -253,7 +253,7 @@ export function sendListingRejected(to: string, ownerName: string, pgName: strin
       <p style="margin:0 0 20px;color:#4b5563;font-size:14px;line-height:1.6;">
         You can update your listing details and resubmit for review. If you think this was a mistake, please reach out to our support team.
       </p>
-      <a href="https://castleliving.in/dashboard" style="display:inline-block;background:#7c3aed;color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;">
+      <a href="https://castleliving.in/dashboard" style="display:inline-block;background:#1B1C15;color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;">
         Edit Listing
       </a>
     `),

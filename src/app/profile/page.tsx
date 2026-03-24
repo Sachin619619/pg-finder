@@ -45,7 +45,7 @@ export default function ProfilePage() {
       <>
         <Header />
         <main className="min-h-screen pt-28 pb-16 px-4 flex items-center justify-center">
-          <div className="animate-spin w-8 h-8 border-3 border-violet-500 border-t-transparent rounded-full" />
+          <div className="animate-spin w-8 h-8 border-3 border-[#1B1C15] border-t-transparent rounded-full" />
         </main>
       </>
     );
@@ -131,9 +131,9 @@ export default function ProfilePage() {
 
           {/* Breadcrumb */}
           <nav className="mb-6 text-sm text-gray-500 flex items-center gap-2">
-            <Link href="/" className="hover:text-violet-600 transition-colors">Home</Link>
+            <Link href="/" className="hover:text-[#1B1C15] transition-colors">Home</Link>
             <span>/</span>
-            <span className="text-gray-900 dark:text-white font-medium">My Profile</span>
+            <span className="text-gray-900 font-medium">My Profile</span>
           </nav>
 
           {/* Avatar + Name Header */}
@@ -142,18 +142,18 @@ export default function ProfilePage() {
               <img
                 src={profile.avatar}
                 alt={profile.name}
-                className="w-24 h-24 rounded-2xl mx-auto object-cover shadow-lg shadow-violet-500/20 border-2 border-violet-500/20"
+                className="w-24 h-24 rounded-2xl mx-auto object-cover shadow-lg shadow-black/20 border-2 border-[#1B1C15]/20"
               />
             ) : (
-              <div className="w-24 h-24 rounded-2xl mx-auto bg-gradient-to-br from-violet-500 via-purple-500 to-fuchsia-500 flex items-center justify-center shadow-lg shadow-violet-500/30">
+              <div className="w-24 h-24 rounded-2xl mx-auto bg-[#1B1C15] flex items-center justify-center shadow-lg shadow-black/20">
                 <span className="text-4xl font-bold text-white">{initial}</span>
               </div>
             )}
-            <h1 className="text-2xl font-extrabold text-gray-900 dark:text-white mt-5">
+            <h1 className="text-2xl font-extrabold text-gray-900 mt-5">
               {profile.name}
             </h1>
             {profile.username && (
-              <p className="text-sm text-violet-500 font-medium mt-1">@{profile.username}</p>
+              <p className="text-sm text-[#1B1C15] font-medium mt-1">@{profile.username}</p>
             )}
             <div className="flex items-center justify-center gap-2 mt-3">
               <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border ${roleBadgeClass}`}>
@@ -164,11 +164,11 @@ export default function ProfilePage() {
               </span>
             </div>
             {profile.currentPgId && profile.role === "tenant" && (
-              <div className="mt-4 p-3 rounded-xl bg-violet-500/10 border border-violet-500/20">
+              <div className="mt-4 p-3 rounded-xl bg-[#1B1C15]/10 border border-[#1B1C15]/20">
                 <p className="text-xs text-gray-400 mb-1">Current PG</p>
                 <button
                   onClick={() => router.push(`/listing/${profile.currentPgId}`)}
-                  className="text-sm font-semibold text-violet-400 hover:text-violet-300 transition"
+                  className="text-sm font-semibold text-[#8a8070] hover:text-[#c5bda8] transition"
                 >
                   View Your PG &rarr;
                 </button>
@@ -178,8 +178,8 @@ export default function ProfilePage() {
 
           {/* Editable Fields */}
           <div className="premium-card p-6 space-y-5">
-            <h2 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
-              <svg className="w-5 h-5 text-violet-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
+              <svg className="w-5 h-5 text-[#1B1C15]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
               </svg>
               Edit Profile
@@ -187,7 +187,7 @@ export default function ProfilePage() {
 
             {/* Name */}
             <div>
-              <label className="block text-sm font-semibold text-gray-500 dark:text-gray-400 mb-1.5">
+              <label className="block text-sm font-semibold text-gray-500 mb-1.5">
                 Full Name
               </label>
               <input
@@ -201,7 +201,7 @@ export default function ProfilePage() {
 
             {/* Username */}
             <div>
-              <label className="block text-sm font-semibold text-gray-500 dark:text-gray-400 mb-1.5">
+              <label className="block text-sm font-semibold text-gray-500 mb-1.5">
                 Username
               </label>
               <div className="relative">
@@ -219,7 +219,7 @@ export default function ProfilePage() {
 
             {/* Phone */}
             <div>
-              <label className="block text-sm font-semibold text-gray-500 dark:text-gray-400 mb-1.5">
+              <label className="block text-sm font-semibold text-gray-500 mb-1.5">
                 Phone Number
               </label>
               <input
@@ -233,7 +233,7 @@ export default function ProfilePage() {
 
             {/* Non-editable: Email */}
             <div>
-              <label className="block text-sm font-semibold text-gray-500 dark:text-gray-400 mb-1.5">
+              <label className="block text-sm font-semibold text-gray-500 mb-1.5">
                 Email
               </label>
               <div className="premium-input w-full opacity-60 cursor-not-allowed flex items-center gap-2">
@@ -246,7 +246,7 @@ export default function ProfilePage() {
 
             {/* Non-editable: Role */}
             <div>
-              <label className="block text-sm font-semibold text-gray-500 dark:text-gray-400 mb-1.5">
+              <label className="block text-sm font-semibold text-gray-500 mb-1.5">
                 Account Role
               </label>
               <div className="premium-input w-full opacity-60 cursor-not-allowed flex items-center gap-2">
@@ -298,7 +298,7 @@ export default function ProfilePage() {
 
           {/* Danger Zone */}
           <div className="premium-card p-6 space-y-4 border-red-500/10">
-            <h2 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
+            <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
               <svg className="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
               </svg>
@@ -310,7 +310,7 @@ export default function ProfilePage() {
                 await signOut();
                 router.push("/");
               }}
-              className="w-full py-3.5 rounded-2xl text-sm font-semibold bg-gray-100 dark:bg-gray-800/80 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all flex items-center justify-center gap-2"
+              className="w-full py-3.5 rounded-2xl text-sm font-semibold bg-gray-100 text-gray-700 hover:bg-gray-200 transition-all flex items-center justify-center gap-2"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -340,11 +340,11 @@ export default function ProfilePage() {
             className="absolute inset-0 bg-black/60 backdrop-blur-md"
             onClick={() => !deleting && setShowDeleteModal(false)}
           />
-          <div className="relative w-full sm:max-w-[380px] bg-white dark:bg-[#1a1228] sm:rounded-3xl rounded-t-3xl p-6 pb-8 sm:p-8 shadow-2xl shadow-red-500/10 border border-gray-200/10 dark:border-gray-700/30 animate-slide-up">
+          <div className="relative w-full sm:max-w-[380px] bg-white sm:rounded-3xl rounded-t-3xl p-6 pb-8 sm:p-8 shadow-2xl shadow-red-500/10 border border-gray-200/10 animate-slide-up">
             {!deleting && (
               <button
                 onClick={() => setShowDeleteModal(false)}
-                className="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition"
+                className="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-400 hover:text-gray-600 transition"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -359,14 +359,14 @@ export default function ProfilePage() {
                 </svg>
               </div>
 
-              <h3 className="text-xl font-extrabold text-gray-900 dark:text-white mb-1">
+              <h3 className="text-xl font-extrabold text-gray-900 mb-1">
                 Delete Your Account?
               </h3>
               <p className="text-sm text-gray-400 mb-5">
                 This is permanent and cannot be undone
               </p>
 
-              <div className="bg-red-50/50 dark:bg-red-900/10 rounded-2xl p-4 mb-6 text-left">
+              <div className="bg-red-50/50 rounded-2xl p-4 mb-6 text-left">
                 <p className="text-xs font-semibold text-red-500 uppercase tracking-wider mb-2.5">
                   What will be deleted
                 </p>
@@ -379,7 +379,7 @@ export default function ProfilePage() {
                   ].map((item) => (
                     <div key={item.text} className="flex items-center gap-2.5">
                       <span className="text-sm">{item.icon}</span>
-                      <span className="text-sm text-gray-600 dark:text-gray-400">{item.text}</span>
+                      <span className="text-sm text-gray-600">{item.text}</span>
                     </div>
                   ))}
                 </div>
@@ -406,7 +406,7 @@ export default function ProfilePage() {
                 <button
                   onClick={() => setShowDeleteModal(false)}
                   disabled={deleting}
-                  className="w-full py-3.5 bg-gray-100 dark:bg-gray-800/80 text-gray-700 dark:text-gray-300 rounded-2xl font-semibold text-sm hover:bg-gray-200 dark:hover:bg-gray-700 transition disabled:opacity-50"
+                  className="w-full py-3.5 bg-gray-100 text-gray-700 rounded-2xl font-semibold text-sm hover:bg-gray-200 transition disabled:opacity-50"
                 >
                   Keep My Account
                 </button>

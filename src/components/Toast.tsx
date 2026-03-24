@@ -62,7 +62,7 @@ function ToastItem({ toast, onDismiss }: { toast: ToastMessage; onDismiss: (id: 
   const colors = {
     error: "bg-red-50 border-red-200 text-red-800",
     success: "bg-emerald-50 border-emerald-200 text-emerald-800",
-    info: "bg-violet-50 border-violet-200 text-violet-800",
+    info: "bg-[#F4EDD9] border-[#d4ccb5] text-[#1B1C15]",
   };
 
   const icons = {
@@ -77,7 +77,7 @@ function ToastItem({ toast, onDismiss }: { toast: ToastMessage; onDismiss: (id: 
       </svg>
     ),
     info: (
-      <svg className="w-4 h-4 text-violet-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-4 h-4 text-[#1B1C15] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),

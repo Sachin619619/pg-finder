@@ -12,7 +12,7 @@ function sanitize(str: string, maxLen: number): string {
 }
 
 const gradients = [
-  "from-violet-400 to-purple-500",
+  "bg-[#1B1C15]",
   "from-blue-400 to-indigo-500",
   "from-pink-400 to-rose-500",
   "from-emerald-400 to-teal-500",
@@ -97,15 +97,15 @@ export default function RoommateFinder() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 animate-fade-in-up">
         {/* Breadcrumb */}
         <nav className="mb-6 text-sm text-gray-500 flex items-center gap-2">
-          <Link href="/" className="hover:text-violet-600 transition-colors">Home</Link>
+          <Link href="/" className="hover:text-[#1B1C15] transition-colors">Home</Link>
           <span>/</span>
-          <span className="text-gray-900 dark:text-white font-medium">Find Roommates</span>
+          <span className="text-gray-900 font-medium">Find Roommates</span>
         </nav>
 
         {/* Hero */}
         <div className="text-center mb-12">
           <span className="pill bg-pink-50 text-pink-600 !text-xs font-semibold mb-4 inline-block">Find Your Perfect Match</span>
-          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
             Roommate <span className="gradient-text">Finder</span>
           </h1>
           <p className="text-gray-400 max-w-lg mx-auto">Connect with compatible roommates in Bangalore. Match by area, budget, and lifestyle.</p>
@@ -139,7 +139,7 @@ export default function RoommateFinder() {
         {/* Post Profile Form */}
         {showForm && !submitted && (
           <div className="premium-card !rounded-2xl p-6 sm:p-8 mb-8 animate-slide-up">
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-5">Create Your Roommate Profile</h3>
+            <h3 className="text-lg font-bold text-gray-900 mb-5">Create Your Roommate Profile</h3>
             <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <input required placeholder="Your Name" value={formName} onChange={(e) => setFormName(e.target.value)} className="premium-input text-sm" />
               <input required type="number" min="18" max="60" placeholder="Age" value={formAge} onChange={(e) => setFormAge(e.target.value)} className="premium-input text-sm" />
@@ -167,7 +167,7 @@ export default function RoommateFinder() {
         )}
 
         {submitted && (
-          <div className="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-5 mb-8 text-emerald-700 dark:text-emerald-400 text-sm font-medium animate-slide-up flex items-center gap-3">
+          <div className="bg-emerald-50 rounded-2xl p-5 mb-8 text-emerald-700 text-sm font-medium animate-slide-up flex items-center gap-3">
             <svg className="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
@@ -184,26 +184,26 @@ export default function RoommateFinder() {
                   {p.avatar}
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white text-sm">{p.name}, {p.age}</h3>
+                  <h3 className="font-semibold text-gray-900 text-sm">{p.name}, {p.age}</h3>
                   <p className="text-xs text-gray-400">{p.occupation}</p>
                 </div>
               </div>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">{p.bio}</p>
+              <p className="text-sm text-gray-600 mb-4 leading-relaxed">{p.bio}</p>
               {p.lifestyle && (
                 <div className="flex flex-wrap gap-1.5 mb-4">
                   {p.lifestyle.split(", ").map((i) => (
-                    <span key={i} className="pill bg-violet-50 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400 !text-[10px] !py-0.5 !px-2.5">{i}</span>
+                    <span key={i} className="pill bg-[#F4EDD9] text-[#1B1C15] !text-[10px] !py-0.5 !px-2.5">{i}</span>
                   ))}
                 </div>
               )}
-              <div className="flex items-center justify-between text-xs text-gray-400 mb-4 pt-3 border-t border-gray-100 dark:border-gray-700">
+              <div className="flex items-center justify-between text-xs text-gray-400 mb-4 pt-3 border-t border-gray-100">
                 <span className="flex items-center gap-1">
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   </svg>
                   {p.area}
                 </span>
-                <span className="font-semibold text-emerald-600 dark:text-emerald-400">₹{p.budgetMin.toLocaleString()} - ₹{p.budgetMax.toLocaleString()}/mo</span>
+                <span className="font-semibold text-emerald-600">₹{p.budgetMin.toLocaleString()} - ₹{p.budgetMax.toLocaleString()}/mo</span>
               </div>
               <a
                 href={`https://wa.me/?text=${encodeURIComponent(`Hi ${p.name}! I found your roommate profile on Castle. I'm interested in sharing a PG in ${p.area}. Let's connect!`)}`}
@@ -219,18 +219,18 @@ export default function RoommateFinder() {
 
         {filtered.length === 0 && (
           <div className="text-center py-24">
-            <div className="w-28 h-28 bg-pink-50 dark:bg-pink-900/20 rounded-3xl flex items-center justify-center mx-auto mb-6">
-              <svg className="w-14 h-14 text-pink-300 dark:text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-28 h-28 bg-pink-50 rounded-3xl flex items-center justify-center mx-auto mb-6">
+              <svg className="w-14 h-14 text-pink-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">No roommates found</h3>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">No roommates found</h3>
             <p className="text-gray-400 mb-2">No one matches your current filters yet.</p>
-            <p className="text-gray-300 dark:text-gray-500 text-sm mb-8">Try adjusting your filters or be the first to post a profile!</p>
+            <p className="text-gray-300 text-sm mb-8">Try adjusting your filters or be the first to post a profile!</p>
             <div className="flex items-center justify-center gap-3">
               <button
                 onClick={() => { setGenderFilter(""); setAreaFilter(""); setBudgetMax(50000); }}
-                className="px-6 py-3 rounded-2xl text-sm font-medium bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all"
+                className="px-6 py-3 rounded-2xl text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all"
               >
                 Clear Filters
               </button>

@@ -40,7 +40,7 @@ export default function Error({
         </p>
         <button
           onClick={reset}
-          className="inline-flex items-center gap-2 rounded-lg bg-violet-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-violet-500 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-600"
+          className="inline-flex items-center gap-2 rounded-lg bg-[#1B1C15] px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-[#2a2b22] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1B1C15]"
         >
           Try Again
         </button>

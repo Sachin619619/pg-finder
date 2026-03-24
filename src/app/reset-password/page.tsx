@@ -57,10 +57,10 @@ export default function ResetPasswordPage() {
         <Header />
         <main className="min-h-screen flex items-center justify-center px-4 pt-20">
           <div className="w-full max-w-md text-center">
-            <div className="w-24 h-24 bg-emerald-50 dark:bg-emerald-900/30 rounded-3xl flex items-center justify-center mx-auto mb-6 animate-bounce">
+            <div className="w-24 h-24 bg-emerald-50 rounded-3xl flex items-center justify-center mx-auto mb-6 animate-bounce">
               <span className="text-6xl">🔓</span>
             </div>
-            <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white mb-3">Password Updated!</h1>
+            <h1 className="text-3xl font-extrabold text-gray-900 mb-3">Password Updated!</h1>
             <p className="text-gray-400 mb-2">Your password has been reset successfully ✅</p>
             <p className="text-sm text-gray-400">Redirecting you to home...</p>
           </div>
@@ -75,17 +75,17 @@ export default function ResetPasswordPage() {
       <main className="min-h-screen flex items-center justify-center px-4 pt-20">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
-            <div className="w-20 h-20 bg-violet-50 dark:bg-violet-900/20 rounded-3xl flex items-center justify-center mx-auto mb-4">
+            <div className="w-20 h-20 bg-[#F4EDD9] rounded-3xl flex items-center justify-center mx-auto mb-4">
               <span className="text-5xl">🔒</span>
             </div>
-            <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">Set New Password</h1>
+            <h1 className="text-3xl font-extrabold text-gray-900">Set New Password</h1>
             <p className="text-gray-400 mt-2">Choose a strong password for your account</p>
           </div>
 
           <div className="premium-card !rounded-3xl p-8">
             {!ready ? (
               <div className="text-center py-8">
-                <svg className="animate-spin w-8 h-8 text-violet-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24">
+                <svg className="animate-spin w-8 h-8 text-[#1B1C15] mx-auto mb-4" fill="none" viewBox="0 0 24 24">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                 </svg>
@@ -94,14 +94,14 @@ export default function ResetPasswordPage() {
             ) : (
               <>
                 {error && (
-                  <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-2xl text-sm text-red-600 dark:text-red-400">
+                  <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-2xl text-sm text-red-600">
                     ⚠️ {error}
                   </div>
                 )}
 
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
                       New Password
                     </label>
                     <input
@@ -116,7 +116,7 @@ export default function ResetPasswordPage() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
                       Confirm Password
                     </label>
                     <input

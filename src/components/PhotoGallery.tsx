@@ -4,12 +4,12 @@ import { useState } from "react";
 import Image from "next/image";
 
 const fallbackPhotos = [
-  { label: "Living Room", gradient: "from-violet-200 to-indigo-200" },
+  { label: "Living Room", gradient: "from-[#d4ccb5] to-[#F4EDD9]" },
   { label: "Bedroom", gradient: "from-rose-200 to-pink-200" },
   { label: "Kitchen", gradient: "from-amber-200 to-orange-200" },
   { label: "Bathroom", gradient: "from-teal-200 to-emerald-200" },
   { label: "Balcony", gradient: "from-sky-200 to-blue-200" },
-  { label: "Common Area", gradient: "from-purple-200 to-fuchsia-200" },
+  { label: "Common Area", gradient: "from-[#d4ccb5] to-[#F4EDD9]" },
 ];
 
 export default function PhotoGallery({ pgName, images }: { pgName: string; images?: string[] }) {
@@ -73,7 +73,7 @@ export default function PhotoGallery({ pgName, images }: { pgName: string; image
               key={i}
               onClick={() => setActiveIdx(i)}
               className={`h-16 sm:h-20 rounded-xl relative overflow-hidden transition-all ${
-                i === activeIdx ? "ring-2 ring-violet-500 ring-offset-2 scale-105" : "opacity-70 hover:opacity-100"
+                i === activeIdx ? "ring-2 ring-[#1B1C15]/20 ring-offset-2 scale-105" : "opacity-70 hover:opacity-100"
               }`}
             >
               {hasImages && !imgError[i] ? (

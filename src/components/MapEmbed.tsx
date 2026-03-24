@@ -63,7 +63,7 @@ export default function MapEmbed({ lat, lng, name, area }: Props) {
       }).addTo(map);
 
       const icon = L.divIcon({
-        html: `<div style="background: linear-gradient(135deg, #7c3aed, #c026d3); width: 36px; height: 36px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); border: 3px solid white; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"></div>`,
+        html: `<div style="background: #1B1C15; width: 36px; height: 36px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); border: 3px solid white; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"></div>`,
         iconSize: [36, 36],
         iconAnchor: [18, 36],
         className: "",
@@ -95,27 +95,27 @@ export default function MapEmbed({ lat, lng, name, area }: Props) {
   }, [lat, lng, name, area]);
 
   return (
-    <div className="rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700">
+    <div className="rounded-2xl overflow-hidden border border-gray-200">
       <div
         ref={mapRef}
         className="w-full"
         style={{ height: "256px", zIndex: 0 }}
       />
       {!loaded && (
-        <div className="w-full flex items-center justify-center bg-gray-100 dark:bg-gray-800" style={{ height: "256px", marginTop: "-256px", position: "relative" }}>
+        <div className="w-full flex items-center justify-center bg-gray-100" style={{ height: "256px", marginTop: "-256px", position: "relative" }}>
           <span className="text-sm text-gray-400">Loading map...</span>
         </div>
       )}
-      <div className="p-3 bg-white dark:bg-gray-800 flex items-center justify-between">
+      <div className="p-3 bg-white flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className="text-violet-500">📍</span>
-          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{area}</span>
+          <span className="text-[#1B1C15]">📍</span>
+          <span className="text-sm font-medium text-gray-700">{area}</span>
         </div>
         <a
           href={`https://www.google.com/maps?q=${lat},${lng}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xs text-violet-600 hover:underline font-medium"
+          className="text-xs text-[#1B1C15] hover:underline font-medium"
         >
           Open in Google Maps →
         </a>

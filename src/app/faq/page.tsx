@@ -17,7 +17,7 @@ const faqData: FAQSection[] = [
   {
     title: "For Tenants",
     emoji: "🏠",
-    gradient: "from-violet-600 to-indigo-500",
+    gradient: "from-[#1B1C15] to-[#2a2b22]",
     items: [
       {
         question: "How do I search for a PG on Castle?",
@@ -54,7 +54,7 @@ const faqData: FAQSection[] = [
   {
     title: "For Owners",
     emoji: "🔑",
-    gradient: "from-fuchsia-500 to-pink-500",
+    gradient: "bg-[#1B1C15]",
     items: [
       {
         question: "How do I list my PG on Castle?",
@@ -136,19 +136,19 @@ const faqData: FAQSection[] = [
 
 function AccordionItem({ item, isOpen, onToggle }: { item: FAQItem; isOpen: boolean; onToggle: () => void }) {
   return (
-    <div className="border-b border-gray-100 dark:border-gray-800/60 last:border-0">
+    <div className="border-b border-gray-100 last:border-0">
       <button
         onClick={onToggle}
         className="w-full flex items-center justify-between py-5 px-1 text-left group"
       >
-        <span className="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors pr-4">
+        <span className="text-sm font-semibold text-gray-900 group-hover:text-[#1B1C15] transition-colors pr-4">
           {item.question}
         </span>
         <span
           className={`flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center transition-all duration-300 ${
             isOpen
-              ? "bg-violet-600 text-white rotate-180"
-              : "bg-gray-100 dark:bg-gray-800 text-gray-400"
+              ? "bg-[#1B1C15] text-white rotate-180"
+              : "bg-gray-100 text-gray-400"
           }`}
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
@@ -161,7 +161,7 @@ function AccordionItem({ item, isOpen, onToggle }: { item: FAQItem; isOpen: bool
           isOpen ? "max-h-96 pb-5" : "max-h-0"
         }`}
       >
-        <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed px-1">
+        <p className="text-sm text-gray-500 leading-relaxed px-1">
           {item.answer}
         </p>
       </div>
@@ -181,14 +181,14 @@ export default function FAQPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-[#0a0a12]">
+    <div className="min-h-screen bg-gray-50">
       <Header />
 
       <main className="pt-28 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           {/* Page Header */}
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-100/80 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 text-xs font-semibold mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F4EDD9]/80 text-[#1B1C15] text-xs font-semibold mb-4">
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="12" cy="12" r="10" />
                 <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
@@ -196,10 +196,10 @@ export default function FAQPage() {
               </svg>
               Help Center
             </div>
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white mb-3">
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3">
               Frequently Asked Questions
             </h1>
-            <p className="text-gray-500 dark:text-gray-400 text-sm max-w-lg mx-auto">
+            <p className="text-gray-500 text-sm max-w-lg mx-auto">
               Everything you need to know about Castle. Can&apos;t find your answer? Reach out to our support team.
             </p>
           </div>
@@ -213,7 +213,7 @@ export default function FAQPage() {
                   <div className={`w-9 h-9 bg-gradient-to-br ${section.gradient} rounded-xl flex items-center justify-center shadow-lg`}>
                     <span className="text-lg">{section.emoji}</span>
                   </div>
-                  <h2 className="text-lg font-bold text-gray-900 dark:text-white">{section.title}</h2>
+                  <h2 className="text-lg font-bold text-gray-900">{section.title}</h2>
                 </div>
 
                 {/* Accordion Card */}
@@ -236,16 +236,16 @@ export default function FAQPage() {
 
           {/* Still have questions */}
           <div className="mt-12 premium-card !rounded-2xl p-8 sm:p-10 text-center">
-            <div className="w-14 h-14 bg-gradient-to-br from-violet-600 to-fuchsia-500 rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg shadow-violet-500/20">
+            <div className="w-14 h-14 bg-[#1B1C15] rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg shadow-black/20">
               <span className="text-2xl">💬</span>
             </div>
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Still have questions?</h3>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-6 max-w-sm mx-auto">
+            <h3 className="text-xl font-bold text-gray-900 mb-2">Still have questions?</h3>
+            <p className="text-sm text-gray-500 mb-6 max-w-sm mx-auto">
               Our support team is always ready to help you out with any queries.
             </p>
             <a
               href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-600 to-fuchsia-500 text-white text-sm font-semibold rounded-2xl shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 hover:scale-[1.02] transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#1B1C15] text-white text-sm font-semibold rounded-2xl shadow-lg shadow-black/20 hover:shadow-black/20 hover:scale-[1.02] transition-all"
             >
               Contact Us
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>

@@ -26,7 +26,7 @@ export default function MapView({ listings }: Props) {
     <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
       <div className="p-4 border-b border-gray-200 flex items-center justify-between">
         <h3 className="font-semibold text-gray-900 flex items-center gap-2">
-          <svg className="w-5 h-5 text-violet-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 text-[#1B1C15]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
           </svg>
@@ -48,7 +48,7 @@ export default function MapView({ listings }: Props) {
         </div>
 
         {/* Bangalore label */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-violet-300 text-3xl font-bold opacity-20 pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[#c5bda8] text-3xl font-bold opacity-20 pointer-events-none">
           BANGALORE
         </div>
 
@@ -66,14 +66,14 @@ export default function MapView({ listings }: Props) {
                 <div className={`relative ${isSelected ? "scale-125" : "hover:scale-110"} transition-transform`}>
                   {/* Pin */}
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center shadow-lg ${
-                    isSelected ? "bg-violet-600" : "bg-white border-2 border-violet-500"
+                    isSelected ? "bg-[#1B1C15]" : "bg-white border-2 border-[#1B1C15]"
                   }`}>
-                    <span className={`text-xs font-bold ${isSelected ? "text-white" : "text-violet-600"}`}>
+                    <span className={`text-xs font-bold ${isSelected ? "text-white" : "text-[#1B1C15]"}`}>
                       {pg.price >= 10000 ? `${Math.round(pg.price / 1000)}K` : `${(pg.price / 1000).toFixed(1)}K`}
                     </span>
                   </div>
                   {/* Pin tail */}
-                  <div className={`w-2 h-2 rotate-45 mx-auto -mt-1 ${isSelected ? "bg-violet-600" : "bg-white border-r-2 border-b-2 border-violet-500"}`} />
+                  <div className={`w-2 h-2 rotate-45 mx-auto -mt-1 ${isSelected ? "bg-[#1B1C15]" : "bg-white border-r-2 border-b-2 border-[#1B1C15]"}`} />
                 </div>
               </button>
             </div>
@@ -90,8 +90,8 @@ export default function MapView({ listings }: Props) {
               x
             </button>
             <div className="flex gap-4">
-              <div className="w-20 h-20 bg-violet-100 rounded-xl flex items-center justify-center shrink-0">
-                <svg className="w-8 h-8 text-violet-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-20 h-20 bg-[#F4EDD9] rounded-xl flex items-center justify-center shrink-0">
+                <svg className="w-8 h-8 text-[#1B1C15]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                 </svg>
               </div>
@@ -99,7 +99,7 @@ export default function MapView({ listings }: Props) {
                 <h4 className="font-semibold text-gray-900 truncate">{selected.name}</h4>
                 <p className="text-sm text-gray-500">{selected.locality}, {selected.area}</p>
                 <div className="flex items-center gap-3 mt-2">
-                  <span className="text-lg font-bold text-violet-600">₹{selected.price.toLocaleString()}/mo</span>
+                  <span className="text-lg font-bold text-[#1B1C15]">₹{selected.price.toLocaleString()}/mo</span>
                   <span className="flex items-center gap-1 text-sm">
                     <svg className="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
@@ -109,7 +109,7 @@ export default function MapView({ listings }: Props) {
                 </div>
                 <Link
                   href={`/listing/${selected.id}`}
-                  className="inline-block mt-2 text-sm text-violet-600 font-medium hover:underline"
+                  className="inline-block mt-2 text-sm text-[#1B1C15] font-medium hover:underline"
                 >
                   View Details →
                 </Link>

@@ -36,10 +36,10 @@ export default function ForgotPasswordPage() {
       <main className="min-h-screen flex items-center justify-center px-4 pt-20">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
-            <div className="w-20 h-20 bg-violet-50 dark:bg-violet-900/20 rounded-3xl flex items-center justify-center mx-auto mb-4">
+            <div className="w-20 h-20 bg-[#F4EDD9] rounded-3xl flex items-center justify-center mx-auto mb-4">
               <span className="text-5xl">🔑</span>
             </div>
-            <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">
+            <h1 className="text-3xl font-extrabold text-gray-900">
               {sent ? "Check Your Email" : "Forgot Password?"}
             </h1>
             <p className="text-gray-400 mt-2">
@@ -52,26 +52,26 @@ export default function ForgotPasswordPage() {
           <div className="premium-card !rounded-3xl p-8">
             {sent ? (
               <div className="text-center">
-                <div className="w-16 h-16 bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
                   <span className="text-4xl">📧</span>
                 </div>
-                <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
+                <p className="text-sm text-gray-600 mb-2">
                   Reset link sent to
                 </p>
-                <p className="font-semibold text-gray-900 dark:text-white mb-6">{email}</p>
+                <p className="font-semibold text-gray-900 mb-6">{email}</p>
                 <p className="text-xs text-gray-400 mb-6">
                   Click the link in the email to set a new password. Check your spam folder if you don&apos;t see it.
                 </p>
                 <div className="space-y-3">
                   <button
                     onClick={() => { setSent(false); setEmail(""); }}
-                    className="w-full py-3 text-sm font-semibold text-violet-600 bg-violet-50 dark:bg-violet-900/20 rounded-xl hover:bg-violet-100 dark:hover:bg-violet-900/30 transition"
+                    className="w-full py-3 text-sm font-semibold text-[#1B1C15] bg-[#F4EDD9] rounded-xl hover:bg-[#F4EDD9] transition"
                   >
                     Try a different email
                   </button>
                   <Link
                     href="/login"
-                    className="block w-full py-3 text-sm font-semibold text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition text-center"
+                    className="block w-full py-3 text-sm font-semibold text-gray-600 bg-gray-100 rounded-xl hover:bg-gray-200 transition text-center"
                   >
                     ← Back to Sign In
                   </Link>
@@ -80,14 +80,14 @@ export default function ForgotPasswordPage() {
             ) : (
               <>
                 {error && (
-                  <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-2xl text-sm text-red-600 dark:text-red-400">
+                  <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-2xl text-sm text-red-600">
                     ⚠️ {error}
                   </div>
                 )}
 
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
-                    <label htmlFor="forgot-email" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                    <label htmlFor="forgot-email" className="block text-sm font-semibold text-gray-700 mb-2">
                       Email Address
                     </label>
                     <input
@@ -123,7 +123,7 @@ export default function ForgotPasswordPage() {
                 </form>
 
                 <div className="mt-6 text-center">
-                  <Link href="/login" className="text-sm text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+                  <Link href="/login" className="text-sm text-gray-400 hover:text-gray-600">
                     ← Back to Sign In
                   </Link>
                 </div>

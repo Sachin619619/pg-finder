@@ -83,10 +83,10 @@ export default function ChatPage() {
         <Header />
         <main className="min-h-screen flex items-center justify-center px-4 pt-20">
           <div className="text-center">
-            <div className="w-20 h-20 bg-violet-50 dark:bg-violet-900/20 rounded-3xl flex items-center justify-center mx-auto mb-6">
+            <div className="w-20 h-20 bg-[#F4EDD9] rounded-3xl flex items-center justify-center mx-auto mb-6">
               <span className="text-5xl">💬</span>
             </div>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">Sign in to Chat</h1>
+            <h1 className="text-2xl font-bold text-gray-900 mb-3">Sign in to Chat</h1>
             <p className="text-gray-400 mb-6">You need an account to message PG owners</p>
             <Link href="/login" className="btn-premium">Sign In</Link>
           </div>
@@ -101,14 +101,14 @@ export default function ChatPage() {
       <main className="max-w-3xl mx-auto px-4 pt-24 pb-4 flex flex-col" style={{ height: "100vh" }}>
         {/* Chat header */}
         <div className="premium-card !rounded-2xl p-4 mb-4 flex items-center gap-4">
-          <div className="w-12 h-12 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-xl flex items-center justify-center">
+          <div className="w-12 h-12 bg-[#1B1C15] rounded-xl flex items-center justify-center">
             <span className="text-white font-bold text-lg">🏠</span>
           </div>
           <div className="flex-1">
-            <h2 className="font-bold text-gray-900 dark:text-white">{pgName || "Loading..."}</h2>
+            <h2 className="font-bold text-gray-900">{pgName || "Loading..."}</h2>
             <p className="text-xs text-gray-400">Chat with {ownerName || "PG Owner"}</p>
           </div>
-          <Link href={`/listing/${pgId}`} className="px-4 py-2 text-sm bg-gray-100 dark:bg-gray-800 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700">
+          <Link href={`/listing/${pgId}`} className="px-4 py-2 text-sm bg-gray-100 rounded-xl text-gray-600 hover:bg-gray-200">
             View PG
           </Link>
         </div>
@@ -127,10 +127,10 @@ export default function ChatPage() {
               <div key={msg.id} className={`flex ${isMine ? "justify-end" : "justify-start"}`}>
                 <div className={`max-w-[75%] p-4 rounded-2xl ${
                   isMine
-                    ? "bg-gradient-to-r from-violet-600 to-fuchsia-500 text-white rounded-br-md"
-                    : "bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-sm border border-gray-100 dark:border-gray-700 rounded-bl-md"
+                    ? "bg-[#1B1C15] text-white rounded-br-md"
+                    : "bg-white text-gray-900 shadow-sm border border-gray-100 rounded-bl-md"
                 }`}>
-                  {!isMine && <p className="text-xs font-semibold text-violet-500 mb-1">{msg.sender_name}</p>}
+                  {!isMine && <p className="text-xs font-semibold text-[#1B1C15] mb-1">{msg.sender_name}</p>}
                   <p className="text-sm leading-relaxed">{msg.content}</p>
                   <p className={`text-[10px] mt-1 ${isMine ? "text-white/60" : "text-gray-400"}`}>
                     {new Date(msg.created_at).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
@@ -150,7 +150,7 @@ export default function ChatPage() {
             onChange={(e) => setNewMsg(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && sendMessage()}
             placeholder="Type a message..."
-            className="flex-1 bg-gray-50 dark:bg-gray-800 border-0 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-violet-500 outline-none"
+            className="flex-1 bg-gray-50 border-0 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-[#1B1C15]/20 outline-none"
           />
           <button
             onClick={sendMessage}
