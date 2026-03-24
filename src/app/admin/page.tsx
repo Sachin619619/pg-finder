@@ -327,7 +327,7 @@ export default function AdminPage() {
   return (
     <>
       <Header />
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 overflow-x-hidden">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 w-full overflow-x-hidden">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
             <div className="w-11 h-11 bg-[#1B1C15] rounded-2xl flex items-center justify-center shadow-lg shadow-black/10">
@@ -341,13 +341,13 @@ export default function AdminPage() {
           <span className="px-3 py-1.5 bg-[#1B1C15] text-white text-[10px] font-bold uppercase tracking-wider rounded-xl">Admin</span>
         </div>
 
-        {/* Tabs — horizontal scroll on mobile */}
-        <div className="flex gap-1.5 overflow-x-auto pb-1 mb-6 scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
+        {/* Tabs — wraps naturally on mobile, no horizontal scroll */}
+        <div className="flex flex-wrap gap-1.5 mb-6">
           {tabs.map((t) => (
             <button
               key={t.key}
               onClick={() => setTab(t.key)}
-              className={`flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-semibold transition-all capitalize whitespace-nowrap shrink-0 ${
+              className={`flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-semibold transition-all capitalize shrink-0 ${
                 tab === t.key ? "bg-[#1B1C15] text-white shadow-lg shadow-black/15" : "bg-[#F4EDD9] text-[#666] hover:bg-[#ebe4d0] border border-[#e8e0cc]/60"
               }`}
             >
