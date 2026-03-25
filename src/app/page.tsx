@@ -16,6 +16,7 @@ import BrowseByLifestyle from "@/components/BrowseByLifestyle";
 import TrendingSearches from "@/components/TrendingSearches";
 import QuickFiltersFAB from "@/components/QuickFiltersFAB";
 import FeaturedToday from "@/components/FeaturedToday";
+import TrendingNow from "@/components/TrendingNow";
 import AIMatchSection from "@/components/AIMatchSection";
 import SaveSearchButton from "@/components/SaveSearchButton";
 import CommunityStats from "@/components/CommunityStats";
@@ -270,7 +271,9 @@ export default function Home() {
         </section>
 
         <FeaturedToday listings={listings} />
-        <FeaturedToday listings={listings} />
+
+        {/* ===== TRENDING NOW ===== */}
+        <TrendingNow />
 
         {/* ===== AI MATCH ===== */}
         <AIMatchSection listings={listings} />
