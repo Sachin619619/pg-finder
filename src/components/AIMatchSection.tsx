@@ -83,18 +83,18 @@ export default function AIMatchSection({ listings }: AIMatchSectionProps) {
           <p className="text-black/50 max-w-md mx-auto text-sm">Answer 5 quick questions and our AI will find your best match</p>
         </div>
 
-        <div className="bg-white rounded-3xl border border-violet-100 shadow-xl overflow-hidden">
+        <div className="bg-white rounded-2xl border border-black/5 shadow-sm overflow-hidden">
           {!matched ? (
             <>
               {/* Progress */}
-              <div className="bg-violet-50 px-6 py-4 border-b border-violet-100">
+              <div className="bg-gray-50 px-6 py-4 border-b border-gray-100">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-semibold text-violet-800">Question {step + 1} of {lifestyleQuestions.length}</span>
-                  <button onClick={reset} className="text-xs text-violet-500 hover:text-violet-700">Start Over</button>
+                  <span className="text-sm font-semibold text-black">Question {step + 1} of {lifestyleQuestions.length}</span>
+                  <button onClick={reset} className="text-xs text-gray-400 hover:text-gray-600">Start Over</button>
                 </div>
-                <div className="w-full bg-violet-100 rounded-full h-2">
+                <div className="w-full bg-gray-200 rounded-full h-2">
                   <div
-                    className="h-2 rounded-full bg-gradient-to-r from-violet-500 to-indigo-500 transition-all duration-500"
+                    className="h-2 rounded-full bg-black transition-all duration-500"
                     style={{ width: `${progress}%` }}
                   />
                 </div>
@@ -112,7 +112,7 @@ export default function AIMatchSection({ listings }: AIMatchSectionProps) {
                     <button
                       key={opt}
                       onClick={() => handleAnswer(opt)}
-                      className="w-full text-left p-4 rounded-xl border-2 border-gray-100 hover:border-violet-300 hover:bg-violet-50 transition-all text-sm font-medium text-gray-700 group"
+                      className="w-full text-left p-4 rounded-xl border border-gray-100 hover:border-black/20 hover:bg-gray-50 transition-all text-sm font-medium text-gray-700 group"
                     >
                       <span className="group-hover:ml-1 transition-all">{opt}</span>
                     </button>
@@ -123,7 +123,7 @@ export default function AIMatchSection({ listings }: AIMatchSectionProps) {
           ) : (
             <>
               {/* Results */}
-              <div className="bg-gradient-to-r from-violet-500 to-indigo-500 px-6 py-6">
+              <div className="bg-black px-6 py-6">
                 <h3 className="text-xl font-bold text-white mb-1">🎉 Your Top Matches</h3>
                 <p className="text-white/70 text-sm">Based on your preferences, here are the best PGs for you</p>
               </div>
@@ -131,12 +131,12 @@ export default function AIMatchSection({ listings }: AIMatchSectionProps) {
               <div className="p-6 space-y-4">
                 {matched.map((pg, i) => (
                   <Link key={pg.id} href={`/listing/${pg.id}`} className="block group">
-                    <div className="flex items-center gap-4 p-4 rounded-xl border border-gray-100 hover:border-violet-200 hover:bg-violet-50/50 transition-all">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-violet-500 to-indigo-500 flex items-center justify-center text-white font-bold text-sm shrink-0">
+                    <div className="flex items-center gap-4 p-4 rounded-xl border border-gray-100 hover:border-black/10 hover:bg-gray-50 transition-all">
+                      <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center text-white font-bold text-sm shrink-0">
                         {i + 1}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="font-semibold text-gray-900 text-sm group-hover:text-violet-700 transition-colors">{pg.name}</p>
+                        <p className="font-semibold text-gray-900 text-sm group-hover:text-black transition-colors">{pg.name}</p>
                         <p className="text-xs text-gray-400">📍 {pg.area} • ⭐ {pg.rating} • ₹{pg.price.toLocaleString()}/mo</p>
                       </div>
                       <span className="text-xs text-violet-600 font-semibold group-hover:translate-x-1 transition-transform">View →</span>
