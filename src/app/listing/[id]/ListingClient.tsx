@@ -33,6 +33,7 @@ import NotificationPreferences from "@/components/NotificationPreferences";
 import EmergencyContacts from "@/components/EmergencyContacts";
 import WalkthroughVideo from "@/components/WalkthroughVideo";
 import AmenityBreakdown from "@/components/AmenityBreakdown";
+import NearbyEssentials from "@/components/NearbyEssentials";
 import ListingQuickActions from "@/components/ListingQuickActions";
 import { useAuth } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
@@ -753,6 +754,9 @@ export default function ListingClient() {
                 furnished={pg.furnished}
                 area={pg.area}
               />
+
+              {/* Nearby Essentials */}
+              <NearbyEssentials area={pg.area} />
 
               {/* View on Map — subtle link style */}
               <a
