@@ -83,13 +83,13 @@ export default function CastleScore({ pg, compact = false }: CastleScoreProps) {
   }
 
   return (
-    <div className="bg-gradient-to-br from-violet-50 to-indigo-50 border border-violet-100 rounded-2xl p-5">
+    <div className="bg-gray-50 border border-gray-200 rounded-2xl p-5">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <span className="text-2xl font-bold text-violet-900">C</span>
+          <span className="text-2xl font-bold text-black">C</span>
           <div>
-            <p className="text-sm font-bold text-violet-900">Castle Score</p>
-            <p className="text-xs text-violet-600">Overall quality rating</p>
+            <p className="text-sm font-bold text-black">Castle Score</p>
+            <p className="text-xs text-gray-500">Overall quality rating</p>
           </div>
         </div>
         <div className={`flex items-center gap-2 px-3 py-1.5 rounded-xl font-bold border ${gradeColor}`}>
@@ -99,9 +99,9 @@ export default function CastleScore({ pg, compact = false }: CastleScoreProps) {
       </div>
 
       {/* Overall bar */}
-      <div className="w-full bg-white/60 rounded-full h-3 mb-4 overflow-hidden">
+      <div className="w-full bg-gray-200 rounded-full h-3 mb-4 overflow-hidden">
         <div
-          className="h-3 rounded-full bg-gradient-to-r from-violet-400 to-indigo-500 transition-all duration-700"
+          className="h-3 rounded-full bg-black transition-all duration-700"
           style={{ width: `${pct}%` }}
         />
       </div>
@@ -112,8 +112,8 @@ export default function CastleScore({ pg, compact = false }: CastleScoreProps) {
           const itemPct = Math.round((item.score / item.max) * 100);
           return (
             <div key={item.label} className="flex items-center gap-3">
-              <span className="text-xs text-violet-700 w-20 shrink-0">{item.label}</span>
-              <div className="flex-1 bg-white/50 rounded-full h-2 overflow-hidden">
+              <span className="text-xs text-gray-600 w-20 shrink-0">{item.label}</span>
+              <div className="flex-1 bg-gray-200 rounded-full h-2 overflow-hidden">
                 <div
                   className={`h-2 rounded-full transition-all duration-500 ${item.color}`}
                   style={{ width: `${itemPct}%` }}

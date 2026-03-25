@@ -235,16 +235,16 @@ html, body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #c8bfa0;
+  background: #d1d5db;
   border-radius: 100px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #a89a78;
+  background: #9ca3af;
 }
 
 /* ===== SELECTION ===== */
 ::selection {
-  background: rgba(244, 237, 217, 0.7);
+  background: rgba(0, 0, 0, 0.1);
   color: #1B1C15;
 }
 
