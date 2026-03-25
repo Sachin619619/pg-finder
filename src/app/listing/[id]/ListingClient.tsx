@@ -35,6 +35,7 @@ import EmergencyContacts from "@/components/EmergencyContacts";
 import WalkthroughVideo from "@/components/WalkthroughVideo";
 import AmenityBreakdown from "@/components/AmenityBreakdown";
 import NearbyEssentials from "@/components/NearbyEssentials";
+import VisitReminder from "@/components/VisitReminder";
 import ListingQuickActions from "@/components/ListingQuickActions";
 import { useAuth } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
@@ -673,6 +674,9 @@ export default function ListingClient() {
                   Schedule a Visit
                 </span>
               </button>
+
+              {/* Visit Reminder */}
+              <VisitReminder pgName={pg.name} pgId={pg.id} />
 
               {/* Call & WhatsApp Row */}
               <div className="grid grid-cols-2 gap-3 mt-3">
