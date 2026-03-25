@@ -36,6 +36,7 @@ import WalkthroughVideo from "@/components/WalkthroughVideo";
 import AmenityBreakdown from "@/components/AmenityBreakdown";
 import NearbyEssentials from "@/components/NearbyEssentials";
 import VisitReminder from "@/components/VisitReminder";
+import RentVsBuyCalculator from "@/components/RentVsBuyCalculator";
 import ListingQuickActions from "@/components/ListingQuickActions";
 import { useAuth } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
@@ -575,6 +576,7 @@ export default function ListingClient() {
             <CastleGuarantee />
             <ListingQualityScore pg={pg} />
             <SimilarPGs currentPg={pg} />
+            <RentVsBuyCalculator />
           </div>
 
           {/* Right Column — Contact & Price */}
