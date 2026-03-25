@@ -37,6 +37,7 @@ import WalkthroughVideo from "@/components/WalkthroughVideo";
 import AmenityBreakdown from "@/components/AmenityBreakdown";
 import NearbyEssentials from "@/components/NearbyEssentials";
 import VisitReminder from "@/components/VisitReminder";
+import QuickStats from "@/components/QuickStats";
 import RentVsBuyCalculator from "@/components/RentVsBuyCalculator";
 import ListingQuickActions from "@/components/ListingQuickActions";
 import { useAuth } from "@/lib/auth";
@@ -574,6 +575,14 @@ export default function ListingClient() {
               currentPrice={pg.price}
             />
             <CastleScore pg={pg} />
+            <QuickStats
+              rating={pg.rating}
+              reviews={pg.reviews}
+              price={pg.price}
+              furnished={pg.furnished}
+              foodIncluded={pg.foodIncluded}
+              acAvailable={pg.acAvailable}
+            />
             <CastleGuarantee />
             <ListingQualityScore pg={pg} />
             <SimilarPGs currentPg={pg} />
