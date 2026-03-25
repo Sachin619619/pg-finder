@@ -15,7 +15,7 @@ const trendingItems = [
 
 export default function TrendingNow() {
   return (
-    <section className="py-12 bg-[#FFFAEC] border-y border-[#e8e0cc]">
+    <section className="py-12 bg-gray-50 border-y border-black/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3 mb-5">
           <span className="text-lg">🔥</span>
@@ -28,7 +28,7 @@ export default function TrendingNow() {
             <Link
               key={item.label}
               href={item.href}
-              className="group flex items-center gap-2 px-4 py-2.5 bg-white border border-[#e8e0cc] rounded-full text-sm text-gray-700 hover:bg-[#1B1C15] hover:text-white hover:border-[#1B1C15] transition-all shrink-0"
+              className="group flex items-center gap-2 px-4 py-2.5 bg-white border border-black/5 rounded-full text-sm text-gray-700 hover:bg-[#1a1a1a] hover:text-white hover:border-[#1a1a1a] transition-all shrink-0"
             >
               <span className="text-base group-hover:scale-110 transition-transform">{item.emoji}</span>
               <span className="font-semibold whitespace-nowrap">{item.label}</span>

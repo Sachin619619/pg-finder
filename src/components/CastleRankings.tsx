@@ -69,8 +69,8 @@ export default function CastleRankings({ listings }: CastleRankingsProps) {
               onClick={() => setActive(cat.id)}
               className={`px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition-all ${
                 active === cat.id
-                  ? "bg-[#1B1C15] text-white shadow-lg"
-                  : "bg-white border border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50"
+                  ? "bg-[#1a1a1a] text-white"
+                  : "bg-white border border-black/5 text-gray-600 hover:border-black/10 hover:bg-gray-50"
               }`}
             >
               {cat.label}
@@ -82,12 +82,12 @@ export default function CastleRankings({ listings }: CastleRankingsProps) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
           {getCategoryListings(listings, active).map((pg, i) => (
             <Link key={pg.id} href={`/listing/${pg.id}`} className="group">
-              <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all">
+              <div className="bg-white rounded-2xl border border-black/5 overflow-hidden hover:shadow-md hover:-translate-y-1 transition-all">
                 {/* Rank badge */}
                 <div className={`relative h-32 flex items-center justify-center ${
-                  i === 0 ? "bg-gradient-to-br from-amber-50 to-orange-50" :
-                  i === 1 ? "bg-gradient-to-br from-gray-50 to-gray-100" :
-                  i === 2 ? "bg-gradient-to-br from-orange-50 to-amber-50" :
+                  i === 0 ? "bg-amber-50" :
+                  i === 1 ? "bg-gray-100" :
+                  i === 2 ? "bg-orange-50" :
                   "bg-gray-50"
                 }`}>
                   <span className={`text-5xl font-black ${
@@ -105,7 +105,7 @@ export default function CastleRankings({ listings }: CastleRankingsProps) {
 
                 {/* Content */}
                 <div className="p-4">
-                  <h4 className="font-semibold text-gray-900 text-sm mb-1 group-hover:text-[#1B1C15] transition-colors truncate">{pg.name}</h4>
+                  <h4 className="font-semibold text-gray-900 text-sm mb-1 group-hover:text-[#1a1a1a] transition-colors truncate">{pg.name}</h4>
                   <p className="text-xs text-gray-400 mb-2">📍 {pg.area}</p>
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-bold text-gray-900">₹{pg.price.toLocaleString()}</span>
