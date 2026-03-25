@@ -42,6 +42,7 @@ import BookingTimeline from "@/components/BookingTimeline";
 import BreadcrumbNav from "@/components/BreadcrumbNav";
 import PGHistory from "@/components/PGHistory";
 import OwnerStats from "@/components/OwnerStats";
+import WeatherWidget from "@/components/WeatherWidget";
 import RentVsBuyCalculator from "@/components/RentVsBuyCalculator";
 import ListingQuickActions from "@/components/ListingQuickActions";
 import { useAuth } from "@/lib/auth";
@@ -681,6 +682,9 @@ export default function ListingClient() {
                 avgResponseTime={pg.rating >= 4.5 ? 15 : pg.rating >= 4.0 ? 45 : 120}
                 verified={true}
               />
+
+              {/* Weather Widget */}
+              <WeatherWidget />
 
               {/* Primary CTA — Book Now */}
               <Link
