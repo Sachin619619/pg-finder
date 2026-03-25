@@ -23,6 +23,7 @@ import SafetyScore from "@/components/SafetyScore";
 import TransportProximity from "@/components/TransportProximity";
 import NeighborhoodInfo from "@/components/NeighborhoodInfo";
 import OwnerResponseBadge from "@/components/OwnerResponseBadge";
+import VerifiedBadge from "@/components/VerifiedBadge";
 import SentimentAnalysis from "@/components/SentimentAnalysis";
 import PricePrediction from "@/components/PricePrediction";
 import ListingQualityScore from "@/components/ListingQualityScore";
@@ -643,6 +644,9 @@ export default function ListingClient() {
                   <p className="font-semibold text-gray-900 text-sm">{pg.contactName}</p>
                 </div>
               </div>
+
+              {/* Verified Badges */}
+              <VerifiedBadge verified={true} />
 
               {/* Owner Response Badge */}
               <OwnerResponseBadge contactName={pg.contactName} avgResponseTime={pg.rating >= 4.5 ? 15 : pg.rating >= 4.0 ? 45 : 120} />
