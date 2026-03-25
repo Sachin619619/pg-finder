@@ -81,11 +81,11 @@ export default function AreaPageContent({ listings }: { listings: PGListing[] })
       {/* Quick Filters */}
       <div className="bg-white rounded-2xl border border-[#E8E0CC] p-5 sm:p-6 mb-8 shadow-sm">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-bold text-[#1B1C15]">Filter PGs</h2>
+          <h2 className="text-lg font-bold text-[#1a1a1a]">Filter PGs</h2>
           {activeFilterCount > 0 && (
             <button
               onClick={() => { setGender(""); setPriceRange(null); setActiveAmenities(new Set()); }}
-              className="text-sm text-gray-500 hover:text-[#1B1C15] underline underline-offset-2 transition-colors"
+              className="text-sm text-gray-500 hover:text-[#1a1a1a] underline underline-offset-2 transition-colors"
             >
               Clear all ({activeFilterCount})
             </button>
@@ -107,8 +107,8 @@ export default function AreaPageContent({ listings }: { listings: PGListing[] })
                 onClick={() => setGender(g.value)}
                 className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
                   gender === g.value
-                    ? "bg-[#1B1C15] text-white shadow-md"
-                    : "bg-[#F5F0E1] text-[#1B1C15] hover:bg-[#EDE5D0]"
+                    ? "bg-[#1a1a1a] text-white"
+                    : "bg-gray-100 text-[#1a1a1a] hover:bg-gray-200"
                 }`}
               >
                 {g.icon} {g.label}
@@ -167,7 +167,7 @@ export default function AreaPageContent({ listings }: { listings: PGListing[] })
       {/* Sort bar + count */}
       <div className="flex items-center justify-between mb-6">
         <p className="text-sm text-gray-600">
-          <span className="font-bold text-[#1B1C15]">{filtered.length}</span>{" "}
+          <span className="font-bold text-[#1a1a1a]">{filtered.length}</span>{" "}
           {filtered.length === 1 ? "PG" : "PGs"} found
         </p>
         <div className="flex items-center gap-2">
@@ -176,7 +176,7 @@ export default function AreaPageContent({ listings }: { listings: PGListing[] })
             id="sort"
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as SortOption)}
-            className="text-sm border border-[#E8E0CC] rounded-xl px-3 py-2 bg-white text-[#1B1C15] focus:outline-none focus:ring-2 focus:ring-[#1B1C15]/20"
+            className="text-sm border border-gray-200 rounded-xl px-3 py-2 bg-white text-[#1a1a1a] focus:outline-none focus:ring-2 focus:ring-black/10"
           >
             <option value="rating">Top Rated</option>
             <option value="price-asc">Price: Low to High</option>
