@@ -6,7 +6,6 @@ import Header from "@/components/Header";
 import SearchFilters from "@/components/SearchFilters";
 import PGCard from "@/components/PGCard";
 import MapView from "@/components/MapView";
-import CompareDrawer from "@/components/CompareDrawer";
 import PriceInsights from "@/components/PriceInsights";
 import Testimonials from "@/components/Testimonials";
 import PriceAlertBanner from "@/components/PriceAlertBanner";
@@ -15,6 +14,8 @@ import AdBanner from "@/components/AdBanner";
 import AnimatedBanner from "@/components/AnimatedBanner";
 import GhibliShowcase from "@/components/GhibliShowcase";
 import RecentlyViewed from "@/components/RecentlyViewed";
+import SearchAutocomplete from "@/components/SearchAutocomplete";
+import Link from "next/link";
 import { fetchListings } from "@/lib/db";
 import type { PGListing } from "@/data/listings";
 
@@ -85,7 +86,6 @@ export default function Home() {
   const [filters, setFilters] = useState<Filters>(defaultFilters);
   const [sortBy, setSortBy] = useState<string>("rating");
   const [viewMode, setViewMode] = useState<"grid" | "map">("grid");
-  const [compareList, setCompareList] = useState<PGListing[]>([]);
   const [listings, setListings] = useState<PGListing[]>([]);
   const [loading, setLoading] = useState(true);
   const debouncedSearch = useDebounce(filters.search, 300);
@@ -109,14 +109,6 @@ export default function Home() {
   const stat2 = useCounter(areas.length);
   const totalReviews = useMemo(() => listings.reduce((acc, pg) => acc + pg.reviews, 0), [listings]);
   const stat3 = useCounter(totalReviews || 500);
-
-  const toggleCompare = (pg: PGListing) => {
-    if (compareList.find((c) => c.id === pg.id)) {
-      setCompareList(compareList.filter((c) => c.id !== pg.id));
-    } else if (compareList.length < 3) {
-      setCompareList([...compareList, pg]);
-    }
-  };
 
   const filtered = useMemo(() => {
     let result = listings.filter((pg) => {
@@ -186,26 +178,47 @@ export default function Home() {
                 Discover premium PGs, hostels & co-living spaces. Curated listings with verified reviews and transparent pricing.
               </p>
 
-              {/* Search bar */}
+              {/* Search bar with autocomplete */}
               <div className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto">
-                <div className="flex-1 relative">
-                  <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-black/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
-                  <input
-                    type="text"
-                    placeholder="Search area, PG name, landmark..."
-                    className="w-full pl-12 pr-4 py-4 bg-[#FFFAEB] border border-[#e8e0cc] rounded-2xl text-black placeholder-black/25 focus:border-black/30 outline-none transition-all text-[15px]"
-                    value={filters.search}
-                    onChange={(e) => setFilters({ ...filters, search: e.target.value })}
-                  />
-                </div>
+                <SearchAutocomplete
+                  areas={Object.entries(areaCount).map(([name, count]) => ({
+                    name,
+                    count,
+                    slug: name.toLowerCase().replace(/\s+/g, "-"),
+                  }))}
+                  value={filters.search}
+                  onChange={(val) => setFilters({ ...filters, search: val })}
+                  onSearch={() => document.getElementById("listings")?.scrollIntoView({ behavior: "smooth" })}
+                />
                 <button
                   onClick={() => document.getElementById("listings")?.scrollIntoView({ behavior: "smooth" })}
                   className="bg-[#1B1C15] text-white py-4 px-8 rounded-[14px] font-medium text-sm hover:opacity-90 transition-opacity whitespace-nowrap"
                 >
                   Search PGs
                 </button>
+              </div>
+
+              {/* Popular area chips */}
+              <div className="flex flex-wrap justify-center gap-2 mt-6 max-w-xl mx-auto">
+                <span className="text-xs text-black/35 font-medium self-center mr-1">Popular:</span>
+                {[
+                  { name: "Koramangala", emoji: "🏙️" },
+                  { name: "HSR Layout", emoji: "💻" },
+                  { name: "Indiranagar", emoji: "🎵" },
+                  { name: "Whitefield", emoji: "🏢" },
+                  { name: "BTM Layout", emoji: "🎯" },
+                  { name: "Marathahalli", emoji: "🌉" },
+                  { name: "Electronic City", emoji: "⚡" },
+                ].map((area) => (
+                  <Link
+                    key={area.name}
+                    href={`/area/${area.name.toLowerCase().replace(/\s+/g, "-")}`}
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-white/60 backdrop-blur-sm border border-[#e8e0cc]/80 rounded-full text-xs font-medium text-black/60 hover:bg-white hover:border-black/20 hover:text-black/80 transition-all"
+                  >
+                    <span>{area.emoji}</span>
+                    {area.name}
+                  </Link>
+                ))}
               </div>
             </div>
 
@@ -377,20 +390,7 @@ export default function Home() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 stagger-children">
                   {filtered.map((pg, index) => (
                     <div key={pg.id}>
-                      <div className="relative">
-                        <PGCard pg={pg} priority={index < 3} />
-                        <button
-                          onClick={(e) => { e.preventDefault(); toggleCompare(pg); }}
-                          aria-label={compareList.find((c) => c.id === pg.id) ? `Remove ${pg.name} from compare` : `Add ${pg.name} to compare`}
-                          className={`absolute top-16 right-4 z-10 pill text-[11px] transition-all shadow-sm backdrop-blur-sm ${
-                            compareList.find((c) => c.id === pg.id)
-                              ? "bg-[#1B1C15] text-white"
-                              : "bg-white/80 text-black hover:bg-[#FFFAEB] border border-[#e8e0cc]"
-                          }`}
-                        >
-                          {compareList.find((c) => c.id === pg.id) ? "✓ Added" : "⚖️ Compare"}
-                        </button>
-                      </div>
+                      <PGCard pg={pg} priority={index < 3} />
                       {/* In-feed ad after every 6th listing */}
                       {index === 5 && filtered.length > 6 && (
                         <div className="mt-7">
@@ -633,11 +633,6 @@ export default function Home() {
         </footer>
       </main>
 
-      <CompareDrawer
-        items={compareList}
-        onRemove={(id) => setCompareList(compareList.filter((c) => c.id !== id))}
-        onClear={() => setCompareList([])}
-      />
     </>
   );
 }

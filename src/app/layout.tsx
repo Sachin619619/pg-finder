@@ -12,6 +12,9 @@ import ProgressBarProvider from "@/components/ProgressBar";
 import { AuthProvider } from "@/lib/auth";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { ToastProvider } from "@/components/Toast";
+import { CompareProvider } from "@/context/CompareContext";
+import CompareBar from "@/components/CompareBar";
+import CompareModal from "@/components/CompareModal";
 
 const playfairDisplay = Playfair_Display({
   variable: "--font-serif",
@@ -219,6 +222,7 @@ export default function RootLayout({
         </a>
         <GoogleAnalytics />
         <AuthProvider>
+          <CompareProvider>
           <ToastProvider>
             <ScrollProgress />
             <ProgressBarProvider />
@@ -229,7 +233,10 @@ export default function RootLayout({
             <SWRegister />
             <InstallPrompt />
             <CookieConsent />
+            <CompareBar />
+            <CompareModal />
           </ToastProvider>
+          </CompareProvider>
         </AuthProvider>
         <script
           src="https://actionbot-next.vercel.app/widget.js"

@@ -18,7 +18,7 @@ import AdBanner from "@/components/AdBanner";
 import AnimatedBanner from "@/components/AnimatedBanner";
 import { useAuth } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
-import { saveRecentlyViewed } from "@/components/RecentlyViewed";
+import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
 import { authFetch } from "@/lib/auth-fetch";
 
 type ReportEntry = { pgId: string; reason: string; description: string; date: string };
@@ -26,6 +26,7 @@ type ReportEntry = { pgId: string; reason: string; description: string; date: st
 export default function ListingClient() {
   const { id } = useParams();
   const { user, profile } = useAuth();
+  const { addToRecent } = useRecentlyViewed();
   const [pg, setPg] = useState<PGListing | null>(null);
   const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState(true);
@@ -131,11 +132,13 @@ export default function ListingClient() {
           setLoading(false);
           if (listing) {
             document.title = `${listing.name} in ${listing.area} | Castle`;
-            saveRecentlyViewed({
+            addToRecent({
               id: listing.id,
               name: listing.name,
               area: listing.area,
               price: listing.price,
+              rating: listing.rating,
+              image: listing.images?.[0] || "",
             });
           }
         })
