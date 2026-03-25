@@ -55,8 +55,6 @@ export default function ListingClient() {
   const [reportSubmitting, setReportSubmitting] = useState(false);
   const [showScheduleVisit, setShowScheduleVisit] = useState(false);
   const [showCostCalc, setShowCostCalc] = useState(false);
-  const [showVirtualTour, setShowVirtualTour] = useState(false);
-  const [showNotifications, setShowNotifications] = useState(false);
 
   // Check resident request status
   useEffect(() => {
@@ -219,7 +217,7 @@ export default function ListingClient() {
           <div className="text-6xl mb-6">🏠</div>
           <h1 className="text-2xl font-bold text-gray-900 mb-3">PG Not Found</h1>
           <p className="text-gray-500 mb-6">This listing may have been removed or doesn&apos;t exist.</p>
-          <Link href="/" className="inline-flex items-center gap-2 px-6 py-3 bg-[#1B1C15] text-white rounded-xl font-medium hover:bg-[#2a2b22] transition">
+          <Link href="/" className="inline-flex items-center gap-2 px-6 py-3 bg-[#1a1a1a] text-white rounded-xl font-medium hover:opacity-80 transition">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
@@ -283,7 +281,7 @@ export default function ListingClient() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-24 animate-fade-in-up">
         {/* Breadcrumb */}
         <nav className="mb-6 text-sm text-gray-500 flex items-center gap-2">
-          <Link href="/" className="hover:text-[#1B1C15]">Home</Link>
+          <Link href="/" className="hover:text-[#1a1a1a]">Home</Link>
           <span>/</span>
           <Link href={`/area/${pg.area.toLowerCase().replace(/\s+/g, "-")}`} className="hover:text-[#1B1C15]">{pg.area}</Link>
           <span>/</span>
@@ -358,8 +356,6 @@ export default function ListingClient() {
               </div>
             </div>
 
-            {/* Share to Friends */}
-            <ShareToFriends pgName={pg.name} pgPrice={pg.price} pgArea={pg.area} pgId={pg.id} />
 
             {/* Room Options */}
             {pg.roomOptions && pg.roomOptions.length > 0 && (
@@ -367,7 +363,7 @@ export default function ListingClient() {
                 <h2 className="text-lg font-semibold text-gray-900 mb-4">🛏️ Room Options</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {pg.roomOptions.map(r => (
-                    <div key={r.type} className={`relative p-4 rounded-xl border-2 text-center transition-all ${r.available ? "border-[#1B1C15] bg-[#F4EDD9]" : "border-gray-200 opacity-60"}`}>
+                    <div key={r.type} className={`relative p-4 rounded-xl border-2 text-center transition-all ${r.available ? "border-[#1a1a1a] bg-gray-50" : "border-gray-200 opacity-60"}`}>
                       {/* Availability Badge */}
                       <div className="absolute -top-2.5 left-1/2 -translate-x-1/2">
                         <span className={`inline-flex items-center gap-1 text-[10px] font-bold px-3 py-1 rounded-full shadow-sm ${
@@ -392,8 +388,8 @@ export default function ListingClient() {
 
             {/* Quick Info Badges */}
             <div className="flex flex-wrap gap-3">
-              <span className="px-4 py-2 bg-[#F4EDD9] text-[#1B1C15] rounded-xl font-medium">{typeLabels[pg.type]}</span>
-              <span className={`px-4 py-2 rounded-xl font-medium ${pg.gender === "male" ? "bg-blue-50 text-blue-700" : pg.gender === "female" ? "bg-pink-50 text-pink-700" : "bg-[#F4EDD9] text-[#1B1C15]"}`}>
+              <span className="px-4 py-2 bg-gray-100 text-[#1a1a1a] rounded-xl font-medium">{typeLabels[pg.type]}</span>
+              <span className={`px-4 py-2 rounded-xl font-medium ${pg.gender === "male" ? "bg-blue-50 text-blue-700" : pg.gender === "female" ? "bg-pink-50 text-pink-700" : "bg-gray-100 text-[#1a1a1a]"}`}>
                 {genderLabels[pg.gender]}
               </span>
               {pg.furnished && <span className="px-4 py-2 bg-green-50 text-green-700 rounded-xl font-medium">✨ Fully Furnished</span>}
@@ -450,8 +446,6 @@ export default function ListingClient() {
             </div>
             <NeighborhoodInfo area={pg.area} />
 
-            {/* Walkthrough Video */}
-            <WalkthroughVideo pgId={pg.id} pgName={pg.name} />
 
             {/* Real Map */}
             {pg.lat && pg.lng && (
@@ -462,10 +456,8 @@ export default function ListingClient() {
             )}
 
             {/* Dynamic banner before reviews */}
-            <AnimatedBanner seed={30} />
 
             {/* Ad before reviews */}
-            <AdBanner size="rectangle" slot="1122334455" />
 
             {/* I Stay Here — Request to link to PG */}
             {user && (
@@ -511,7 +503,7 @@ export default function ListingClient() {
                     <button
                       onClick={handleRequestStay}
                       disabled={selectingPg}
-                      className="px-5 py-2.5 rounded-xl text-sm font-semibold transition-all hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 bg-[#1B1C15] text-white hover:shadow-lg hover:shadow-black/20"
+                      className="px-5 py-2.5 rounded-xl text-sm font-semibold transition-all hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 bg-[#1a1a1a] text-white hover:opacity-80"
                     >
                       {selectingPg ? "Sending..." : "I Stay Here"}
                     </button>
@@ -607,8 +599,8 @@ export default function ListingClient() {
 
               {/* Contact Person */}
               <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-2xl mb-5">
-                <div className="w-10 h-10 rounded-full bg-[#F4EDD9] flex items-center justify-center shrink-0">
-                  <svg className="w-5 h-5 text-[#1B1C15]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+                <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center shrink-0">
+                  <svg className="w-5 h-5 text-[#1a1a1a]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                     <circle cx="12" cy="7" r="4" />
                   </svg>
@@ -633,13 +625,11 @@ export default function ListingClient() {
                 verified={true}
               />
 
-              {/* Weather Widget */}
-              <WeatherWidget />
 
               {/* Primary CTA — Book Now */}
               <Link
                 href={`/booking/${pg.id}`}
-                className="w-full relative overflow-hidden bg-[#1B1C15] text-white py-3.5 rounded-2xl font-semibold text-center block transition-all hover:shadow-xl hover:shadow-black/20 hover:-translate-y-0.5 active:translate-y-0"
+                className="w-full relative overflow-hidden bg-[#1a1a1a] text-white py-3.5 rounded-xl font-semibold text-center block transition-all hover:opacity-80 hover:-translate-y-0.5 active:translate-y-0"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
@@ -653,7 +643,7 @@ export default function ListingClient() {
               {/* Schedule Visit CTA */}
               <button
                 onClick={() => setShowScheduleVisit(true)}
-                className="w-full mt-3 relative overflow-hidden bg-[#F4EDD9] text-[#1B1C15] py-3.5 rounded-2xl font-semibold text-center transition-all hover:shadow-lg hover:shadow-amber-500/10 hover:-translate-y-0.5 active:translate-y-0 border-2 border-[#e8e0cc]"
+                className="w-full mt-3 relative overflow-hidden bg-gray-100 text-[#1a1a1a] py-3.5 rounded-xl font-semibold text-center transition-all hover:bg-gray-200 hover:-translate-y-0.5 active:translate-y-0 border border-gray-200"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
@@ -666,8 +656,6 @@ export default function ListingClient() {
                 </span>
               </button>
 
-              {/* Visit Reminder */}
-              <VisitReminder pgName={pg.name} pgId={pg.id} />
 
               {/* Call & WhatsApp Row */}
               <div className="grid grid-cols-2 gap-3 mt-3">
@@ -720,10 +708,8 @@ export default function ListingClient() {
                 </Link>
               </div>
 
-              {/* Virtual Tour & Notifications */}
               <div className="grid grid-cols-2 gap-3 mt-3">
                 <button
-                  onClick={() => setShowVirtualTour(true)}
                   aria-label={`Book virtual tour for ${pg.name}`}
                   className="flex items-center justify-center gap-2 py-3 rounded-2xl font-semibold text-sm transition-all hover:-translate-y-0.5 active:translate-y-0 bg-purple-50 text-purple-700 hover:bg-purple-100 border border-purple-100"
                 >
@@ -731,7 +717,6 @@ export default function ListingClient() {
                   Virtual Tour
                 </button>
                 <button
-                  onClick={() => setShowNotifications(true)}
                   aria-label={`Set notification preferences for ${pg.name}`}
                   className="flex items-center justify-center gap-2 py-3 rounded-2xl font-semibold text-sm transition-all hover:-translate-y-0.5 active:translate-y-0 bg-cyan-50 text-cyan-700 hover:bg-cyan-100 border border-cyan-100"
                 >
@@ -740,11 +725,8 @@ export default function ListingClient() {
                 </button>
               </div>
 
-              {/* Emergency Contacts */}
-              <EmergencyContacts />
 
               {/* Amenity Breakdown */}
-              <AmenityBreakdown
                 price={pg.price}
                 amenities={pg.amenities}
                 foodIncluded={pg.foodIncluded}
@@ -753,14 +735,13 @@ export default function ListingClient() {
               />
 
               {/* Nearby Essentials */}
-              <NearbyEssentials area={pg.area} />
 
               {/* View on Map — subtle link style */}
               <a
                 href={pg.mapUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 w-full mt-3 py-2.5 text-sm text-gray-500 hover:text-[#1B1C15] transition-colors"
+                className="flex items-center justify-center gap-2 w-full mt-3 py-2.5 text-sm text-gray-500 hover:text-[#1a1a1a] transition-colors"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
@@ -801,44 +782,6 @@ export default function ListingClient() {
           pgLocality={pg.locality}
           onClose={() => setShowScheduleVisit(false)}
         />
-      )}
-
-      {/* Virtual Tour Modal */}
-      {showVirtualTour && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm" onClick={() => setShowVirtualTour(false)}>
-          <div className="bg-white rounded-2xl max-w-md w-full shadow-2xl max-h-[90vh] overflow-y-auto animate-slide-up" onClick={e => e.stopPropagation()}>
-            <div className="sticky top-0 bg-white z-10 flex items-center justify-between p-5 border-b border-gray-100">
-              <h2 className="text-lg font-bold text-gray-900">🎥 Virtual Tour</h2>
-              <button onClick={() => setShowVirtualTour(false)} className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition">
-                <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                  <path d="M18 6L6 18M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-            <div className="p-5">
-              <VirtualTourBooking pgId={pg.id} pgName={pg.name} />
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Notification Preferences Modal */}
-      {showNotifications && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm" onClick={() => setShowNotifications(false)}>
-          <div className="bg-white rounded-2xl max-w-md w-full shadow-2xl max-h-[90vh] overflow-y-auto animate-slide-up" onClick={e => e.stopPropagation()}>
-            <div className="sticky top-0 bg-white z-10 flex items-center justify-between p-5 border-b border-gray-100">
-              <h2 className="text-lg font-bold text-gray-900">🔔 Notifications</h2>
-              <button onClick={() => setShowNotifications(false)} className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition">
-                <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                  <path d="M18 6L6 18M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-            <div className="p-5">
-              <NotificationPreferences pgId={pg.id} pgName={pg.name} onSave={() => setShowNotifications(false)} />
-            </div>
-          </div>
-        </div>
       )}
 
       {/* Report Modal */}
