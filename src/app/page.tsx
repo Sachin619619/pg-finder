@@ -14,6 +14,7 @@ import FeaturedToday from "@/components/FeaturedToday";
 import AIMatchSection from "@/components/AIMatchSection";
 import SaveSearchButton from "@/components/SaveSearchButton";
 import CommunityStats from "@/components/CommunityStats";
+import FAQ from "@/components/FAQ";
 import Testimonials from "@/components/Testimonials";
 import PriceAlertBanner from "@/components/PriceAlertBanner";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -587,6 +588,8 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ===== FAQ ===== */}
+        <FAQ />
 
         {/* ===== FOOTER ===== */}
         <footer className="bg-[#F4EDD9] text-black/50 pt-20 pb-8 relative">
