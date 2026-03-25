@@ -144,8 +144,8 @@ export default function NotificationBell() {
               <button
                 key={n.id}
                 onClick={() => markAsRead(n.id)}
-                className={`w-full flex items-start gap-3 px-5 py-3.5 hover:bg-[#faf6ec] transition-all text-left ${
-                  !n.read ? "bg-[#F4EDD9]/40" : ""
+                className={`w-full flex items-start gap-3 px-5 py-3.5 hover:bg-gray-50 transition-all text-left ${
+                  !n.read ? "bg-gray-100/40" : ""
                 }`}
               >
                 <span

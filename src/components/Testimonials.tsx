@@ -104,7 +104,7 @@ export default function Testimonials() {
                   <p className="font-bold text-gray-900 text-sm">{t.name}</p>
                   <p className="text-xs text-gray-400">{t.role}</p>
                 </div>
-                <span className="pill bg-[#F4EDD9] text-[#1B1C15] !text-[10px] border border-[#e8e0cc]">📍 {t.area}</span>
+                <span className="pill bg-gray-100 text-[#1a1a1a] !text-[10px]">📍 {t.area}</span>
               </div>
             </div>
           ))}

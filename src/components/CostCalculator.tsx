@@ -154,7 +154,7 @@ export default function CostCalculator({
   const diffPct = Math.round((diff / areaAvg) * 100);
 
   const items = [
-    { label: "PG Rent", amount: rent, color: "bg-[#1B1C15]", icon: "🏠" },
+    { label: "PG Rent", amount: rent, color: "bg-[#1a1a1a]", icon: "🏠" },
     { label: foodPlans[foodPlan].label, amount: foodCost, color: "bg-orange-400", icon: "🍽️" },
     { label: "Electricity", amount: electricity, color: "bg-yellow-400", icon: "⚡" },
     { label: wifiIncluded ? "WiFi (included)" : "Internet", amount: internet, color: "bg-blue-400", icon: "📶" },
@@ -182,7 +182,7 @@ export default function CostCalculator({
         <div className="sticky top-0 bg-white/95 backdrop-blur-sm z-10 px-6 pt-6 pb-4 border-b border-gray-100 rounded-t-3xl">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-11 h-11 rounded-2xl bg-[#F4EDD9] flex items-center justify-center">
+              <div className="w-11 h-11 rounded-2xl bg-gray-100 flex items-center justify-center">
                 <span className="text-xl">💰</span>
               </div>
               <div>
@@ -238,7 +238,7 @@ export default function CostCalculator({
                   onClick={() => setFoodPlan(i)}
                   className={`py-2.5 px-3 rounded-xl text-xs font-semibold transition-all border-2 ${
                     foodPlan === i
-                      ? "border-[#1B1C15] bg-[#F4EDD9] text-[#1B1C15]"
+                      ? "border-[#1a1a1a] bg-gray-100 text-[#1a1a1a]"
                       : "border-gray-200 text-gray-500 hover:border-gray-300"
                   }`}
                 >
@@ -386,7 +386,7 @@ export default function CostCalculator({
           </div>
 
           {/* ---- TOTAL ---- */}
-          <div className="bg-[#F4EDD9] rounded-2xl p-5 text-center">
+          <div className="bg-gray-100 rounded-2xl p-5 text-center">
             <p className="text-xs font-semibold text-[#1B1C15]/50 uppercase tracking-widest mb-1">
               Estimated Monthly Total
             </p>
@@ -410,7 +410,7 @@ export default function CostCalculator({
               </div>
               <div className="h-2 bg-gray-200 rounded-full overflow-hidden mb-2">
                 <div
-                  className="h-full rounded-full bg-[#1B1C15]/30 transition-all duration-500"
+                  className="h-full rounded-full bg-[#1a1a1a]/30 transition-all duration-500"
                   style={{ width: `${Math.min((areaAvg / Math.max(total, areaAvg)) * 100, 100)}%` }}
                 />
               </div>
@@ -467,7 +467,7 @@ export default function CostCalculator({
         <div className="sticky bottom-0 bg-white/95 backdrop-blur-sm border-t border-gray-100 px-6 py-4 rounded-b-3xl">
           <button
             onClick={handleClose}
-            className="w-full py-3.5 rounded-2xl bg-[#1B1C15] text-white font-semibold text-sm hover:opacity-90 transition-opacity active:scale-[0.98]"
+            className="w-full py-3.5 rounded-xl bg-[#1a1a1a] text-white font-semibold text-sm hover:opacity-80 transition-opacity active:scale-[0.98]"
           >
             Got it
           </button>
