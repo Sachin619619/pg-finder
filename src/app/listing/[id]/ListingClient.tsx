@@ -10,6 +10,7 @@ import Header from "@/components/Header";
 import ReviewSection from "@/components/ReviewSection";
 import CallbackModal from "@/components/CallbackModal";
 import ShareButtons from "@/components/ShareButtons";
+import ShareToFriends from "@/components/ShareToFriends";
 import WishlistButton from "@/components/WishlistButton";
 import NearbyPlaces from "@/components/NearbyPlaces";
 import PhotoGallery from "@/components/PhotoGallery";
@@ -362,6 +363,9 @@ export default function ListingClient() {
                 </div>
               </div>
             </div>
+
+            {/* Share to Friends */}
+            <ShareToFriends pgName={pg.name} pgPrice={pg.price} pgArea={pg.area} pgId={pg.id} />
 
             {/* Room Options */}
             {pg.roomOptions && pg.roomOptions.length > 0 && (
