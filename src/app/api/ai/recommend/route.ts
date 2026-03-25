@@ -176,7 +176,7 @@ Rules:
 }
 
 function simpleRecommend(
-  listings: ReturnType<typeof fetchListings> extends Promise<infer T ? T : never>,
+  listings: Parameters<typeof fetchListings>[0] extends never ? never[] : Awaited<ReturnType<typeof fetchListings>>,
   prefs: Record<string, unknown> | null | undefined,
   limit: number
 ): Array<{ id: string; name: string; area: string; price: number; rating: number; matchReason: string }> {

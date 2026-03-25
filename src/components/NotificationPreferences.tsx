@@ -159,7 +159,7 @@ export default function NotificationPreferences({ initialPrefs, onSave }: Notifi
           >
             <span className={prefs.email ? "text-amber-600" : ""}><MailIcon /></span>
             <span className="text-xs font-semibold">Email</span>
-            <div className={`w-2 h-2 rounded-full ${prefs.email ? "bg-amber-500" : "bg-gray-300"}`}
+            <div className={`w-2 h-2 rounded-full ${prefs.email ? "bg-amber-500" : "bg-gray-300"}`} />
           </button>
         </div>
       </div>

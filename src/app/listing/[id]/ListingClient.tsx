@@ -701,6 +701,26 @@ export default function ListingClient() {
                 </Link>
               </div>
 
+              {/* Virtual Tour & Notifications */}
+              <div className="grid grid-cols-2 gap-3 mt-3">
+                <button
+                  onClick={() => setShowVirtualTour(true)}
+                  aria-label={`Book virtual tour for ${pg.name}`}
+                  className="flex items-center justify-center gap-2 py-3 rounded-2xl font-semibold text-sm transition-all hover:-translate-y-0.5 active:translate-y-0 bg-purple-50 text-purple-700 hover:bg-purple-100 border border-purple-100"
+                >
+                  <span className="text-base">🎥</span>
+                  Virtual Tour
+                </button>
+                <button
+                  onClick={() => setShowNotifications(true)}
+                  aria-label={`Set notification preferences for ${pg.name}`}
+                  className="flex items-center justify-center gap-2 py-3 rounded-2xl font-semibold text-sm transition-all hover:-translate-y-0.5 active:translate-y-0 bg-cyan-50 text-cyan-700 hover:bg-cyan-100 border border-cyan-100"
+                >
+                  <span className="text-base">🔔</span>
+                  Alerts
+                </button>
+              </div>
+
               {/* View on Map — subtle link style */}
               <a
                 href={pg.mapUrl}
@@ -747,6 +767,44 @@ export default function ListingClient() {
           pgLocality={pg.locality}
           onClose={() => setShowScheduleVisit(false)}
         />
+      )}
+
+      {/* Virtual Tour Modal */}
+      {showVirtualTour && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm" onClick={() => setShowVirtualTour(false)}>
+          <div className="bg-white rounded-2xl max-w-md w-full shadow-2xl max-h-[90vh] overflow-y-auto animate-slide-up" onClick={e => e.stopPropagation()}>
+            <div className="sticky top-0 bg-white z-10 flex items-center justify-between p-5 border-b border-gray-100">
+              <h2 className="text-lg font-bold text-gray-900">🎥 Virtual Tour</h2>
+              <button onClick={() => setShowVirtualTour(false)} className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition">
+                <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div className="p-5">
+              <VirtualTourBooking pgId={pg.id} pgName={pg.name} />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Notification Preferences Modal */}
+      {showNotifications && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm" onClick={() => setShowNotifications(false)}>
+          <div className="bg-white rounded-2xl max-w-md w-full shadow-2xl max-h-[90vh] overflow-y-auto animate-slide-up" onClick={e => e.stopPropagation()}>
+            <div className="sticky top-0 bg-white z-10 flex items-center justify-between p-5 border-b border-gray-100">
+              <h2 className="text-lg font-bold text-gray-900">🔔 Notifications</h2>
+              <button onClick={() => setShowNotifications(false)} className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition">
+                <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div className="p-5">
+              <NotificationPreferences pgId={pg.id} pgName={pg.name} onSave={() => setShowNotifications(false)} />
+            </div>
+          </div>
+        </div>
       )}
 
       {/* Report Modal */}
