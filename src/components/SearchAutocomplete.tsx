@@ -140,7 +140,7 @@ export default function SearchAutocomplete({
         ref={inputRef}
         type="text"
         placeholder="Search area, PG name, landmark..."
-        className="w-full pl-12 pr-4 py-4 bg-[#FFFAEB] border border-[#e8e0cc] rounded-2xl text-black placeholder-black/25 focus:border-black/30 outline-none transition-all text-[15px]"
+        className="w-full pl-12 pr-4 py-4 bg-white border border-black/10 rounded-2xl text-black placeholder-black/30 focus:border-black/20 outline-none transition-all text-[15px]"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={handleKeyDown}
@@ -161,7 +161,7 @@ export default function SearchAutocomplete({
         <div
           className="absolute top-full left-0 right-0 mt-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200"
         >
-          <div className="bg-white rounded-2xl shadow-xl border border-[#e8e0cc]/60 overflow-hidden max-h-[320px]">
+          <div className="bg-white rounded-2xl shadow-lg border border-black/5 overflow-hidden max-h-[320px]">
             {filtered.length > 0 ? (
               <ul
                 ref={listRef}
@@ -176,8 +176,8 @@ export default function SearchAutocomplete({
                     aria-selected={index === activeIndex}
                     className={`flex items-center justify-between px-5 py-3.5 cursor-pointer transition-colors ${
                       index === activeIndex
-                        ? "bg-[#F4EDD9]"
-                        : "hover:bg-[#FFFAEB]"
+                        ? "bg-gray-100"
+                        : "hover:bg-gray-50"
                     }`}
                     onClick={() => navigateToArea(area)}
                     onMouseEnter={() => setActiveIndex(index)}

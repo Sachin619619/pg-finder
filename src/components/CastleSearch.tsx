@@ -30,7 +30,7 @@ export default function CastleSearch() {
 
   return (
     <div className="relative max-w-2xl mx-auto">
-      <div className={`relative transition-all ${focused ? "ring-2 ring-[#1B1C15] ring-offset-2" : ""}`}>
+      <div className={`relative transition-all ${focused ? "ring-2 ring-black/10 ring-offset-2" : ""}`}>
         <div className="absolute left-4 top-1/2 -translate-y-1/2">
           <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
             <circle cx="11" cy="11" r="8" />
@@ -45,10 +45,10 @@ export default function CastleSearch() {
           onFocus={() => setFocused(true)}
           onBlur={() => setTimeout(() => setFocused(false), 200)}
           placeholder='Try "PG in Koramangala with AC" or "Budget PG under 10k"'
-          className="w-full pl-12 pr-4 py-4 rounded-2xl border-2 border-gray-100 bg-white text-gray-900 text-sm placeholder:text-gray-400 focus:outline-none shadow-sm"
+          className="w-full pl-12 pr-4 py-4 rounded-2xl border border-gray-200 bg-white text-gray-900 text-sm placeholder:text-gray-400 focus:outline-none"
         />
         <button
-          className="absolute right-3 top-1/2 -translate-y-1/2 px-4 py-2 bg-[#1B1C15] text-white rounded-xl text-sm font-semibold hover:bg-[#2d2e25] transition-colors"
+          className="absolute right-3 top-1/2 -translate-y-1/2 px-4 py-2 bg-[#1a1a1a] text-white rounded-xl text-sm font-semibold hover:opacity-80 transition-opacity"
         >
           Search
         </button>
@@ -56,7 +56,7 @@ export default function CastleSearch() {
 
       {/* Suggestions dropdown */}
       {focused && (
-        <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl border border-gray-100 shadow-xl overflow-hidden z-50">
+        <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl border border-gray-100 shadow-lg overflow-hidden z-50">
           <div className="p-3 border-b border-gray-50">
             <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">
               {query.length > 0 ? "Search Suggestions" : "Quick Searches"}

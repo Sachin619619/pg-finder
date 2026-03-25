@@ -726,15 +726,6 @@ export default function ListingClient() {
               </div>
 
 
-              {/* Amenity Breakdown */}
-                price={pg.price}
-                amenities={pg.amenities}
-                foodIncluded={pg.foodIncluded}
-                furnished={pg.furnished}
-                area={pg.area}
-              />
-
-              {/* Nearby Essentials */}
 
               {/* View on Map — subtle link style */}
               <a

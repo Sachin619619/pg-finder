@@ -40,7 +40,7 @@ export default function FeaturedToday({ listings }: FeaturedTodayProps) {
 
             return (
               <Link key={pg.id} href={`/listing/${pg.id}`} className="group">
-                <div className="bg-[#FFFAEC] rounded-2xl border border-[#e8e0cc] overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                <div className="bg-white rounded-2xl border border-black/5 overflow-hidden hover:shadow-md hover:-translate-y-1 transition-all duration-200">
                   {/* Image */}
                   <div className="relative h-48 bg-gray-100 overflow-hidden">
                     {pg.images[0] ? (
@@ -73,7 +73,7 @@ export default function FeaturedToday({ listings }: FeaturedTodayProps) {
 
                   {/* Content */}
                   <div className="p-5">
-                    <h3 className="font-serif text-lg text-gray-900 mb-1 group-hover:text-[#1B1C15] transition-colors">
+                    <h3 className="font-serif text-lg text-gray-900 mb-1 group-hover:text-[#1a1a1a] transition-colors">
                       {pg.name}
                     </h3>
                     <p className="text-xs text-gray-400 mb-3 flex items-center gap-1.5">
