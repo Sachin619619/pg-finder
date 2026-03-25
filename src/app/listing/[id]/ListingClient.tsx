@@ -28,6 +28,7 @@ import SimilarPGs from "@/components/SimilarPGs";
 import VirtualTourBooking from "@/components/VirtualTourBooking";
 import NotificationPreferences from "@/components/NotificationPreferences";
 import EmergencyContacts from "@/components/EmergencyContacts";
+import WalkthroughVideo from "@/components/WalkthroughVideo";
 import { useAuth } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
 import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
@@ -445,6 +446,9 @@ export default function ListingClient() {
               <SafetyScore area={pg.area} />
               <TransportProximity area={pg.area} />
             </div>
+
+            {/* Walkthrough Video */}
+            <WalkthroughVideo pgId={pg.id} pgName={pg.name} />
 
             {/* Real Map */}
             {pg.lat && pg.lng && (
