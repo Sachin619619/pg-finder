@@ -9,6 +9,7 @@ import ShareButtons from "@/components/ShareButtons";
 import { useCompare } from "@/context/CompareContext";
 import { areaSafetyScores } from "@/data/safetyData";
 import { metroProximity } from "@/data/safetyData";
+import CastleScore from "@/components/CastleScore";
 
 const areaEmojis: Record<string, string> = {
   "Koramangala": "🏙️", "Indiranagar": "🎵", "HSR Layout": "💻", "Bellandur": "🌊",
@@ -161,9 +162,12 @@ export default function PGCard({ pg, priority = false, showCompare = true }: { p
           {/* Title + Rating */}
           <div className="flex items-start justify-between mb-2">
             <h3 className="text-[17px] font-bold text-[#1B1C15] font-serif leading-tight pr-2 tracking-tight">{pg.name}</h3>
-            <div className="flex items-center gap-1 bg-[#1B1C15] px-2.5 py-1.5 rounded-xl shrink-0">
-              <span className="text-sm">⭐</span>
-              <span className="text-sm font-bold text-white">{pg.rating}</span>
+            <div className="flex flex-col items-end gap-1 shrink-0">
+              <div className="flex items-center gap-1 bg-[#1B1C15] px-2.5 py-1.5 rounded-xl">
+                <span className="text-sm">⭐</span>
+                <span className="text-sm font-bold text-white">{pg.rating}</span>
+              </div>
+              <CastleScore pg={pg} compact />
             </div>
           </div>
 

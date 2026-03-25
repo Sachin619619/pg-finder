@@ -23,6 +23,7 @@ import TransportProximity from "@/components/TransportProximity";
 import SentimentAnalysis from "@/components/SentimentAnalysis";
 import PricePrediction from "@/components/PricePrediction";
 import ListingQualityScore from "@/components/ListingQualityScore";
+import CastleScore from "@/components/CastleScore";
 import VirtualTourBooking from "@/components/VirtualTourBooking";
 import NotificationPreferences from "@/components/NotificationPreferences";
 import { useAuth } from "@/lib/auth";
@@ -552,6 +553,7 @@ export default function ListingClient() {
               acAvailable={pg.acAvailable}
               currentPrice={pg.price}
             />
+            <CastleScore pg={pg} />
             <ListingQualityScore pg={pg} />
           </div>
 
