@@ -75,7 +75,7 @@ export default function AIMatchSection({ listings }: AIMatchSectionProps) {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-violet-50 via-purple-50 to-indigo-50">
+    <section className="py-20 bg-gray-50">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <span className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-3 inline-block">AI-Powered</span>
