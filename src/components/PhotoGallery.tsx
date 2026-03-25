@@ -176,7 +176,7 @@ export default function PhotoGallery({ pgName, images }: { pgName: string; image
               key={i}
               onClick={() => setActiveIdx(i)}
               className={`h-16 sm:h-20 rounded-xl relative overflow-hidden transition-all duration-200 ${
-                i === activeIdx ? "ring-2 ring-[#1B1C15]/20 ring-offset-2 scale-105" : "opacity-70 hover:opacity-100"
+                i === activeIdx ? "ring-2 ring-black/20 ring-offset-2 scale-105" : "opacity-70 hover:opacity-100"
               }`}
             >
               {hasImages && !imgError[i] ? (
