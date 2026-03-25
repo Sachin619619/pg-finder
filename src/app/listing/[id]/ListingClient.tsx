@@ -27,6 +27,7 @@ import SentimentAnalysis from "@/components/SentimentAnalysis";
 import PricePrediction from "@/components/PricePrediction";
 import ListingQualityScore from "@/components/ListingQualityScore";
 import CastleScore from "@/components/CastleScore";
+import CastleGuarantee from "@/components/CastleGuarantee";
 import SimilarPGs from "@/components/SimilarPGs";
 import VirtualTourBooking from "@/components/VirtualTourBooking";
 import NotificationPreferences from "@/components/NotificationPreferences";
@@ -570,6 +571,7 @@ export default function ListingClient() {
               currentPrice={pg.price}
             />
             <CastleScore pg={pg} />
+            <CastleGuarantee />
             <ListingQualityScore pg={pg} />
             <SimilarPGs currentPg={pg} />
           </div>
