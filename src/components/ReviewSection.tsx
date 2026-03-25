@@ -530,7 +530,7 @@ export default function ReviewSection({ reviews: initialReviews, pgId, pgName, i
               {/* Review Header */}
               <div className="flex items-start justify-between mb-3">
                 <div className="flex items-center gap-3">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0 ${r.isResident ? "bg-gradient-to-br from-emerald-400 to-teal-500" : "bg-[#1B1C15]"}`}>
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0 ${r.isResident ? "bg-gradient-to-br from-emerald-400 to-teal-500" : "bg-[#1a1a1a]"}`}>
                     {r.name.charAt(0).toUpperCase()}
                   </div>
                   <div>
@@ -618,9 +618,9 @@ export default function ReviewSection({ reviews: initialReviews, pgId, pgName, i
 
               {/* Owner Reply Display */}
               {r.reply && (
-                <div className="ml-[52px] mt-3 p-3 bg-[#F4EDD9]/70 border border-[#F4EDD9] rounded-xl">
+                <div className="ml-[52px] mt-3 p-3 bg-gray-100 border border-gray-200 rounded-xl">
                   <div className="flex items-center gap-2 mb-1.5">
-                    <span className="inline-flex items-center gap-1 text-[10px] font-bold text-[#1B1C15] bg-[#F4EDD9] px-2 py-0.5 rounded-full uppercase tracking-wider">
+                    <span className="inline-flex items-center gap-1 text-[10px] font-bold text-[#1a1a1a] bg-gray-200 px-2 py-0.5 rounded-full uppercase tracking-wider">
                       <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
                         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                         <polyline points="9 22 9 12 15 12 15 22" />
@@ -651,7 +651,7 @@ export default function ReviewSection({ reviews: initialReviews, pgId, pgName, i
                         <button
                           onClick={() => handleReply(r.id)}
                           disabled={replySubmitting || !replyText.trim()}
-                          className="px-4 py-1.5 rounded-lg text-xs font-semibold bg-[#1B1C15] text-white hover:bg-[#2a2b22] transition disabled:opacity-50"
+                          className="px-4 py-1.5 rounded-lg text-xs font-semibold bg-[#1a1a1a] text-white hover:opacity-80 transition disabled:opacity-50"
                         >
                           {replySubmitting ? "Sending..." : "Send Reply"}
                         </button>
