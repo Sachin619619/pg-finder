@@ -24,6 +24,7 @@ import SentimentAnalysis from "@/components/SentimentAnalysis";
 import PricePrediction from "@/components/PricePrediction";
 import ListingQualityScore from "@/components/ListingQualityScore";
 import CastleScore from "@/components/CastleScore";
+import SimilarPGs from "@/components/SimilarPGs";
 import VirtualTourBooking from "@/components/VirtualTourBooking";
 import NotificationPreferences from "@/components/NotificationPreferences";
 import { useAuth } from "@/lib/auth";
@@ -555,6 +556,7 @@ export default function ListingClient() {
             />
             <CastleScore pg={pg} />
             <ListingQualityScore pg={pg} />
+            <SimilarPGs currentPg={pg} />
           </div>
 
           {/* Right Column — Contact & Price */}
