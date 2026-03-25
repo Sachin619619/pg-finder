@@ -533,3 +533,42 @@ ALTER TABLE user_onboarding ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Users can view own onboarding" ON user_onboarding FOR SELECT USING (auth.uid() = user_id);
 CREATE POLICY "Users can update own onboarding" ON user_onboarding FOR UPDATE USING (auth.uid() = user_id);
 CREATE POLICY "Service role can manage all" ON user_onboarding FOR ALL USING (auth.role() = 'service_role');
+
+-- ==========================================
+-- Share Links and Tracking
+-- ==========================================
+
+CREATE TABLE IF NOT EXISTS share_links (
+  id TEXT PRIMARY KEY,
+  pg_id TEXT NOT NULL,
+  user_id UUID REFERENCES auth.users(id) ON DELETE SET NULL,
+  medium TEXT DEFAULT 'direct',
+  campaign TEXT,
+  click_count INTEGER DEFAULT 0,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE share_links ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Anyone can view share links" ON share_links FOR SELECT USING (true);
+CREATE POLICY "Anyone can create share links" ON share_links FOR INSERT WITH CHECK (true);
+CREATE POLICY "Service role can update" ON share_links FOR UPDATE USING (auth.role() = 'service_role');
+
+-- ==========================================
+-- Notification Failures Log
+-- ==========================================
+
+CREATE TABLE IF NOT EXISTS notification_failures (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  provider TEXT NOT NULL,
+  message_sid TEXT,
+  recipient TEXT,
+  error_code TEXT,
+  error_message TEXT,
+  failed_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE notification_failures ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Service role can manage" ON notification_failures FOR ALL USING (auth.role() = 'service_role');
+
+CREATE INDEX IF NOT EXISTS idx_notification_failures_provider ON notification_failures(provider);
+CREATE INDEX IF NOT EXISTS idx_notification_failures_recipient ON notification_failures(recipient);
