@@ -68,7 +68,7 @@ export default function AmenityBreakdown({ price, amenities, foodIncluded, furni
       {/* Total */}
       <div className="flex items-center justify-between py-3 bg-[#FFFAEC] -mx-5 px-5 mt-2 rounded-b-2xl">
         <span className="text-sm font-bold text-gray-900">Total Monthly Rent</span>
-        <span className="text-lg font-bold text-[#1B1C15]">₹{price.toLocaleString()}</span>
+        <span className="text-lg font-bold text-[#1a1a1a]">₹{price.toLocaleString()}</span>
       </div>
 
       {/* Tip */}

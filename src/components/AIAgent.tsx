@@ -194,7 +194,7 @@ export default function AIAgent() {
         className={`fixed bottom-6 right-6 z-50 w-14 h-14 rounded-2xl flex items-center justify-center shadow-2xl transition-all duration-300 ${
           open
             ? "bg-gray-800 rotate-0 scale-90"
-            : "bg-[#1B1C15] hover:scale-110 shadow-black/30"
+            : "bg-[#1a1a1a] hover:scale-110 shadow-black/20"
         }`}
         aria-label="AI Assistant"
       >
@@ -212,11 +212,11 @@ export default function AIAgent() {
       {/* Chat Panel */}
       {open && (
         <div
-          className="fixed bottom-20 sm:bottom-24 right-4 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[420px] h-[65vh] sm:h-[70vh] max-h-[640px] flex flex-col bg-[#FFFAEC] rounded-3xl shadow-2xl border border-[#e8e0cc] overflow-hidden animate-slide-up isolate"
+          className="fixed bottom-20 sm:bottom-24 right-4 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[420px] h-[65vh] sm:h-[70vh] max-h-[640px] flex flex-col bg-[#FFFAEC] rounded-3xl shadow-2xl border border-[black/5] overflow-hidden animate-slide-up isolate"
           style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
         >
           {/* Header */}
-          <div className="px-4 py-3 bg-[#1B1C15] flex items-center gap-3 flex-shrink-0">
+          <div className="px-4 py-3 bg-[#1a1a1a] flex items-center gap-3 flex-shrink-0">
             <div className="w-9 h-9 bg-white/10 rounded-xl flex items-center justify-center">
               <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
@@ -249,7 +249,7 @@ export default function AIAgent() {
                   <div
                     className={`max-w-[85%] px-3.5 py-2.5 rounded-2xl text-[13px] leading-relaxed ${
                       msg.role === "user"
-                        ? "bg-[#1B1C15] text-white rounded-br-md"
+                        ? "bg-[#1a1a1a] text-white rounded-br-md"
                         : "bg-gray-100 text-gray-800 rounded-bl-md"
                     }`}
                   >
@@ -271,7 +271,7 @@ export default function AIAgent() {
                 {msg.action && !["navigate", "save", "unsave"].includes(msg.action.action) && (
                   <div className="mt-2 ml-2 flex flex-wrap gap-1.5">
                     {msg.action.action === "call" && (
-                      <button onClick={() => executeAction(msg.action!)} className="px-3 py-1.5 text-xs font-semibold bg-[#1B1C15] text-white rounded-xl hover:bg-[#2a2b22] transition">
+                      <button onClick={() => executeAction(msg.action!)} className="px-3 py-1.5 text-xs font-semibold bg-[#1a1a1a] text-white rounded-xl hover:bg-[#333333] transition">
                         📞 Call {String(msg.action.data.name || "Owner")}
                       </button>
                     )}
@@ -281,12 +281,12 @@ export default function AIAgent() {
                       </button>
                     )}
                     {msg.action.action === "compare" && (
-                      <button onClick={() => executeAction(msg.action!)} className="px-3 py-1.5 text-xs font-semibold bg-[#1B1C15] text-white rounded-xl hover:bg-[#2a2b22] transition">
+                      <button onClick={() => executeAction(msg.action!)} className="px-3 py-1.5 text-xs font-semibold bg-[#1a1a1a] text-white rounded-xl hover:bg-[#333333] transition">
                         📊 Open Comparison
                       </button>
                     )}
                     {msg.action.action === "navigate_optional" && (
-                      <button onClick={() => { router.push(msg.action!.data.url as string); setOpen(false); }} className="px-3 py-1.5 text-xs font-semibold bg-[#1B1C15] text-white rounded-xl hover:bg-[#2a2b22] transition">
+                      <button onClick={() => { router.push(msg.action!.data.url as string); setOpen(false); }} className="px-3 py-1.5 text-xs font-semibold bg-[#1a1a1a] text-white rounded-xl hover:bg-[#333333] transition">
                         {(msg.action.data.label as string) || "Open"}
                       </button>
                     )}
@@ -324,7 +324,7 @@ export default function AIAgent() {
                             <h4 className="font-bold text-sm text-gray-900 truncate">{pg.name}</h4>
                             <p className="text-[11px] text-gray-400 mt-0.5">📍 {pg.area} • {pg.type} • {pg.gender}</p>
                             <div className="flex items-center justify-between mt-1">
-                              <span className="text-sm font-bold text-[#1B1C15]">₹{pg.price.toLocaleString()}<span className="text-[10px] font-normal text-gray-400">/mo</span></span>
+                              <span className="text-sm font-bold text-[#1a1a1a]">₹{pg.price.toLocaleString()}<span className="text-[10px] font-normal text-gray-400">/mo</span></span>
                               <span className="text-[11px] text-amber-500">⭐ {pg.rating}</span>
                             </div>
                           </div>
@@ -342,7 +342,7 @@ export default function AIAgent() {
                           </button>
                           <button
                             onClick={() => sendMessage(`I want to stay at ${pg.name}`)}
-                            className="flex-1 py-2 text-[11px] font-medium text-[#1B1C15] hover:bg-amber-50 transition border-l border-gray-100"
+                            className="flex-1 py-2 text-[11px] font-medium text-[#1a1a1a] hover:bg-amber-50 transition border-l border-gray-100"
                           >
                             🏠 Request Stay
                           </button>
@@ -373,9 +373,9 @@ export default function AIAgent() {
               <div className="flex justify-start">
                 <div className="bg-gray-100 px-4 py-3 rounded-2xl rounded-bl-md">
                   <div className="flex gap-1.5">
-                    <div className="w-2 h-2 bg-[#1B1C15] rounded-full animate-bounce" />
-                    <div className="w-2 h-2 bg-[#1B1C15] rounded-full animate-bounce" style={{ animationDelay: "0.1s" }} />
-                    <div className="w-2 h-2 bg-[#1B1C15] rounded-full animate-bounce" style={{ animationDelay: "0.2s" }} />
+                    <div className="w-2 h-2 bg-[#1a1a1a] rounded-full animate-bounce" />
+                    <div className="w-2 h-2 bg-[#1a1a1a] rounded-full animate-bounce" style={{ animationDelay: "0.1s" }} />
+                    <div className="w-2 h-2 bg-[#1a1a1a] rounded-full animate-bounce" style={{ animationDelay: "0.2s" }} />
                   </div>
                 </div>
               </div>
@@ -386,14 +386,14 @@ export default function AIAgent() {
 
           {/* Welcome suggestions — only on first message */}
           {isFirstMessage && (
-            <div className="px-3 pb-2 bg-[#FFFAEC] border-t border-[#e8e0cc]">
+            <div className="px-3 pb-2 bg-[#FFFAEC] border-t border-[black/5]">
               <p className="text-[10px] text-gray-400 font-medium mb-2 px-1">Try asking me:</p>
               <div className="flex flex-wrap gap-1.5">
                 {WELCOME_SUGGESTIONS.map((s) => (
                   <button
                     key={s.text}
                     onClick={() => sendMessage(s.text)}
-                    className="flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-medium bg-[#1B1C15] text-white rounded-full hover:bg-[#2a2b22] transition"
+                    className="flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-medium bg-[#1a1a1a] text-white rounded-full hover:bg-[#333333] transition"
                   >
                     <span>{s.icon}</span>
                     <span>{s.text}</span>
@@ -411,7 +411,7 @@ export default function AIAgent() {
                   <button
                     key={prompt}
                     onClick={() => sendMessage(prompt)}
-                    className="flex-shrink-0 px-2.5 py-1.5 text-[11px] font-medium bg-gray-100 text-[#1B1C15] rounded-full hover:bg-gray-200 transition whitespace-nowrap"
+                    className="flex-shrink-0 px-2.5 py-1.5 text-[11px] font-medium bg-gray-100 text-[#1a1a1a] rounded-full hover:bg-gray-200 transition whitespace-nowrap"
                   >
                     {prompt}
                   </button>
@@ -421,7 +421,7 @@ export default function AIAgent() {
           )}
 
           {/* Input */}
-          <div className="px-3 py-2.5 border-t border-[#e8e0cc] bg-[#FFFAEC] flex-shrink-0" style={{ paddingBottom: "max(0.625rem, env(safe-area-inset-bottom))" }}>
+          <div className="px-3 py-2.5 border-t border-[black/5] bg-[#FFFAEC] flex-shrink-0" style={{ paddingBottom: "max(0.625rem, env(safe-area-inset-bottom))" }}>
             <div className="flex gap-2">
               <input
                 ref={inputRef}
@@ -435,13 +435,13 @@ export default function AIAgent() {
                   }
                 }}
                 placeholder="Ask anything — search, book, callback..."
-                className="flex-1 px-3.5 py-2.5 text-sm bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#1B1C15]/20 focus:border-[#1B1C15]/30 text-gray-900 placeholder-gray-400 transition-all"
+                className="flex-1 px-3.5 py-2.5 text-sm bg-white border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-[#1a1a1a]/20 focus:border-[#1a1a1a]/30 text-gray-900 placeholder-gray-400 transition-all"
                 disabled={loading}
               />
               <button
                 onClick={() => sendMessage(input)}
                 disabled={loading || !input.trim()}
-                className="w-10 h-10 bg-[#1B1C15] text-white rounded-xl flex items-center justify-center disabled:opacity-40 hover:opacity-90 transition-all flex-shrink-0"
+                className="w-10 h-10 bg-[#1a1a1a] text-white rounded-xl flex items-center justify-center disabled:opacity-40 hover:opacity-90 transition-all flex-shrink-0"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19V5m0 0l-7 7m7-7l7 7" />

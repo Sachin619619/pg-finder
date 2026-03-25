@@ -9,7 +9,7 @@ import { useState, useEffect, useRef, useMemo } from "react";
 const bannerVariants = [
   {
     id: "warm-dark",
-    bg: "from-[#1B1C15] via-[#2a2b22] to-[#1B1C15]",
+    bg: "from-[#1a1a1a] via-[#333333] to-[#1a1a1a]",
     emojis: ["🏠", "🔑", "🛋️", "✨", "🏡"],
     tagline: "Your dream PG is one search away",
     cta: "Explore Now",
@@ -17,7 +17,7 @@ const bannerVariants = [
   },
   {
     id: "warm-earth",
-    bg: "from-[#3d3829] via-[#1B1C15] to-[#3d3829]",
+    bg: "from-[#2a2a2a] via-[#1a1a1a] to-[#2a2a2a]",
     emojis: ["🌊", "🏢", "🛏️", "⭐", "🪴"],
     tagline: "Zero brokerage • Verified listings • Instant move-in",
     cta: "Browse PGs",
@@ -25,7 +25,7 @@ const bannerVariants = [
   },
   {
     id: "warm-olive",
-    bg: "from-[#2c2e1f] via-[#1B1C15] to-[#2c2e1f]",
+    bg: "from-[#2a2a2a] via-[#1a1a1a] to-[#2a2a2a]",
     emojis: ["🌅", "🚪", "🎯", "💫", "🏰"],
     tagline: "1000+ happy tenants in Bangalore trust Castle",
     cta: "Join Them",
@@ -33,7 +33,7 @@ const bannerVariants = [
   },
   {
     id: "warm-charcoal",
-    bg: "from-[#1B1C15] via-[#33342b] to-[#1B1C15]",
+    bg: "from-[#1a1a1a] via-[#333333] to-[#1a1a1a]",
     emojis: ["🌿", "🏡", "🔒", "💚", "🪟"],
     tagline: "Safe • Affordable • Furnished PGs across 15+ areas",
     cta: "Find Yours",
@@ -41,7 +41,7 @@ const bannerVariants = [
   },
   {
     id: "warm-deep",
-    bg: "from-[#2a2520] via-[#1B1C15] to-[#2a2520]",
+    bg: "from-[#2a2a2a] via-[#1a1a1a] to-[#2a2a2a]",
     emojis: ["⚡", "🏠", "🎉", "🔥", "💎"],
     tagline: "New PGs added daily — don't miss out!",
     cta: "See Latest",
@@ -49,7 +49,7 @@ const bannerVariants = [
   },
   {
     id: "warm-amber",
-    bg: "from-[#3a3525] via-[#1B1C15] to-[#3a3525]",
+    bg: "from-[#333333] via-[#1a1a1a] to-[#333333]",
     emojis: ["🏆", "⭐", "👑", "🎖️", "🥇"],
     tagline: "Top rated PGs • 4.3 avg stars • Real reviews",
     cta: "Top Picks",

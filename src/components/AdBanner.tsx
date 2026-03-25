@@ -57,9 +57,9 @@ export default function AdBanner({ size = "banner", slot, className = "" }: Prop
     <div className={`relative overflow-hidden rounded-2xl ${className}`}>
       {size === "in-feed" ? (
         // In-feed native ad style
-        <div className="bg-[#FFFAEB] border border-gray-200 rounded-2xl p-5">
+        <div className="bg-[white] border border-gray-200 rounded-2xl p-5">
           <div className="flex items-start gap-4">
-            <div className="w-16 h-16 rounded-xl bg-[#1B1C15] flex items-center justify-center flex-shrink-0 shadow-lg shadow-black/10">
+            <div className="w-16 h-16 rounded-xl bg-[#1a1a1a] flex items-center justify-center flex-shrink-0 shadow-lg shadow-black/10">
               <span className="text-white text-2xl font-bold">P</span>
             </div>
             <div className="flex-1 min-w-0">
@@ -68,7 +68,7 @@ export default function AdBanner({ size = "banner", slot, className = "" }: Prop
               </div>
               <h4 className="font-bold text-gray-900 text-sm">List Your PG on Castle</h4>
               <p className="text-xs text-gray-500 mt-1">Get 10x more inquiries. Premium listing starts at just ₹499/month</p>
-              <button className="mt-3 px-4 py-1.5 bg-[#1B1C15] text-white text-xs font-semibold rounded-lg hover:bg-[#2a2b22] transition">
+              <button className="mt-3 px-4 py-1.5 bg-[#1a1a1a] text-white text-xs font-semibold rounded-lg hover:bg-[#333333] transition">
                 Get Started
               </button>
             </div>
@@ -76,7 +76,7 @@ export default function AdBanner({ size = "banner", slot, className = "" }: Prop
         </div>
       ) : size === "rectangle" ? (
         // Rectangle ad
-        <div className="bg-[#1B1C15] rounded-2xl p-6 text-center" style={{ minHeight: "250px" }}>
+        <div className="bg-[#1a1a1a] rounded-2xl p-6 text-center" style={{ minHeight: "250px" }}>
           <div className="flex flex-col items-center justify-center h-full gap-4">
             <div className="w-14 h-14 bg-white/20 backdrop-blur rounded-2xl flex items-center justify-center">
               <span className="text-white text-3xl font-bold">P</span>
@@ -98,7 +98,7 @@ export default function AdBanner({ size = "banner", slot, className = "" }: Prop
         </div>
       ) : (
         // Horizontal banner
-        <div className="bg-[#1B1C15] rounded-2xl px-5 py-3 flex items-center justify-between gap-4">
+        <div className="bg-[#1a1a1a] rounded-2xl px-5 py-3 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3 min-w-0">
             <div className="w-10 h-10 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center flex-shrink-0">
               <span className="text-white font-bold text-lg">P</span>
