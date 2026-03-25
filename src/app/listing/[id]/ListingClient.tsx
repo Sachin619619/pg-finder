@@ -20,6 +20,7 @@ import CostCalculator from "@/components/CostCalculator";
 import ScheduleVisit from "@/components/ScheduleVisit";
 import SafetyScore from "@/components/SafetyScore";
 import TransportProximity from "@/components/TransportProximity";
+import NeighborhoodInfo from "@/components/NeighborhoodInfo";
 import SentimentAnalysis from "@/components/SentimentAnalysis";
 import PricePrediction from "@/components/PricePrediction";
 import ListingQualityScore from "@/components/ListingQualityScore";
@@ -448,6 +449,7 @@ export default function ListingClient() {
               <SafetyScore area={pg.area} />
               <TransportProximity area={pg.area} />
             </div>
+            <NeighborhoodInfo area={pg.area} />
 
             {/* Walkthrough Video */}
             <WalkthroughVideo pgId={pg.id} pgName={pg.name} />
