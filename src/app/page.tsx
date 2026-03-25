@@ -11,7 +11,9 @@ import AreaInsights from "@/components/AreaInsights";
 import PGRankings from "@/components/PGRankings";
 import BrowseByLifestyle from "@/components/BrowseByLifestyle";
 import FeaturedToday from "@/components/FeaturedToday";
+import AIMatchSection from "@/components/AIMatchSection";
 import SaveSearchButton from "@/components/SaveSearchButton";
+import CommunityStats from "@/components/CommunityStats";
 import Testimonials from "@/components/Testimonials";
 import PriceAlertBanner from "@/components/PriceAlertBanner";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -252,6 +254,9 @@ export default function Home() {
 
         {/* ===== FEATURED TODAY ===== */}
         <FeaturedToday listings={listings} />
+
+        {/* ===== AI MATCH ===== */}
+        <AIMatchSection listings={listings} />
 
         {/* ===== BROWSE BY LIFESTYLE ===== */}
         <BrowseByLifestyle />
@@ -522,6 +527,9 @@ export default function Home() {
         <ScrollReveal direction="left">
           <PriceInsights listings={listings} />
         </ScrollReveal>
+
+        {/* ===== COMMUNITY STATS ===== */}
+        <CommunityStats />
 
         {/* ===== TESTIMONIALS ===== */}
         <ScrollReveal direction="right">
