@@ -6,6 +6,7 @@ import Link from "next/link";
 import AnimatedBanner from "@/components/AnimatedBanner";
 import { fetchRoommateProfiles, fetchAreas, addRoommateProfile } from "@/lib/db";
 import type { RoommateProfile } from "@/lib/db";
+import RoommateMatchScore from "@/components/RoommateMatchScore";
 
 function sanitize(str: string, maxLen: number): string {
   return str.replace(/[<>&"'/]/g, "").trim().slice(0, maxLen);
@@ -183,10 +184,11 @@ export default function RoommateFinder() {
                 <div className={`w-12 h-12 rounded-full flex items-center justify-center text-white font-bold bg-gradient-to-br ${p.gradient || (p.gender === "male" ? "from-blue-400 to-indigo-500" : "from-pink-400 to-rose-500")}`}>
                   {p.avatar}
                 </div>
-                <div>
+                <div className="flex-1 min-w-0">
                   <h3 className="font-semibold text-gray-900 text-sm">{p.name}, {p.age}</h3>
                   <p className="text-xs text-gray-400">{p.occupation}</p>
                 </div>
+                <RoommateMatchScore profile={p} />
               </div>
               <p className="text-sm text-gray-600 mb-4 leading-relaxed">{p.bio}</p>
               {p.lifestyle && (
