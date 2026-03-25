@@ -440,3 +440,64 @@ BEGIN
   LIMIT p_limit;
 END;
 $$ LANGUAGE plpgsql;
+
+-- ==========================================
+-- Additional Tables for Advanced Features
+-- ==========================================
+
+-- Saved Searches - User saved search configurations
+CREATE TABLE IF NOT EXISTS saved_searches (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,
+  name TEXT NOT NULL,
+  search_params JSONB DEFAULT '{}',
+  alert_enabled BOOLEAN DEFAULT false,
+  last_run_at TIMESTAMPTZ,
+  result_count INTEGER DEFAULT 0,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE saved_searches ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Users can manage own searches" ON saved_searches FOR ALL USING (auth.uid() = user_id);
+
+-- Room Reservations - Temporary room holds
+CREATE TABLE IF NOT EXISTS room_reservations (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  pg_id TEXT NOT NULL,
+  user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,
+  room_type TEXT NOT NULL,
+  move_in_date DATE NOT NULL,
+  duration_months INTEGER DEFAULT 1,
+  status TEXT DEFAULT 'held' CHECK (status IN ('held', 'confirmed', 'cancelled', 'expired')),
+  expires_at TIMESTAMPTZ,
+  confirmed_at TIMESTAMPTZ,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE room_reservations ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Users can view own reservations" ON room_reservations FOR SELECT USING (auth.uid() = user_id);
+CREATE POLICY "Users can create reservations" ON room_reservations FOR INSERT WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "Users can update own reservations" ON room_reservations FOR UPDATE USING (auth.uid() = user_id);
+
+-- Index for room availability queries
+CREATE INDEX IF NOT EXISTS idx_room_reservations_pg ON room_reservations(pg_id);
+CREATE INDEX IF NOT EXISTS idx_room_reservations_status ON room_reservations(status);
+CREATE INDEX IF NOT EXISTS idx_room_reservations_expires ON room_reservations(expires_at);
+
+-- Enhanced price_alerts table
+DO $$ BEGIN
+  ALTER TABLE price_alerts ADD COLUMN IF NOT EXISTS is_active BOOLEAN DEFAULT true;
+EXCEPTION WHEN duplicate_column THEN NULL;
+END $$;
+
+DO $$ BEGIN
+  ALTER TABLE price_alerts ADD COLUMN IF NOT EXISTS last_alert_sent_at TIMESTAMPTZ;
+EXCEPTION WHEN duplicate_column THEN NULL;
+END $$;
+
+DO $$ BEGIN
+  ALTER TABLE price_alerts ADD COLUMN IF NOT EXISTS alert_frequency TEXT DEFAULT 'daily' 
+    CHECK (alert_frequency IN ('instant', 'daily', 'weekly'));
+EXCEPTION WHEN duplicate_column THEN NULL;
+END $$;
