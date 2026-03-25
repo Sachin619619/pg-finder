@@ -18,6 +18,13 @@ import AdBanner from "@/components/AdBanner";
 import AnimatedBanner from "@/components/AnimatedBanner";
 import CostCalculator from "@/components/CostCalculator";
 import ScheduleVisit from "@/components/ScheduleVisit";
+import SafetyScore from "@/components/SafetyScore";
+import TransportProximity from "@/components/TransportProximity";
+import SentimentAnalysis from "@/components/SentimentAnalysis";
+import PricePrediction from "@/components/PricePrediction";
+import ListingQualityScore from "@/components/ListingQualityScore";
+import VirtualTourBooking from "@/components/VirtualTourBooking";
+import NotificationPreferences from "@/components/NotificationPreferences";
 import { useAuth } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
 import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
@@ -48,6 +55,8 @@ export default function ListingClient() {
   const [reportSubmitting, setReportSubmitting] = useState(false);
   const [showScheduleVisit, setShowScheduleVisit] = useState(false);
   const [showCostCalc, setShowCostCalc] = useState(false);
+  const [showVirtualTour, setShowVirtualTour] = useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
 
   // Check resident request status
   useEffect(() => {
@@ -428,6 +437,12 @@ export default function ListingClient() {
             {/* Nearby Places */}
             <NearbyPlaces area={pg.area} />
 
+            {/* Safety Score & Transport Proximity */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <SafetyScore area={pg.area} />
+              <TransportProximity area={pg.area} />
+            </div>
+
             {/* Real Map */}
             {pg.lat && pg.lng && (
               <div className="premium-card !rounded-2xl p-6">
@@ -524,6 +539,20 @@ export default function ListingClient() {
               isLoggedIn={!!user}
               isOwner={!!user && !!ownerId && user.id === ownerId}
             />
+
+            {/* Sentiment Analysis + Price Prediction + Quality Score */}
+            {reviews.length > 0 && (
+              <SentimentAnalysis reviews={reviews} />
+            )}
+            <PricePrediction
+              area={pg.area}
+              amenities={pg.amenities}
+              furnished={pg.furnished}
+              foodIncluded={pg.foodIncluded}
+              acAvailable={pg.acAvailable}
+              currentPrice={pg.price}
+            />
+            <ListingQualityScore pg={pg} />
           </div>
 
           {/* Right Column — Contact & Price */}
