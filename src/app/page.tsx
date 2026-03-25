@@ -37,7 +37,6 @@ import AdBanner from "@/components/AdBanner";
 import GhibliShowcase from "@/components/GhibliShowcase";
 import RecentlyViewed from "@/components/RecentlyViewed";
 import SearchAutocomplete from "@/components/SearchAutocomplete";
-import CostCalculator from "@/components/CostCalculator";
 import Link from "next/link";
 import { fetchListings } from "@/lib/db";
 import type { PGListing } from "@/data/listings";
@@ -109,7 +108,6 @@ export default function Home() {
   const [filters, setFilters] = useState<Filters>(defaultFilters);
   const [sortBy, setSortBy] = useState<string>("rating");
   const [viewMode, setViewMode] = useState<"grid" | "map">("grid");
-  const [showCostCalc, setShowCostCalc] = useState(false);
   const [listings, setListings] = useState<PGListing[]>([]);
   const [loading, setLoading] = useState(true);
   const debouncedSearch = useDebounce(filters.search, 300);
@@ -725,21 +723,6 @@ export default function Home() {
         </footer>
       </main>
 
-      {/* Floating Cost Calculator Button */}
-      <button
-        onClick={() => setShowCostCalc(true)}
-        className="fixed bottom-6 right-6 z-40 bg-[#1a1a1a] text-white px-5 py-3.5 rounded-2xl font-semibold text-sm shadow-lg hover:shadow-xl hover:-translate-y-1 active:translate-y-0 transition-all flex items-center gap-2 group"
-        aria-label="Open cost calculator"
-      >
-        <span className="text-lg group-hover:animate-bounce">💰</span>
-        <span className="hidden sm:inline">Calculate Cost</span>
-      </button>
-
-      {/* Cost Calculator Modal */}
-      <CostCalculator
-        isOpen={showCostCalc}
-        onClose={() => setShowCostCalc(false)}
-      />
 
 
     </>
