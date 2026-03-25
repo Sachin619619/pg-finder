@@ -9,6 +9,7 @@ import MapView from "@/components/MapView";
 import PriceInsights from "@/components/PriceInsights";
 import AreaInsights from "@/components/AreaInsights";
 import PGRankings from "@/components/PGRankings";
+import BrowseByLifestyle from "@/components/BrowseByLifestyle";
 import SaveSearchButton from "@/components/SaveSearchButton";
 import Testimonials from "@/components/Testimonials";
 import PriceAlertBanner from "@/components/PriceAlertBanner";
@@ -247,6 +248,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* ===== BROWSE BY LIFESTYLE ===== */}
+        <BrowseByLifestyle />
 
         {/* ===== TRUST MARQUEE ===== */}
         <section className="bg-[#FFFAEB] border-y border-[#e8e0cc] py-4 overflow-hidden">
