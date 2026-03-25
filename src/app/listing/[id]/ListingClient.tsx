@@ -46,6 +46,7 @@ export default function ListingClient() {
   const [reportDescription, setReportDescription] = useState("");
   const [isReported, setIsReported] = useState(false);
   const [reportSubmitting, setReportSubmitting] = useState(false);
+  const [showScheduleVisit, setShowScheduleVisit] = useState(false);
   const [showCostCalc, setShowCostCalc] = useState(false);
 
   // Check resident request status
@@ -604,6 +605,22 @@ export default function ListingClient() {
                 </span>
               </Link>
 
+              {/* Schedule Visit CTA */}
+              <button
+                onClick={() => setShowScheduleVisit(true)}
+                className="w-full mt-3 relative overflow-hidden bg-[#F4EDD9] text-[#1B1C15] py-3.5 rounded-2xl font-semibold text-center transition-all hover:shadow-lg hover:shadow-amber-500/10 hover:-translate-y-0.5 active:translate-y-0 border-2 border-[#e8e0cc]"
+              >
+                <span className="relative z-10 flex items-center justify-center gap-2">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                  </svg>
+                  Schedule a Visit
+                </span>
+              </button>
+
               {/* Call & WhatsApp Row */}
               <div className="grid grid-cols-2 gap-3 mt-3">
                 <a
@@ -691,6 +708,17 @@ export default function ListingClient() {
 
       {/* Callback Modal */}
       {showCallback && <CallbackModal pgId={pg.id} pgName={pg.name} onClose={() => setShowCallback(false)} />}
+
+      {/* Schedule Visit Modal */}
+      {showScheduleVisit && (
+        <ScheduleVisit
+          pgId={pg.id}
+          pgName={pg.name}
+          pgArea={pg.area}
+          pgLocality={pg.locality}
+          onClose={() => setShowScheduleVisit(false)}
+        />
+      )}
 
       {/* Report Modal */}
       {showReportModal && (

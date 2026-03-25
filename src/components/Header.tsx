@@ -85,6 +85,7 @@ export default function Header() {
                 { label: "Browse", href: "/#listings" },
                 { label: "Areas", href: "/#areas" },
                 { label: "Roommates", href: "/roommate-finder" },
+                { label: "My Visits", href: "/my-visits" },
                 { label: "Saved", href: "/saved" },
               ]).map((item) => (
                 <Link
