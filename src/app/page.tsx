@@ -10,6 +10,7 @@ import PriceInsights from "@/components/PriceInsights";
 import AreaInsights from "@/components/AreaInsights";
 import PGRankings from "@/components/PGRankings";
 import BrowseByLifestyle from "@/components/BrowseByLifestyle";
+import FeaturedToday from "@/components/FeaturedToday";
 import SaveSearchButton from "@/components/SaveSearchButton";
 import Testimonials from "@/components/Testimonials";
 import PriceAlertBanner from "@/components/PriceAlertBanner";
@@ -248,6 +249,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* ===== FEATURED TODAY ===== */}
+        <FeaturedToday listings={listings} />
 
         {/* ===== BROWSE BY LIFESTYLE ===== */}
         <BrowseByLifestyle />
