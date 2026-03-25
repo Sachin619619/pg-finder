@@ -193,7 +193,7 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
                       onClick={() => setSelectedSlot(slot.id)}
                       className={`relative flex flex-col items-center p-4 rounded-2xl border-2 transition-all duration-200 ${
                         isSelected
-                          ? "border-[#1B1C15] bg-[#F4EDD9] shadow-md"
+                          ? "border-[#1B1C15] bg-gray-100 shadow-md"
                           : "border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50"
                       }`}
                     >
@@ -344,9 +344,9 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
 
             {/* Visit Summary Card */}
             {booking && (
-              <div className={`bg-[#FAFAF5] rounded-2xl p-5 text-left mb-6 border border-gray-100 transition-all duration-400 delay-200 ${showCheckmark ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}>
+              <div className={`bg-gray-50 rounded-2xl p-5 text-left mb-6 border border-gray-100 transition-all duration-400 delay-200 ${showCheckmark ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}>
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-[#F4EDD9] rounded-xl flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center shrink-0">
                     <svg className="w-5 h-5 text-[#1B1C15]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                       <polyline points="9 22 9 12 15 12 15 22" />

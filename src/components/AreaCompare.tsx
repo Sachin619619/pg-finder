@@ -43,7 +43,7 @@ export default function AreaCompare() {
                 disabled={!selected.includes(area) && selected.length >= 3}
                 className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-all ${
                   selected.includes(area)
-                    ? "bg-[#1B1C15] text-white border-[#1B1C15]"
+                    ? "bg-[#1a1a1a] text-white border-[#1a1a1a]"
                     : "bg-white text-gray-600 border-gray-200 hover:border-gray-300 disabled:opacity-40 disabled:cursor-not-allowed"
                 }`}
               >
