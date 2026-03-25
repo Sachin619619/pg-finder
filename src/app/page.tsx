@@ -10,6 +10,7 @@ import PriceInsights from "@/components/PriceInsights";
 import AreaInsights from "@/components/AreaInsights";
 import AreaCompare from "@/components/AreaCompare";
 import PGRankings from "@/components/PGRankings";
+import CastleRankings from "@/components/CastleRankings";
 import BrowseByLifestyle from "@/components/BrowseByLifestyle";
 import TrendingSearches from "@/components/TrendingSearches";
 import QuickFiltersFAB from "@/components/QuickFiltersFAB";
@@ -545,6 +546,9 @@ export default function Home() {
         <ScrollReveal direction="right">
           <Testimonials />
         </ScrollReveal>
+
+        {/* ===== CASTLE RANKINGS ===== */}
+        <CastleRankings listings={listings} />
 
         {/* ===== PG RANKINGS ===== */}
         <PGRankings listings={listings} />
