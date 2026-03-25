@@ -4,12 +4,12 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 
 const fallbackPhotos = [
-  { label: "Living Room", gradient: "from-[#d4ccb5] to-[#F4EDD9]" },
+  { label: "Living Room", gradient: "from-gray-200 to-gray-100" },
   { label: "Bedroom", gradient: "from-rose-200 to-pink-200" },
   { label: "Kitchen", gradient: "from-amber-200 to-orange-200" },
   { label: "Bathroom", gradient: "from-teal-200 to-emerald-200" },
   { label: "Balcony", gradient: "from-sky-200 to-blue-200" },
-  { label: "Common Area", gradient: "from-[#d4ccb5] to-[#F4EDD9]" },
+  { label: "Common Area", gradient: "from-gray-200 to-gray-100" },
 ];
 
 export default function PhotoGallery({ pgName, images }: { pgName: string; images?: string[] }) {

@@ -250,7 +250,7 @@ export default function AIAgent() {
                     className={`max-w-[85%] px-3.5 py-2.5 rounded-2xl text-[13px] leading-relaxed ${
                       msg.role === "user"
                         ? "bg-[#1B1C15] text-white rounded-br-md"
-                        : "bg-[#F4EDD9] text-gray-800 rounded-bl-md"
+                        : "bg-gray-100 text-gray-800 rounded-bl-md"
                     }`}
                   >
                     <p className="whitespace-pre-wrap">{msg.content}</p>
@@ -411,7 +411,7 @@ export default function AIAgent() {
                   <button
                     key={prompt}
                     onClick={() => sendMessage(prompt)}
-                    className="flex-shrink-0 px-2.5 py-1.5 text-[11px] font-medium bg-[#F4EDD9] text-[#1B1C15] rounded-full hover:bg-[#ebe4cf] transition whitespace-nowrap"
+                    className="flex-shrink-0 px-2.5 py-1.5 text-[11px] font-medium bg-gray-100 text-[#1B1C15] rounded-full hover:bg-gray-200 transition whitespace-nowrap"
                   >
                     {prompt}
                   </button>

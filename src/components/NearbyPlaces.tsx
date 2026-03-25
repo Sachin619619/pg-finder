@@ -45,7 +45,7 @@ const colorMap: Record<string, string> = {
   red: "bg-red-50 text-red-600",
   blue: "bg-blue-50 text-blue-600",
   amber: "bg-amber-50 text-amber-600",
-  violet: "bg-[#F4EDD9] text-[#1B1C15]",
+  violet: "bg-gray-100 text-[#1a1a1a]",
 };
 
 export default function NearbyPlaces({ area }: { area: string }) {
