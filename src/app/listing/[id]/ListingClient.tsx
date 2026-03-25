@@ -29,6 +29,7 @@ import VirtualTourBooking from "@/components/VirtualTourBooking";
 import NotificationPreferences from "@/components/NotificationPreferences";
 import EmergencyContacts from "@/components/EmergencyContacts";
 import WalkthroughVideo from "@/components/WalkthroughVideo";
+import AmenityBreakdown from "@/components/AmenityBreakdown";
 import { useAuth } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
 import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
@@ -732,6 +733,15 @@ export default function ListingClient() {
 
               {/* Emergency Contacts */}
               <EmergencyContacts />
+
+              {/* Amenity Breakdown */}
+              <AmenityBreakdown
+                price={pg.price}
+                amenities={pg.amenities}
+                foodIncluded={pg.foodIncluded}
+                furnished={pg.furnished}
+                area={pg.area}
+              />
 
               {/* View on Map — subtle link style */}
               <a
