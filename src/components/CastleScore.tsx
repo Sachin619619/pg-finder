@@ -76,7 +76,7 @@ export default function CastleScore({ pg, compact = false }: CastleScoreProps) {
   if (compact) {
     return (
       <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-bold border ${gradeColor}`}>
-        <span>🏰</span>
+        
         <span>Castle {grade}</span>
       </div>
     );
@@ -86,7 +86,7 @@ export default function CastleScore({ pg, compact = false }: CastleScoreProps) {
     <div className="bg-gradient-to-br from-violet-50 to-indigo-50 border border-violet-100 rounded-2xl p-5">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <span className="text-2xl">🏰</span>
+          <span className="text-2xl font-bold text-violet-900">C</span>
           <div>
             <p className="text-sm font-bold text-violet-900">Castle Score</p>
             <p className="text-xs text-violet-600">Overall quality rating</p>
