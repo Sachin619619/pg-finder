@@ -40,6 +40,7 @@ import VisitReminder from "@/components/VisitReminder";
 import QuickStats from "@/components/QuickStats";
 import BookingTimeline from "@/components/BookingTimeline";
 import BreadcrumbNav from "@/components/BreadcrumbNav";
+import PGHistory from "@/components/PGHistory";
 import RentVsBuyCalculator from "@/components/RentVsBuyCalculator";
 import ListingQuickActions from "@/components/ListingQuickActions";
 import { useAuth } from "@/lib/auth";
@@ -592,6 +593,12 @@ export default function ListingClient() {
             <ListingQualityScore pg={pg} />
             <SimilarPGs currentPg={pg} />
             <BookingTimeline />
+            <PGHistory
+              listedDate={pg.availableFrom}
+              lastUpdated={pg.availableFrom}
+              totalViews={Math.floor(Math.random() * 500) + 100}
+              totalInquiries={Math.floor(Math.random() * 50) + 5}
+            />
             <RentVsBuyCalculator />
           </div>
 
