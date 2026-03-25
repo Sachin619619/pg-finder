@@ -178,7 +178,7 @@ export default function LoginPage() {
                     onKeyDown={(e) => handleOtpKeyDown(i, e)}
                     className={`w-11 h-12 text-center text-xl font-bold rounded-xl border-2 outline-none transition-all ${
                       digit
-                        ? "border-[#1B1C15] bg-[#F4EDD9] text-[#1B1C15]"
+                        ? "border-[#1B1C15] bg-gray-100 text-[#1a1a1a]"
                         : "border-gray-200 bg-white text-gray-900"
                     } focus:border-[#1B1C15] focus:ring-2 focus:ring-[#1B1C15]/20`}
                     autoFocus={i === 0}
@@ -209,13 +209,13 @@ export default function LoginPage() {
               <div className="mt-6 text-center">
                 {countdown > 0 ? (
                   <p className="text-sm text-gray-400">
-                    Resend code in <span className="font-semibold text-[#1B1C15]">{countdown}s</span>
+                    Resend code in <span className="font-semibold text-[#1a1a1a]">{countdown}s</span>
                   </p>
                 ) : (
                   <button
                     onClick={handleResend}
                     disabled={resending}
-                    className="text-sm text-[#1B1C15] font-semibold hover:underline disabled:opacity-50"
+                    className="text-sm text-[#1a1a1a] font-semibold hover:underline disabled:opacity-50"
                   >
                     {resending ? "Sending..." : "📧 Resend OTP Code"}
                   </button>
@@ -342,7 +342,7 @@ export default function LoginPage() {
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-400">
                 Don&apos;t have an account?{" "}
-                <Link href="/signup" className="text-[#1B1C15] font-semibold hover:underline">
+                <Link href="/signup" className="text-[#1a1a1a] font-semibold hover:underline">
                   Sign Up
                 </Link>
               </p>

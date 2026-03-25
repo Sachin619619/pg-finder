@@ -35,7 +35,7 @@ const testimonials = [
     avatar: "DR",
     rating: 5,
     area: "Indiranagar",
-    gradient: "from-[#3d3829] to-[#1B1C15]",
+    gradient: "from-[#2a2a2a] to-[#1a1a1a]",
   },
   {
     name: "Amit Verma",
@@ -62,7 +62,7 @@ export default function Testimonials() {
     <section className="py-24 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-50 via-white to-gray-50" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#1B1C15]/[0.02] rounded-full blur-[150px]" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#1a1a1a]/[0.02] rounded-full blur-[150px]" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-14">
@@ -82,7 +82,7 @@ export default function Testimonials() {
             >
               {/* Quote icon */}
               <div className="mb-4">
-                <svg className="w-8 h-8 text-[#d4ccb5]" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-8 h-8 text-gray-300" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H0z" />
                 </svg>
               </div>

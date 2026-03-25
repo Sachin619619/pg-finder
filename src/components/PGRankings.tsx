@@ -56,7 +56,7 @@ export default function PGRankings({ listings }: PGRankingsProps) {
   const activeType = rankTypes.find(r => r.id === activeRank)!;
 
   return (
-    <section className="py-20 bg-[#FFFAEC]">
+    <section className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <span className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-3 inline-block">Smart Rankings</span>
@@ -72,7 +72,7 @@ export default function PGRankings({ listings }: PGRankingsProps) {
               onClick={() => setActiveRank(type.id)}
               className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition-all ${
                 activeRank === type.id
-                  ? "bg-[#1B1C15] text-white shadow-lg"
+                  ? "bg-[#1a1a1a] text-white shadow-lg"
                   : "bg-white border border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50"
               }`}
             >
@@ -83,7 +83,7 @@ export default function PGRankings({ listings }: PGRankingsProps) {
         </div>
 
         {/* Rankings list */}
-        <div className="bg-white/70 backdrop-blur-sm rounded-3xl border border-[#e8e0cc] overflow-hidden">
+        <div className="bg-white/70 backdrop-blur-sm rounded-3xl border border-gray-200 overflow-hidden">
           <div className="p-4 sm:p-6 border-b border-gray-100">
             <p className="text-sm text-gray-500">{activeType.desc}</p>
           </div>
@@ -133,7 +133,7 @@ export default function PGRankings({ listings }: PGRankingsProps) {
                   {/* CTA */}
                   <Link
                     href={`/listing/${pg.id}`}
-                    className="px-4 py-2 bg-[#1B1C15] text-white rounded-xl text-xs font-semibold shrink-0 hover:bg-[#2d2e25] transition"
+                    className="px-4 py-2 bg-[#1a1a1a] text-white rounded-xl text-xs font-semibold shrink-0 hover:bg-[#333333] transition"
                   >
                     View
                   </Link>

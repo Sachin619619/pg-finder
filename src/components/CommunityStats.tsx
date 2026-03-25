@@ -46,7 +46,7 @@ export default function CommunityStats() {
   }, []);
 
   return (
-    <section className="py-16 bg-[#1B1C15]">
+    <section className="py-16 bg-[#1a1a1a]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <p className="text-xs font-semibold text-white/40 uppercase tracking-widest mb-3">Our Community</p>

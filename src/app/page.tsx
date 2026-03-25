@@ -303,7 +303,7 @@ export default function Home() {
         <TrendingSearches />
 
         {/* ===== TRUST MARQUEE ===== */}
-        <section className="bg-[#FFFAEB] border-y border-[#e8e0cc] py-4 overflow-hidden">
+        <section className="bg-gray-50 border-y border-gray-200 py-4 overflow-hidden">
           <div className="animate-marquee flex items-center gap-12 whitespace-nowrap">
             {[...Array(2)].map((_, setIdx) => (
               <div key={setIdx} className="flex items-center gap-12">
@@ -336,7 +336,7 @@ export default function Home() {
               className={`shrink-0 px-6 py-3.5 rounded-full font-medium text-sm transition-all ${
                 !filters.area
                   ? "bg-[#1B1C15] text-white"
-                  : "bg-[#FFFAEB] text-black border border-[#e8e0cc] hover:border-black/30"
+                  : "bg-gray-50 text-black border border-gray-200 hover:border-black/30"
               }`}
             >
               All Areas
@@ -348,7 +348,7 @@ export default function Home() {
                 className={`shrink-0 px-6 py-3.5 rounded-full font-medium text-sm transition-all ${
                   filters.area === area
                     ? "bg-[#1B1C15] text-white"
-                    : "bg-[#FFFAEB] text-black border border-[#e8e0cc] hover:border-black/30"
+                    : "bg-gray-50 text-black border border-gray-200 hover:border-black/30"
                 }`}
               >
                 {area} <span className="text-xs opacity-50 ml-1">{count}</span>
@@ -476,7 +476,7 @@ export default function Home() {
             )
           ) : (
             <div className="text-center py-24">
-              <div className="w-28 h-28 bg-[#FFFAEB] rounded-3xl flex items-center justify-center mx-auto mb-6 relative">
+              <div className="w-28 h-28 bg-gray-50 rounded-3xl flex items-center justify-center mx-auto mb-6 relative">
                 <span className="text-5xl">🏠</span>
                 <div className="absolute -bottom-1 -right-1 w-10 h-10 bg-red-50 rounded-full flex items-center justify-center border-4 border-white">
                   <svg className="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -493,7 +493,7 @@ export default function Home() {
                 </button>
                 <button
                   onClick={() => setFilters({ ...defaultFilters, search: "" })}
-                  className="px-6 py-3 rounded-[14px] text-sm font-medium bg-[#FFFAEB] border border-[#e8e0cc] text-black hover:border-black/30 transition-all"
+                  className="px-6 py-3 rounded-[14px] text-sm font-medium bg-gray-50 border border-gray-200 text-black hover:border-black/30 transition-all"
                 >
                   Browse All PGs
                 </button>
@@ -503,7 +503,7 @@ export default function Home() {
         </section>
 
         {/* ===== BENTO AREAS GRID ===== */}
-        <section id="areas" className="bg-[#F4EDD9] py-24">
+        <section id="areas" className="bg-gray-100 py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <ScrollReveal>
             <div className="text-center mb-14">
@@ -522,7 +522,7 @@ export default function Home() {
                     setFilters({ ...defaultFilters, area });
                     document.getElementById("listings")?.scrollIntoView({ behavior: "smooth" });
                   }}
-                  className={`w-full bg-[#FFFAEB] border border-[#e8e0cc] rounded-2xl p-5 text-left group relative overflow-hidden hover:border-black/20 transition-all ${
+                  className={`w-full bg-gray-50 border border-gray-200 rounded-2xl p-5 text-left group relative overflow-hidden hover:border-black/20 transition-all ${
                     i === 0 ? "sm:col-span-2 sm:row-span-2" : ""
                   }`}
                 >
@@ -591,7 +591,7 @@ export default function Home() {
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 relative">
               {/* Connecting line */}
-              <div className="hidden sm:block absolute top-[180px] left-[16%] right-[16%] h-[1px] bg-[#e8e0cc] z-0" />
+              <div className="hidden sm:block absolute top-[180px] left-[16%] right-[16%] h-[1px] bg-gray-200 z-0" />
 
               {[
                 { step: "01", title: "Search & Filter", desc: "Browse PGs by area, budget, amenities, and room type. Use our smart filters to narrow down.", image: "/images/ghibli/step-search.png" },
@@ -599,12 +599,12 @@ export default function Home() {
                 { step: "03", title: "Move In & Settle", desc: "Pack your bags and move into your new home. Zero brokerage, zero hassle.", image: "/images/ghibli/step-movein.png" },
               ].map((item, idx) => (
                 <ScrollReveal key={item.step} delay={idx * 150} direction="up">
-                <div className="bg-[#FFFAEB] border border-[#e8e0cc] rounded-3xl overflow-hidden text-center group relative hover:border-black/20 transition-all">
+                <div className="bg-gray-50 border border-gray-200 rounded-3xl overflow-hidden text-center group relative hover:border-black/20 transition-all">
                   {/* Ghibli illustration */}
                   <div className="relative h-44 overflow-hidden">
                     <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#FFFAEB] via-transparent to-transparent" />
-                    <div className="absolute top-3 left-3 w-8 h-8 bg-white/80 backdrop-blur-sm rounded-lg flex items-center justify-center text-xs font-bold text-[#1B1C15] border border-white/50">{item.step}</div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-50 via-transparent to-transparent" />
+                    <div className="absolute top-3 left-3 w-8 h-8 bg-white/80 backdrop-blur-sm rounded-lg flex items-center justify-center text-xs font-bold text-[#1a1a1a] border border-white/50">{item.step}</div>
                   </div>
                   <div className="p-6 pt-2">
                     <h3 className="font-serif text-lg text-black mt-1 mb-3">{item.title}</h3>

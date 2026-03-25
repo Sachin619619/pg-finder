@@ -356,7 +356,7 @@ export default function AddListingPage() {
                 <div className="max-w-sm mx-auto premium-card !rounded-2xl p-6 mb-6">
                   <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">Owner Claim Code</p>
                   <div className="flex items-center justify-center gap-3">
-                    <span className="text-3xl font-mono font-extrabold text-[#1B1C15] tracking-[0.2em]">{claimCode}</span>
+                    <span className="text-3xl font-mono font-extrabold text-[#1a1a1a] tracking-[0.2em]">{claimCode}</span>
                     <button
                       onClick={async () => {
                         try {
@@ -377,7 +377,7 @@ export default function AddListingPage() {
                           setTimeout(() => setCopied(false), 2000);
                         }
                       }}
-                      className="p-2 rounded-xl bg-[#F4EDD9] text-[#1B1C15] hover:bg-[#F4EDD9] transition"
+                      className="p-2 rounded-xl bg-gray-100 text-[#1a1a1a] hover:bg-gray-100 transition"
                       title="Copy"
                     >
                       {copied ? (
@@ -538,7 +538,7 @@ export default function AddListingPage() {
                 </div>
                 <div className="flex gap-3 justify-center">
                   <button onClick={() => router.push("/agent-dashboard")} className="px-6 py-2.5 bg-gray-100 text-gray-700 rounded-xl text-sm font-medium">Go to Dashboard</button>
-                  <button onClick={() => { setSuccess(false); setClaimCode(null); }} className="px-6 py-2.5 bg-[#F4EDD9] text-[#1B1C15] rounded-xl text-sm font-medium">Add Another PG</button>
+                  <button onClick={() => { setSuccess(false); setClaimCode(null); }} className="px-6 py-2.5 bg-gray-100 text-[#1a1a1a] rounded-xl text-sm font-medium">Add Another PG</button>
                 </div>
               </>
             ) : (
@@ -559,7 +559,7 @@ export default function AddListingPage() {
       <main className="max-w-3xl mx-auto px-4 sm:px-6 pt-28 pb-16">
         {/* Breadcrumb */}
         <nav className="mb-6 text-sm text-gray-500 flex items-center gap-2">
-          <Link href="/" className="hover:text-[#1B1C15] transition-colors">Home</Link>
+          <Link href="/" className="hover:text-[#1a1a1a] transition-colors">Home</Link>
           <span>/</span>
           <span className="text-gray-900 font-medium">Add New PG</span>
         </nav>
@@ -659,7 +659,7 @@ export default function AddListingPage() {
                       key={room.type}
                       className={`p-4 rounded-xl border-2 transition-all ${
                         room.enabled
-                          ? "border-[#1B1C15] bg-[#F4EDD9]"
+                          ? "border-[#1B1C15] bg-gray-100"
                           : "border-gray-200"
                       }`}
                     >
@@ -672,7 +672,7 @@ export default function AddListingPage() {
                             updated[idx] = { ...updated[idx], enabled: !updated[idx].enabled };
                             setRoomOptions(updated);
                           }}
-                          className="w-4 h-4 rounded text-[#1B1C15] focus:ring-[#1B1C15]/20"
+                          className="w-4 h-4 rounded text-[#1a1a1a] focus:ring-[#1B1C15]/20"
                         />
                         <span className="text-sm font-semibold text-gray-700">
                           {room.type === "single" ? "🛏️ Single" : room.type === "double" ? "🛏️ Double Sharing" : "🛏️ Triple Sharing"}
@@ -740,7 +740,7 @@ export default function AddListingPage() {
                   onClick={() => f.set(!f.value)}
                   className={`p-3 rounded-xl border-2 text-center transition-all ${
                     f.value
-                      ? "border-[#1B1C15] bg-[#F4EDD9]"
+                      ? "border-[#1B1C15] bg-gray-100"
                       : "border-gray-200 hover:border-gray-300"
                   }`}
                 >
@@ -793,7 +793,7 @@ export default function AddListingPage() {
                 <button
                   type="button"
                   onClick={() => photoInputRef.current?.click()}
-                  className="aspect-square rounded-xl border-2 border-dashed border-gray-300 flex flex-col items-center justify-center gap-1.5 hover:border-[#8a8070] hover:bg-[#F4EDD9] transition-all"
+                  className="aspect-square rounded-xl border-2 border-dashed border-gray-300 flex flex-col items-center justify-center gap-1.5 hover:border-[#8a8070] hover:bg-gray-100 transition-all"
                 >
                   <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
                     <rect x="3" y="3" width="18" height="18" rx="2" ry="2" /><circle cx="8.5" cy="8.5" r="1.5" /><polyline points="21 15 16 10 5 21" />
@@ -856,7 +856,7 @@ export default function AddListingPage() {
                 <button
                   type="button"
                   onClick={handleGetLocation}
-                  className="text-xs text-[#1B1C15] font-medium hover:underline"
+                  className="text-xs text-[#1a1a1a] font-medium hover:underline"
                 >
                   Update Location
                 </button>
@@ -867,7 +867,7 @@ export default function AddListingPage() {
                   type="button"
                   onClick={handleGetLocation}
                   disabled={locationLoading}
-                  className="inline-flex items-center gap-2 px-5 py-3 bg-[#F4EDD9] text-[#1B1C15] rounded-xl text-sm font-medium hover:bg-[#F4EDD9] transition disabled:opacity-50"
+                  className="inline-flex items-center gap-2 px-5 py-3 bg-gray-100 text-[#1a1a1a] rounded-xl text-sm font-medium hover:bg-gray-100 transition disabled:opacity-50"
                 >
                   {locationLoading ? (
                     <>

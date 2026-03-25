@@ -112,7 +112,7 @@ export default function BookingPage() {
           <div className="text-center">
             <span className="text-5xl block mb-4">😕</span>
             <h1 className="text-xl font-bold text-gray-900">PG not found</h1>
-            <Link href="/" className="text-[#1B1C15] hover:underline mt-4 block">Back to Home</Link>
+            <Link href="/" className="text-[#1a1a1a] hover:underline mt-4 block">Back to Home</Link>
           </div>
         </main>
       </>
@@ -176,7 +176,7 @@ export default function BookingPage() {
               <div>
                 <h3 className="font-bold text-gray-900">{pg.name}</h3>
                 <p className="text-sm text-gray-400">{pg.locality}, {pg.area}</p>
-                <p className="text-lg font-bold text-[#1B1C15] mt-1">₹{pg.price.toLocaleString()}<span className="text-xs text-gray-400 font-normal">/month</span></p>
+                <p className="text-lg font-bold text-[#1a1a1a] mt-1">₹{pg.price.toLocaleString()}<span className="text-xs text-gray-400 font-normal">/month</span></p>
               </div>
             </div>
 
@@ -196,7 +196,7 @@ export default function BookingPage() {
                       key={t}
                       onClick={() => setRoomType(t)}
                       className={`p-3 rounded-xl border-2 text-sm font-medium capitalize transition-all ${
-                        roomType === t ? "border-[#1B1C15] bg-[#F4EDD9] text-[#1B1C15]" : "border-gray-200 text-gray-600"
+                        roomType === t ? "border-[#1B1C15] bg-gray-100 text-[#1a1a1a]" : "border-gray-200 text-gray-600"
                       }`}
                     >
                       {t === "single" ? "🛏️ " : t === "double" ? "🛏️🛏️ " : "🛏️🛏️🛏️ "}
@@ -254,21 +254,21 @@ export default function BookingPage() {
               <h3 className="font-bold text-gray-900 mb-4">ℹ️ How it works</h3>
               <div className="space-y-4">
                 <div className="flex gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-[#F4EDD9] flex items-center justify-center text-sm font-bold text-[#1B1C15] shrink-0">1</div>
+                  <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-sm font-bold text-[#1a1a1a] shrink-0">1</div>
                   <div>
                     <p className="text-sm font-semibold text-gray-900">Send Request</p>
                     <p className="text-xs text-gray-400">Your booking request is sent to the PG owner</p>
                   </div>
                 </div>
                 <div className="flex gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-[#F4EDD9] flex items-center justify-center text-sm font-bold text-[#1B1C15] shrink-0">2</div>
+                  <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-sm font-bold text-[#1a1a1a] shrink-0">2</div>
                   <div>
                     <p className="text-sm font-semibold text-gray-900">Owner Reviews</p>
                     <p className="text-xs text-gray-400">Owner accepts or rejects based on availability</p>
                   </div>
                 </div>
                 <div className="flex gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-[#F4EDD9] flex items-center justify-center text-sm font-bold text-[#1B1C15] shrink-0">3</div>
+                  <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-sm font-bold text-[#1a1a1a] shrink-0">3</div>
                   <div>
                     <p className="text-sm font-semibold text-gray-900">Visit & Move In</p>
                     <p className="text-xs text-gray-400">Visit the PG, pay directly to owner, and move in!</p>
@@ -291,8 +291,8 @@ export default function BookingPage() {
                 </div>
               </div>
 
-              <div className="mt-6 p-3 bg-[#F4EDD9] rounded-xl">
-                <p className="text-xs text-[#1B1C15]">
+              <div className="mt-6 p-3 bg-gray-100 rounded-xl">
+                <p className="text-xs text-[#1a1a1a]">
                   <strong>💡 Tip:</strong> Include your phone number and a brief introduction in your message to increase your chances of approval!
                 </p>
               </div>

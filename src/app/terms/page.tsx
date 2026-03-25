@@ -15,7 +15,7 @@ export default function TermsOfServicePage() {
         <div className="max-w-4xl mx-auto">
           {/* Page Header */}
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F4EDD9]/80 text-[#1B1C15] text-xs font-semibold mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gray-100/80 text-[#1a1a1a] text-xs font-semibold mb-4">
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                 <polyline points="14 2 14 8 20 8" />
@@ -36,7 +36,7 @@ export default function TermsOfServicePage() {
             <section>
               <p className="text-gray-600 text-sm leading-relaxed">
                 Welcome to <strong className="text-gray-900">Castle</strong>. By accessing or using our platform at{" "}
-                <a href="https://castleliving.in" className="text-[#1B1C15] underline underline-offset-2">castleliving.in</a>,
+                <a href="https://castleliving.in" className="text-[#1a1a1a] underline underline-offset-2">castleliving.in</a>,
                 you agree to be bound by these Terms of Service (&quot;Terms&quot;). Please read them carefully before using our services. If you do not agree to these Terms, you may not use the platform.
               </p>
             </section>
@@ -207,7 +207,7 @@ export default function TermsOfServicePage() {
                     </li>
                   ))}
                 </ul>
-                <p>You may also voluntarily delete your account at any time through the account settings. Upon deletion, your personal data will be removed as described in our <Link href="/privacy" className="text-[#1B1C15] underline underline-offset-2">Privacy Policy</Link>.</p>
+                <p>You may also voluntarily delete your account at any time through the account settings. Upon deletion, your personal data will be removed as described in our <Link href="/privacy" className="text-[#1a1a1a] underline underline-offset-2">Privacy Policy</Link>.</p>
               </div>
             </section>
 
@@ -300,8 +300,8 @@ export default function TermsOfServicePage() {
                   <div className="space-y-2 text-sm">
                     <p><strong className="text-gray-900">Castle</strong></p>
                     <p>Bangalore, Karnataka, India</p>
-                    <p>Email: <a href="mailto:support@castle.in" className="text-[#1B1C15] underline underline-offset-2">support@castle.in</a></p>
-                    <p>Website: <a href="https://castleliving.in" className="text-[#1B1C15] underline underline-offset-2">castleliving.in</a></p>
+                    <p>Email: <a href="mailto:support@castle.in" className="text-[#1a1a1a] underline underline-offset-2">support@castle.in</a></p>
+                    <p>Website: <a href="https://castleliving.in" className="text-[#1a1a1a] underline underline-offset-2">castleliving.in</a></p>
                   </div>
                 </div>
               </div>
@@ -311,7 +311,7 @@ export default function TermsOfServicePage() {
 
           {/* Bottom navigation */}
           <div className="mt-8 flex items-center justify-center gap-6 text-sm">
-            <Link href="/privacy" className="text-[#1B1C15] hover:underline underline-offset-2 font-medium">
+            <Link href="/privacy" className="text-[#1a1a1a] hover:underline underline-offset-2 font-medium">
               Privacy Policy
             </Link>
             <span className="text-gray-300">|</span>

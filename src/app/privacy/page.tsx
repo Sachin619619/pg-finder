@@ -15,7 +15,7 @@ export default function PrivacyPolicyPage() {
         <div className="max-w-4xl mx-auto">
           {/* Page Header */}
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F4EDD9]/80 text-[#1B1C15] text-xs font-semibold mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gray-100/80 text-[#1a1a1a] text-xs font-semibold mb-4">
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
               </svg>
@@ -32,7 +32,7 @@ export default function PrivacyPolicyPage() {
             <section>
               <p className="text-gray-600 text-sm leading-relaxed">
                 Welcome to <strong className="text-gray-900">Castle</strong> (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;). Castle is a PG/hostel/co-living finder platform operating in Bangalore, India, accessible at{" "}
-                <a href="https://castleliving.in" className="text-[#1B1C15] underline underline-offset-2">castleliving.in</a>.
+                <a href="https://castleliving.in" className="text-[#1a1a1a] underline underline-offset-2">castleliving.in</a>.
                 We are committed to protecting your personal information and your right to privacy. This Privacy Policy explains what information we collect, how we use it, and what rights you have in relation to it.
               </p>
             </section>
@@ -241,8 +241,8 @@ export default function PrivacyPolicyPage() {
                   <div className="space-y-2 text-sm">
                     <p><strong className="text-gray-900">Castle</strong></p>
                     <p>Bangalore, Karnataka, India</p>
-                    <p>Email: <a href="mailto:support@castle.in" className="text-[#1B1C15] underline underline-offset-2">support@castle.in</a></p>
-                    <p>Website: <a href="https://castleliving.in" className="text-[#1B1C15] underline underline-offset-2">castleliving.in</a></p>
+                    <p>Email: <a href="mailto:support@castle.in" className="text-[#1a1a1a] underline underline-offset-2">support@castle.in</a></p>
+                    <p>Website: <a href="https://castleliving.in" className="text-[#1a1a1a] underline underline-offset-2">castleliving.in</a></p>
                   </div>
                 </div>
               </div>
@@ -252,7 +252,7 @@ export default function PrivacyPolicyPage() {
 
           {/* Bottom navigation */}
           <div className="mt-8 flex items-center justify-center gap-6 text-sm">
-            <Link href="/terms" className="text-[#1B1C15] hover:underline underline-offset-2 font-medium">
+            <Link href="/terms" className="text-[#1a1a1a] hover:underline underline-offset-2 font-medium">
               Terms of Service
             </Link>
             <span className="text-gray-300">|</span>

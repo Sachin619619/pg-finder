@@ -46,7 +46,7 @@ export default function ContactPage() {
         <div className="max-w-5xl mx-auto">
           {/* Page Header */}
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F4EDD9]/80 text-[#1B1C15] text-xs font-semibold mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gray-100/80 text-[#1a1a1a] text-xs font-semibold mb-4">
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
               </svg>
@@ -172,7 +172,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Email</p>
-                      <a href="mailto:support@castle.in" className="text-sm font-semibold text-gray-900 hover:text-[#1B1C15] transition-colors">
+                      <a href="mailto:support@castle.in" className="text-sm font-semibold text-gray-900 hover:text-[#1a1a1a] transition-colors">
                         support@castle.in
                       </a>
                     </div>
@@ -211,7 +211,7 @@ export default function ContactPage() {
               <div className="premium-card !rounded-2xl p-6 sm:p-7">
                 <h3 className="text-lg font-bold text-gray-900 mb-5">Follow Us</h3>
                 <div className="flex items-center gap-3">
-                  <a href="#" aria-label="Twitter" className="w-11 h-11 rounded-xl bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500 hover:text-[#1B1C15] hover:bg-[#F4EDD9] transition-all">
+                  <a href="#" aria-label="Twitter" className="w-11 h-11 rounded-xl bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500 hover:text-[#1a1a1a] hover:bg-gray-100 transition-all">
                     <svg className="w-4.5 h-4.5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                   </a>
                   <a href="#" aria-label="Instagram" className="w-11 h-11 rounded-xl bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500 hover:text-pink-600 hover:bg-pink-50 transition-all">

@@ -9,7 +9,7 @@ export default function AppDownloadBanner() {
 
   return (
     <div className="fixed bottom-20 md:bottom-6 left-4 right-4 md:left-auto md:right-6 md:w-[360px] z-40 animate-slide-up">
-      <div className="bg-[#1B1C15] rounded-2xl overflow-hidden shadow-2xl shadow-black/30">
+      <div className="bg-[#1a1a1a] rounded-2xl overflow-hidden shadow-2xl shadow-black/30">
         {/* Close button */}
         <button
           onClick={() => setDismissed(true)}

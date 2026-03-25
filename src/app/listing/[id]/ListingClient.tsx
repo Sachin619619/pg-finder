@@ -283,7 +283,7 @@ export default function ListingClient() {
         <nav className="mb-6 text-sm text-gray-500 flex items-center gap-2">
           <Link href="/" className="hover:text-[#1a1a1a]">Home</Link>
           <span>/</span>
-          <Link href={`/area/${pg.area.toLowerCase().replace(/\s+/g, "-")}`} className="hover:text-[#1B1C15]">{pg.area}</Link>
+          <Link href={`/area/${pg.area.toLowerCase().replace(/\s+/g, "-")}`} className="hover:text-[#1a1a1a]">{pg.area}</Link>
           <span>/</span>
           <span className="text-gray-900">{pg.name}</span>
         </nav>
@@ -428,7 +428,7 @@ export default function ListingClient() {
               </div>
               {pg.distanceFromMetro && (
                 <p className="mt-3 text-sm text-gray-500 flex items-center gap-1">
-                  <svg className="w-4 h-4 text-[#1B1C15]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-[#1a1a1a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                   </svg>
                   Nearest Metro: {pg.distanceFromMetro}
@@ -469,12 +469,12 @@ export default function ListingClient() {
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${
                     isCurrentPg ? "bg-emerald-100" :
                     requestStatus === "pending" ? "bg-amber-100" :
-                    "bg-[#F4EDD9]"
+                    "bg-gray-100"
                   }`}>
                     <svg className={`w-5 h-5 ${
                       isCurrentPg ? "text-emerald-600" :
                       requestStatus === "pending" ? "text-amber-600" :
-                      "text-[#1B1C15]"
+                      "text-[#1a1a1a]"
                     }`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                       <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                       <polyline points="9 22 9 12 15 12 15 22" />
@@ -664,7 +664,7 @@ export default function ListingClient() {
                   aria-label={`Call ${pg.contactName} about ${pg.name}`}
                   className="flex items-center justify-center gap-2 py-3 rounded-2xl font-semibold text-sm transition-all hover:-translate-y-0.5 active:translate-y-0 bg-gray-100 text-gray-900 hover:bg-gray-200"
                 >
-                  <svg className="w-4 h-4 text-[#1B1C15]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                  <svg className="w-4 h-4 text-[#1a1a1a]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
                   </svg>
                   Call

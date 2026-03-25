@@ -18,7 +18,7 @@ export default function QuickStats({ rating, reviews, price, furnished, foodIncl
   ];
 
   return (
-    <div className="bg-[#FFFAEC] rounded-2xl border border-[#e8e0cc] p-4">
+    <div className="bg-gray-50 rounded-2xl border border-gray-200 p-4">
       <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Quick Stats</p>
       <div className="grid grid-cols-2 gap-3">
         {stats.map(s => (
@@ -28,7 +28,7 @@ export default function QuickStats({ rating, reviews, price, furnished, foodIncl
           </div>
         ))}
       </div>
-      <div className="mt-3 pt-3 border-t border-[#e8e0cc]">
+      <div className="mt-3 pt-3 border-t border-gray-200">
         <div className="flex items-center gap-2">
           <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-lg text-xs font-semibold ${furnished ? "bg-violet-50 text-violet-700 border border-violet-200" : "bg-gray-50 text-gray-400 border border-gray-200"}`}>
             {furnished ? "✓" : "✗"} Furnished

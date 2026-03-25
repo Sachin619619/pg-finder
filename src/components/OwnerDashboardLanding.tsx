@@ -11,7 +11,7 @@ const ownerStats = [
 
 export default function OwnerDashboardLanding() {
   return (
-    <section className="py-20 bg-gradient-to-br from-[#1B1C15] to-gray-900 text-white">
+    <section className="py-20 bg-gradient-to-br from-[#1a1a1a] to-gray-900 text-white">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Left - Content */}
@@ -37,7 +37,7 @@ export default function OwnerDashboardLanding() {
             <div className="flex flex-col sm:flex-row gap-3">
               <Link
                 href="/list-your-pg"
-                className="px-6 py-3.5 bg-white text-[#1B1C15] rounded-xl font-semibold text-sm hover:bg-gray-100 transition-colors text-center"
+                className="px-6 py-3.5 bg-white text-[#1a1a1a] rounded-xl font-semibold text-sm hover:bg-gray-100 transition-colors text-center"
               >
                 List Your PG — Free
               </Link>

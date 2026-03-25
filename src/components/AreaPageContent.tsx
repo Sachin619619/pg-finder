@@ -129,8 +129,8 @@ export default function AreaPageContent({ listings }: { listings: PGListing[] })
                   onClick={() => setPriceRange(isActive ? null : { min: chip.min, max: chip.max })}
                   className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
                     isActive
-                      ? "bg-[#1B1C15] text-white shadow-md"
-                      : "bg-[#F5F0E1] text-[#1B1C15] hover:bg-[#EDE5D0]"
+                      ? "bg-[#1a1a1a] text-white shadow-md"
+                      : "bg-[gray-100] text-[#1a1a1a] hover:bg-[gray-200]"
                   }`}
                 >
                   {chip.label}
@@ -152,8 +152,8 @@ export default function AreaPageContent({ listings }: { listings: PGListing[] })
                   onClick={() => toggleAmenity(am.key)}
                   className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
                     isActive
-                      ? "bg-[#1B1C15] text-white shadow-md"
-                      : "bg-[#F5F0E1] text-[#1B1C15] hover:bg-[#EDE5D0]"
+                      ? "bg-[#1a1a1a] text-white shadow-md"
+                      : "bg-[gray-100] text-[#1a1a1a] hover:bg-[gray-200]"
                   }`}
                 >
                   {am.icon} {am.label}

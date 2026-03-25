@@ -474,7 +474,7 @@ export default function OwnerDashboard() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 overflow-x-hidden">
         {/* Breadcrumb */}
         <nav className="mb-6 text-sm text-gray-500 flex items-center gap-2">
-          <Link href="/" className="hover:text-[#1B1C15] transition-colors">Home</Link>
+          <Link href="/" className="hover:text-[#1a1a1a] transition-colors">Home</Link>
           <span>/</span>
           <span className="text-gray-900 font-medium">Owner Dashboard</span>
         </nav>
@@ -521,7 +521,7 @@ export default function OwnerDashboard() {
                   <div className="flex-1 min-w-0">
                     <h3 className="font-semibold text-gray-900 text-sm">New PG Claim Request</h3>
                     <p className="text-xs text-gray-400 mt-0.5">
-                      Agent <strong className="text-[#1B1C15]">{notif.agent_name}</strong> has listed <strong className="text-gray-900">&quot;{notif.listing_name}&quot;</strong> in {notif.listing_area} and wants you to claim it.
+                      Agent <strong className="text-[#1a1a1a]">{notif.agent_name}</strong> has listed <strong className="text-gray-900">&quot;{notif.listing_name}&quot;</strong> in {notif.listing_area} and wants you to claim it.
                     </p>
                     <div className="flex items-center gap-2 mt-3">
                       <button
@@ -546,10 +546,10 @@ export default function OwnerDashboard() {
         )}
 
         {/* Claim PG Banner */}
-        <div className="premium-card !rounded-2xl p-5 mb-6 border border-dashed border-[#e8e0cc] bg-[#F4EDD9]/50">
+        <div className="premium-card !rounded-2xl p-5 mb-6 border border-dashed border-gray-200 bg-gray-100/50">
           <div className="flex items-start gap-3 mb-3">
-            <div className="w-9 h-9 rounded-xl bg-[#F4EDD9] flex items-center justify-center shrink-0">
-              <svg className="w-5 h-5 text-[#1B1C15]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+            <div className="w-9 h-9 rounded-xl bg-gray-100 flex items-center justify-center shrink-0">
+              <svg className="w-5 h-5 text-[#1a1a1a]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
                 <path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3" /><line x1="8" y1="12" x2="16" y2="12" />
               </svg>
             </div>
@@ -595,7 +595,7 @@ export default function OwnerDashboard() {
             {/* Stats */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-5">
               {[
-                { label: "Total Views", value: totalViews.toLocaleString(), change: "+12%", icon: "M15 12a3 3 0 11-6 0 3 3 0 016 0z", bgClass: "bg-[#F4EDD9]", textClass: "text-[#1B1C15]" },
+                { label: "Total Views", value: totalViews.toLocaleString(), change: "+12%", icon: "M15 12a3 3 0 11-6 0 3 3 0 016 0z", bgClass: "bg-gray-100", textClass: "text-[#1a1a1a]" },
                 { label: "Inquiries", value: String(callbacks.length), change: `+${callbacks.length}`, icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z", bgClass: "bg-blue-50", textClass: "text-blue-500" },
                 { label: "Occupancy", value: `${avgOccupancy}%`, change: "+5%", icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4", bgClass: "bg-emerald-50", textClass: "text-emerald-500" },
                 { label: "Revenue", value: `₹${(totalRevenue / 1000).toFixed(0)}K`, change: "+15%", icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z", bgClass: "bg-amber-50", textClass: "text-amber-500" },
@@ -647,7 +647,7 @@ export default function OwnerDashboard() {
               <div className="premium-card !rounded-2xl p-6">
                 <div className="flex items-center justify-between mb-4">
                   <h2 className="text-lg font-bold text-gray-900">Pending Bookings 📩</h2>
-                  <button onClick={() => setActiveTab("bookings")} className="text-xs font-medium text-[#1B1C15] hover:underline">View All →</button>
+                  <button onClick={() => setActiveTab("bookings")} className="text-xs font-medium text-[#1a1a1a] hover:underline">View All →</button>
                 </div>
                 <div className="space-y-3">
                   {bookingRequests.filter(b => b.status === "pending").slice(0, 3).map((booking) => (
@@ -758,7 +758,7 @@ export default function OwnerDashboard() {
                   <Link href={`/listing/${listing.id}`} className="btn-premium !py-2 !px-5 !text-sm">View</Link>
                   <button
                     onClick={() => openEditModal(listing.id)}
-                    className="px-5 py-2 text-sm font-semibold text-[#1B1C15] hover:text-[#1B1C15] border border-[#e8e0cc] rounded-xl hover:bg-[#F4EDD9] transition"
+                    className="px-5 py-2 text-sm font-semibold text-[#1a1a1a] hover:text-[#1a1a1a] border border-gray-200 rounded-xl hover:bg-gray-100 transition"
                   >
                     ✏️ Edit
                   </button>
@@ -766,7 +766,7 @@ export default function OwnerDashboard() {
                     onClick={() => setPhotoListingId(photoListingId === listing.id ? null : listing.id)}
                     className={`px-5 py-2 text-sm font-semibold rounded-xl transition ${
                       photoListingId === listing.id
-                        ? "bg-[#F4EDD9] text-[#1B1C15] border border-[#e8e0cc]"
+                        ? "bg-gray-100 text-[#1a1a1a] border border-gray-200"
                         : "text-gray-500 hover:text-gray-700 border border-gray-200 hover:bg-gray-50"
                     }`}
                   >
@@ -839,7 +839,7 @@ export default function OwnerDashboard() {
                             <p className="font-semibold text-gray-900 text-sm truncate">{booking.user_name}</p>
                             <p className="text-xs text-gray-400 truncate">{booking.user_email} {booking.user_phone && `• ${booking.user_phone}`}</p>
                             <div className="flex items-center gap-2 mt-1 flex-wrap">
-                              <span className="text-xs text-[#1B1C15] font-medium truncate">🏠 {booking.pg_name}</span>
+                              <span className="text-xs text-[#1a1a1a] font-medium truncate">🏠 {booking.pg_name}</span>
                               <span className="text-[10px] text-gray-400">
                                 {new Date(booking.created_at).toLocaleDateString("en-IN", { day: "numeric", month: "short" })}
                               </span>
@@ -883,7 +883,7 @@ export default function OwnerDashboard() {
                       </div>
 
                       {/* Booking details */}
-                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-[#F4EDD9] rounded-xl p-3 text-xs">
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-gray-100 rounded-xl p-3 text-xs">
                         <div>
                           <span className="text-gray-500">Move-in</span>
                           <p className="font-semibold text-gray-900">{booking.move_in_date || "Flexible"}</p>
@@ -955,7 +955,7 @@ export default function OwnerDashboard() {
                           <p className="font-semibold text-gray-900 text-sm truncate">{req.user_name}</p>
                           <p className="text-xs text-gray-400 truncate">{req.user_email}</p>
                           <div className="flex items-center gap-2 mt-1 flex-wrap">
-                            <span className="text-xs text-[#1B1C15] font-medium truncate">🏠 {req.pg_name}</span>
+                            <span className="text-xs text-[#1a1a1a] font-medium truncate">🏠 {req.pg_name}</span>
                             <span className="text-[10px] text-gray-400">
                               {new Date(req.created_at).toLocaleDateString("en-IN", { day: "numeric", month: "short" })}
                             </span>
@@ -1153,7 +1153,7 @@ export default function OwnerDashboard() {
                               type="checkbox"
                               checked={room.available}
                               onChange={(e) => updateRoomOption(idx, "available", e.target.checked)}
-                              className="w-4 h-4 rounded border-gray-300 text-[#1B1C15] focus:ring-[#1B1C15]/20"
+                              className="w-4 h-4 rounded border-gray-300 text-[#1a1a1a] focus:ring-[#1B1C15]/20"
                             />
                             <span className="text-sm font-medium text-gray-700 capitalize">{room.type}</span>
                           </label>
@@ -1213,12 +1213,12 @@ export default function OwnerDashboard() {
                           onClick={() => setEditForm({ ...editForm, [key]: !editForm[key] })}
                           className={`flex items-center gap-2.5 p-3 rounded-xl border-2 transition-all text-left ${
                             editForm[key]
-                              ? "border-[#8a8070] bg-[#F4EDD9]"
+                              ? "border-[#8a8070] bg-gray-100"
                               : "border-gray-200 hover:border-gray-300"
                           }`}
                         >
                           <span className="text-lg">{icon}</span>
-                          <span className={`text-sm font-medium ${editForm[key] ? "text-[#1B1C15]" : "text-gray-500"}`}>{label}</span>
+                          <span className={`text-sm font-medium ${editForm[key] ? "text-[#1a1a1a]" : "text-gray-500"}`}>{label}</span>
                         </button>
                       ))}
                     </div>
@@ -1235,7 +1235,7 @@ export default function OwnerDashboard() {
                           onClick={() => toggleEditAmenity(a)}
                           className={`px-3 py-1.5 rounded-full text-xs font-medium border transition-all ${
                             editForm.amenities.includes(a)
-                              ? "bg-[#F4EDD9] border-[#e8e0cc] text-[#1B1C15]"
+                              ? "bg-gray-100 border-gray-200 text-[#1a1a1a]"
                               : "bg-gray-50 border-gray-200 text-gray-500 hover:border-gray-300"
                           }`}
                         >

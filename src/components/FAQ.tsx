@@ -58,7 +58,7 @@ export default function FAQ() {
               >
                 <span className="font-semibold text-gray-900 text-sm">{faq.q}</span>
                 <span className={`w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold shrink-0 transition-all ${
-                  open === i ? "bg-[#1B1C15] text-white rotate-45" : "bg-gray-100 text-gray-500"
+                  open === i ? "bg-[#1a1a1a] text-white rotate-45" : "bg-gray-100 text-gray-500"
                 }`}>
                   +
                 </span>
@@ -76,7 +76,7 @@ export default function FAQ() {
           <p className="text-sm text-gray-500 mb-4">Still have questions?</p>
           <a
             href="mailto:hello@castleliving.in"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-[#1B1C15] text-white rounded-xl text-sm font-semibold hover:bg-[#2d2e25] transition"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-[#1a1a1a] text-white rounded-xl text-sm font-semibold hover:bg-[#2d2e25] transition"
           >
             <span>💬</span>
             Chat with us

@@ -112,17 +112,17 @@ export default function MobileNav() {
                   href={item.href}
                   className={`flex flex-col items-center justify-center gap-0.5 px-4 py-1.5 rounded-xl transition-all ${
                     isActive
-                      ? "text-[#1B1C15]"
+                      ? "text-[#1a1a1a]"
                       : "text-gray-400 hover:text-gray-600"
                   }`}
                 >
                   <div className={`relative ${isActive ? "scale-110" : ""} transition-transform`}>
                     {isActive && (
-                      <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-[#1B1C15] rounded-full" />
+                      <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-[#1a1a1a] rounded-full" />
                     )}
                     {item.icon}
                   </div>
-                  <span className={`text-[10px] font-semibold ${isActive ? "text-[#1B1C15]" : ""}`}>
+                  <span className={`text-[10px] font-semibold ${isActive ? "text-[#1a1a1a]" : ""}`}>
                     {item.label}
                   </span>
                 </Link>

@@ -137,7 +137,7 @@ export default function ShareButtons({ pgName, pgArea, pgPrice, compact = false,
       <>
         <button
           onClick={handleShareClick}
-          className="w-8 h-8 rounded-full bg-[#1B1C15]/70 backdrop-blur-sm flex items-center justify-center hover:bg-[#1B1C15]/90 hover:scale-110 transition-all duration-300 shadow-sm"
+          className="w-8 h-8 rounded-full bg-[#1a1a1a]/70 backdrop-blur-sm flex items-center justify-center hover:bg-[#1a1a1a]/90 hover:scale-110 transition-all duration-300 shadow-sm"
           aria-label={`Share ${pgName}`}
           title="Share"
         >
@@ -153,12 +153,12 @@ export default function ShareButtons({ pgName, pgArea, pgPrice, compact = false,
           >
             <div
               ref={modalRef}
-              className="bg-[#FFFAEC] rounded-2xl shadow-2xl p-6 w-[320px] max-w-[90vw]"
+              className="bg-gray-50 rounded-2xl shadow-2xl p-6 w-[320px] max-w-[90vw]"
               style={{ animation: "scaleIn 0.2s ease-out" }}
               onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}
             >
               <div className="flex items-center justify-between mb-5">
-                <h3 className="text-lg font-bold text-[#1B1C15]">Share Listing</h3>
+                <h3 className="text-lg font-bold text-[#1a1a1a]">Share Listing</h3>
                 <button
                   onClick={(e) => { e.preventDefault(); e.stopPropagation(); setOpen(false); }}
                   className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition"
@@ -171,11 +171,11 @@ export default function ShareButtons({ pgName, pgArea, pgPrice, compact = false,
               <div className="space-y-2">
                 {shareOptions.map((opt) => {
                   const content = (
-                    <div className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-[#F4EDD9] transition-colors cursor-pointer">
+                    <div className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-100 transition-colors cursor-pointer">
                       <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm shrink-0">
                         {opt.icon}
                       </div>
-                      <span className="text-sm font-medium text-[#1B1C15]">{opt.activeLabel || opt.label}</span>
+                      <span className="text-sm font-medium text-[#1a1a1a]">{opt.activeLabel || opt.label}</span>
                     </div>
                   );
                   if (opt.onClick) {
@@ -240,12 +240,12 @@ export default function ShareButtons({ pgName, pgArea, pgPrice, compact = false,
         >
           <div
             ref={modalRef}
-            className="bg-[#FFFAEC] rounded-2xl shadow-2xl p-6 w-[360px] max-w-[90vw]"
+            className="bg-gray-50 rounded-2xl shadow-2xl p-6 w-[360px] max-w-[90vw]"
             style={{ animation: "scaleIn 0.2s ease-out" }}
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-5">
-              <h3 className="text-lg font-bold text-[#1B1C15]">Share Listing</h3>
+              <h3 className="text-lg font-bold text-[#1a1a1a]">Share Listing</h3>
               <button
                 onClick={() => setOpen(false)}
                 className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition"
@@ -257,19 +257,19 @@ export default function ShareButtons({ pgName, pgArea, pgPrice, compact = false,
             </div>
 
             {/* PG name preview */}
-            <div className="mb-5 px-4 py-3 bg-[#F4EDD9] rounded-xl">
-              <p className="text-sm font-semibold text-[#1B1C15] truncate">{pgName}</p>
+            <div className="mb-5 px-4 py-3 bg-gray-100 rounded-xl">
+              <p className="text-sm font-semibold text-[#1a1a1a] truncate">{pgName}</p>
               <p className="text-xs text-gray-500">{pgArea} &middot; ₹{pgPrice.toLocaleString()}/mo</p>
             </div>
 
             <div className="space-y-2">
               {shareOptions.map((opt) => {
                 const content = (
-                  <div className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-[#F4EDD9] transition-colors cursor-pointer">
+                  <div className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-100 transition-colors cursor-pointer">
                     <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm shrink-0">
                       {opt.icon}
                     </div>
-                    <span className="text-sm font-medium text-[#1B1C15]">{opt.activeLabel || opt.label}</span>
+                    <span className="text-sm font-medium text-[#1a1a1a]">{opt.activeLabel || opt.label}</span>
                   </div>
                 );
                 if (opt.onClick) {

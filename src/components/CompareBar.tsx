@@ -35,7 +35,7 @@ export default function CompareBar() {
                     className="flex items-center gap-2 bg-gray-100 border border-gray-200 rounded-xl px-2 py-1.5 shrink-0 group"
                   >
                     {/* Thumbnail */}
-                    <div className="relative w-9 h-9 rounded-lg overflow-hidden bg-[#e8e0cc] shrink-0">
+                    <div className="relative w-9 h-9 rounded-lg overflow-hidden bg-gray-200 shrink-0">
                       {pg.images && pg.images.length > 0 && pg.images[0] ? (
                         <Image
                           src={pg.images[0]}
@@ -59,7 +59,7 @@ export default function CompareBar() {
                     {/* Remove button */}
                     <button
                       onClick={() => removeFromCompare(pg.id)}
-                      className="w-5 h-5 rounded-full bg-[#1B1C15]/10 hover:bg-red-100 hover:text-red-500 flex items-center justify-center text-[#8a8070] transition-colors shrink-0"
+                      className="w-5 h-5 rounded-full bg-[#1a1a1a]/10 hover:bg-red-100 hover:text-red-500 flex items-center justify-center text-[#8a8070] transition-colors shrink-0"
                       aria-label={`Remove ${pg.name} from compare`}
                     >
                       <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -94,8 +94,8 @@ export default function CompareBar() {
                 disabled={compareList.length < 2}
                 className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-all ${
                   compareList.length >= 2
-                    ? "bg-[#1B1C15] text-white hover:opacity-90 shadow-md"
-                    : "bg-[#e8e0cc] text-[#8a8070] cursor-not-allowed"
+                    ? "bg-[#1a1a1a] text-white hover:opacity-90 shadow-md"
+                    : "bg-gray-200 text-[#8a8070] cursor-not-allowed"
                 }`}
               >
                 Compare Now

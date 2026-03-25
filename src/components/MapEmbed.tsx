@@ -61,7 +61,7 @@ export default function MapEmbed({ lat, lng, name, area }: Props) {
       }).addTo(map);
 
       const icon = L.divIcon({
-        html: `<div style="background: #1B1C15; width: 36px; height: 36px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); border: 3px solid white; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"></div>`,
+        html: `<div style="background: #1a1a1a; width: 36px; height: 36px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); border: 3px solid white; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"></div>`,
         iconSize: [36, 36],
         iconAnchor: [18, 36],
         className: "",
@@ -105,14 +105,14 @@ export default function MapEmbed({ lat, lng, name, area }: Props) {
       )}
       <div className="p-3 bg-white flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className="text-[#1B1C15]">📍</span>
+          <span className="text-[#1a1a1a]">📍</span>
           <span className="text-sm font-medium text-gray-700">{area}</span>
         </div>
         <a
           href={`https://www.google.com/maps?q=${lat},${lng}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xs text-[#1B1C15] hover:underline font-medium"
+          className="text-xs text-[#1a1a1a] hover:underline font-medium"
         >
           Open in Google Maps →
         </a>

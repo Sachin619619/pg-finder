@@ -30,7 +30,7 @@ export default function PriceInsights({ listings }: { listings: PGListing[] }) {
     <section className="py-20 bg-white border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <span className="pill bg-[#F4EDD9] text-[#1B1C15] !text-xs font-semibold mb-4 inline-block">Price Intelligence</span>
+          <span className="pill bg-gray-100 text-[#1a1a1a] !text-xs font-semibold mb-4 inline-block">Price Intelligence</span>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
             Area-wise <span className="gradient-text">Price Insights</span>
           </h2>
@@ -46,7 +46,7 @@ export default function PriceInsights({ listings }: { listings: PGListing[] }) {
               {/* Bar */}
               <div className="h-3 bg-gray-100 rounded-full overflow-hidden mb-4">
                 <div
-                  className="h-full rounded-full bg-[#1B1C15] transition-all duration-1000"
+                  className="h-full rounded-full bg-[#1a1a1a] transition-all duration-1000"
                   style={{ width: `${(item.avg / globalMax) * 100}%` }}
                 />
               </div>
@@ -57,7 +57,7 @@ export default function PriceInsights({ listings }: { listings: PGListing[] }) {
                 </div>
                 <div className="text-center">
                   <span className="text-gray-400 text-xs">Average</span>
-                  <p className="font-bold text-[#1B1C15]">₹{item.avg.toLocaleString()}</p>
+                  <p className="font-bold text-[#1a1a1a]">₹{item.avg.toLocaleString()}</p>
                 </div>
                 <div className="text-right">
                   <span className="text-gray-400 text-xs">Up to</span>

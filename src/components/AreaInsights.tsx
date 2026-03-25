@@ -60,7 +60,7 @@ export default function AreaInsights() {
               onClick={() => setActiveTab(tab.id)}
               className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-all ${
                 activeTab === tab.id
-                  ? "bg-[#1B1C15] text-white shadow-lg"
+                  ? "bg-[#1a1a1a] text-white shadow-lg"
                   : "bg-gray-100 text-gray-600 hover:bg-gray-200"
               }`}
             >

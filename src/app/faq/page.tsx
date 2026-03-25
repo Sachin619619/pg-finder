@@ -141,7 +141,7 @@ function AccordionItem({ item, isOpen, onToggle }: { item: FAQItem; isOpen: bool
         onClick={onToggle}
         className="w-full flex items-center justify-between py-5 px-1 text-left group"
       >
-        <span className="text-sm font-semibold text-gray-900 group-hover:text-[#1B1C15] transition-colors pr-4">
+        <span className="text-sm font-semibold text-gray-900 group-hover:text-[#1a1a1a] transition-colors pr-4">
           {item.question}
         </span>
         <span
@@ -188,7 +188,7 @@ export default function FAQPage() {
         <div className="max-w-4xl mx-auto">
           {/* Page Header */}
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F4EDD9]/80 text-[#1B1C15] text-xs font-semibold mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gray-100/80 text-[#1a1a1a] text-xs font-semibold mb-4">
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="12" cy="12" r="10" />
                 <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />

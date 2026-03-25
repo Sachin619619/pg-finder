@@ -81,8 +81,8 @@ export default function PGCard({ pg, priority = false, showCompare = true }: { p
               aria-label={isCompared ? `Remove ${pg.name} from compare` : `Add ${pg.name} to compare`}
               className={`absolute top-[52px] left-4 z-10 inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-semibold shadow-sm backdrop-blur-sm transition-all ${
                 isCompared
-                  ? "bg-[#1B1C15] text-white"
-                  : "bg-white/80 text-[#1B1C15] hover:bg-[#FFFAEB] border border-[#e8e0cc]"
+                  ? "bg-[#1a1a1a] text-white"
+                  : "bg-white/80 text-[#1a1a1a] hover:bg-[white] border border-gray-200"
               }`}
             >
               {isCompared ? (
@@ -115,7 +115,7 @@ export default function PGCard({ pg, priority = false, showCompare = true }: { p
           {/* Verified badge */}
           {pg.rating >= 4.5 && (
             <div className="absolute bottom-3 left-3">
-              <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-[10px] font-semibold bg-[#1B1C15]/70 text-white backdrop-blur-sm shadow-sm">
+              <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-[10px] font-semibold bg-[#1a1a1a]/70 text-white backdrop-blur-sm shadow-sm">
                 ✓ Verified
               </span>
             </div>
@@ -133,9 +133,9 @@ export default function PGCard({ pg, priority = false, showCompare = true }: { p
         <div className="p-5 flex-1 flex flex-col">
           {/* Title + Rating */}
           <div className="flex items-start justify-between mb-2">
-            <h3 className="text-[17px] font-bold text-[#1B1C15] font-serif leading-tight pr-2 tracking-tight">{pg.name}</h3>
+            <h3 className="text-[17px] font-bold text-[#1a1a1a] font-serif leading-tight pr-2 tracking-tight">{pg.name}</h3>
             <div className="flex flex-col items-end gap-1 shrink-0">
-              <div className="flex items-center gap-1 bg-[#1B1C15] px-2.5 py-1.5 rounded-xl">
+              <div className="flex items-center gap-1 bg-[#1a1a1a] px-2.5 py-1.5 rounded-xl">
                 
                 <span className="text-sm font-bold text-white">{pg.rating}</span>
               </div>

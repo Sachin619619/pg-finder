@@ -160,7 +160,7 @@ export default function SignUpPage() {
             </div>
             <h1 className="text-3xl font-extrabold text-gray-900 mb-3">Welcome to Castle!</h1>
             <p className="text-gray-400 mb-2">Your account has been verified successfully ✅</p>
-            <p className="text-sm text-gray-400 mb-8">You&apos;re now signed in as <strong className="text-[#1B1C15]">{email}</strong></p>
+            <p className="text-sm text-gray-400 mb-8">You&apos;re now signed in as <strong className="text-[#1a1a1a]">{email}</strong></p>
             <button onClick={() => router.push("/")} className="btn-premium !py-4 !px-10">
               🏠 Start Exploring PGs
             </button>
@@ -178,7 +178,7 @@ export default function SignUpPage() {
         <main className="min-h-screen flex items-center justify-center px-4 pt-20">
           <div className="w-full max-w-md">
             <div className="text-center mb-8">
-              <div className="w-20 h-20 bg-[#F4EDD9] rounded-3xl flex items-center justify-center mx-auto mb-4">
+              <div className="w-20 h-20 bg-gray-100 rounded-3xl flex items-center justify-center mx-auto mb-4">
                 <span className="text-5xl">📧</span>
               </div>
               <h1 className="text-3xl font-extrabold text-gray-900">Verify Your Email</h1>
@@ -310,8 +310,8 @@ export default function SignUpPage() {
                     onClick={() => setRole(r.value)}
                     className={`p-4 rounded-2xl border-2 text-left transition-all ${
                       role === r.value
-                        ? "border-[#1B1C15] bg-[#F4EDD9]"
-                        : "border-gray-200 hover:border-[#e8e0cc]"
+                        ? "border-[#1B1C15] bg-gray-100"
+                        : "border-gray-200 hover:border-gray-200"
                     }`}
                   >
                     <span className="text-lg">{r.label.split(" ")[0]}</span>
@@ -415,7 +415,7 @@ export default function SignUpPage() {
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-400">
                 Already have an account?{" "}
-                <Link href="/login" className="text-[#1B1C15] font-semibold hover:underline">
+                <Link href="/login" className="text-[#1a1a1a] font-semibold hover:underline">
                   Sign In
                 </Link>
               </p>

@@ -132,7 +132,7 @@ export default function SmartFilters({ onApply, initialFilters }: SmartFiltersPr
               const val = e.target.value === "any" ? null : e.target.value === "yes";
               update({ foodIncluded: val });
             }}
-            className="px-3 py-1.5 rounded-xl text-sm border border-gray-200 bg-white focus:outline-none focus:border-[#1B1C15]"
+            className="px-3 py-1.5 rounded-xl text-sm border border-gray-200 bg-white focus:outline-none focus:border-[#1a1a1a]"
           >
             <option value="any">Any</option>
             <option value="yes">Yes Only</option>
@@ -149,7 +149,7 @@ export default function SmartFilters({ onApply, initialFilters }: SmartFiltersPr
               const val = e.target.value === "any" ? null : e.target.value === "yes";
               update({ acAvailable: val });
             }}
-            className="px-3 py-1.5 rounded-xl text-sm border border-gray-200 bg-white focus:outline-none focus:border-[#1B1C15]"
+            className="px-3 py-1.5 rounded-xl text-sm border border-gray-200 bg-white focus:outline-none focus:border-[#1a1a1a]"
           >
             <option value="any">Any</option>
             <option value="yes">Yes Only</option>

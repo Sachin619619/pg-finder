@@ -280,11 +280,11 @@ export default async function AreaPage({ params }: Props) {
 
         {/* Breadcrumb */}
         <nav className="mb-6 text-sm text-gray-500 flex items-center gap-2" aria-label="Breadcrumb">
-          <Link href="/" className="hover:text-[#1B1C15] transition-colors">Home</Link>
+          <Link href="/" className="hover:text-[#1a1a1a] transition-colors">Home</Link>
           <span className="text-gray-300">/</span>
           <span className="text-gray-400">Areas</span>
           <span className="text-gray-300">/</span>
-          <span className="text-[#1B1C15] font-medium">{area}</span>
+          <span className="text-[#1a1a1a] font-medium">{area}</span>
         </nav>
 
         {/* ── Hero Section ── */}
@@ -293,14 +293,14 @@ export default async function AreaPage({ params }: Props) {
           <div className="absolute inset-0 bg-gradient-to-br from-[#2B2C25]/50 to-transparent pointer-events-none" />
           <div className="relative z-10">
             <div className="flex items-center gap-3 mb-2">
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-white/10 text-[#F4EDD9] backdrop-blur-sm">
+              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-white/10 text-gray-300 backdrop-blur-sm">
                 Bangalore
               </span>
             </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3 tracking-tight">
               PG in {area}
             </h1>
-            <p className="text-[#d4ccb5] max-w-2xl mb-8 text-base sm:text-lg leading-relaxed">
+            <p className="text-gray-400 max-w-2xl mb-8 text-base sm:text-lg leading-relaxed">
               {info.description.slice(0, 160)}...
             </p>
 
@@ -308,24 +308,24 @@ export default async function AreaPage({ params }: Props) {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
               <div className="bg-white/10 rounded-xl px-4 py-4 backdrop-blur-sm border border-white/5">
                 <p className="text-3xl font-bold">{areaListings.length}</p>
-                <p className="text-xs text-[#d4ccb5] mt-0.5">PGs Available</p>
+                <p className="text-xs text-gray-400 mt-0.5">PGs Available</p>
               </div>
               <div className="bg-white/10 rounded-xl px-4 py-4 backdrop-blur-sm border border-white/5">
                 <p className="text-3xl font-bold">
-                  ₹{(minPrice / 1000).toFixed(0)}K<span className="text-lg font-normal text-[#d4ccb5]"> – </span>₹{(maxPrice / 1000).toFixed(0)}K
+                  ₹{(minPrice / 1000).toFixed(0)}K<span className="text-lg font-normal text-gray-400"> – </span>₹{(maxPrice / 1000).toFixed(0)}K
                 </p>
-                <p className="text-xs text-[#d4ccb5] mt-0.5">Price Range</p>
+                <p className="text-xs text-gray-400 mt-0.5">Price Range</p>
               </div>
               <div className="bg-white/10 rounded-xl px-4 py-4 backdrop-blur-sm border border-white/5">
                 <p className="text-3xl font-bold">₹{avgPrice.toLocaleString()}</p>
-                <p className="text-xs text-[#d4ccb5] mt-0.5">Avg. Rent/Month</p>
+                <p className="text-xs text-gray-400 mt-0.5">Avg. Rent/Month</p>
               </div>
               <div className="bg-white/10 rounded-xl px-4 py-4 backdrop-blur-sm border border-white/5">
                 <div className="flex items-center gap-1.5">
                   <span className="text-xl">⭐</span>
                   <p className="text-3xl font-bold">{avgRating}</p>
                 </div>
-                <p className="text-xs text-[#d4ccb5] mt-0.5">{totalReviews} Reviews</p>
+                <p className="text-xs text-gray-400 mt-0.5">{totalReviews} Reviews</p>
               </div>
             </div>
           </div>
@@ -336,7 +336,7 @@ export default async function AreaPage({ params }: Props) {
 
         {/* ── Area Info Card ── */}
         <div className="bg-white rounded-2xl border border-[#E8E0CC] p-8 mb-8 shadow-sm">
-          <h2 className="text-2xl font-bold text-[#1B1C15] mb-4">About {area}, Bangalore</h2>
+          <h2 className="text-2xl font-bold text-[#1a1a1a] mb-4">About {area}, Bangalore</h2>
           <p className="text-gray-600 leading-relaxed mb-6">
             {info.description}
           </p>
@@ -361,15 +361,15 @@ export default async function AreaPage({ params }: Props) {
               <div className="space-y-2">
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-gray-600">Minimum</span>
-                  <span className="font-semibold text-[#1B1C15]">₹{minPrice.toLocaleString()}/mo</span>
+                  <span className="font-semibold text-[#1a1a1a]">₹{minPrice.toLocaleString()}/mo</span>
                 </div>
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-gray-600">Average</span>
-                  <span className="font-semibold text-[#1B1C15]">₹{avgPrice.toLocaleString()}/mo</span>
+                  <span className="font-semibold text-[#1a1a1a]">₹{avgPrice.toLocaleString()}/mo</span>
                 </div>
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-gray-600">Maximum</span>
-                  <span className="font-semibold text-[#1B1C15]">₹{maxPrice.toLocaleString()}/mo</span>
+                  <span className="font-semibold text-[#1a1a1a]">₹{maxPrice.toLocaleString()}/mo</span>
                 </div>
               </div>
             </div>
@@ -379,7 +379,7 @@ export default async function AreaPage({ params }: Props) {
               <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Popular For</h3>
               <div className="flex flex-wrap gap-2">
                 {info.popularFor.split(", ").map((tag) => (
-                  <span key={tag} className="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-medium bg-[#F5F0E1] text-[#1B1C15] border border-[#E8E0CC]">
+                  <span key={tag} className="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-medium bg-[#F5F0E1] text-[#1a1a1a] border border-[#E8E0CC]">
                     {tag}
                   </span>
                 ))}
@@ -390,14 +390,14 @@ export default async function AreaPage({ params }: Props) {
 
         {/* ── FAQ Section ── */}
         <div className="bg-[#FFFAEC] rounded-2xl border border-[#E8E0CC] p-8 mb-8">
-          <h2 className="text-2xl font-bold text-[#1B1C15] mb-6">
+          <h2 className="text-2xl font-bold text-[#1a1a1a] mb-6">
             Frequently Asked Questions about PGs in {area}
           </h2>
           <div className="space-y-4">
             {faqs.map((faq, i) => (
               <details key={i} className="group bg-white rounded-xl border border-[#E8E0CC] overflow-hidden">
                 <summary className="flex items-center justify-between p-5 cursor-pointer select-none hover:bg-[#FDFAF0] transition-colors">
-                  <h3 className="text-[15px] font-semibold text-[#1B1C15] pr-4">{faq.q}</h3>
+                  <h3 className="text-[15px] font-semibold text-[#1a1a1a] pr-4">{faq.q}</h3>
                   <span className="text-gray-400 group-open:rotate-180 transition-transform duration-200 shrink-0">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -414,13 +414,13 @@ export default async function AreaPage({ params }: Props) {
 
         {/* ── Explore Other Areas ── */}
         <div className="mb-8">
-          <h3 className="text-lg font-semibold text-[#1B1C15] mb-4">Explore Other Areas in Bangalore</h3>
+          <h3 className="text-lg font-semibold text-[#1a1a1a] mb-4">Explore Other Areas in Bangalore</h3>
           <div className="flex flex-wrap gap-2">
             {areas.filter((a) => a !== area).map((a) => (
               <Link
                 key={a}
                 href={`/area/${a.toLowerCase().replace(/\s+/g, "-")}`}
-                className="px-4 py-2 bg-gray-100 rounded-lg text-sm font-medium text-gray-700 hover:bg-[#F4EDD9] hover:text-[#1B1C15] transition"
+                className="px-4 py-2 bg-gray-100 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-[#1a1a1a] transition"
               >
                 PG in {a}
               </Link>

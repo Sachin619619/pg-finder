@@ -666,7 +666,7 @@ export default function ReviewSection({ reviews: initialReviews, pgId, pgName, i
                   ) : (
                     <button
                       onClick={() => { setReplyingTo(r.id); setReplyText(""); }}
-                      className="flex items-center gap-1 text-xs font-medium text-[#1B1C15] hover:text-[#2a2b22] transition mt-1"
+                      className="flex items-center gap-1 text-xs font-medium text-[#1a1a1a] hover:text-[#2a2b22] transition mt-1"
                     >
                       <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                         <polyline points="9 17 4 12 9 7" />

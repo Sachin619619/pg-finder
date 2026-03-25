@@ -59,7 +59,7 @@ export default function InstallPrompt() {
     <div className="fixed bottom-20 left-4 right-4 z-[9998] animate-slide-up sm:left-auto sm:right-4 sm:max-w-sm">
       <div className="bg-gray-900/95 backdrop-blur-lg text-white px-5 py-4 rounded-2xl shadow-2xl border border-[#3d3829]">
         <div className="flex items-center gap-3">
-          <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-[#1B1C15] flex items-center justify-center">
+          <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-[#1a1a1a] flex items-center justify-center">
             <svg
               className="w-5 h-5 text-white"
               fill="none"
@@ -90,7 +90,7 @@ export default function InstallPrompt() {
           </button>
           <button
             onClick={handleInstall}
-            className="flex-1 text-sm font-semibold bg-[#1B1C15] hover:bg-[#2a2b22] text-white py-2 px-3 rounded-xl transition-colors"
+            className="flex-1 text-sm font-semibold bg-[#1a1a1a] hover:bg-[#333333] text-white py-2 px-3 rounded-xl transition-colors"
           >
             Install
           </button>

@@ -62,7 +62,7 @@ export default function MyBookings() {
             onClick={() => setFilter(f)}
             className={`px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all ${
               filter === f
-                ? "bg-[#1B1C15] text-white shadow-md"
+                ? "bg-[#1a1a1a] text-white shadow-md"
                 : "bg-gray-100 text-gray-600 hover:bg-gray-200"
             }`}
           >
@@ -98,7 +98,7 @@ export default function MyBookings() {
           {filter === "all" && (
             <Link
               href="/"
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#1B1C15] text-white rounded-xl text-sm font-medium hover:shadow-lg transition-all"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#1a1a1a] text-white rounded-xl text-sm font-medium hover:shadow-lg transition-all"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />

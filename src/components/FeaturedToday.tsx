@@ -94,7 +94,7 @@ export default function FeaturedToday({ listings }: FeaturedTodayProps) {
                     </div>
 
                     {/* Safety + Castle Score */}
-                    <div className="flex items-center justify-between pt-3 border-t border-[#e8e0cc]">
+                    <div className="flex items-center justify-between pt-3 border-t border-gray-200">
                       {safety && (
                         <span className={`text-[11px] font-semibold ${
                           safety.score >= 80 ? "text-emerald-600" : safety.score >= 70 ? "text-blue-600" : "text-amber-600"

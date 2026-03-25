@@ -47,7 +47,7 @@ export default function TrendingSearches() {
               onClick={() => setActiveTab(tab)}
               className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
                 activeTab === tab
-                  ? "bg-[#1B1C15] text-white"
+                  ? "bg-[#1a1a1a] text-white"
                   : "bg-white border border-gray-200 text-gray-600 hover:border-gray-300"
               }`}
             >
@@ -62,7 +62,7 @@ export default function TrendingSearches() {
             <Link
               key={item.label}
               href={`/?search=${encodeURIComponent(item.label)}`}
-              className="inline-flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 rounded-full text-sm text-gray-700 hover:border-[#1B1C15] hover:text-[#1B1C15] hover:shadow-sm transition-all"
+              className="inline-flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 rounded-full text-sm text-gray-700 hover:border-[#1a1a1a] hover:text-[#1a1a1a] hover:shadow-sm transition-all"
             >
               {"emoji" in item && <span className="text-base">{item.emoji}</span>}
               <span className="font-medium">{item.label}</span>

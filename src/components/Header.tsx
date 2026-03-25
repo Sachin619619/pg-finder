@@ -111,7 +111,7 @@ export default function Header() {
                         aria-haspopup="true"
                         className="flex items-center gap-2 px-3 py-1.5 rounded-xl hover:bg-gray-100:bg-gray-800 transition-all"
                       >
-                        <div className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-sm font-bold">
+                        <div className="w-8 h-8 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-white text-sm font-bold">
                           {profile.name.charAt(0).toUpperCase()}
                         </div>
                         <span className="text-sm font-normal text-[#222] max-w-[100px] truncate">{profile.name}</span>
@@ -121,8 +121,8 @@ export default function Header() {
                       </button>
 
                       {userMenuOpen && (
-                        <div role="menu" className="absolute right-0 top-12 w-60 bg-white rounded-2xl shadow-2xl shadow-black/10 border border-[#e8e0cc] py-1.5 z-50 animate-slide-up">
-                          <div className="mx-2 mb-1.5 p-3 bg-[#1B1C15] rounded-xl flex items-center gap-3">
+                        <div role="menu" className="absolute right-0 top-12 w-60 bg-white rounded-2xl shadow-2xl shadow-black/10 border border-gray-200 py-1.5 z-50 animate-slide-up">
+                          <div className="mx-2 mb-1.5 p-3 bg-[#1a1a1a] rounded-xl flex items-center gap-3">
                             <div className="w-9 h-9 bg-white/15 rounded-lg flex items-center justify-center text-white text-sm font-bold shrink-0">
                               {profile.name.charAt(0).toUpperCase()}
                             </div>
@@ -197,7 +197,7 @@ export default function Header() {
                       )}
                     </div>
                   ) : (
-                    <Link href="/login" className="ml-2 px-5 py-2 text-sm font-medium bg-[#1B1C15] text-white rounded-[14px] hover:opacity-90 transition shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_2px_4px_rgba(0,0,0,0.15)]">
+                    <Link href="/login" className="ml-2 px-5 py-2 text-sm font-medium bg-[#1a1a1a] text-white rounded-[14px] hover:opacity-90 transition shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_2px_4px_rgba(0,0,0,0.15)]">
                       Sign In
                     </Link>
                   )}
@@ -209,12 +209,12 @@ export default function Header() {
             <div className="md:hidden flex items-center gap-2">
               <NotificationBell />
               {!loading && user && profile && (
-                <div className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold">
+                <div className="w-8 h-8 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-white text-xs font-bold">
                   {profile.name.charAt(0).toUpperCase()}
                 </div>
               )}
               {!loading && !user && (
-                <Link href="/login" className="px-3 py-1.5 text-xs font-medium bg-[#1B1C15] text-white rounded-[10px] shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_2px_4px_rgba(0,0,0,0.15)] active:scale-95 transition-all z-10 relative whitespace-nowrap">
+                <Link href="/login" className="px-3 py-1.5 text-xs font-medium bg-[#1a1a1a] text-white rounded-[10px] shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_2px_4px_rgba(0,0,0,0.15)] active:scale-95 transition-all z-10 relative whitespace-nowrap">
                   Sign In
                 </Link>
               )}
@@ -237,10 +237,10 @@ export default function Header() {
 
           {/* Mobile Menu */}
           {mobileOpen && (
-            <div role="menu" className="md:hidden pt-4 pb-3 border-t border-[#e8e0cc]/50 mt-3 animate-slide-up">
+            <div role="menu" className="md:hidden pt-4 pb-3 border-t border-gray-200/50 mt-3 animate-slide-up">
               {/* User info card when logged in */}
               {user && profile && (
-                <div className="mx-2 mb-3 p-3.5 bg-[#1B1C15] rounded-2xl flex items-center gap-3">
+                <div className="mx-2 mb-3 p-3.5 bg-[#1a1a1a] rounded-2xl flex items-center gap-3">
                   <div className="w-10 h-10 bg-white/15 rounded-xl flex items-center justify-center text-white text-sm font-bold shrink-0">
                     {profile.name.charAt(0).toUpperCase()}
                   </div>
@@ -279,7 +279,7 @@ export default function Header() {
                     key={item.label}
                     href={item.href}
                     onClick={() => setMobileOpen(false)}
-                    className={`flex items-center gap-3 px-3 py-3 text-[15px] rounded-xl transition-all active:scale-[0.98] ${pathname === item.href ? "bg-[#1B1C15] text-white font-medium" : "text-[#333] hover:bg-gray-100 font-normal"}`}
+                    className={`flex items-center gap-3 px-3 py-3 text-[15px] rounded-xl transition-all active:scale-[0.98] ${pathname === item.href ? "bg-[#1a1a1a] text-white font-medium" : "text-[#333] hover:bg-gray-100 font-normal"}`}
                   >
                     <span className={`${pathname === item.href ? "text-white" : "text-[#888]"}`}>{item.icon}</span>
                     {item.label}
@@ -289,12 +289,12 @@ export default function Header() {
 
               {/* Account section */}
               {user && (
-                <div className="px-2 mt-1 pt-2 border-t border-[#e8e0cc]/50">
+                <div className="px-2 mt-1 pt-2 border-t border-gray-200/50">
                   <p className="px-3 py-1.5 text-[10px] font-semibold text-[#999] uppercase tracking-[0.15em]">Account</p>
                   <Link
                     href="/profile"
                     onClick={() => setMobileOpen(false)}
-                    className={`flex items-center gap-3 px-3 py-3 text-[15px] rounded-xl transition-all active:scale-[0.98] ${pathname === "/profile" ? "bg-[#1B1C15] text-white font-medium" : "text-[#333] hover:bg-gray-100 font-normal"}`}
+                    className={`flex items-center gap-3 px-3 py-3 text-[15px] rounded-xl transition-all active:scale-[0.98] ${pathname === "/profile" ? "bg-[#1a1a1a] text-white font-medium" : "text-[#333] hover:bg-gray-100 font-normal"}`}
                   >
                     <span className={`${pathname === "/profile" ? "text-white" : "text-[#888]"}`}>
                       <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>

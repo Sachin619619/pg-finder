@@ -17,9 +17,9 @@ function createMarkerIcon(price: number, isSelected: boolean) {
       ? `${Math.round(price / 1000)}K`
       : `${(price / 1000).toFixed(1)}K`;
 
-  const bg = isSelected ? "#1B1C15" : "#FFFAEB";
-  const text = isSelected ? "#ffffff" : "#1B1C15";
-  const border = isSelected ? "#1B1C15" : "#e8e0cc";
+  const bg = isSelected ? "#1a1a1a" : "white";
+  const text = isSelected ? "#ffffff" : "#1a1a1a";
+  const border = isSelected ? "#1a1a1a" : "#d1d5db";
   const shadow = isSelected
     ? "0 4px 12px rgba(27,28,21,0.35)"
     : "0 2px 8px rgba(0,0,0,0.15)";
@@ -131,7 +131,7 @@ export default function LeafletMap({ listings }: Props) {
   return (
     <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden relative">
       {/* Header */}
-      <div className="p-4 border-b border-gray-200 flex items-center justify-between bg-[#FFFAEB]">
+      <div className="p-4 border-b border-gray-200 flex items-center justify-between bg-[white]">
         <h3 className="font-semibold text-gray-900 flex items-center gap-2">
           <svg
             className="w-5 h-5 text-[#1a1a1a]"
@@ -285,7 +285,7 @@ export default function LeafletMap({ listings }: Props) {
           height: 36px !important;
           line-height: 36px !important;
           font-size: 16px !important;
-          border: 1px solid #e8e0cc !important;
+          border: 1px solid #d1d5db !important;
           background: #fffaeb !important;
           color: #1b1c15 !important;
         }

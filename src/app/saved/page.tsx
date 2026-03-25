@@ -47,7 +47,7 @@ export default function SavedPage() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 animate-fade-in-up">
         {/* Breadcrumb */}
         <nav className="mb-6 text-sm text-gray-500 flex items-center gap-2">
-          <Link href="/" className="hover:text-[#1B1C15] transition-colors">Home</Link>
+          <Link href="/" className="hover:text-[#1a1a1a] transition-colors">Home</Link>
           <span>/</span>
           <span className="text-gray-900 font-medium">Saved PGs</span>
         </nav>

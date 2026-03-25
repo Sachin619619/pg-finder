@@ -209,7 +209,7 @@ export default function CostCalculator({
           <div>
             <label className="flex items-center justify-between text-sm font-medium text-gray-700 mb-2">
               <span>🏠 PG Rent</span>
-              <span className="text-[#1B1C15] font-bold tabular-nums">
+              <span className="text-[#1a1a1a] font-bold tabular-nums">
                 {rent.toLocaleString("en-IN")}
               </span>
             </label>
@@ -220,7 +220,7 @@ export default function CostCalculator({
               step={500}
               value={rent}
               onChange={(e) => setRent(Number(e.target.value))}
-              className="w-full h-2 rounded-full appearance-none cursor-pointer bg-gray-200 accent-[#1B1C15]"
+              className="w-full h-2 rounded-full appearance-none cursor-pointer bg-gray-200 accent-[#1a1a1a]"
             />
             <div className="flex justify-between text-[10px] text-gray-400 mt-1">
               <span>3,000</span>
@@ -387,14 +387,14 @@ export default function CostCalculator({
 
           {/* ---- TOTAL ---- */}
           <div className="bg-gray-100 rounded-2xl p-5 text-center">
-            <p className="text-xs font-semibold text-[#1B1C15]/50 uppercase tracking-widest mb-1">
+            <p className="text-xs font-semibold text-[#1a1a1a]/50 uppercase tracking-widest mb-1">
               Estimated Monthly Total
             </p>
-            <p className="text-4xl font-bold text-[#1B1C15] tabular-nums tracking-tight">
+            <p className="text-4xl font-bold text-[#1a1a1a] tabular-nums tracking-tight">
               <span className="text-2xl">&#8377;</span>
               {animatedTotal.toLocaleString("en-IN")}
             </p>
-            <p className="text-xs text-[#1B1C15]/40 mt-1">per month</p>
+            <p className="text-xs text-[#1a1a1a]/40 mt-1">per month</p>
           </div>
 
           {/* ---- AREA COMPARISON ---- */}

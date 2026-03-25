@@ -100,7 +100,7 @@ export default function ComparePage() {
             const metro = metroProximity[pg.area];
             const bus = busConnectivity[pg.area];
             return (
-              <div key={pg.id} className="bg-[#FFFAEC] rounded-2xl overflow-hidden border border-[#e8e0cc]">
+              <div key={pg.id} className="bg-[#FFFAEC] rounded-2xl overflow-hidden border border-gray-200">
                 {/* Image */}
                 <div className="relative h-40 bg-gray-100">
                   {pg.images[0] ? (

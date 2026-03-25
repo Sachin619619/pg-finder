@@ -61,7 +61,7 @@ export default function NotificationBell() {
       {/* Bell button */}
       <button
         onClick={() => setOpen(!open)}
-        className="relative w-9 h-9 rounded-xl flex items-center justify-center hover:bg-[#ebe4d0] transition-all text-[#555] hover:text-[#1B1C15]"
+        className="relative w-9 h-9 rounded-xl flex items-center justify-center hover:bg-gray-100 transition-all text-[#555] hover:text-[#1a1a1a]"
         aria-label="Notifications"
         aria-expanded={open}
         aria-haspopup="true"
@@ -89,7 +89,7 @@ export default function NotificationBell() {
 
       {/* Dropdown panel */}
       <div
-        className={`absolute right-0 top-12 w-80 sm:w-96 bg-white rounded-2xl shadow-2xl shadow-black/10 border border-[#e8e0cc]/80 z-50 overflow-hidden transition-all duration-300 origin-top-right ${
+        className={`absolute right-0 top-12 w-80 sm:w-96 bg-white rounded-2xl shadow-2xl shadow-black/10 border border-gray-200/80 z-50 overflow-hidden transition-all duration-300 origin-top-right ${
           open
             ? "opacity-100 scale-100 translate-y-0 pointer-events-auto"
             : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
@@ -98,7 +98,7 @@ export default function NotificationBell() {
         {/* Header */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-[#f0e9d8]">
           <div className="flex items-center gap-2">
-            <h3 className="text-sm font-bold text-[#1B1C15]">Notifications</h3>
+            <h3 className="text-sm font-bold text-[#1a1a1a]">Notifications</h3>
             {unreadCount > 0 && (
               <span className="text-[10px] font-semibold bg-red-100 text-red-600 px-1.5 py-0.5 rounded-full">
                 {unreadCount} new
@@ -109,7 +109,7 @@ export default function NotificationBell() {
             {unreadCount > 0 && (
               <button
                 onClick={markAllAsRead}
-                className="text-xs font-medium text-[#1B1C15] hover:text-[#555] transition"
+                className="text-xs font-medium text-[#1a1a1a] hover:text-[#555] transition"
               >
                 Mark all read
               </button>
@@ -159,7 +159,7 @@ export default function NotificationBell() {
                   <p
                     className={`text-[13px] leading-snug ${
                       !n.read
-                        ? "font-semibold text-[#1B1C15]"
+                        ? "font-semibold text-[#1a1a1a]"
                         : "text-gray-500"
                     }`}
                   >
@@ -173,7 +173,7 @@ export default function NotificationBell() {
                   </p>
                 </div>
                 {!n.read && (
-                  <span className="w-2 h-2 bg-[#1B1C15] rounded-full mt-2 shrink-0" />
+                  <span className="w-2 h-2 bg-[#1a1a1a] rounded-full mt-2 shrink-0" />
                 )}
               </button>
             ))
@@ -185,7 +185,7 @@ export default function NotificationBell() {
           <div className="border-t border-[#f0e9d8] px-5 py-3 text-center">
             <button
               onClick={() => setOpen(false)}
-              className="text-xs font-semibold text-[#1B1C15] hover:text-[#555] transition"
+              className="text-xs font-semibold text-[#1a1a1a] hover:text-[#555] transition"
             >
               View all notifications →
             </button>

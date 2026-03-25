@@ -139,7 +139,7 @@ export default function AgentDashboardPage() {
                 s.color === "emerald" ? "text-emerald-600" :
                 s.color === "amber" ? "text-amber-600" :
                 s.color === "red" ? "text-red-500" :
-                "text-[#1B1C15]"
+                "text-[#1a1a1a]"
               }`}>{s.value}</p>
               <p className="text-xs text-gray-400 mt-1">{s.label}</p>
             </div>
@@ -210,7 +210,7 @@ export default function AgentDashboardPage() {
                       {requests.slice(0, 5).map((r) => (
                         <div key={r.id} className="flex items-center justify-between p-4 rounded-xl bg-gray-50">
                           <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-xl bg-[#F4EDD9] flex items-center justify-center text-lg">🏠</div>
+                            <div className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center text-lg">🏠</div>
                             <div>
                               <p className="font-semibold text-gray-900 text-sm">{r.pg_name}</p>
                               <p className="text-xs text-gray-400">{r.pg_area} · {new Date(r.created_at).toLocaleDateString()}</p>
@@ -296,15 +296,15 @@ export default function AgentDashboardPage() {
                           </div>
                           {/* Claim Code / Owner Status */}
                           {pg.claim_code && !pg.owner_id ? (
-                            <div className="mt-3 p-3 bg-[#F4EDD9] rounded-xl border border-[#e8e0cc]">
+                            <div className="mt-3 p-3 bg-gray-100 rounded-xl border border-gray-200">
                               <p className="text-[10px] text-[#8a8070] font-medium mb-1">🔑 Claim Code (share with owner)</p>
                               <div className="flex items-center gap-2">
-                                <code className="text-sm font-bold text-[#1B1C15] tracking-widest">{pg.claim_code}</code>
+                                <code className="text-sm font-bold text-[#1a1a1a] tracking-widest">{pg.claim_code}</code>
                                 <button
                                   onClick={() => {
                                     navigator.clipboard.writeText(pg.claim_code!);
                                   }}
-                                  className="text-[10px] text-[#1B1C15] hover:text-[#1B1C15] font-medium underline"
+                                  className="text-[10px] text-[#1a1a1a] hover:text-[#1a1a1a] font-medium underline"
                                 >
                                   Copy
                                 </button>
@@ -323,7 +323,7 @@ export default function AgentDashboardPage() {
                               <p className="text-xs text-red-400 mt-0.5">{req.admin_note}</p>
                             </div>
                           )}
-                          <Link href={`/listing/${pg.id}`} className="block mt-3 text-center text-xs text-[#1B1C15] font-semibold hover:underline">
+                          <Link href={`/listing/${pg.id}`} className="block mt-3 text-center text-xs text-[#1a1a1a] font-semibold hover:underline">
                             View Listing →
                           </Link>
                         </div>
@@ -349,7 +349,7 @@ export default function AgentDashboardPage() {
                   </div>
                   <div className="premium-card !rounded-2xl p-4 text-center">
                     <p className="text-xs text-gray-400">Per PG Rate</p>
-                    <p className="text-xl font-extrabold text-[#1B1C15] mt-1">₹100</p>
+                    <p className="text-xl font-extrabold text-[#1a1a1a] mt-1">₹100</p>
                   </div>
                 </div>
 

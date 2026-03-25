@@ -68,7 +68,7 @@ export default function CookieConsent() {
         {/* Main banner */}
         <div className="flex flex-col gap-4">
           <div className="flex items-start gap-3">
-            <div className="w-8 h-8 rounded-lg bg-[#1B1C15]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <div className="w-8 h-8 rounded-lg bg-[#1a1a1a]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
               <svg
                 className="w-4 h-4 text-[#8a8070]"
                 fill="none"
@@ -106,7 +106,7 @@ export default function CookieConsent() {
                     Required for the site to function
                   </p>
                 </div>
-                <div className="relative w-10 h-6 bg-[#1B1C15] rounded-full cursor-not-allowed opacity-70">
+                <div className="relative w-10 h-6 bg-[#1a1a1a] rounded-full cursor-not-allowed opacity-70">
                   <div className="absolute right-0.5 top-0.5 w-5 h-5 bg-white rounded-full shadow" />
                 </div>
               </div>
@@ -124,7 +124,7 @@ export default function CookieConsent() {
                     setPrefs((p) => ({ ...p, analytics: !p.analytics }))
                   }
                   className={`relative w-10 h-6 rounded-full transition-colors duration-200 ${
-                    prefs.analytics ? "bg-[#1B1C15]" : "bg-gray-600"
+                    prefs.analytics ? "bg-[#1a1a1a]" : "bg-gray-600"
                   }`}
                   aria-label="Toggle analytics cookies"
                 >
@@ -151,7 +151,7 @@ export default function CookieConsent() {
                     setPrefs((p) => ({ ...p, preferences: !p.preferences }))
                   }
                   className={`relative w-10 h-6 rounded-full transition-colors duration-200 ${
-                    prefs.preferences ? "bg-[#1B1C15]" : "bg-gray-600"
+                    prefs.preferences ? "bg-[#1a1a1a]" : "bg-gray-600"
                   }`}
                   aria-label="Toggle preference cookies"
                 >
@@ -173,7 +173,7 @@ export default function CookieConsent() {
               onClick={acceptAll}
               className="flex-1 sm:flex-none px-6 py-2.5 rounded-xl text-sm font-semibold text-white transition-all duration-300 hover:scale-[1.03] active:scale-95"
               style={{
-                background: "#1B1C15",
+                background: "#1a1a1a",
                 boxShadow:
                   "0 4px 14px rgba(27, 28, 21, 0.3), inset 0 1px 0 rgba(255,255,255,0.1)",
               }}

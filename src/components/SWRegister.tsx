@@ -39,12 +39,12 @@ export default function SWRegister() {
 
   return (
     <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-[9999] animate-slide-up">
-      <div className="bg-gray-900 text-white px-5 py-3 rounded-2xl shadow-2xl border border-[#1B1C15]/30 flex items-center gap-3">
+      <div className="bg-gray-900 text-white px-5 py-3 rounded-2xl shadow-2xl border border-[#1a1a1a]/30 flex items-center gap-3">
         <span className="text-lg">🔄</span>
         <span className="text-sm font-medium">New version available!</span>
         <button
           onClick={() => window.location.reload()}
-          className="bg-[#1B1C15] hover:bg-[#2a2b22] text-white text-sm font-semibold px-4 py-1.5 rounded-lg transition-colors"
+          className="bg-[#1a1a1a] hover:bg-[#333333] text-white text-sm font-semibold px-4 py-1.5 rounded-lg transition-colors"
         >
           Update
         </button>

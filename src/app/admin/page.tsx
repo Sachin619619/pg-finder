@@ -334,7 +334,7 @@ export default function AdminPage() {
               <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>
             </div>
             <div>
-              <h1 className="text-xl sm:text-2xl font-bold text-[#1B1C15] tracking-tight">Admin Panel</h1>
+              <h1 className="text-xl sm:text-2xl font-bold text-[#1a1a1a] tracking-tight">Admin Panel</h1>
               <p className="text-[#999] text-xs mt-0.5">Manage listings, reviews, callbacks & users</p>
             </div>
           </div>
@@ -348,7 +348,7 @@ export default function AdminPage() {
               key={t.key}
               onClick={() => setTab(t.key)}
               className={`flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-semibold transition-all capitalize shrink-0 ${
-                tab === t.key ? "bg-[#1B1C15] text-white shadow-lg shadow-black/15" : "bg-[#F4EDD9] text-[#666] hover:bg-[#ebe4d0] border border-[#e8e0cc]/60"
+                tab === t.key ? "bg-[#1B1C15] text-white shadow-lg shadow-black/15" : "bg-gray-100 text-[#666] hover:bg-gray-100 border border-gray-200/60"
               }`}
             >
               <span className="text-sm">{t.icon}</span>
@@ -384,12 +384,12 @@ export default function AdminPage() {
                 </div>
 
                 {/* User Breakdown */}
-                <div className="bg-[#FFFAEB] border border-[#e8e0cc] rounded-2xl p-5">
+                <div className="bg-gray-50 border border-gray-200 rounded-2xl p-5">
                   <div className="flex items-center gap-2 mb-4">
                     <div className="w-8 h-8 bg-[#1B1C15] rounded-xl flex items-center justify-center">
                       <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" /></svg>
                     </div>
-                    <h3 className="font-bold text-[#1B1C15] text-sm">User Breakdown</h3>
+                    <h3 className="font-bold text-[#1a1a1a] text-sm">User Breakdown</h3>
                   </div>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
                     {[
@@ -417,16 +417,16 @@ export default function AdminPage() {
                 </div>
 
                 {/* Agent & Payout Stats */}
-                <div className="bg-[#FFFAEB] border border-[#e8e0cc] rounded-2xl p-5">
+                <div className="bg-gray-50 border border-gray-200 rounded-2xl p-5">
                   <div className="flex items-center gap-2 mb-4">
                     <div className="w-8 h-8 bg-[#1B1C15] rounded-xl flex items-center justify-center">
                       <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" /></svg>
                     </div>
-                    <h3 className="font-bold text-[#1B1C15] text-sm">Agent Activity</h3>
+                    <h3 className="font-bold text-[#1a1a1a] text-sm">Agent Activity</h3>
                   </div>
                   <div className="grid grid-cols-3 gap-2.5">
-                    <div className="bg-[#F4EDD9] ring-1 ring-[#e8e0cc] rounded-xl p-3.5 text-center">
-                      <p className="text-2xl font-extrabold text-[#1B1C15]">{dashboardStats.totalAgentRequests}</p>
+                    <div className="bg-gray-100 ring-1 ring-[#e8e0cc] rounded-xl p-3.5 text-center">
+                      <p className="text-2xl font-extrabold text-[#1a1a1a]">{dashboardStats.totalAgentRequests}</p>
                       <p className="text-[11px] text-[#888] font-semibold mt-0.5">Requests</p>
                     </div>
                     <div className="bg-amber-500/10 ring-1 ring-amber-500/20 rounded-xl p-3.5 text-center">
@@ -451,17 +451,17 @@ export default function AdminPage() {
                 </div>
 
                 {/* Listings Stats */}
-                <div className="bg-[#FFFAEB] border border-[#e8e0cc] rounded-2xl p-5">
+                <div className="bg-gray-50 border border-gray-200 rounded-2xl p-5">
                   <div className="flex items-center gap-2 mb-4">
                     <div className="w-8 h-8 bg-[#1B1C15] rounded-xl flex items-center justify-center">
                       <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>
                     </div>
-                    <h3 className="font-bold text-[#1B1C15] text-sm">Listing Insights</h3>
+                    <h3 className="font-bold text-[#1a1a1a] text-sm">Listing Insights</h3>
                   </div>
                   <div className="grid grid-cols-2 gap-3 mb-4">
-                    <div className="bg-[#F4EDD9] rounded-xl p-3 text-center">
-                      <p className="text-2xl font-extrabold text-[#1B1C15]">₹{dashboardStats.avgPrice.toLocaleString()}</p>
-                      <p className="text-xs text-[#1B1C15] font-medium mt-1">Avg Price/mo</p>
+                    <div className="bg-gray-100 rounded-xl p-3 text-center">
+                      <p className="text-2xl font-extrabold text-[#1a1a1a]">₹{dashboardStats.avgPrice.toLocaleString()}</p>
+                      <p className="text-xs text-[#1a1a1a] font-medium mt-1">Avg Price/mo</p>
                     </div>
                     <div className="bg-blue-50 rounded-xl p-3 text-center">
                       <p className="text-2xl font-extrabold text-blue-600">{dashboardStats.totalAlerts}</p>
@@ -490,12 +490,12 @@ export default function AdminPage() {
                 </div>
 
                 {/* Recent Users */}
-                <div className="bg-[#FFFAEB] border border-[#e8e0cc] rounded-2xl p-5">
+                <div className="bg-gray-50 border border-gray-200 rounded-2xl p-5">
                   <div className="flex items-center gap-2 mb-4">
                     <div className="w-8 h-8 bg-[#1B1C15] rounded-xl flex items-center justify-center">
                       <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                     </div>
-                    <h3 className="font-bold text-[#1B1C15] text-sm">Recent Users</h3>
+                    <h3 className="font-bold text-[#1a1a1a] text-sm">Recent Users</h3>
                   </div>
                   <div className="space-y-3">
                     {dashboardStats.recentUsers.map((u, i) => (
@@ -570,13 +570,13 @@ export default function AdminPage() {
                           </div>
                           <div className="flex flex-wrap items-center gap-2 mt-3">
                             <span className="text-sm font-bold text-gray-900">₹{l.price?.toLocaleString()}/mo</span>
-                            <span className="pill bg-[#F4EDD9] text-[#1B1C15] !text-[10px]">{l.gender}</span>
+                            <span className="pill bg-gray-100 text-[#1a1a1a] !text-[10px]">{l.gender}</span>
                             <span className="text-xs text-gray-400 truncate">{l.contact_phone}</span>
                           </div>
                           <div className="grid grid-cols-3 gap-2 mt-3 pt-3 border-t border-amber-100">
                             <button onClick={() => handleApproveListing(l.id, "approve")} className="py-2 text-xs bg-emerald-50 text-emerald-600 rounded-xl font-medium">✅ Approve</button>
                             <button onClick={() => handleApproveListing(l.id, "reject")} className="py-2 text-xs bg-red-50 text-red-600 rounded-xl font-medium">❌ Reject</button>
-                            <button onClick={() => setEditingListing(l)} className="py-2 text-xs bg-[#F4EDD9] text-[#1B1C15] rounded-xl font-medium">✏️ Edit</button>
+                            <button onClick={() => setEditingListing(l)} className="py-2 text-xs bg-gray-100 text-[#1a1a1a] rounded-xl font-medium">✏️ Edit</button>
                           </div>
                         </div>
                       ))}
@@ -609,11 +609,11 @@ export default function AdminPage() {
                     </div>
                     <div className="flex flex-wrap items-center gap-2 mt-3">
                       <span className="text-sm font-bold text-gray-900">₹{l.price?.toLocaleString()}/mo</span>
-                      <span className="pill bg-[#F4EDD9] text-[#1B1C15] !text-[10px]">{l.gender}</span>
+                      <span className="pill bg-gray-100 text-[#1a1a1a] !text-[10px]">{l.gender}</span>
                       <span className="text-xs text-gray-400 truncate">{l.contact_phone}</span>
                     </div>
                     <div className={`grid gap-2 mt-3 pt-3 border-t border-gray-100 ${l.status === "pending" ? "grid-cols-2" : "grid-cols-2"}`}>
-                      <button onClick={() => setEditingListing(l)} className="py-2 text-xs bg-[#F4EDD9] text-[#1B1C15] rounded-xl font-medium">✏️ Edit</button>
+                      <button onClick={() => setEditingListing(l)} className="py-2 text-xs bg-gray-100 text-[#1a1a1a] rounded-xl font-medium">✏️ Edit</button>
                       <button onClick={() => deleteListing(l.id)} className="py-2 text-xs bg-red-50 text-red-600 rounded-xl font-medium">🗑️ Delete</button>
                       {l.status === "pending" && (
                         <>
@@ -774,7 +774,7 @@ export default function AdminPage() {
                 <div className="grid grid-cols-2 gap-3">
                   <div className="premium-card !rounded-2xl p-4 text-center">
                     <p className="text-xs text-gray-400">Total Requests</p>
-                    <p className="text-2xl font-extrabold text-[#1B1C15] mt-1">{agentRequests.length}</p>
+                    <p className="text-2xl font-extrabold text-[#1a1a1a] mt-1">{agentRequests.length}</p>
                   </div>
                   <div className="premium-card !rounded-2xl p-4 text-center">
                     <p className="text-xs text-gray-400">Pending</p>
@@ -823,7 +823,7 @@ export default function AdminPage() {
                           <div>
                             <span className="text-gray-400">Owner:</span>
                             <p className="text-gray-700 font-medium">{r.owner_name}</p>
-                            <a href={`tel:${r.owner_phone}`} className="text-[10px] text-[#1B1C15]">📞 {r.owner_phone}</a>
+                            <a href={`tel:${r.owner_phone}`} className="text-[10px] text-[#1a1a1a]">📞 {r.owner_phone}</a>
                           </div>
                         </div>
                         <div className="flex items-center justify-between pt-3 border-t border-gray-100">

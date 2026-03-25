@@ -70,11 +70,11 @@ export default function VirtualTourBooking({ pgId, pgName, onBooked }: VirtualTo
   }
 
   return (
-    <div className="bg-[#FFFAEC] border border-[#e8e0cc] rounded-2xl p-5">
+    <div className="bg-gray-50 border border-gray-200 rounded-2xl p-5">
       <div className="flex items-center gap-2 mb-4">
         <span className="text-2xl">🎥</span>
         <div>
-          <h3 className="text-base font-bold text-[#1B1C15]">Book a Virtual Tour</h3>
+          <h3 className="text-base font-bold text-[#1a1a1a]">Book a Virtual Tour</h3>
           <p className="text-xs text-gray-500">No physical visit needed — explore from anywhere</p>
         </div>
       </div>
@@ -84,7 +84,7 @@ export default function VirtualTourBooking({ pgId, pgName, onBooked }: VirtualTo
         {["type", "date", "confirm"].map((s, i) => (
           <div key={s} className="flex items-center gap-1">
             <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
-              step === s ? "bg-[#1B1C15] text-white" :
+              step === s ? "bg-[#1a1a1a] text-white" :
               (s === "type" && (step === "date" || step === "confirm")) || (s === "date" && step === "confirm")
                 ? "bg-emerald-100 text-emerald-700" : "bg-gray-100 text-gray-400"
             }`}>
@@ -104,14 +104,14 @@ export default function VirtualTourBooking({ pgId, pgName, onBooked }: VirtualTo
               onClick={() => { setTourType(type.id); setStep("date"); }}
               className={`w-full text-left p-4 rounded-xl border-2 transition-all ${
                 tourType === type.id
-                  ? "border-[#1B1C15] bg-[#1B1C15]/5"
+                  ? "border-[#1a1a1a] bg-[#1a1a1a]/5"
                   : "border-gray-100 hover:border-gray-200 bg-white"
               }`}
             >
               <div className="flex items-center gap-3">
                 <span className="text-2xl">{type.emoji}</span>
                 <div>
-                  <p className="text-sm font-bold text-[#1B1C15]">{type.label}</p>
+                  <p className="text-sm font-bold text-[#1a1a1a]">{type.label}</p>
                   <p className="text-xs text-gray-500">{type.desc}</p>
                 </div>
               </div>
@@ -132,7 +132,7 @@ export default function VirtualTourBooking({ pgId, pgName, onBooked }: VirtualTo
                   onClick={() => setSelectedDate(d.value)}
                   className={`p-2 rounded-xl text-center text-xs font-semibold transition-all ${
                     selectedDate === d.value
-                      ? "bg-[#1B1C15] text-white"
+                      ? "bg-[#1a1a1a] text-white"
                       : "bg-white border border-gray-200 text-gray-700 hover:border-gray-300"
                   }`}
                 >
@@ -152,7 +152,7 @@ export default function VirtualTourBooking({ pgId, pgName, onBooked }: VirtualTo
                     onClick={() => setSelectedSlot(slot)}
                     className={`p-2 rounded-xl text-center text-xs font-semibold transition-all ${
                       selectedSlot === slot
-                        ? "bg-[#1B1C15] text-white"
+                        ? "bg-[#1a1a1a] text-white"
                         : "bg-white border border-gray-200 text-gray-700 hover:border-gray-300"
                     }`}
                   >
@@ -170,14 +170,14 @@ export default function VirtualTourBooking({ pgId, pgName, onBooked }: VirtualTo
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder="+91 98765 43210"
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-sm focus:outline-none focus:border-[#1B1C15] transition-colors"
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-sm focus:outline-none focus:border-[#1a1a1a] transition-colors"
             />
           </div>
 
           <button
             onClick={() => selectedDate && selectedSlot && phone && setStep("confirm")}
             disabled={!selectedDate || !selectedSlot || !phone}
-            className="w-full py-3 rounded-xl bg-[#1B1C15] text-white text-sm font-semibold disabled:opacity-40 disabled:cursor-not-allowed transition-opacity"
+            className="w-full py-3 rounded-xl bg-[#1a1a1a] text-white text-sm font-semibold disabled:opacity-40 disabled:cursor-not-allowed transition-opacity"
           >
             Continue →
           </button>
@@ -191,19 +191,19 @@ export default function VirtualTourBooking({ pgId, pgName, onBooked }: VirtualTo
             <div className="space-y-2">
               <div className="flex justify-between text-sm">
                 <span className="text-gray-500">Tour Type</span>
-                <span className="font-semibold text-[#1B1C15]">{TOUR_TYPES.find(t => t.id === tourType)?.label}</span>
+                <span className="font-semibold text-[#1a1a1a]">{TOUR_TYPES.find(t => t.id === tourType)?.label}</span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-gray-500">Date</span>
-                <span className="font-semibold text-[#1B1C15]">{dates.find(d => d.value === selectedDate)?.label}</span>
+                <span className="font-semibold text-[#1a1a1a]">{dates.find(d => d.value === selectedDate)?.label}</span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-gray-500">Time</span>
-                <span className="font-semibold text-[#1B1C15]">{selectedSlot}</span>
+                <span className="font-semibold text-[#1a1a1a]">{selectedSlot}</span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-gray-500">Phone</span>
-                <span className="font-semibold text-[#1B1C15]">{phone}</span>
+                <span className="font-semibold text-[#1a1a1a]">{phone}</span>
               </div>
             </div>
           </div>
@@ -211,7 +211,7 @@ export default function VirtualTourBooking({ pgId, pgName, onBooked }: VirtualTo
           <button
             onClick={handleBook}
             disabled={submitting}
-            className="w-full py-3 rounded-xl bg-[#1B1C15] text-white text-sm font-semibold flex items-center justify-center gap-2 disabled:opacity-60 transition-opacity"
+            className="w-full py-3 rounded-xl bg-[#1a1a1a] text-white text-sm font-semibold flex items-center justify-center gap-2 disabled:opacity-60 transition-opacity"
           >
             {submitting ? (
               <>

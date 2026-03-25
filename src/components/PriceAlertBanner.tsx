@@ -39,7 +39,7 @@ export default function PriceAlertBanner() {
   return (
     <section className="py-12">
       <div className="max-w-4xl mx-auto px-4">
-        <div className="bg-[#1B1C15] rounded-3xl p-8 sm:p-10 relative overflow-hidden">
+        <div className="bg-[#1a1a1a] rounded-3xl p-8 sm:p-10 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full blur-2xl" />
           <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/5 rounded-full blur-2xl" />
           <div className="relative z-10">
@@ -79,7 +79,7 @@ export default function PriceAlertBanner() {
                 <option value={12000} className="text-gray-900">Under ₹12,000</option>
                 <option value={15000} className="text-gray-900">Under ₹15,000</option>
               </select>
-              <button type="submit" className="px-8 py-3 bg-[#F4EDD9] text-[#1B1C15] rounded-xl font-semibold text-sm hover:bg-[#ebe4cf] transition whitespace-nowrap">
+              <button type="submit" className="px-8 py-3 bg-gray-100 text-[#1a1a1a] rounded-xl font-semibold text-sm hover:bg-gray-100 transition whitespace-nowrap">
                 Alert Me
               </button>
             </form>

@@ -67,7 +67,7 @@ export default function CompareDrawer({ items, onRemove, onClear }: Props) {
           <div className="flex items-center gap-4">
             {items.map((pg) => (
               <div key={pg.id} className="flex items-center gap-2 bg-gray-100 px-3 py-2 rounded-lg">
-                <span className="text-sm font-medium text-[#1B1C15]">{pg.name}</span>
+                <span className="text-sm font-medium text-[#1a1a1a]">{pg.name}</span>
                 <button onClick={() => onRemove(pg.id)} className="text-[#8a8070] hover:text-red-500">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

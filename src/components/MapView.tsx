@@ -7,7 +7,7 @@ const LeafletMap = dynamic(() => import("./LeafletMap"), {
   ssr: false,
   loading: () => (
     <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
-      <div className="p-4 border-b border-gray-200 bg-[#FFFAEB]">
+      <div className="p-4 border-b border-gray-200 bg-[white]">
         <h3 className="font-semibold text-gray-900 flex items-center gap-2">
           <svg
             className="w-5 h-5 text-[#1a1a1a] animate-pulse"
@@ -36,7 +36,7 @@ const LeafletMap = dynamic(() => import("./LeafletMap"), {
         style={{ height: "calc(max(500px, 60vh))" }}
       >
         <div className="text-center">
-          <div className="w-12 h-12 border-3 border-gray-200 border-t-[#1B1C15] rounded-full animate-spin mx-auto mb-4" />
+          <div className="w-12 h-12 border-3 border-gray-200 border-t-[#1a1a1a] rounded-full animate-spin mx-auto mb-4" />
           <p className="text-sm text-black/40 font-medium">
             Loading interactive map...
           </p>

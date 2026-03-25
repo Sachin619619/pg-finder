@@ -51,7 +51,7 @@ export default function SimilarPGs({ currentPg }: SimilarPGsProps) {
               
               {/* Info */}
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-gray-900 group-hover:text-[#1B1C15] transition-colors truncate">{pg.name}</p>
+                <p className="text-sm font-semibold text-gray-900 group-hover:text-[#1a1a1a] transition-colors truncate">{pg.name}</p>
                 <p className="text-xs text-gray-400 flex items-center gap-1.5 mt-0.5">
                   <span>⭐ {pg.rating}</span>
                   {safety && (
@@ -79,7 +79,7 @@ export default function SimilarPGs({ currentPg }: SimilarPGsProps) {
       </div>
       <Link
         href={`/?area=${encodeURIComponent(currentPg.area)}`}
-        className="w-full mt-4 py-2.5 text-center text-sm font-semibold text-[#1B1C15] bg-[#FFFAEC] border border-[#e8e0cc] rounded-xl hover:bg-[#F4EDD9] transition-colors block"
+        className="w-full mt-4 py-2.5 text-center text-sm font-semibold text-[#1a1a1a] bg-gray-50 border border-gray-200 rounded-xl hover:bg-gray-100 transition-colors block"
       >
         See all in {currentPg.area} →
       </Link>

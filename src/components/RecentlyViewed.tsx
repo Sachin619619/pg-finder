@@ -14,7 +14,7 @@ export default function RecentlyViewed() {
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
       <div className="flex items-center justify-between mb-5">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 bg-[#1B1C15] rounded-xl flex items-center justify-center shadow-lg shadow-black/20">
+          <div className="w-9 h-9 bg-[#1a1a1a] rounded-xl flex items-center justify-center shadow-lg shadow-black/20">
             <svg
               className="w-5 h-5 text-white"
               fill="none"
@@ -71,7 +71,7 @@ function RecentCard({
   return (
     <Link
       href={`/listing/${item.id}`}
-      className="group flex-shrink-0 w-56 bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg hover:shadow-black/10 hover:border-[#d4ccb5] transition-all hover:-translate-y-0.5 snap-start"
+      className="group flex-shrink-0 w-56 bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg hover:shadow-black/10 hover:border-gray-200 transition-all hover:-translate-y-0.5 snap-start"
     >
       {/* Thumbnail */}
       <div className="relative h-28 bg-[#F5ECD7] overflow-hidden">
@@ -105,7 +105,7 @@ function RecentCard({
 
         {/* Rating badge */}
         {item.rating > 0 && (
-          <div className="absolute top-2 right-2 flex items-center gap-0.5 bg-[#1B1C15]/80 backdrop-blur-sm px-1.5 py-0.5 rounded-lg">
+          <div className="absolute top-2 right-2 flex items-center gap-0.5 bg-[#1a1a1a]/80 backdrop-blur-sm px-1.5 py-0.5 rounded-lg">
             <span className="text-[10px]">⭐</span>
             <span className="text-[11px] font-bold text-white">
               {item.rating}
@@ -116,7 +116,7 @@ function RecentCard({
 
       {/* Content */}
       <div className="p-3">
-        <h3 className="text-sm font-bold text-gray-900 truncate group-hover:text-[#3d3829] transition-colors">
+        <h3 className="text-sm font-bold text-gray-900 truncate group-hover:text-[#2a2a2a] transition-colors">
           {item.name}
         </h3>
         <div className="flex items-center justify-between mt-1.5">

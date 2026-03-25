@@ -75,7 +75,7 @@ export default function ResetPasswordPage() {
       <main className="min-h-screen flex items-center justify-center px-4 pt-20">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
-            <div className="w-20 h-20 bg-[#F4EDD9] rounded-3xl flex items-center justify-center mx-auto mb-4">
+            <div className="w-20 h-20 bg-gray-100 rounded-3xl flex items-center justify-center mx-auto mb-4">
               <span className="text-5xl">🔒</span>
             </div>
             <h1 className="text-3xl font-extrabold text-gray-900">Set New Password</h1>
@@ -85,7 +85,7 @@ export default function ResetPasswordPage() {
           <div className="premium-card !rounded-3xl p-8">
             {!ready ? (
               <div className="text-center py-8">
-                <svg className="animate-spin w-8 h-8 text-[#1B1C15] mx-auto mb-4" fill="none" viewBox="0 0 24 24">
+                <svg className="animate-spin w-8 h-8 text-[#1a1a1a] mx-auto mb-4" fill="none" viewBox="0 0 24 24">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                 </svg>

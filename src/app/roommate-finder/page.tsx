@@ -98,7 +98,7 @@ export default function RoommateFinder() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 animate-fade-in-up">
         {/* Breadcrumb */}
         <nav className="mb-6 text-sm text-gray-500 flex items-center gap-2">
-          <Link href="/" className="hover:text-[#1B1C15] transition-colors">Home</Link>
+          <Link href="/" className="hover:text-[#1a1a1a] transition-colors">Home</Link>
           <span>/</span>
           <span className="text-gray-900 font-medium">Find Roommates</span>
         </nav>
@@ -194,7 +194,7 @@ export default function RoommateFinder() {
               {p.lifestyle && (
                 <div className="flex flex-wrap gap-1.5 mb-4">
                   {p.lifestyle.split(", ").map((i) => (
-                    <span key={i} className="pill bg-[#F4EDD9] text-[#1B1C15] !text-[10px] !py-0.5 !px-2.5">{i}</span>
+                    <span key={i} className="pill bg-gray-100 text-[#1a1a1a] !text-[10px] !py-0.5 !px-2.5">{i}</span>
                   ))}
                 </div>
               )}

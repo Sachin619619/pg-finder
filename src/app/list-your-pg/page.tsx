@@ -60,7 +60,7 @@ export default function ListYourPGPage() {
     return (
       <>
         <Header />
-        <main className="min-h-screen bg-[#F4EDD9] flex items-center justify-center px-4">
+        <main className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
           <div className="max-w-md w-full text-center py-20">
             <div className="text-7xl mb-6">🎉</div>
             <h1 className="text-2xl font-bold text-gray-900 mb-3">Thank You!</h1>
@@ -107,7 +107,7 @@ export default function ListYourPGPage() {
               {steps.map(s => (
                 <div key={s.step} className="bg-white rounded-2xl border border-gray-100 p-6 text-center">
                   <div className="text-4xl mb-3">{s.icon}</div>
-                  <span className="text-xs font-bold text-[#1B1C15] bg-[#FFFAEC] px-2 py-0.5 rounded-full">{s.step}</span>
+                  <span className="text-xs font-bold text-[#1a1a1a] bg-[#FFFAEC] px-2 py-0.5 rounded-full">{s.step}</span>
                   <h3 className="font-semibold text-gray-900 mt-3 mb-2">{s.title}</h3>
                   <p className="text-sm text-gray-500 leading-relaxed">{s.description}</p>
                 </div>

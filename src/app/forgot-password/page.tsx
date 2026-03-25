@@ -36,7 +36,7 @@ export default function ForgotPasswordPage() {
       <main className="min-h-screen flex items-center justify-center px-4 pt-20">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
-            <div className="w-20 h-20 bg-[#F4EDD9] rounded-3xl flex items-center justify-center mx-auto mb-4">
+            <div className="w-20 h-20 bg-gray-100 rounded-3xl flex items-center justify-center mx-auto mb-4">
               <span className="text-5xl">🔑</span>
             </div>
             <h1 className="text-3xl font-extrabold text-gray-900">
@@ -65,7 +65,7 @@ export default function ForgotPasswordPage() {
                 <div className="space-y-3">
                   <button
                     onClick={() => { setSent(false); setEmail(""); }}
-                    className="w-full py-3 text-sm font-semibold text-[#1B1C15] bg-[#F4EDD9] rounded-xl hover:bg-[#F4EDD9] transition"
+                    className="w-full py-3 text-sm font-semibold text-[#1a1a1a] bg-gray-100 rounded-xl hover:bg-gray-100 transition"
                   >
                     Try a different email
                   </button>

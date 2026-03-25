@@ -131,7 +131,7 @@ export default function ProfilePage() {
 
           {/* Breadcrumb */}
           <nav className="mb-6 text-sm text-gray-500 flex items-center gap-2">
-            <Link href="/" className="hover:text-[#1B1C15] transition-colors">Home</Link>
+            <Link href="/" className="hover:text-[#1a1a1a] transition-colors">Home</Link>
             <span>/</span>
             <span className="text-gray-900 font-medium">My Profile</span>
           </nav>
@@ -153,7 +153,7 @@ export default function ProfilePage() {
               {profile.name}
             </h1>
             {profile.username && (
-              <p className="text-sm text-[#1B1C15] font-medium mt-1">@{profile.username}</p>
+              <p className="text-sm text-[#1a1a1a] font-medium mt-1">@{profile.username}</p>
             )}
             <div className="flex items-center justify-center gap-2 mt-3">
               <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border ${roleBadgeClass}`}>
@@ -179,7 +179,7 @@ export default function ProfilePage() {
           {/* Editable Fields */}
           <div className="premium-card p-6 space-y-5">
             <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
-              <svg className="w-5 h-5 text-[#1B1C15]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 text-[#1a1a1a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
               </svg>
               Edit Profile

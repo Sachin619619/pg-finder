@@ -206,7 +206,7 @@ export default function SearchAutocomplete({
                         {area.name}
                       </span>
                     </div>
-                    <span className="text-xs text-black/40 bg-[#F4EDD9] px-2.5 py-1 rounded-full font-medium">
+                    <span className="text-xs text-black/40 bg-gray-100 px-2.5 py-1 rounded-full font-medium">
                       {area.count} {area.count === 1 ? "PG" : "PGs"}
                     </span>
                   </li>

@@ -17,12 +17,12 @@ export default function WhatsNew() {
       <div className="space-y-3">
         {changelog.map((item) => (
           <div key={item.date + item.title} className="flex gap-3">
-            <div className="w-8 h-8 bg-[#F4EDD9] rounded-full flex items-center justify-center text-sm shrink-0">
+            <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-sm shrink-0">
               {item.emoji}
             </div>
             <div>
               <div className="flex items-center gap-2 mb-0.5">
-                <span className="text-xs font-bold text-[#1B1C15]">{item.title}</span>
+                <span className="text-xs font-bold text-[#1a1a1a]">{item.title}</span>
                 <span className="text-[10px] text-gray-400">{item.date}</span>
               </div>
               <p className="text-xs text-gray-500 leading-relaxed">{item.desc}</p>

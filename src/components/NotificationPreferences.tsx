@@ -189,7 +189,7 @@ export default function NotificationPreferences({ initialPrefs, onSave }: Notifi
       <button
         onClick={handleSave}
         disabled={saving}
-        className="w-full py-3 rounded-xl bg-[#1B1C15] text-white text-sm font-semibold flex items-center justify-center gap-2 disabled:opacity-60 transition-opacity"
+        className="w-full py-3 rounded-xl bg-[#1a1a1a] text-white text-sm font-semibold flex items-center justify-center gap-2 disabled:opacity-60 transition-opacity"
       >
         {saving ? (
           <>

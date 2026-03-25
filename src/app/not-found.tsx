@@ -7,7 +7,7 @@ export default function NotFound() {
     <>
       <Header />
       <main className="max-w-7xl mx-auto px-4 py-20 text-center">
-        <div className="relative w-72 h-72 mx-auto mb-8 rounded-3xl overflow-hidden border border-[#e8e0cc] shadow-xl shadow-black/5">
+        <div className="relative w-72 h-72 mx-auto mb-8 rounded-3xl overflow-hidden border border-gray-200 shadow-xl shadow-black/5">
           <Image
             src="/images/ghibli/404-lost.png"
             alt="Lost in Bangalore - illustrated character at crossroads"

@@ -212,7 +212,7 @@ export default function AIAgent() {
       {/* Chat Panel */}
       {open && (
         <div
-          className="fixed bottom-20 sm:bottom-24 right-4 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[420px] h-[65vh] sm:h-[70vh] max-h-[640px] flex flex-col bg-[#FFFAEC] rounded-3xl shadow-2xl border border-[black/5] overflow-hidden animate-slide-up isolate"
+          className="fixed bottom-20 sm:bottom-24 right-4 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[420px] h-[65vh] sm:h-[70vh] max-h-[640px] flex flex-col bg-gray-50 rounded-3xl shadow-2xl border border-[black/5] overflow-hidden animate-slide-up isolate"
           style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
         >
           {/* Header */}
@@ -242,7 +242,7 @@ export default function AIAgent() {
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto px-3 py-3 space-y-3 scrollbar-thin bg-[#FFFAEC]">
+          <div className="flex-1 overflow-y-auto px-3 py-3 space-y-3 scrollbar-thin bg-gray-50">
             {messages.map((msg, i) => (
               <div key={i}>
                 <div className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
@@ -386,7 +386,7 @@ export default function AIAgent() {
 
           {/* Welcome suggestions — only on first message */}
           {isFirstMessage && (
-            <div className="px-3 pb-2 bg-[#FFFAEC] border-t border-[black/5]">
+            <div className="px-3 pb-2 bg-gray-50 border-t border-[black/5]">
               <p className="text-[10px] text-gray-400 font-medium mb-2 px-1">Try asking me:</p>
               <div className="flex flex-wrap gap-1.5">
                 {WELCOME_SUGGESTIONS.map((s) => (
@@ -405,7 +405,7 @@ export default function AIAgent() {
 
           {/* Quick prompts — only on first message */}
           {isFirstMessage && (
-            <div className="px-3 pb-2 bg-[#FFFAEC]">
+            <div className="px-3 pb-2 bg-gray-50">
               <div className="flex gap-1.5 overflow-x-auto pb-1.5 scrollbar-none">
                 {QUICK_PROMPTS.map((prompt) => (
                   <button
@@ -421,7 +421,7 @@ export default function AIAgent() {
           )}
 
           {/* Input */}
-          <div className="px-3 py-2.5 border-t border-[black/5] bg-[#FFFAEC] flex-shrink-0" style={{ paddingBottom: "max(0.625rem, env(safe-area-inset-bottom))" }}>
+          <div className="px-3 py-2.5 border-t border-[black/5] bg-gray-50 flex-shrink-0" style={{ paddingBottom: "max(0.625rem, env(safe-area-inset-bottom))" }}>
             <div className="flex gap-2">
               <input
                 ref={inputRef}

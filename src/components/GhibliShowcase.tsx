@@ -101,7 +101,7 @@ export default function GhibliShowcase() {
   return (
     <>
       {/* ===== GHIBLI HERO BANNER — Changes based on time of day! ===== */}
-      <section className="relative overflow-hidden bg-[#1B1C15]">
+      <section className="relative overflow-hidden bg-[#1a1a1a]">
         <div ref={hero.ref} className="relative h-[420px] sm:h-[520px]">
           <div
             className="absolute inset-0 will-change-transform"
@@ -116,8 +116,8 @@ export default function GhibliShowcase() {
             />
           </div>
           {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1B1C15] via-[#1B1C15]/40 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1B1C15]/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-[#1a1a1a]/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#1a1a1a]/60 to-transparent" />
 
           {/* Content */}
           <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-12 max-w-7xl mx-auto">
@@ -153,7 +153,7 @@ export default function GhibliShowcase() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {/* Card 1 — Large */}
             <FadeIn delay={100} className="lg:col-span-2">
-              <div className="group relative rounded-3xl overflow-hidden bg-[#FFFAEB] border border-gray-200 h-[380px] cursor-pointer hover:border-black/20 transition-all">
+              <div className="group relative rounded-3xl overflow-hidden bg-[white] border border-gray-200 h-[380px] cursor-pointer hover:border-black/20 transition-all">
                 <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
                   <Image
                     src="/images/ghibli/cozy-room.png"
@@ -175,7 +175,7 @@ export default function GhibliShowcase() {
 
             {/* Card 2 — Tall */}
             <FadeIn delay={200}>
-              <div className="group relative rounded-3xl overflow-hidden bg-[#FFFAEB] border border-gray-200 h-[380px] cursor-pointer hover:border-black/20 transition-all">
+              <div className="group relative rounded-3xl overflow-hidden bg-[white] border border-gray-200 h-[380px] cursor-pointer hover:border-black/20 transition-all">
                 <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
                   <Image
                     src="/images/ghibli/balcony-chai.png"
@@ -197,7 +197,7 @@ export default function GhibliShowcase() {
 
             {/* Card 3 — Full width */}
             <FadeIn delay={300} className="lg:col-span-3">
-              <div className="group relative rounded-3xl overflow-hidden bg-[#FFFAEB] border border-gray-200 h-[340px] cursor-pointer hover:border-black/20 transition-all">
+              <div className="group relative rounded-3xl overflow-hidden bg-[white] border border-gray-200 h-[340px] cursor-pointer hover:border-black/20 transition-all">
                 <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
                   <Image
                     src="/images/ghibli/community-evening.png"

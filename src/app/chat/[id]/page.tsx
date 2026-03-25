@@ -83,7 +83,7 @@ export default function ChatPage() {
         <Header />
         <main className="min-h-screen flex items-center justify-center px-4 pt-20">
           <div className="text-center">
-            <div className="w-20 h-20 bg-[#F4EDD9] rounded-3xl flex items-center justify-center mx-auto mb-6">
+            <div className="w-20 h-20 bg-gray-100 rounded-3xl flex items-center justify-center mx-auto mb-6">
               <span className="text-5xl">💬</span>
             </div>
             <h1 className="text-2xl font-bold text-gray-900 mb-3">Sign in to Chat</h1>
@@ -130,7 +130,7 @@ export default function ChatPage() {
                     ? "bg-[#1B1C15] text-white rounded-br-md"
                     : "bg-white text-gray-900 shadow-sm border border-gray-100 rounded-bl-md"
                 }`}>
-                  {!isMine && <p className="text-xs font-semibold text-[#1B1C15] mb-1">{msg.sender_name}</p>}
+                  {!isMine && <p className="text-xs font-semibold text-[#1a1a1a] mb-1">{msg.sender_name}</p>}
                   <p className="text-sm leading-relaxed">{msg.content}</p>
                   <p className={`text-[10px] mt-1 ${isMine ? "text-white/60" : "text-gray-400"}`}>
                     {new Date(msg.created_at).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}

@@ -51,7 +51,7 @@ export default function ListingQuickActions({ pgId, pgName, contactPhone }: List
 
           <a
             href={`/booking/${pgId}`}
-            className="flex-1 md:flex-initial flex items-center justify-center gap-2 px-4 py-3 bg-[#1B1C15] text-white rounded-xl text-sm font-semibold transition-colors hover:bg-[#2d2e25]"
+            className="flex-1 md:flex-initial flex items-center justify-center gap-2 px-4 py-3 bg-[#1a1a1a] text-white rounded-xl text-sm font-semibold transition-colors hover:bg-[#333333]"
           >
             <span>Book Now</span>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>

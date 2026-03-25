@@ -211,7 +211,7 @@ export default function CompareModal() {
             </div>
             <button
               onClick={() => setShowModal(false)}
-              className="w-10 h-10 rounded-xl bg-[#1B1C15]/10 hover:bg-[#1B1C15]/20 flex items-center justify-center transition-colors"
+              className="w-10 h-10 rounded-xl bg-[#1a1a1a]/10 hover:bg-[#1a1a1a]/20 flex items-center justify-center transition-colors"
               aria-label="Close comparison"
             >
               <svg className="w-5 h-5 text-[#1a1a1a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -239,7 +239,7 @@ export default function CompareModal() {
                       removeFromCompare(pg.id);
                       if (compareList.length <= 2) setShowModal(false);
                     }}
-                    className="absolute top-2 right-2 w-6 h-6 rounded-full bg-[#1B1C15]/10 hover:bg-red-100 hover:text-red-500 flex items-center justify-center text-[#8a8070] opacity-0 group-hover:opacity-100 transition-all"
+                    className="absolute top-2 right-2 w-6 h-6 rounded-full bg-[#1a1a1a]/10 hover:bg-red-100 hover:text-red-500 flex items-center justify-center text-[#8a8070] opacity-0 group-hover:opacity-100 transition-all"
                     aria-label={`Remove ${pg.name}`}
                   >
                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -248,7 +248,7 @@ export default function CompareModal() {
                   </button>
 
                   {/* Image */}
-                  <div className="relative w-20 h-20 mx-auto rounded-xl overflow-hidden bg-[#e8e0cc] mb-3">
+                  <div className="relative w-20 h-20 mx-auto rounded-xl overflow-hidden bg-gray-200 mb-3">
                     {pg.images && pg.images.length > 0 && pg.images[0] ? (
                       <Image
                         src={pg.images[0]}
