@@ -162,7 +162,7 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
                       onClick={() => setSelectedDate(dateStr)}
                       className={`flex flex-col items-center min-w-[72px] px-3 py-3 rounded-2xl border-2 transition-all duration-200 shrink-0 ${
                         isSelected
-                          ? "border-[#1B1C15] bg-[#1B1C15] text-white shadow-lg shadow-black/15 scale-[1.02]"
+                          ? "border-[#1a1a1a] bg-[#1a1a1a] text-white shadow-lg shadow-black/15 scale-[1.02]"
                           : "border-gray-200 bg-white text-gray-700 hover:border-gray-300 hover:bg-gray-50"
                       }`}
                     >
@@ -193,19 +193,19 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
                       onClick={() => setSelectedSlot(slot.id)}
                       className={`relative flex flex-col items-center p-4 rounded-2xl border-2 transition-all duration-200 ${
                         isSelected
-                          ? "border-[#1B1C15] bg-gray-100 shadow-md"
+                          ? "border-[#1a1a1a] bg-gray-100 shadow-md"
                           : "border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50"
                       }`}
                     >
                       {isSelected && (
-                        <div className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-[#1B1C15] rounded-full flex items-center justify-center">
+                        <div className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-[#1a1a1a] rounded-full flex items-center justify-center">
                           <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                           </svg>
                         </div>
                       )}
                       <svg
-                        className={`w-5 h-5 mb-1.5 ${isSelected ? "text-[#1B1C15]" : "text-gray-400"}`}
+                        className={`w-5 h-5 mb-1.5 ${isSelected ? "text-[#1a1a1a]" : "text-gray-400"}`}
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -215,10 +215,10 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
                       >
                         <path d={slot.icon} />
                       </svg>
-                      <span className={`text-sm font-semibold ${isSelected ? "text-[#1B1C15]" : "text-gray-700"}`}>
+                      <span className={`text-sm font-semibold ${isSelected ? "text-[#1a1a1a]" : "text-gray-700"}`}>
                         {slot.label}
                       </span>
-                      <span className={`text-[10px] mt-0.5 ${isSelected ? "text-[#1B1C15]/70" : "text-gray-400"}`}>
+                      <span className={`text-[10px] mt-0.5 ${isSelected ? "text-[#1a1a1a]/70" : "text-gray-400"}`}>
                         {slot.time}
                       </span>
                     </button>
@@ -242,7 +242,7 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Full Name *"
-                    className="w-full pl-10 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-[#1B1C15] focus:ring-0 outline-none text-sm transition-colors"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-[#1a1a1a] focus:ring-0 outline-none text-sm transition-colors"
                   />
                 </div>
                 <div className="relative">
@@ -256,7 +256,7 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="Phone Number *"
-                    className="w-full pl-10 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-[#1B1C15] focus:ring-0 outline-none text-sm transition-colors"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-[#1a1a1a] focus:ring-0 outline-none text-sm transition-colors"
                   />
                 </div>
                 <div className="relative">
@@ -270,7 +270,7 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Email (optional)"
-                    className="w-full pl-10 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-[#1B1C15] focus:ring-0 outline-none text-sm transition-colors"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-[#1a1a1a] focus:ring-0 outline-none text-sm transition-colors"
                   />
                 </div>
               </div>
@@ -286,7 +286,7 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
                 onChange={(e) => setNotes(e.target.value)}
                 rows={2}
                 placeholder="Any specific questions or requests for the visit..."
-                className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-[#1B1C15] focus:ring-0 outline-none text-sm transition-colors resize-none"
+                className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-[#1a1a1a] focus:ring-0 outline-none text-sm transition-colors resize-none"
               />
             </div>
 
@@ -296,7 +296,7 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
               disabled={!isFormValid}
               className={`w-full py-4 rounded-2xl font-semibold text-sm transition-all flex items-center justify-center gap-2 ${
                 isFormValid
-                  ? "bg-[#1B1C15] text-white hover:shadow-xl hover:shadow-black/20 hover:-translate-y-0.5 active:translate-y-0"
+                  ? "bg-[#1a1a1a] text-white hover:shadow-xl hover:shadow-black/20 hover:-translate-y-0.5 active:translate-y-0"
                   : "bg-gray-200 text-gray-400 cursor-not-allowed"
               }`}
             >
@@ -347,7 +347,7 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
               <div className={`bg-gray-50 rounded-2xl p-5 text-left mb-6 border border-gray-100 transition-all duration-400 delay-200 ${showCheckmark ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}>
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center shrink-0">
-                    <svg className="w-5 h-5 text-[#1B1C15]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                    <svg className="w-5 h-5 text-[#1a1a1a]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                       <polyline points="9 22 9 12 15 12 15 22" />
                     </svg>
@@ -393,7 +393,7 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
                   href={generateGoogleCalendarUrl(booking)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl font-semibold text-sm bg-[#1B1C15] text-white hover:shadow-lg hover:shadow-black/20 hover:-translate-y-0.5 active:translate-y-0 transition-all"
+                  className="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl font-semibold text-sm bg-[#1a1a1a] text-white hover:shadow-lg hover:shadow-black/20 hover:-translate-y-0.5 active:translate-y-0 transition-all"
                 >
                   <svg className="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                     <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
