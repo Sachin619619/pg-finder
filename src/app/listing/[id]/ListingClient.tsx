@@ -17,6 +17,7 @@ import MapEmbed from "@/components/MapEmbed";
 import AdBanner from "@/components/AdBanner";
 import AnimatedBanner from "@/components/AnimatedBanner";
 import CostCalculator from "@/components/CostCalculator";
+import ScheduleVisit from "@/components/ScheduleVisit";
 import { useAuth } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
 import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
