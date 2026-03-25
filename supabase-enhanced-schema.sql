@@ -501,3 +501,35 @@ DO $$ BEGIN
     CHECK (alert_frequency IN ('instant', 'daily', 'weekly'));
 EXCEPTION WHEN duplicate_column THEN NULL;
 END $$;
+
+-- ==========================================
+-- User Onboarding Tracking
+-- ==========================================
+
+CREATE TABLE IF NOT EXISTS user_onboarding (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE UNIQUE,
+  profile_created BOOLEAN DEFAULT false,
+  preferences_set BOOLEAN DEFAULT false,
+  first_search BOOLEAN DEFAULT false,
+  first_view BOOLEAN DEFAULT false,
+  first_wishlist BOOLEAN DEFAULT false,
+  first_visit_scheduled BOOLEAN DEFAULT false,
+  first_booking BOOLEAN DEFAULT false,
+  profile_created_at TIMESTAMPTZ,
+  preferences_set_at TIMESTAMPTZ,
+  first_search_at TIMESTAMPTZ,
+  first_view_at TIMESTAMPTZ,
+  first_wishlist_at TIMESTAMPTZ,
+  first_visit_scheduled_at TIMESTAMPTZ,
+  first_booking_at TIMESTAMPTZ,
+  current_step TEXT DEFAULT 'profile_created',
+  data JSONB DEFAULT '{}',
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE user_onboarding ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Users can view own onboarding" ON user_onboarding FOR SELECT USING (auth.uid() = user_id);
+CREATE POLICY "Users can update own onboarding" ON user_onboarding FOR UPDATE USING (auth.uid() = user_id);
+CREATE POLICY "Service role can manage all" ON user_onboarding FOR ALL USING (auth.role() = 'service_role');

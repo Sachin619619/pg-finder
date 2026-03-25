@@ -7,6 +7,7 @@ import SearchFilters from "@/components/SearchFilters";
 import PGCard from "@/components/PGCard";
 import MapView from "@/components/MapView";
 import PriceInsights from "@/components/PriceInsights";
+import AreaInsights from "@/components/AreaInsights";
 import Testimonials from "@/components/Testimonials";
 import PriceAlertBanner from "@/components/PriceAlertBanner";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -481,6 +482,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* ===== AREA INSIGHTS ===== */}
+        <AreaInsights />
 
         {/* ===== PRICE DROP ALERT ===== */}
         <ScrollReveal direction="scale">
