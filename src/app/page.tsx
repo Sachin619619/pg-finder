@@ -10,6 +10,7 @@ import PriceInsights from "@/components/PriceInsights";
 import AreaInsights from "@/components/AreaInsights";
 import AreaCompare from "@/components/AreaCompare";
 import PGRankings from "@/components/PGRankings";
+import TenantStories from "@/components/TenantStories";
 import CastleRankings from "@/components/CastleRankings";
 import CastleSearch from "@/components/CastleSearch";
 import CastleScoreCalculator from "@/components/CastleScoreCalculator";
@@ -586,6 +587,9 @@ export default function Home() {
 
         {/* ===== PG RANKINGS ===== */}
         <PGRankings listings={listings} />
+
+        {/* ===== TENANT STORIES ===== */}
+        <TenantStories />
 
         {/* Dynamic Banner — before how it works */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
