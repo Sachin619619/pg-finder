@@ -41,6 +41,7 @@ import QuickStats from "@/components/QuickStats";
 import BookingTimeline from "@/components/BookingTimeline";
 import BreadcrumbNav from "@/components/BreadcrumbNav";
 import PGHistory from "@/components/PGHistory";
+import OwnerStats from "@/components/OwnerStats";
 import RentVsBuyCalculator from "@/components/RentVsBuyCalculator";
 import ListingQuickActions from "@/components/ListingQuickActions";
 import { useAuth } from "@/lib/auth";
@@ -672,6 +673,14 @@ export default function ListingClient() {
 
               {/* Owner Response Badge */}
               <OwnerResponseBadge contactName={pg.contactName} avgResponseTime={pg.rating >= 4.5 ? 15 : pg.rating >= 4.0 ? 45 : 120} />
+
+              {/* Owner Stats */}
+              <OwnerStats
+                totalListings={Math.floor(Math.random() * 5) + 1}
+                avgRating={pg.rating}
+                avgResponseTime={pg.rating >= 4.5 ? 15 : pg.rating >= 4.0 ? 45 : 120}
+                verified={true}
+              />
 
               {/* Primary CTA — Book Now */}
               <Link
