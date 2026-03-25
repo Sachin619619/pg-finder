@@ -2,7 +2,7 @@
 
 export default function CastleAppPromo() {
   return (
-    <section className="py-20 bg-gradient-to-br from-[#1B1C15] via-gray-900 to-black text-white overflow-hidden">
+    <section className="py-20 bg-[#0a0a0a] text-white overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <div className="text-5xl mb-4">🏰</div>

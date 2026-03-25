@@ -642,7 +642,7 @@ export default function Home() {
               <div className="sm:col-span-2">
                 <div className="flex items-center gap-3 mb-5">
                   <div className="w-11 h-11 bg-[#1a1a1a] rounded-xl flex items-center justify-center">
-                    <span className="text-white text-lg">🏰</span>
+                    <span className="text-white text-lg font-bold">C</span>
                   </div>
                   <div>
                     <span className="font-serif text-black text-xl block leading-none">Castle</span>
@@ -712,7 +712,7 @@ export default function Home() {
                 <a href="/terms" className="text-xs text-black/40 hover:text-black transition-colors">Terms of Service</a>
               </div>
               <p className="text-xs text-black/40 flex items-center gap-1.5">
-                Made with <span className="text-red-500">❤️</span> in Bangalore
+                Made with care in Bangalore
               </p>
             </div>
           </div>

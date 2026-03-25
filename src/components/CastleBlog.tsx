@@ -19,7 +19,7 @@ export default function CastleBlog() {
             <span className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-2 inline-block">From Our Blog</span>
             <h2 className="font-serif text-3xl text-black tracking-tight">Castle Guides</h2>
           </div>
-          <Link href="/blog" className="hidden sm:block text-sm font-semibold text-[#1B1C15] hover:underline">
+          <Link href="/blog" className="hidden sm:block text-sm font-semibold text-[#1a1a1a] hover:underline">
             View all →
           </Link>
         </div>
@@ -28,15 +28,15 @@ export default function CastleBlog() {
           {posts.slice(0, 3).map((post, i) => (
             <Link key={i} href="/blog" className="group">
               <div className={`rounded-2xl overflow-hidden ${i === 0 ? "sm:col-span-2 lg:col-span-1 lg:row-span-2" : ""}`}>
-                <div className={`bg-gradient-to-br ${i === 0 ? "h-48 sm:h-64" : "h-32"} flex items-center justify-center ${i === 0 ? "from-amber-50 to-orange-100" : "from-gray-50 to-gray-100"}`}>
+                <div className={`flex items-center justify-center ${i === 0 ? "h-48 sm:h-64 bg-gray-100" : "h-32 bg-gray-50"}`}>
                   <span className="text-5xl">{post.emoji}</span>
                 </div>
-                <div className="p-5 bg-[#FFFAEC] border border-[#e8e0cc]">
+                <div className="p-5 bg-gray-50 border border-black/5">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-[10px] font-bold text-[#1B1C15] bg-[#F4EDD9] px-2 py-0.5 rounded-full">{post.category}</span>
+                    <span className="text-[10px] font-bold text-[#1a1a1a] bg-gray-100 px-2 py-0.5 rounded-full">{post.category}</span>
                     <span className="text-[10px] text-gray-400">{post.date}</span>
                   </div>
-                  <h3 className="font-semibold text-gray-900 group-hover:text-[#1B1C15] transition-colors leading-snug">{post.title}</h3>
+                  <h3 className="font-semibold text-gray-900 group-hover:text-[#1a1a1a] transition-colors leading-snug">{post.title}</h3>
                 </div>
               </div>
             </Link>
@@ -44,7 +44,7 @@ export default function CastleBlog() {
         </div>
 
         <div className="mt-6 text-center sm:hidden">
-          <Link href="/blog" className="text-sm font-semibold text-[#1B1C15] hover:underline">
+          <Link href="/blog" className="text-sm font-semibold text-[#1a1a1a] hover:underline">
             View all articles →
           </Link>
         </div>
