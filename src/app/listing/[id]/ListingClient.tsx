@@ -39,6 +39,7 @@ import NearbyEssentials from "@/components/NearbyEssentials";
 import VisitReminder from "@/components/VisitReminder";
 import QuickStats from "@/components/QuickStats";
 import BookingTimeline from "@/components/BookingTimeline";
+import BreadcrumbNav from "@/components/BreadcrumbNav";
 import RentVsBuyCalculator from "@/components/RentVsBuyCalculator";
 import ListingQuickActions from "@/components/ListingQuickActions";
 import { useAuth } from "@/lib/auth";
@@ -311,6 +312,9 @@ export default function ListingClient() {
           <div className="lg:col-span-2 space-y-6">
             {/* Photo Gallery */}
             <div className="relative">
+              {/* Breadcrumb */}
+              <BreadcrumbNav items={[{ label: pg.area, href: `/?area=${encodeURIComponent(pg.area)}` }, { label: pg.name }]} />
+
               <PhotoGallery pgName={pg.name} images={pg.images} />
               {/* Wishlist + Verified badges */}
               <div className="absolute top-4 right-4 z-10 flex items-center gap-2">
