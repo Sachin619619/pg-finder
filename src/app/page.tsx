@@ -12,6 +12,7 @@ import AreaCompare from "@/components/AreaCompare";
 import PGRankings from "@/components/PGRankings";
 import CastleRankings from "@/components/CastleRankings";
 import CastleSearch from "@/components/CastleSearch";
+import CastleScoreCalculator from "@/components/CastleScoreCalculator";
 import BrowseByLifestyle from "@/components/BrowseByLifestyle";
 import TrendingSearches from "@/components/TrendingSearches";
 import QuickFiltersFAB from "@/components/QuickFiltersFAB";
@@ -267,6 +268,16 @@ export default function Home() {
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-3">Smart Search</p>
             <CastleSearch />
+          </div>
+        </section>
+
+        {/* ===== CASTLE SCORE CALCULATOR ===== */}
+        <section className="py-12 px-4 bg-white">
+          <div className="max-w-md mx-auto text-center">
+            <span className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-3 inline-block">🎯 Quiz</span>
+            <h2 className="font-serif text-2xl text-gray-900 mb-2">What's Your Castle Score?</h2>
+            <p className="text-sm text-gray-500 mb-6">Answer 3 quick questions to find your ideal PG match</p>
+            <CastleScoreCalculator />
           </div>
         </section>
 
