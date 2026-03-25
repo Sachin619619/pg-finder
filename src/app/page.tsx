@@ -20,6 +20,7 @@ import AIMatchSection from "@/components/AIMatchSection";
 import SaveSearchButton from "@/components/SaveSearchButton";
 import CommunityStats from "@/components/CommunityStats";
 import FAQ from "@/components/FAQ";
+import NewsletterSignup from "@/components/NewsletterSignup";
 import Testimonials from "@/components/Testimonials";
 import PriceAlertBanner from "@/components/PriceAlertBanner";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -611,6 +612,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* ===== NEWSLETTER ===== */}
+        <NewsletterSignup />
 
         {/* ===== FAQ ===== */}
         <FAQ />
