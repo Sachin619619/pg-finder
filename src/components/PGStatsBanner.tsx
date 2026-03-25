@@ -11,7 +11,7 @@ export default function PGStatsBanner() {
   ];
 
   return (
-    <section className="py-16 bg-[#1B1C15]">
+    <section className="py-16 bg-[#0a0a0a]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <span className="text-xs font-semibold text-white/40 uppercase tracking-widest mb-3 inline-block">By the Numbers</span>
