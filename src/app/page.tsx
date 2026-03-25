@@ -12,6 +12,7 @@ import AreaCompare from "@/components/AreaCompare";
 import PGRankings from "@/components/PGRankings";
 import BrowseByLifestyle from "@/components/BrowseByLifestyle";
 import TrendingSearches from "@/components/TrendingSearches";
+import QuickFiltersFAB from "@/components/QuickFiltersFAB";
 import FeaturedToday from "@/components/FeaturedToday";
 import AIMatchSection from "@/components/AIMatchSection";
 import SaveSearchButton from "@/components/SaveSearchButton";
@@ -698,6 +699,9 @@ export default function Home() {
         isOpen={showCostCalc}
         onClose={() => setShowCostCalc(false)}
       />
+
+      {/* Quick Filters FAB (mobile) */}
+      <QuickFiltersFAB onApply={() => {}} />
     </>
   );
 }
