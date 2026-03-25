@@ -27,6 +27,7 @@ import CastleScore from "@/components/CastleScore";
 import SimilarPGs from "@/components/SimilarPGs";
 import VirtualTourBooking from "@/components/VirtualTourBooking";
 import NotificationPreferences from "@/components/NotificationPreferences";
+import EmergencyContacts from "@/components/EmergencyContacts";
 import { useAuth } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
 import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
@@ -724,6 +725,9 @@ export default function ListingClient() {
                   Alerts
                 </button>
               </div>
+
+              {/* Emergency Contacts */}
+              <EmergencyContacts />
 
               {/* View on Map — subtle link style */}
               <a
