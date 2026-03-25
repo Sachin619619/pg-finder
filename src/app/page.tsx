@@ -24,6 +24,7 @@ import CommunityStats from "@/components/CommunityStats";
 import PGStatsBanner from "@/components/PGStatsBanner";
 import FAQ from "@/components/FAQ";
 import WhyCastle from "@/components/WhyCastle";
+import OwnerDashboardLanding from "@/components/OwnerDashboardLanding";
 import NewsletterSignup from "@/components/NewsletterSignup";
 import Testimonials from "@/components/Testimonials";
 import PriceAlertBanner from "@/components/PriceAlertBanner";
@@ -634,6 +635,9 @@ export default function Home() {
 
         {/* ===== WHY CASTLE ===== */}
         <WhyCastle />
+
+        {/* ===== OWNER DASHBOARD LANDING ===== */}
+        <OwnerDashboardLanding />
 
         {/* ===== NEWSLETTER ===== */}
         <NewsletterSignup />
