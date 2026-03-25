@@ -130,10 +130,29 @@ export default function PGCard({ pg, priority = false, showCompare = true }: { p
           )}
 
           {/* Area tag */}
-          <div className="absolute bottom-3 left-1/2 -translate-x-1/2">
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5">
             <span className="text-[#1B1C15] text-[11px] font-medium bg-[#FFFAEC]/90 backdrop-blur-sm px-3 py-1 rounded-full shadow-sm">
               {areaEmojis[pg.area] || "📍"} {pg.area}
             </span>
+            {(() => {
+              const safety = areaSafetyScores[pg.area];
+              if (!safety) return null;
+              const scoreColor = safety.score >= 80 ? "text-emerald-600" : safety.score >= 70 ? "text-blue-600" : "text-amber-600";
+              return (
+                <span className={`text-[10px] font-bold ${scoreColor} bg-white/90 backdrop-blur-sm px-1.5 py-0.5 rounded-full shadow-sm flex items-center gap-0.5`} title={`Safety: ${safety.label}`}>
+                  🛡️ {safety.score}
+                </span>
+              );
+            })()}
+            {(() => {
+              const metro = metroProximity[pg.area];
+              if (!metro) return null;
+              return (
+                <span className="text-[10px] font-medium text-blue-600 bg-white/90 backdrop-blur-sm px-1.5 py-0.5 rounded-full shadow-sm flex items-center gap-0.5" title={`Metro: ${metro.walkTime} walk`}>
+                  🚇 {metro.walkTime}
+                </span>
+              );
+            })()}
           </div>
         </div>
 
