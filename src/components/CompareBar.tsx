@@ -13,14 +13,14 @@ export default function CompareBar() {
       {/* Gradient shadow above */}
       <div className="h-6 bg-gradient-to-t from-black/10 to-transparent pointer-events-none" />
 
-      <div className="bg-[#FFFAEC] border-t-2 border-[#e8e0cc] shadow-[0_-8px_30px_rgba(0,0,0,0.12)]">
+      <div className="bg-gray-50 border-t-2 border-gray-200 shadow-[0_-8px_30px_rgba(0,0,0,0.12)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between gap-4">
             {/* Left: Selected PG thumbnails */}
             <div className="flex items-center gap-3 flex-1 min-w-0">
               <div className="flex items-center gap-1.5 shrink-0">
                 <span className="text-lg">&#x2696;&#xFE0F;</span>
-                <span className="text-sm font-semibold text-[#1B1C15] hidden sm:inline">
+                <span className="text-sm font-semibold text-[#1a1a1a] hidden sm:inline">
                   Compare
                 </span>
                 <span className="text-xs text-[#8a8070] font-medium">
@@ -32,7 +32,7 @@ export default function CompareBar() {
                 {compareList.map((pg) => (
                   <div
                     key={pg.id}
-                    className="flex items-center gap-2 bg-[#F4EDD9] border border-[#e8e0cc] rounded-xl px-2 py-1.5 shrink-0 group"
+                    className="flex items-center gap-2 bg-gray-100 border border-gray-200 rounded-xl px-2 py-1.5 shrink-0 group"
                   >
                     {/* Thumbnail */}
                     <div className="relative w-9 h-9 rounded-lg overflow-hidden bg-[#e8e0cc] shrink-0">
@@ -52,7 +52,7 @@ export default function CompareBar() {
                     </div>
 
                     {/* Name */}
-                    <span className="text-xs font-medium text-[#1B1C15] max-w-[100px] truncate hidden sm:inline">
+                    <span className="text-xs font-medium text-[#1a1a1a] max-w-[100px] truncate hidden sm:inline">
                       {pg.name}
                     </span>
 

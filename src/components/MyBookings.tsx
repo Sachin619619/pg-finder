@@ -122,8 +122,8 @@ export default function MyBookings() {
               >
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-11 h-11 bg-[#F4EDD9] rounded-xl flex items-center justify-center shrink-0">
-                      <svg className="w-5 h-5 text-[#1B1C15]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                    <div className="w-11 h-11 bg-gray-100 rounded-xl flex items-center justify-center shrink-0">
+                      <svg className="w-5 h-5 text-[#1a1a1a]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                         <polyline points="9 22 9 12 15 12 15 22" />
                       </svg>
@@ -131,7 +131,7 @@ export default function MyBookings() {
                     <div>
                       <Link
                         href={`/listing/${booking.pgId}`}
-                        className="font-bold text-gray-900 text-sm hover:text-[#1B1C15] transition-colors"
+                        className="font-bold text-gray-900 text-sm hover:text-[#1a1a1a] transition-colors"
                       >
                         {booking.pgName}
                       </Link>
@@ -173,7 +173,7 @@ export default function MyBookings() {
                   <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
                     <Link
                       href={`/listing/${booking.pgId}`}
-                      className="text-xs font-medium text-[#1B1C15] hover:underline"
+                      className="text-xs font-medium text-[#1a1a1a] hover:underline"
                     >
                       View PG Details
                     </Link>

@@ -57,7 +57,7 @@ export default function AdBanner({ size = "banner", slot, className = "" }: Prop
     <div className={`relative overflow-hidden rounded-2xl ${className}`}>
       {size === "in-feed" ? (
         // In-feed native ad style
-        <div className="bg-[#FFFAEB] border border-[#e8e0cc] rounded-2xl p-5">
+        <div className="bg-[#FFFAEB] border border-gray-200 rounded-2xl p-5">
           <div className="flex items-start gap-4">
             <div className="w-16 h-16 rounded-xl bg-[#1B1C15] flex items-center justify-center flex-shrink-0 shadow-lg shadow-black/10">
               <span className="text-white text-2xl font-bold">P</span>
@@ -90,7 +90,7 @@ export default function AdBanner({ size = "banner", slot, className = "" }: Prop
               <span className="text-white font-extrabold text-2xl">₹499</span>
               <span className="text-white/60 text-sm">/month</span>
             </div>
-            <button className="px-6 py-2.5 bg-[#F4EDD9] text-[#1B1C15] font-bold text-sm rounded-xl hover:bg-[#ebe4cf] transition shadow-lg">
+            <button className="px-6 py-2.5 bg-gray-100 text-[#1a1a1a] font-bold text-sm rounded-xl hover:bg-gray-200 transition shadow-lg">
               Boost Your PG
             </button>
             <span className="text-white/40 text-[10px]">Ad</span>
@@ -109,7 +109,7 @@ export default function AdBanner({ size = "banner", slot, className = "" }: Prop
             </div>
           </div>
           <div className="flex items-center gap-2 flex-shrink-0">
-            <button className="px-4 py-2 bg-[#F4EDD9] text-[#1B1C15] font-semibold text-xs rounded-xl hover:bg-[#ebe4cf] transition whitespace-nowrap">
+            <button className="px-4 py-2 bg-gray-100 text-[#1a1a1a] font-semibold text-xs rounded-xl hover:bg-gray-200 transition whitespace-nowrap">
               List Now
             </button>
             <span className="text-white/30 text-[10px]">Ad</span>

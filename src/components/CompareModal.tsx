@@ -101,7 +101,7 @@ export default function CompareModal() {
       icon: "\uD83D\uDCCD",
       render: (pg) => (
         <div>
-          <div className="font-medium text-[#1B1C15]">{pg.area}</div>
+          <div className="font-medium text-[#1a1a1a]">{pg.area}</div>
           <div className="text-xs text-[#8a8070]">{pg.locality}</div>
         </div>
       ),
@@ -199,10 +199,10 @@ export default function CompareModal() {
       {/* Modal container */}
       <div className="relative z-10 flex flex-col h-full max-h-screen animate-in fade-in duration-200">
         {/* Header */}
-        <div className="bg-[#F4EDD9] border-b border-[#e8e0cc] px-4 sm:px-6 py-4 shrink-0">
+        <div className="bg-gray-100 border-b border-gray-200 px-4 sm:px-6 py-4 shrink-0">
           <div className="max-w-6xl mx-auto flex items-center justify-between">
             <div>
-              <h2 className="font-serif text-xl sm:text-2xl text-[#1B1C15] tracking-tight">
+              <h2 className="font-serif text-xl sm:text-2xl text-[#1a1a1a] tracking-tight">
                 Compare PGs
               </h2>
               <p className="text-xs text-[#8a8070] mt-0.5">
@@ -214,7 +214,7 @@ export default function CompareModal() {
               className="w-10 h-10 rounded-xl bg-[#1B1C15]/10 hover:bg-[#1B1C15]/20 flex items-center justify-center transition-colors"
               aria-label="Close comparison"
             >
-              <svg className="w-5 h-5 text-[#1B1C15]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 text-[#1a1a1a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
@@ -231,7 +231,7 @@ export default function CompareModal() {
               {compareList.map((pg) => (
                 <div
                   key={pg.id}
-                  className="bg-[#FFFAEC] rounded-2xl border border-[#e8e0cc] p-4 text-center relative group"
+                  className="bg-gray-50 rounded-2xl border border-gray-200 p-4 text-center relative group"
                 >
                   {/* Remove button */}
                   <button
@@ -267,7 +267,7 @@ export default function CompareModal() {
                   </div>
 
                   {/* Name */}
-                  <h3 className="font-serif text-sm font-bold text-[#1B1C15] leading-tight mb-1">
+                  <h3 className="font-serif text-sm font-bold text-[#1a1a1a] leading-tight mb-1">
                     {pg.name}
                   </h3>
 
@@ -288,7 +288,7 @@ export default function CompareModal() {
             </div>
 
             {/* Comparison rows */}
-            <div className="mt-6 rounded-2xl border border-[#e8e0cc] overflow-hidden bg-white">
+            <div className="mt-6 rounded-2xl border border-gray-200 overflow-hidden bg-white">
               {rows.map((row, rowIdx) => (
                 <div
                   key={row.label}
@@ -297,7 +297,7 @@ export default function CompareModal() {
                 >
                   {/* Label */}
                   <div className="px-4 py-3.5 bg-[#FDFAF0] border-r border-[#f0e6c8]">
-                    <span className="text-sm font-medium text-[#1B1C15] flex items-center gap-2">
+                    <span className="text-sm font-medium text-[#1a1a1a] flex items-center gap-2">
                       <span className="text-base">{row.icon}</span>
                       {row.label}
                     </span>
@@ -307,7 +307,7 @@ export default function CompareModal() {
                   {compareList.map((pg) => (
                     <div
                       key={pg.id}
-                      className="px-4 py-3.5 text-sm text-[#1B1C15]"
+                      className="px-4 py-3.5 text-sm text-[#1a1a1a]"
                     >
                       {row.render(pg)}
                     </div>
@@ -316,13 +316,13 @@ export default function CompareModal() {
               ))}
 
               {/* Amenities section */}
-              <div className="border-t-2 border-[#e8e0cc]">
+              <div className="border-t-2 border-gray-200">
                 <div
                   className="grid items-start"
                   style={{ gridTemplateColumns: `140px repeat(${compareList.length}, 1fr)` }}
                 >
                   <div className="px-4 py-3.5 bg-[#FDFAF0] border-r border-[#f0e6c8]">
-                    <span className="text-sm font-semibold text-[#1B1C15] flex items-center gap-2">
+                    <span className="text-sm font-semibold text-[#1a1a1a] flex items-center gap-2">
                       <span className="text-base">{"\u2728"}</span>
                       Amenities
                     </span>
@@ -363,13 +363,13 @@ export default function CompareModal() {
             </div>
 
             {/* Nearby landmarks */}
-            <div className="mt-6 rounded-2xl border border-[#e8e0cc] overflow-hidden bg-white">
+            <div className="mt-6 rounded-2xl border border-gray-200 overflow-hidden bg-white">
               <div
                 className="grid items-start"
                 style={{ gridTemplateColumns: `140px repeat(${compareList.length}, 1fr)` }}
               >
                 <div className="px-4 py-3.5 bg-[#FDFAF0] border-r border-[#f0e6c8]">
-                  <span className="text-sm font-semibold text-[#1B1C15] flex items-center gap-2">
+                  <span className="text-sm font-semibold text-[#1a1a1a] flex items-center gap-2">
                     <span className="text-base">{"\uD83D\uDDFA\uFE0F"}</span>
                     Nearby
                   </span>
@@ -380,7 +380,7 @@ export default function CompareModal() {
                       {pg.nearbyLandmarks.slice(0, 5).map((l) => (
                         <span
                           key={l}
-                          className="inline-flex items-center px-2 py-1 rounded-md text-[10px] font-medium bg-[#F4EDD9] text-[#1B1C15] border border-[#e8e0cc]"
+                          className="inline-flex items-center px-2 py-1 rounded-md text-[10px] font-medium bg-gray-100 text-[#1a1a1a] border border-gray-200"
                         >
                           {l}
                         </span>
