@@ -196,11 +196,11 @@ export default function AreaPageContent({ listings }: { listings: PGListing[] })
       ) : (
         <div className="text-center py-16 mb-12">
           <div className="text-5xl mb-4">🏠</div>
-          <h3 className="text-xl font-bold text-[#1B1C15] mb-2">No PGs match your filters</h3>
+          <h3 className="text-xl font-bold text-[#1a1a1a] mb-2">No PGs match your filters</h3>
           <p className="text-gray-500 mb-4">Try adjusting your filters to see more results.</p>
           <button
             onClick={() => { setGender(""); setPriceRange(null); setActiveAmenities(new Set()); }}
-            className="px-6 py-2.5 bg-[#1B1C15] text-white rounded-xl text-sm font-medium hover:bg-[#2B2C25] transition-colors"
+            className="px-6 py-2.5 bg-[#1a1a1a] text-white rounded-xl text-sm font-medium hover:opacity-80 transition-opacity"
           >
             Clear All Filters
           </button>
