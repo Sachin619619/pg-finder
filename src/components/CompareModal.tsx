@@ -192,29 +192,29 @@ export default function CompareModal() {
     <div className="fixed inset-0 z-[60] flex flex-col">
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/60 backdrop-blur-md"
         onClick={() => setShowModal(false)}
       />
 
       {/* Modal container */}
-      <div className="relative z-10 flex flex-col h-full max-h-screen animate-in fade-in duration-200">
+      <div className="relative z-10 flex flex-col max-w-4xl w-full mx-auto my-auto max-h-[90vh] overflow-hidden shadow-2xl rounded-3xl bg-[#FFFDF9] animate-in fade-in duration-200">
         {/* Header */}
-        <div className="bg-[#EDE8DE] border-b border-black/8 px-4 sm:px-6 py-4 shrink-0">
+        <div className="bg-[#1B5E3B] text-white p-6 rounded-t-3xl shrink-0">
           <div className="max-w-6xl mx-auto flex items-center justify-between">
             <div>
-              <h2 className="font-serif text-xl sm:text-2xl text-[#1a1a1a] tracking-tight">
+              <h2 className="font-serif text-xl sm:text-2xl text-white tracking-tight">
                 Compare PGs
               </h2>
-              <p className="text-xs text-[#8a8070] mt-0.5">
+              <p className="text-xs text-white/70 mt-0.5">
                 Side-by-side comparison of {compareList.length} PGs
               </p>
             </div>
             <button
               onClick={() => setShowModal(false)}
-              className="w-10 h-10 rounded-xl bg-[#1a1a1a]/10 hover:bg-[#1a1a1a]/20 flex items-center justify-center transition-colors"
+              className="bg-white/20 hover:bg-white/30 rounded-full w-10 h-10 flex items-center justify-center transition-colors"
               aria-label="Close comparison"
             >
-              <svg className="w-5 h-5 text-[#1a1a1a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
@@ -222,16 +222,22 @@ export default function CompareModal() {
         </div>
 
         {/* Scrollable content */}
-        <div className="flex-1 overflow-auto bg-[#FDFAF0]">
+        <div className="flex-1 overflow-auto bg-[#FFFDF9]">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6">
             {/* PG header cards */}
             <div className="grid gap-4" style={{ gridTemplateColumns: `140px repeat(${compareList.length}, 1fr)` }}>
               {/* Empty corner */}
               <div />
-              {compareList.map((pg) => (
+              {compareList.map((pg) => {
+                const isWinner = pg.price === bestPrice || pg.rating === bestRating;
+                return (
                 <div
                   key={pg.id}
-                  className="bg-[#F0EADD] rounded-2xl border border-black/8 p-4 text-center relative group"
+                  className={`rounded-2xl p-5 text-center relative group ${
+                    isWinner
+                      ? "border-2 border-[#1B5E3B] bg-[#1B5E3B]/5"
+                      : "border border-black/[0.06] bg-[#FFFDF9]"
+                  }`}
                 >
                   {/* Remove button */}
                   <button
@@ -284,7 +290,8 @@ export default function CompareModal() {
                     {pg.gender === "male" ? "\uD83D\uDC68 Male" : pg.gender === "female" ? "\uD83D\uDC69 Female" : "\uD83D\uDC65 Co-ed"}
                   </span>
                 </div>
-              ))}
+                );
+              })}
             </div>
 
             {/* Comparison rows */}

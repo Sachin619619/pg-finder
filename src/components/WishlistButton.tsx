@@ -26,8 +26,8 @@ export default function WishlistButton({ pgId, pgName, size = "sm" }: { pgId: st
       onClick={toggle}
       className={`${sizeClass} rounded-full flex items-center justify-center transition-all ${
         saved
-          ? "bg-red-50 text-red-500 shadow-lg shadow-red-500/20 scale-110"
-          : "bg-white/80 backdrop-blur-sm text-gray-400 hover:text-red-500 hover:bg-red-50 shadow-md"
+          ? "bg-red-50 text-[#e74c3c] shadow-lg shadow-red-500/20 scale-110"
+          : "bg-white/80 backdrop-blur-sm text-gray-400 hover:text-[#e74c3c] hover:bg-red-50 shadow-md"
       }`}
       aria-label={saved ? `Remove${pgName ? ` ${pgName}` : ""} from wishlist` : `Save${pgName ? ` ${pgName}` : ""} to wishlist`}
       title={saved ? "Remove from wishlist" : "Save to wishlist"}

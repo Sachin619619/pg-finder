@@ -29,7 +29,7 @@ export default function RecentlyViewed() {
             </svg>
           </div>
           <div>
-            <h2 className="text-xl font-bold text-gray-900 tracking-tight">
+            <h2 className="font-serif text-xl text-gray-900 tracking-tight">
               Recently Viewed
             </h2>
             <p className="text-xs text-[#999]">Pick up where you left off</p>
@@ -71,7 +71,7 @@ function RecentCard({
   return (
     <Link
       href={`/listing/${item.id}`}
-      className="group flex-shrink-0 w-56 bg-[#FFFDF9] rounded-2xl border border-black/5 overflow-hidden hover:shadow-lg hover:shadow-black/10 hover:border-black/8 transition-all hover:-translate-y-0.5 snap-start"
+      className="group flex-shrink-0 w-56 bg-[#FFFDF9] rounded-2xl border border-black/5 overflow-hidden hover:shadow-md transition-all hover:-translate-y-0.5 snap-start"
     >
       {/* Thumbnail */}
       <div className="relative h-28 bg-[#F5ECD7] overflow-hidden">

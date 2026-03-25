@@ -70,7 +70,7 @@ export default function VirtualTourBooking({ pgId, pgName, onBooked }: VirtualTo
   }
 
   return (
-    <div className="bg-[#F0EADD] border border-black/8 rounded-2xl p-5">
+    <div className="bg-[#F0EADD] border border-black/8 rounded-3xl p-5">
       <div className="flex items-center gap-2 mb-4">
         <span className="text-2xl">🎥</span>
         <div>
@@ -84,7 +84,7 @@ export default function VirtualTourBooking({ pgId, pgName, onBooked }: VirtualTo
         {["type", "date", "confirm"].map((s, i) => (
           <div key={s} className="flex items-center gap-1">
             <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
-              step === s ? "bg-[#1a1a1a] text-white" :
+              step === s ? "bg-[#1B5E3B] text-white" :
               (s === "type" && (step === "date" || step === "confirm")) || (s === "date" && step === "confirm")
                 ? "bg-emerald-100 text-emerald-700" : "bg-[#EDE8DE] text-[#999]"
             }`}>
@@ -102,10 +102,10 @@ export default function VirtualTourBooking({ pgId, pgName, onBooked }: VirtualTo
             <button
               key={type.id}
               onClick={() => { setTourType(type.id); setStep("date"); }}
-              className={`w-full text-left p-4 rounded-xl border-2 transition-all ${
+              className={`w-full text-left p-4 rounded-2xl border-2 transition-all ${
                 tourType === type.id
-                  ? "border-[#1a1a1a] bg-[#1a1a1a]/5"
-                  : "border-black/5 hover:border-black/8 bg-[#FFFDF9]"
+                  ? "border-[#1B5E3B] bg-[#1B5E3B]/5"
+                  : "border-black/[0.06] hover:border-[#1B5E3B]/30 bg-[#FFFDF9]"
               }`}
             >
               <div className="flex items-center gap-3">
@@ -132,8 +132,8 @@ export default function VirtualTourBooking({ pgId, pgName, onBooked }: VirtualTo
                   onClick={() => setSelectedDate(d.value)}
                   className={`p-2 rounded-xl text-center text-xs font-semibold transition-all ${
                     selectedDate === d.value
-                      ? "bg-[#1a1a1a] text-white"
-                      : "bg-[#FFFDF9] border border-black/8 text-gray-700 hover:border-black/15"
+                      ? "bg-[#1B5E3B] text-white"
+                      : "bg-[#FFFDF9] border border-black/[0.06] text-gray-700 hover:border-[#1B5E3B]/30"
                   }`}
                 >
                   {d.label}
@@ -150,10 +150,10 @@ export default function VirtualTourBooking({ pgId, pgName, onBooked }: VirtualTo
                   <button
                     key={slot}
                     onClick={() => setSelectedSlot(slot)}
-                    className={`p-2 rounded-xl text-center text-xs font-semibold transition-all ${
+                    className={`p-2 rounded-full text-center text-xs font-semibold transition-all ${
                       selectedSlot === slot
-                        ? "bg-[#1a1a1a] text-white"
-                        : "bg-[#FFFDF9] border border-black/8 text-gray-700 hover:border-black/15"
+                        ? "bg-[#1B5E3B] text-white"
+                        : "bg-[#FFFDF9] border border-black/[0.06] text-gray-700 hover:border-[#1B5E3B]/30"
                     }`}
                   >
                     {slot}
@@ -177,7 +177,7 @@ export default function VirtualTourBooking({ pgId, pgName, onBooked }: VirtualTo
           <button
             onClick={() => selectedDate && selectedSlot && phone && setStep("confirm")}
             disabled={!selectedDate || !selectedSlot || !phone}
-            className="w-full py-3 rounded-xl bg-[#1a1a1a] text-white text-sm font-semibold disabled:opacity-40 disabled:cursor-not-allowed transition-opacity"
+            className="w-full py-3 rounded-full bg-[#1B5E3B] text-white text-sm font-semibold disabled:opacity-40 disabled:cursor-not-allowed transition-opacity"
           >
             Continue →
           </button>
@@ -211,7 +211,7 @@ export default function VirtualTourBooking({ pgId, pgName, onBooked }: VirtualTo
           <button
             onClick={handleBook}
             disabled={submitting}
-            className="w-full py-3 rounded-xl bg-[#1a1a1a] text-white text-sm font-semibold flex items-center justify-center gap-2 disabled:opacity-60 transition-opacity"
+            className="w-full py-3 rounded-full bg-[#1B5E3B] text-white text-sm font-semibold flex items-center justify-center gap-2 disabled:opacity-60 transition-opacity"
           >
             {submitting ? (
               <>

@@ -20,10 +20,10 @@ export default function PGCard({ pg, priority = false, showCompare = true }: { p
   return (
     <Link href={`/listing/${pg.id}`}>
       <div
-        className="bg-[#FFFDF9] rounded-2xl overflow-hidden cursor-pointer group h-full flex flex-col shadow-sm hover:shadow-md transition-all duration-300"
+        className="bg-[#FFFDF9] rounded-3xl overflow-hidden cursor-pointer group h-full flex flex-col border border-black/[0.04] hover:border-black/[0.08] shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.04)] transition-all duration-500 hover:-translate-y-1.5"
       >
         {/* Image area */}
-        <div className={`relative h-52 ${hasImage ? "bg-gray-100" : "bg-[#F0EBE0]"} overflow-hidden`}>
+        <div className={`relative h-56 ${hasImage ? "bg-gray-100" : "bg-[#F0EBE0]"} overflow-hidden`}>
           {hasImage ? (
             <Image
               src={pg.images[0]}
@@ -43,8 +43,11 @@ export default function PGCard({ pg, priority = false, showCompare = true }: { p
             </div>
           )}
 
+          {/* Gradient overlay for badge readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
           {/* Price badge */}
-          <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-xl px-3.5 py-1.5 shadow-sm">
+          <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-md rounded-2xl px-4 py-2 shadow-[0_2px_12px_rgba(0,0,0,0.08)] border border-white/50">
             {pg.roomOptions && pg.roomOptions.length > 1 ? (
               <>
                 <span className="text-base font-semibold text-black">₹{Math.min(...pg.roomOptions.map(r => r.price)).toLocaleString()}</span>
@@ -61,10 +64,10 @@ export default function PGCard({ pg, priority = false, showCompare = true }: { p
 
           {/* Gender badge */}
           <div className="absolute top-4 left-4">
-            <span className={`inline-flex items-center px-2.5 py-1 rounded-lg text-[12px] font-semibold shadow-sm ${
-              pg.gender === "male" ? "bg-gray-800/80 text-white" :
-              pg.gender === "female" ? "bg-gray-700/80 text-white" :
-              "bg-gray-600/80 text-white"
+            <span className={`inline-flex items-center px-2.5 py-1 rounded-xl text-[12px] font-semibold shadow-sm ${
+              pg.gender === "male" ? "bg-[#1B5E3B]/90 text-white" :
+              pg.gender === "female" ? "bg-[#8B4E6B]/90 text-white" :
+              "bg-[#5B6B4E]/90 text-white"
             }`}>
               {pg.gender === "male" ? "Male" : pg.gender === "female" ? "Female" : "Co-ed"}
             </span>
@@ -115,7 +118,7 @@ export default function PGCard({ pg, priority = false, showCompare = true }: { p
           {/* Verified badge */}
           {pg.rating >= 4.5 && (
             <div className="absolute bottom-3 left-3">
-              <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-[10px] font-semibold bg-[#1a1a1a]/70 text-white backdrop-blur-sm shadow-sm">
+              <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-[10px] font-semibold bg-[#1B5E3B]/90 text-white backdrop-blur-sm shadow-md">
                 ✓ Verified
               </span>
             </div>
@@ -130,12 +133,12 @@ export default function PGCard({ pg, priority = false, showCompare = true }: { p
         </div>
 
         {/* Content */}
-        <div className="p-5 flex-1 flex flex-col">
+        <div className="p-6 flex-1 flex flex-col">
           {/* Title + Rating */}
           <div className="flex items-start justify-between mb-2">
-            <h3 className="text-[17px] font-bold text-[#1a1a1a] font-serif leading-tight pr-2 tracking-tight">{pg.name}</h3>
+            <h3 className="text-lg font-bold text-[#1a1a1a] font-serif leading-tight pr-2 tracking-tight group-hover:text-[#1B5E3B] transition-colors duration-300">{pg.name}</h3>
             <div className="flex flex-col items-end gap-1 shrink-0">
-              <div className="flex items-center gap-1 bg-[#1a1a1a] px-2.5 py-1.5 rounded-xl">
+              <div className="flex items-center gap-1 bg-[#1B5E3B] px-2.5 py-1.5 rounded-full shadow-sm">
                 
                 <span className="text-sm font-bold text-white">{pg.rating}</span>
               </div>
@@ -153,40 +156,40 @@ export default function PGCard({ pg, priority = false, showCompare = true }: { p
           <div className="flex flex-wrap gap-2 mb-4">
             {pg.roomOptions && pg.roomOptions.length > 0 ? (
               pg.roomOptions.map(r => (
-                <span key={r.type} className="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-medium bg-[#F0EADD] text-[#333] border border-black/5">
+                <span key={r.type} className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-[#F0EADD] text-[#333] border border-black/5">
                   {r.type === "single" ? "Single" : r.type === "double" ? "Double" : "Triple"} · ₹{r.price.toLocaleString()}
                 </span>
               ))
             ) : (
-              <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-medium bg-[#F0EADD] text-[#333] border border-black/5">
+              <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-[#F0EADD] text-[#333] border border-black/5">
                 {pg.type === "single" ? "Single" : pg.type === "double" ? "Double" : pg.type === "triple" ? "Triple" : "Any"} Occupancy
               </span>
             )}
             {pg.foodIncluded && (
-              <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-medium bg-[#F0EADD] text-[#333] border border-black/5">Food Inc.</span>
+              <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-[#F0EADD] text-[#333] border border-black/5">Food Inc.</span>
             )}
             {pg.acAvailable && (
-              <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-medium bg-[#F0EADD] text-[#333] border border-black/5">AC</span>
+              <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-[#F0EADD] text-[#333] border border-black/5">AC</span>
             )}
             {pg.furnished && (
-              <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-medium bg-[#F0EADD] text-[#333] border border-black/5">Furnished</span>
+              <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-[#F0EADD] text-[#333] border border-black/5">Furnished</span>
             )}
           </div>
 
           {/* Bottom amenities */}
-          <div className="mt-auto pt-4 border-t border-black/5 flex items-center justify-between">
+          <div className="mt-auto pt-5 border-t border-black/[0.06] flex items-center justify-between">
             <div className="flex -space-x-1.5">
               {pg.amenities.slice(0, 4).map((a) => (
                 <span
                   key={a}
-                  className="w-7 h-7 rounded-full bg-[#F0EBE0] border-2 border-white flex items-center justify-center text-[9px] font-bold text-[#666] shadow-sm"
+                  className="w-8 h-8 rounded-full bg-[#F0EBE0] border-2 border-white flex items-center justify-center text-[9px] font-bold text-[#666] shadow-sm transition-transform group-hover:scale-105"
                   title={a}
                 >
                   {a.charAt(0)}
                 </span>
               ))}
               {pg.amenities.length > 4 && (
-                <span className="w-7 h-7 rounded-full bg-[#F0EBE0] border-2 border-white flex items-center justify-center text-[10px] font-bold text-[#666] shadow-sm">
+                <span className="w-8 h-8 rounded-full bg-[#F0EBE0] border-2 border-white flex items-center justify-center text-[10px] font-bold text-[#666] shadow-sm transition-transform group-hover:scale-105">
                   +{pg.amenities.length - 4}
                 </span>
               )}

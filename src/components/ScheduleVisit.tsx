@@ -160,19 +160,19 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
                     <button
                       key={dateStr}
                       onClick={() => setSelectedDate(dateStr)}
-                      className={`flex flex-col items-center min-w-[72px] px-3 py-3 rounded-2xl border-2 transition-all duration-200 shrink-0 ${
+                      className={`flex flex-col items-center min-w-[72px] px-3 py-3 rounded-xl border-2 transition-all duration-200 shrink-0 ${
                         isSelected
-                          ? "border-[#1a1a1a] bg-[#1a1a1a] text-white shadow-lg shadow-black/15 scale-[1.02]"
-                          : "border-black/8 bg-[#FFFDF9] text-[#666] hover:border-black/15 hover:bg-[#F0EADD]"
+                          ? "border-[#1B5E3B] bg-[#1B5E3B] text-white shadow-lg shadow-[#1B5E3B]/20 scale-[1.02]"
+                          : "border-black/8 bg-[#FFFDF9] text-[#666] hover:border-[#1B5E3B]/30 hover:bg-[#F0EADD]"
                       }`}
                     >
-                      <span className={`text-[10px] font-semibold uppercase tracking-wider ${isSelected ? "text-white/70" : "text-[#999]"}`}>
+                      <span className={`text-[10px] font-semibold uppercase tracking-wider ${isSelected ? "text-white/80" : "text-[#999]"}`}>
                         {d.dayName}
                       </span>
                       <span className={`text-lg font-bold mt-0.5 ${isSelected ? "text-white" : "text-[#1a1a1a]"}`}>
                         {d.date.getDate()}
                       </span>
-                      <span className={`text-[10px] font-medium ${isSelected ? "text-white/70" : "text-[#999]"}`}>
+                      <span className={`text-[10px] font-medium ${isSelected ? "text-white/80" : "text-[#999]"}`}>
                         {d.date.toLocaleDateString("en-IN", { month: "short" })}
                       </span>
                     </button>
@@ -191,21 +191,21 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
                     <button
                       key={slot.id}
                       onClick={() => setSelectedSlot(slot.id)}
-                      className={`relative flex flex-col items-center p-4 rounded-2xl border-2 transition-all duration-200 ${
+                      className={`relative flex flex-col items-center p-4 rounded-full border-2 transition-all duration-200 ${
                         isSelected
-                          ? "border-[#1a1a1a] bg-[#EDE8DE] shadow-md"
-                          : "border-black/8 bg-[#FFFDF9] hover:border-black/15 hover:bg-[#F0EADD]"
+                          ? "border-[#1B5E3B] bg-[#1B5E3B] text-white shadow-md"
+                          : "border-black/[0.06] bg-[#FFFDF9] hover:border-[#1B5E3B]/30 hover:bg-[#F0EADD]"
                       }`}
                     >
                       {isSelected && (
-                        <div className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-[#1a1a1a] rounded-full flex items-center justify-center">
+                        <div className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-[#1B5E3B] rounded-full flex items-center justify-center">
                           <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                           </svg>
                         </div>
                       )}
                       <svg
-                        className={`w-5 h-5 mb-1.5 ${isSelected ? "text-[#1a1a1a]" : "text-[#999]"}`}
+                        className={`w-5 h-5 mb-1.5 ${isSelected ? "text-white" : "text-[#999]"}`}
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -215,10 +215,10 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
                       >
                         <path d={slot.icon} />
                       </svg>
-                      <span className={`text-sm font-semibold ${isSelected ? "text-[#1a1a1a]" : "text-[#666]"}`}>
+                      <span className={`text-sm font-semibold ${isSelected ? "text-white" : "text-[#666]"}`}>
                         {slot.label}
                       </span>
-                      <span className={`text-[10px] mt-0.5 ${isSelected ? "text-[#1a1a1a]/70" : "text-[#999]"}`}>
+                      <span className={`text-[10px] mt-0.5 ${isSelected ? "text-white/70" : "text-[#999]"}`}>
                         {slot.time}
                       </span>
                     </button>
@@ -294,9 +294,9 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
             <button
               onClick={handleSubmit}
               disabled={!isFormValid}
-              className={`w-full py-4 rounded-2xl font-semibold text-sm transition-all flex items-center justify-center gap-2 ${
+              className={`w-full py-4 rounded-full font-semibold text-sm transition-all flex items-center justify-center gap-2 ${
                 isFormValid
-                  ? "bg-[#1a1a1a] text-white hover:shadow-xl hover:shadow-black/20 hover:-translate-y-0.5 active:translate-y-0"
+                  ? "bg-[#1B5E3B] text-white hover:shadow-xl hover:shadow-[#1B5E3B]/20 hover:-translate-y-0.5 active:translate-y-0"
                   : "bg-[#d4c9a8] text-[#999] cursor-not-allowed"
               }`}
             >
@@ -393,7 +393,7 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
                   href={generateGoogleCalendarUrl(booking)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl font-semibold text-sm bg-[#1a1a1a] text-white hover:shadow-lg hover:shadow-black/20 hover:-translate-y-0.5 active:translate-y-0 transition-all"
+                  className="w-full flex items-center justify-center gap-2 py-3.5 rounded-full font-semibold text-sm bg-[#1B5E3B] text-white hover:shadow-lg hover:shadow-[#1B5E3B]/20 hover:-translate-y-0.5 active:translate-y-0 transition-all"
                 >
                   <svg className="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                     <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />

@@ -175,8 +175,8 @@ export default function PhotoGallery({ pgName, images }: { pgName: string; image
             <button
               key={i}
               onClick={() => setActiveIdx(i)}
-              className={`h-16 sm:h-20 rounded-xl relative overflow-hidden transition-all duration-200 ${
-                i === activeIdx ? "ring-2 ring-black/20 ring-offset-2 scale-105" : "opacity-70 hover:opacity-100"
+              className={`h-16 sm:h-20 rounded-xl relative overflow-hidden transition-all duration-300 ${
+                i === activeIdx ? "ring-2 ring-[#1B5E3B]/30 ring-offset-2 scale-105" : "opacity-70 hover:opacity-100"
               }`}
             >
               {hasImages && !imgError[i] ? (
@@ -234,7 +234,7 @@ export default function PhotoGallery({ pgName, images }: { pgName: string; image
           {/* Previous button */}
           <button
             aria-label="Previous photo"
-            className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/25 rounded-full flex items-center justify-center text-white transition-all duration-200 hover:scale-110"
+            className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl flex items-center justify-center text-black/70 transition-all duration-200 hover:scale-110"
             style={{
               zIndex: 10001,
               opacity: lightboxVisible ? 1 : 0,
@@ -251,7 +251,7 @@ export default function PhotoGallery({ pgName, images }: { pgName: string; image
           {/* Next button */}
           <button
             aria-label="Next photo"
-            className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/25 rounded-full flex items-center justify-center text-white transition-all duration-200 hover:scale-110"
+            className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl flex items-center justify-center text-black/70 transition-all duration-200 hover:scale-110"
             style={{
               zIndex: 10001,
               opacity: lightboxVisible ? 1 : 0,
@@ -310,7 +310,7 @@ export default function PhotoGallery({ pgName, images }: { pgName: string; image
               <button
                 key={i}
                 onClick={() => goTo(i)}
-                className={`w-14 h-10 rounded-lg relative overflow-hidden transition-all duration-200 border-2 ${
+                className={`w-14 h-10 rounded-xl relative overflow-hidden transition-all duration-200 border-2 ${
                   i === activeIdx
                     ? "border-white scale-110 opacity-100"
                     : "border-transparent opacity-50 hover:opacity-80"

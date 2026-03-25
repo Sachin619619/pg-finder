@@ -25,7 +25,7 @@ export default function FeaturedToday({ listings }: FeaturedTodayProps) {
     <section className="py-20 bg-[#FFFDF9]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
-          <span className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-3 inline-block">Today&apos;s Picks</span>
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#1B5E3B]/60 mb-3">✦ Editor&apos;s Pick</p>
           <h2 className="font-serif text-3xl sm:text-4xl text-black mb-3 tracking-tight">Featured PGs</h2>
           <p className="text-black/50 max-w-md mx-auto text-sm">Hand-picked by our team based on reviews, value, and quality</p>
         </div>
@@ -35,12 +35,12 @@ export default function FeaturedToday({ listings }: FeaturedTodayProps) {
             const safety = areaSafetyScores[pg.area];
             const label = labels[i];
             const colorClass = label.color === "amber" ? "bg-amber-50 border-amber-200 text-amber-700"
-              : label.color === "emerald" ? "bg-emerald-50 border-emerald-200 text-emerald-700"
+              : label.color === "emerald" ? "bg-[#1B5E3B] border-[#1B5E3B] text-white"
               : "bg-blue-50 border-blue-200 text-blue-700";
 
             return (
               <Link key={pg.id} href={`/listing/${pg.id}`} className="group">
-                <div className="bg-[#FFFDF9] rounded-2xl border border-black/5 overflow-hidden hover:shadow-md hover:-translate-y-1 transition-all duration-200">
+                <div className="card-shine bg-[#FFFDF9] rounded-2xl border border-black/5 overflow-hidden hover:shadow-md hover:-translate-y-1 transition-all duration-200">
                   {/* Image */}
                   <div className="relative h-48 bg-[#EDE8DE] overflow-hidden">
                     {pg.images[0] ? (

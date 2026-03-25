@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 const lifestyleOptions = [
   { id: "early_bird", label: "Early Bird 🌅", desc: "6-8 AM" },
@@ -57,9 +58,9 @@ export default function CastleScoreCalculator() {
       : { label: "Castle Bronze", emoji: "🏅", color: "text-orange-700 bg-orange-50 border-orange-200" };
 
     return (
-      <div className="bg-[#FFFDF9] border border-black/5 rounded-2xl p-6 text-center shadow-sm">
-        <div className="text-5xl mb-3">{tier.emoji}</div>
-        <p className="text-5xl font-bold text-black mb-2">{result}</p>
+      <div className="bg-[#FFFDF9] border border-black/[0.06] rounded-3xl p-8 text-center shadow-[0_4px_20px_rgba(0,0,0,0.04)]">
+        <div className="text-5xl mb-4">{tier.emoji}</div>
+        <p className="font-serif text-5xl text-[#1B5E3B] mb-2">{result}</p>
         <p className="text-sm text-[#888] mb-4">Your Castle Score</p>
         <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold border ${tier.color} mb-4`}>
           <span>{tier.emoji}</span>
@@ -107,20 +108,20 @@ export default function CastleScoreCalculator() {
   const progress = ((step + 1) / questions.length) * 100;
 
   return (
-    <div className="bg-[#FFFDF9] border border-black/5 rounded-2xl overflow-hidden shadow-sm">
-      <div className="bg-[#F0EADD] px-5 py-4 border-b border-black/5">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-xs font-semibold text-[#666]">Question {step + 1} of {questions.length}</span>
-          <button onClick={reset} className="text-xs text-[#999] hover:text-[#666]">Reset</button>
+    <div className="bg-[#FFFDF9] border border-black/[0.06] rounded-3xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.04)]">
+      <div className="bg-[#F0EADD] px-6 py-5 border-b border-black/5">
+        <div className="flex items-center justify-between mb-3">
+          <span className="text-xs font-bold text-[#1B5E3B]/70 uppercase tracking-wider">Step {step + 1} of {questions.length} — Let&apos;s find your match!</span>
+          <button onClick={reset} className="text-xs text-[#999] hover:text-[#666] transition-colors">Start over</button>
         </div>
-        <div className="w-full bg-[#d4c9a8] rounded-full h-2">
-          <div className="h-2 rounded-full bg-[#1a1a1a] transition-all duration-500" style={{ width: `${progress}%` }} />
+        <div className="w-full bg-[#d4c9a8] rounded-full h-2.5">
+          <div className="h-2.5 rounded-full bg-[#1B5E3B] transition-all duration-500 ease-out" style={{ width: `${progress}%` }} />
         </div>
       </div>
 
-      <div className="p-5">
-        <h3 className="text-lg font-bold text-black mb-4">{currentQ.q}</h3>
-        <div className="space-y-2">
+      <div className="p-6">
+        <h3 className="font-serif text-xl text-black mb-5">{currentQ.q}</h3>
+        <div className="space-y-2.5">
           {currentQ.options.map(opt => (
             <button
               key={opt.id}
@@ -132,10 +133,10 @@ export default function CastleScoreCalculator() {
                   setTimeout(handleComplete, 300);
                 }
               }}
-              className={`w-full text-left p-4 rounded-xl border-2 transition-all ${
+              className={`w-full text-left p-4 rounded-2xl border-2 transition-all cursor-pointer ${
                 currentQ.value === opt.id
-                  ? "border-black bg-[#F0EADD]"
-                  : "border-black/5 bg-[#FFFDF9] hover:border-black/8"
+                  ? "border-[#1B5E3B] bg-[#1B5E3B]/5"
+                  : "border-black/5 bg-[#FFFDF9] hover:border-[#1B5E3B]/40 hover:bg-[#1B5E3B]/5"
               }`}
             >
               <div className="flex items-center justify-between">

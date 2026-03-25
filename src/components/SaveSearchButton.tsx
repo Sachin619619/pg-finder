@@ -46,10 +46,10 @@ export default function SaveSearchButton({ searchCriteria }: SaveSearchButtonPro
     <button
       onClick={handleSave}
       disabled={saving || saved}
-      className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+      className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-semibold transition-all ${
         saved
           ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
-          : "bg-[#EDE8DE] text-gray-700 hover:bg-[#d4c9a8] border border-black/8"
+          : "rounded-full border border-[#1B5E3B]/30 text-[#1B5E3B] hover:bg-[#1B5E3B]/5 bg-transparent"
       }`}
     >
       {saving ? (

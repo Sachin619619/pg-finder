@@ -47,8 +47,8 @@ export default function AreaInsights() {
     <section className="py-20 bg-[#FFFDF9]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
-          <span className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-3 inline-block">Area Intelligence</span>
-          <h2 className="font-serif text-3xl sm:text-4xl text-black mb-3 tracking-tight">Find the Best Area for You</h2>
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#1B5E3B]/60 mb-3">&#10022; Area Intelligence</p>
+          <h2 className="font-serif text-2xl sm:text-3xl text-black mb-3 tracking-tight">Find the Best Area for You</h2>
           <p className="text-black/50 max-w-md mx-auto text-sm">Compare neighborhoods across safety, connectivity, and value for money</p>
         </div>
 
@@ -58,9 +58,9 @@ export default function AreaInsights() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+              className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all ${
                 activeTab === tab.id
-                  ? "bg-[#1a1a1a] text-white shadow-lg"
+                  ? "bg-[#1B5E3B] text-white shadow-lg"
                   : "bg-[#EDE8DE] text-[#666] hover:bg-[#d4c9a8]"
               }`}
             >
@@ -78,7 +78,7 @@ export default function AreaInsights() {
             const rank = i + 1;
 
             return (
-              <div key={area} className={`rounded-2xl p-4 border transition-all hover:shadow-md ${
+              <div key={area} className={`rounded-3xl p-4 border transition-all hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] ${
                 rank <= 3 ? "bg-amber-50 border-amber-200" : "bg-[#F0EADD] border-black/5 hover:border-black/8"
               }`}>
                 <div className="flex items-start justify-between mb-2">

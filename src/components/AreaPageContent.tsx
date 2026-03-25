@@ -79,9 +79,9 @@ export default function AreaPageContent({ listings }: { listings: PGListing[] })
   return (
     <div>
       {/* Quick Filters */}
-      <div className="bg-[#FFFDF9] rounded-2xl border border-[#E8E0CC] p-5 sm:p-6 mb-8 shadow-sm">
+      <div className="bg-[#FFFDF9] rounded-2xl border border-[#E8E0CC] p-5 sm:p-6 mb-8 shadow-sm hover:shadow-md transition-shadow">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-bold text-[#1a1a1a]">Filter PGs</h2>
+          <h2 className="font-serif text-xl font-bold text-[#1a1a1a]">Filter PGs</h2>
           {activeFilterCount > 0 && (
             <button
               onClick={() => { setGender(""); setPriceRange(null); setActiveAmenities(new Set()); }}
@@ -105,9 +105,9 @@ export default function AreaPageContent({ listings }: { listings: PGListing[] })
               <button
                 key={g.value}
                 onClick={() => setGender(g.value)}
-                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                   gender === g.value
-                    ? "bg-[#1a1a1a] text-white"
+                    ? "bg-[#1B5E3B] text-white"
                     : "bg-[#EDE8DE] text-[#1a1a1a] hover:bg-[#d4c9a8]"
                 }`}
               >
@@ -127,9 +127,9 @@ export default function AreaPageContent({ listings }: { listings: PGListing[] })
                 <button
                   key={chip.label}
                   onClick={() => setPriceRange(isActive ? null : { min: chip.min, max: chip.max })}
-                  className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                     isActive
-                      ? "bg-[#1a1a1a] text-white shadow-md"
+                      ? "bg-[#1B5E3B] text-white shadow-md"
                       : "bg-[#EDE8DE] text-[#1a1a1a] hover:bg-[#d4c9a8]"
                   }`}
                 >
@@ -150,9 +150,9 @@ export default function AreaPageContent({ listings }: { listings: PGListing[] })
                 <button
                   key={am.key}
                   onClick={() => toggleAmenity(am.key)}
-                  className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                     isActive
-                      ? "bg-[#1a1a1a] text-white shadow-md"
+                      ? "bg-[#1B5E3B] text-white shadow-md"
                       : "bg-[#EDE8DE] text-[#1a1a1a] hover:bg-[#d4c9a8]"
                   }`}
                 >
@@ -200,7 +200,7 @@ export default function AreaPageContent({ listings }: { listings: PGListing[] })
           <p className="text-[#888] mb-4">Try adjusting your filters to see more results.</p>
           <button
             onClick={() => { setGender(""); setPriceRange(null); setActiveAmenities(new Set()); }}
-            className="px-6 py-2.5 bg-[#1a1a1a] text-white rounded-xl text-sm font-medium hover:opacity-80 transition-opacity"
+            className="px-6 py-2.5 bg-[#1B5E3B] text-white rounded-full text-sm font-medium hover:opacity-80 transition-opacity"
           >
             Clear All Filters
           </button>

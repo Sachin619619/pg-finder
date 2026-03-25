@@ -140,7 +140,7 @@ export default function SearchAutocomplete({
         ref={inputRef}
         type="text"
         placeholder="Search area, PG name, landmark..."
-        className="w-full pl-12 pr-4 py-4 bg-[#FFFDF9] border border-black/10 rounded-2xl text-black placeholder-black/30 focus:border-black/20 outline-none transition-all text-[15px]"
+        className="w-full pl-12 pr-4 py-4 bg-[#FFFDF9] border border-black/10 rounded-2xl text-black placeholder-black/30 focus:ring-2 focus:ring-[#1B5E3B]/10 focus:border-[#1B5E3B]/30 outline-none transition-all text-[15px]"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={handleKeyDown}
@@ -161,7 +161,7 @@ export default function SearchAutocomplete({
         <div
           className="absolute top-full left-0 right-0 mt-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200"
         >
-          <div className="bg-[#FFFDF9] rounded-2xl shadow-lg border border-black/5 overflow-hidden max-h-[320px]">
+          <div className="bg-[#FFFDF9] rounded-2xl shadow-xl border border-black/[0.06] overflow-hidden max-h-[320px]">
             {filtered.length > 0 ? (
               <ul
                 ref={listRef}
@@ -176,8 +176,8 @@ export default function SearchAutocomplete({
                     aria-selected={index === activeIndex}
                     className={`flex items-center justify-between px-5 py-3.5 cursor-pointer transition-colors ${
                       index === activeIndex
-                        ? "bg-[#F0EADD]"
-                        : "hover:bg-[#F0EADD]"
+                        ? "bg-[#1B5E3B]/5"
+                        : "hover:bg-[#1B5E3B]/5"
                     }`}
                     onClick={() => navigateToArea(area)}
                     onMouseEnter={() => setActiveIndex(index)}
@@ -202,7 +202,9 @@ export default function SearchAutocomplete({
                           d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                         />
                       </svg>
-                      <span className="text-[15px] font-medium text-black/80">
+                      <span className={`text-[15px] font-medium ${
+                        index === activeIndex ? "text-[#1B5E3B]" : "text-black/80"
+                      }`}>
                         {area.name}
                       </span>
                     </div>

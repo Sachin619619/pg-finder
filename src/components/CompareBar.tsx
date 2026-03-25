@@ -10,10 +10,7 @@ export default function CompareBar() {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 animate-in slide-in-from-bottom duration-300">
-      {/* Gradient shadow above */}
-      <div className="h-6 bg-gradient-to-t from-black/10 to-transparent pointer-events-none" />
-
-      <div className="bg-[#F0EADD] border-t-2 border-black/8 shadow-[0_-8px_30px_rgba(0,0,0,0.12)]">
+      <div className="bg-[#FFFDF9] border-t border-black/[0.06] shadow-[0_-4px_20px_rgba(0,0,0,0.06)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between gap-4">
             {/* Left: Selected PG thumbnails */}
@@ -73,9 +70,9 @@ export default function CompareBar() {
                 {Array.from({ length: 3 - compareList.length }).map((_, i) => (
                   <div
                     key={`empty-${i}`}
-                    className="w-9 h-9 rounded-lg border-2 border-dashed border-[#d4c9a8] flex items-center justify-center shrink-0"
+                    className="w-9 h-9 rounded-xl border-2 border-dashed border-[#1B5E3B]/20 flex items-center justify-center shrink-0"
                   >
-                    <span className="text-[#d4c9a8] text-xs">+</span>
+                    <span className="text-[#1B5E3B]/30 text-xs">+</span>
                   </div>
                 ))}
               </div>
@@ -92,9 +89,9 @@ export default function CompareBar() {
               <button
                 onClick={() => setShowModal(true)}
                 disabled={compareList.length < 2}
-                className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+                className={`rounded-full px-6 py-3 text-sm font-semibold transition-all ${
                   compareList.length >= 2
-                    ? "bg-[#1a1a1a] text-white hover:opacity-90 shadow-md"
+                    ? "bg-[#1B5E3B] text-white hover:shadow-lg shadow-md"
                     : "bg-[#EDE8DE] text-[#8a8070] cursor-not-allowed"
                 }`}
               >

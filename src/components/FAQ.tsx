@@ -44,28 +44,28 @@ export default function FAQ() {
     <section className="py-20 bg-[#F0EADD]">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <span className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-3 inline-block">Help Center</span>
-          <h2 className="font-serif text-3xl sm:text-4xl text-black mb-3 tracking-tight">Frequently Asked Questions</h2>
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#1B5E3B]/60 mb-3 text-center">✦ Help Center</p>
+          <h2 className="font-serif text-3xl sm:text-4xl text-center text-black mb-3 tracking-tight">Frequently Asked Questions</h2>
           <p className="text-black/50 text-sm">Everything you need to know about Castle Living</p>
         </div>
 
         <div className="space-y-3">
           {faqs.map((faq, i) => (
-            <div key={i} className="bg-[#FFFDF9] rounded-2xl border border-black/5 overflow-hidden">
+            <div key={i} className={`bg-[#FFFDF9] rounded-2xl border border-black/[0.04] overflow-hidden transition-all duration-300 ${open === i ? "border-l-2 border-l-[#1B5E3B]" : ""}`}>
               <button
                 onClick={() => setOpen(open === i ? null : i)}
                 className="w-full text-left p-5 flex items-center justify-between gap-4"
               >
                 <span className="font-semibold text-[#1a1a1a] text-sm">{faq.q}</span>
                 <span className={`w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold shrink-0 transition-all ${
-                  open === i ? "bg-[#1a1a1a] text-white rotate-45" : "bg-[#F0EADD] text-[#888]"
+                  open === i ? "bg-[#1B5E3B] text-white rotate-45" : "bg-[#F0EADD] text-[#888]"
                 }`}>
                   +
                 </span>
               </button>
               {open === i && (
                 <div className="px-5 pb-5">
-                  <p className="text-sm text-[#888] leading-relaxed">{faq.a}</p>
+                  <p className="text-[15px] text-[#888] leading-relaxed">{faq.a}</p>
                 </div>
               )}
             </div>

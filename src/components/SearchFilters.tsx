@@ -56,17 +56,17 @@ export default function SearchFilters({ filters, onChange }: Props) {
           <input
             type="text"
             placeholder="Search PG name, area, landmark..."
-            className="w-full pl-12 pr-4 py-3 bg-[#FFFDF9] rounded-xl text-[15px] text-gray-700 placeholder-[#999] focus:bg-white focus:ring-2 focus:ring-black/10 border border-transparent focus:border-black/10 outline-none transition-all"
+            className="w-full pl-12 pr-4 py-3 bg-[#FFFDF9] rounded-full text-[15px] text-gray-700 placeholder-[#999] focus:bg-white focus:ring-2 focus:ring-[#1B5E3B]/10 border border-transparent focus:border-[#1B5E3B]/30 outline-none transition-all"
             value={filters.search}
             onChange={(e) => update({ search: e.target.value })}
           />
         </div>
         <button
           onClick={() => setExpanded(!expanded)}
-          className={`flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-medium transition-all ${
+          className={`flex items-center gap-2 px-5 py-3 rounded-full text-sm font-medium transition-all ${
             expanded || activeFilters > 0
-              ? "bg-[#1a1a1a] text-white"
-              : "bg-[#F0EADD] text-[#888] hover:bg-[#EDE8DE]"
+              ? "bg-[#1B5E3B] text-white"
+              : "bg-[#FFFDF9] border border-black/[0.06] text-[#888] hover:border-[#1B5E3B]/30"
           }`}
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -187,8 +187,8 @@ export default function SearchFilters({ filters, onChange }: Props) {
                   onClick={() => toggleAmenity(a)}
                   className={`pill transition-all text-[13px] ${
                     filters.amenities.includes(a)
-                      ? "bg-[#1a1a1a] text-white"
-                      : "bg-[#FFFDF9] text-[#888] hover:bg-[#F0EADD] border border-black/5"
+                      ? "bg-[#1B5E3B] text-white rounded-full"
+                      : "bg-[#FFFDF9] text-[#888] rounded-full border border-black/[0.06] hover:border-[#1B5E3B]/30"
                   }`}
                 >
                   {a}

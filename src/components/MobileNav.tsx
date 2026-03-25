@@ -101,8 +101,8 @@ export default function MobileNav() {
           {/* Top shadow */}
           <div className="absolute -top-4 left-0 right-0 h-4 bg-gradient-to-b from-black/10 to-transparent" />
           
-          <div className={`flex items-center justify-around px-2 py-2 border-t border-black/5 ${
-            scrolled ? "bg-[#FFFDF9]/95 backdrop-blur-xl shadow-lg shadow-black/5" : "bg-[#FFFDF9]/90 backdrop-blur-lg"
+          <div className={`flex items-center justify-around px-2 py-2 border-t border-black/5 bg-[#FFFDF9]/95 backdrop-blur-xl ${
+            scrolled ? "shadow-lg shadow-black/5" : ""
           }`}>
             {navItems.map((item) => {
               const isActive = pathname === item.href || (item.href !== "/" && pathname?.startsWith(item.href));
@@ -112,17 +112,17 @@ export default function MobileNav() {
                   href={item.href}
                   className={`flex flex-col items-center justify-center gap-0.5 px-4 py-1.5 rounded-xl transition-all ${
                     isActive
-                      ? "text-[#1a1a1a]"
+                      ? "text-[#1B5E3B]"
                       : "text-[#999] hover:text-[#666]"
                   }`}
                 >
                   <div className={`relative ${isActive ? "scale-110" : ""} transition-transform`}>
                     {isActive && (
-                      <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-[#1a1a1a] rounded-full" />
+                      <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-[#1B5E3B] rounded-full" />
                     )}
                     {item.icon}
                   </div>
-                  <span className={`text-[10px] font-semibold ${isActive ? "text-[#1a1a1a]" : ""}`}>
+                  <span className={`text-[10px] font-semibold ${isActive ? "text-[#1B5E3B]" : ""}`}>
                     {item.label}
                   </span>
                 </Link>

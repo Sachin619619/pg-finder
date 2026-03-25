@@ -32,7 +32,7 @@ export default function SimilarPGs({ currentPg }: SimilarPGsProps) {
 
   return (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-      <h3 className="text-base font-bold text-gray-900 mb-4 flex items-center gap-2">
+      <h3 className="font-serif text-2xl text-gray-900 mb-4 flex items-center gap-2">
         <span className="text-lg">🔗</span> Similar PGs in {currentPg.area}
       </h3>
       <div className="space-y-3">

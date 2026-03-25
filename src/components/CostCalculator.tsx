@@ -99,7 +99,7 @@ function CostBar({
       </div>
       <div className="h-2.5 bg-[#EDE8DE] rounded-full overflow-hidden">
         <div
-          className={`h-full rounded-full transition-all duration-700 ease-out ${color}`}
+          className={`h-full rounded-full bg-gradient-to-r from-[#1B5E3B] to-[#2d8a5e] transition-all duration-700 ease-out`}
           style={{ width: `${pct}%` }}
         />
       </div>
@@ -220,7 +220,7 @@ export default function CostCalculator({
               step={500}
               value={rent}
               onChange={(e) => setRent(Number(e.target.value))}
-              className="w-full h-2 rounded-full appearance-none cursor-pointer bg-[#EDE8DE] accent-[#1a1a1a]"
+              className="w-full h-2 rounded-full appearance-none cursor-pointer bg-[#EDE8DE] accent-[#1B5E3B]"
             />
             <div className="flex justify-between text-[10px] text-[#999] mt-1">
               <span>3,000</span>
@@ -390,7 +390,7 @@ export default function CostCalculator({
             <p className="text-xs font-semibold text-[#1a1a1a]/50 uppercase tracking-widest mb-1">
               Estimated Monthly Total
             </p>
-            <p className="text-4xl font-bold text-[#1a1a1a] tabular-nums tracking-tight">
+            <p className="font-serif text-3xl font-bold text-[#1B5E3B] tabular-nums tracking-tight">
               <span className="text-2xl">&#8377;</span>
               {animatedTotal.toLocaleString("en-IN")}
             </p>
@@ -467,7 +467,7 @@ export default function CostCalculator({
         <div className="sticky bottom-0 bg-[#FFFDF9]/95 backdrop-blur-sm border-t border-black/5 px-6 py-4 rounded-b-3xl">
           <button
             onClick={handleClose}
-            className="w-full py-3.5 rounded-xl bg-[#1a1a1a] text-white font-semibold text-sm hover:opacity-80 transition-opacity active:scale-[0.98]"
+            className="w-full py-3.5 rounded-full bg-[#1B5E3B] text-white font-semibold text-sm hover:opacity-80 transition-opacity active:scale-[0.98] shadow-lg"
           >
             Got it
           </button>

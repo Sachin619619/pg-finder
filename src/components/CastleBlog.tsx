@@ -16,8 +16,8 @@ export default function CastleBlog() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-end justify-between mb-10">
           <div>
-            <span className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-2 inline-block">From Our Blog</span>
-            <h2 className="font-serif text-3xl text-black tracking-tight">Castle Guides</h2>
+            <span className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-2 inline-block">✦ From The Blog</span>
+            <h2 className="font-serif text-3xl sm:text-4xl text-black tracking-tight">Castle Guides</h2>
           </div>
           <Link href="/blog" className="hidden sm:block text-sm font-semibold text-[#1a1a1a] hover:underline">
             View all →
@@ -27,16 +27,16 @@ export default function CastleBlog() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {posts.slice(0, 3).map((post, i) => (
             <Link key={i} href="/blog" className="group">
-              <div className={`rounded-2xl overflow-hidden ${i === 0 ? "sm:col-span-2 lg:col-span-1 lg:row-span-2" : ""}`}>
+              <div className={`rounded-3xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-1 ${i === 0 ? "sm:col-span-2 lg:col-span-1 lg:row-span-2" : ""}`}>
                 <div className={`flex items-center justify-center ${i === 0 ? "h-48 sm:h-64 bg-[#EDE8DE]" : "h-32 bg-[#F0EADD]"}`}>
                   <span className="text-5xl">{post.emoji}</span>
                 </div>
                 <div className="p-5 bg-[#F0EADD] border border-black/5">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-[10px] font-bold text-[#1a1a1a] bg-[#EDE8DE] px-2 py-0.5 rounded-full">{post.category}</span>
+                    <span className="bg-[#1B5E3B] text-white text-xs rounded-full px-3 py-1 font-medium">{post.category}</span>
                     <span className="text-[10px] text-[#999]">{post.date}</span>
                   </div>
-                  <h3 className="font-semibold text-[#1a1a1a] group-hover:text-[#1a1a1a] transition-colors leading-snug">{post.title}</h3>
+                  <h3 className="font-serif text-xl hover:text-[#1B5E3B] transition-colors leading-snug text-[#1a1a1a]">{post.title}</h3>
                 </div>
               </div>
             </Link>

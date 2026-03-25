@@ -13,6 +13,7 @@ export default function Header() {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
   const isHome = pathname === "/";
@@ -32,14 +33,21 @@ export default function Header() {
     return () => document.removeEventListener("keydown", handleEscape);
   }, [handleEscape]);
 
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
-      <div className="announcement-bar text-center py-2.5 px-4 bg-[#1B5E3B] text-white text-[13px] font-medium">
-        🏠 Castle is Bangalore&apos;s #1 PG finder — 20+ verified listings
-        <a href="#listings" className="underline underline-offset-2 font-semibold ml-2 hover:opacity-80 transition-opacity">Browse PGs →</a>
+      <div className="text-center py-2.5 px-4 bg-[#1B5E3B] text-white text-[13px] font-medium relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent shimmer" />
+        <span className="relative">🏠 Castle is Bangalore&apos;s #1 PG finder — 20+ verified listings
+        <a href="#listings" className="underline underline-offset-2 font-semibold ml-2 hover:opacity-80 transition-opacity">Browse PGs →</a></span>
       </div>
       <div className="mx-0 mt-0">
-        <div className="rounded-none px-4 sm:px-8 py-3 bg-[#FFFDF9]/95 backdrop-blur-lg border-b border-black/5">
+        <div className={`rounded-none px-4 sm:px-8 py-3 bg-[#FFFDF9]/95 backdrop-blur-lg border-b border-black/5 transition-shadow duration-300 ${scrolled ? 'shadow-md' : 'shadow-none'}`}>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               {/* Back button — shown on all pages except home */}

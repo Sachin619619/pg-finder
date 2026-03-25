@@ -56,8 +56,8 @@ export default function CastleRankings({ listings }: CastleRankingsProps) {
     <section className="py-20 bg-[#F0EADD]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
-          <span className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-3 inline-block">Castle Rankings</span>
-          <h2 className="font-serif text-3xl sm:text-4xl text-black mb-3 tracking-tight">Top PGs by Category</h2>
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#1B5E3B]/60 mb-3">&#10022; Castle Rankings</p>
+          <h2 className="font-serif text-2xl sm:text-3xl text-black mb-3 tracking-tight">Top PGs by Category</h2>
           <p className="text-black/50 max-w-md mx-auto text-sm">Discover the best PGs ranked by what matters most to you</p>
         </div>
 
@@ -67,9 +67,9 @@ export default function CastleRankings({ listings }: CastleRankingsProps) {
             <button
               key={cat.id}
               onClick={() => setActive(cat.id)}
-              className={`px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition-all ${
+              className={`px-4 py-2.5 rounded-full text-sm font-semibold whitespace-nowrap transition-all ${
                 active === cat.id
-                  ? "bg-[#1a1a1a] text-white"
+                  ? "bg-[#1B5E3B] text-white shadow-lg"
                   : "bg-[#FFFDF9] border border-black/5 text-[#666] hover:border-black/10 hover:bg-[#F0EADD]"
               }`}
             >
@@ -82,18 +82,16 @@ export default function CastleRankings({ listings }: CastleRankingsProps) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
           {getCategoryListings(listings, active).map((pg, i) => (
             <Link key={pg.id} href={`/listing/${pg.id}`} className="group">
-              <div className="bg-[#FFFDF9] rounded-2xl border border-black/5 overflow-hidden hover:shadow-md hover:-translate-y-1 transition-all">
+              <div className="bg-[#FFFDF9] rounded-3xl border border-black/5 overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
                 {/* Rank badge */}
                 <div className={`relative h-32 flex items-center justify-center ${
-                  i === 0 ? "bg-amber-50" :
-                  i === 1 ? "bg-[#EDE8DE]" :
-                  i === 2 ? "bg-orange-50" :
+                  i === 0 ? "bg-gradient-to-br from-[#d4a574] to-[#b8956a]" :
+                  i === 1 ? "bg-gradient-to-br from-[#c0c0c0] to-[#a8a8a8]" :
+                  i === 2 ? "bg-gradient-to-br from-[#cd7f32] to-[#a0522d]" :
                   "bg-[#F0EADD]"
                 }`}>
                   <span className={`text-5xl font-black ${
-                    i === 0 ? "text-amber-500" :
-                    i === 1 ? "text-[#999]" :
-                    i === 2 ? "text-orange-500" :
+                    i <= 2 ? "text-white drop-shadow-md" :
                     "text-[#d4c9a8]"
                   }`}>
                     #{i + 1}

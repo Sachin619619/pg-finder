@@ -183,7 +183,7 @@ function Stars({ rating, size = "sm" }: { rating: number; size?: "sm" | "md" | "
   return (
     <div className="flex items-center gap-0.5">
       {[1, 2, 3, 4, 5].map((i) => (
-        <svg key={i} className={`${sizeClass} ${i <= rating ? "text-amber-400" : "text-[#d4c9a8]"}`} fill="currentColor" viewBox="0 0 20 20">
+        <svg key={i} className={`${sizeClass} ${i <= rating ? "text-[#d4a574]" : "text-[#d4c9a8]"}`} fill="currentColor" viewBox="0 0 20 20">
           <path d={STAR_PATH} />
         </svg>
       ))}
@@ -196,20 +196,17 @@ function RatingBar({ star, count, total }: { star: number; count: number; total:
   const pct = total > 0 ? Math.round((count / total) * 100) : 0;
   return (
     <div className="flex items-center gap-2.5">
-      <span className="text-xs font-medium text-[#666] w-3 text-right">{star}</span>
-      <svg className="w-3.5 h-3.5 text-amber-400 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+      <span className="text-xs font-medium text-white/70 w-3 text-right">{star}</span>
+      <svg className="w-3.5 h-3.5 text-[#d4a574] shrink-0" fill="currentColor" viewBox="0 0 20 20">
         <path d={STAR_PATH} />
       </svg>
-      <div className="flex-1 h-2.5 bg-[#EDE8DE] rounded-full overflow-hidden">
+      <div className="flex-1 h-2.5 bg-white/20 rounded-full overflow-hidden">
         <div
-          className="h-full rounded-full transition-all duration-700 ease-out"
-          style={{
-            width: `${pct}%`,
-            background: star >= 4 ? "linear-gradient(90deg, #f59e0b, #fbbf24)" : star === 3 ? "#fbbf24" : star === 2 ? "#fb923c" : "#ef4444",
-          }}
+          className="h-full rounded-full bg-gradient-to-r from-[#1B5E3B] to-[#2d8a5e] transition-all duration-700 ease-out"
+          style={{ width: `${pct}%` }}
         />
       </div>
-      <span className="text-xs text-[#999] w-8 text-right">{pct}%</span>
+      <span className="text-xs text-white/70 w-8 text-right">{pct}%</span>
     </div>
   );
 }
@@ -218,16 +215,16 @@ function RatingBar({ star, count, total }: { star: number; count: number; total:
 function CategoryRow({ label, icon, rating }: { label: string; icon: string; rating: number }) {
   return (
     <div className="flex items-center justify-between">
-      <span className="text-xs text-[#666] font-medium flex items-center gap-1.5">
+      <span className="text-xs text-white/80 font-medium flex items-center gap-1.5">
         <span>{icon}</span> {label}
       </span>
       <div className="flex items-center gap-1.5">
         <div className="flex gap-0.5">
           {[1, 2, 3, 4, 5].map((i) => (
-            <div key={i} className={`w-3 h-3 rounded-sm ${i <= rating ? "bg-amber-400" : "bg-[#d4c9a8]"}`} />
+            <div key={i} className={`w-3 h-3 rounded-sm ${i <= rating ? "bg-[#d4a574]" : "bg-white/20"}`} />
           ))}
         </div>
-        <span className="text-xs font-semibold text-[#666] w-4 text-right">{rating.toFixed(1)}</span>
+        <span className="text-xs font-semibold text-white/80 w-4 text-right">{rating.toFixed(1)}</span>
       </div>
     </div>
   );
@@ -439,7 +436,7 @@ export default function ReviewSection({ reviews: initialReviews, pgId, pgName, i
     <div className="premium-card !rounded-2xl p-6 sm:p-8">
       {/* Section Header */}
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-bold text-[#1a1a1a]">Reviews & Ratings</h2>
+        <h2 className="font-serif text-2xl font-bold text-[#1a1a1a]">Reviews & Ratings</h2>
         {canReview ? (
           <button onClick={() => setShowForm(true)} className="btn-premium !py-2.5 !px-6 !text-sm flex items-center gap-2">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
@@ -470,13 +467,13 @@ export default function ReviewSection({ reviews: initialReviews, pgId, pgName, i
 
       {/* Overall Rating Summary */}
       {stats.total > 0 && (
-        <div className="bg-[#F0EADD] rounded-2xl p-6 mb-6 border border-black/5">
+        <div className="bg-[#1B5E3B] text-white rounded-3xl p-8 mb-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Big Rating Number */}
             <div className="flex flex-col items-center justify-center text-center">
-              <div className="text-5xl font-black text-[#1a1a1a] mb-1">{stats.avg.toFixed(1)}</div>
+              <div className="font-serif text-5xl font-black text-white mb-1">{stats.avg.toFixed(1)}</div>
               <Stars rating={Math.round(stats.avg)} size="md" />
-              <p className="text-xs text-[#888] mt-2 font-medium">Based on {stats.total} review{stats.total !== 1 ? "s" : ""}</p>
+              <p className="text-xs text-white/70 mt-2 font-medium">Based on {stats.total} review{stats.total !== 1 ? "s" : ""}</p>
             </div>
 
             {/* Rating Breakdown Bars */}
@@ -488,8 +485,8 @@ export default function ReviewSection({ reviews: initialReviews, pgId, pgName, i
 
             {/* Category Averages */}
             {stats.categories && (
-              <div className="space-y-2.5 border-l border-black/8 pl-6">
-                <h4 className="text-xs font-bold text-[#888] uppercase tracking-wider mb-3">Category Ratings</h4>
+              <div className="space-y-2.5 border-l border-white/20 pl-6">
+                <h4 className="text-xs font-bold text-white/70 uppercase tracking-wider mb-3">Category Ratings</h4>
                 <CategoryRow label="Cleanliness" icon="🧹" rating={stats.categories.cleanliness} />
                 <CategoryRow label="Food" icon="🍽️" rating={stats.categories.food} />
                 <CategoryRow label="Value" icon="💰" rating={stats.categories.value} />
@@ -526,7 +523,7 @@ export default function ReviewSection({ reviews: initialReviews, pgId, pgName, i
       {sortedReviews.length > 0 ? (
         <div className="space-y-0">
           {sortedReviews.map((r, idx) => (
-            <div key={r.id} className={`py-5 ${idx < sortedReviews.length - 1 ? "border-b border-black/5" : ""}`}>
+            <div key={r.id} className={`py-5 px-1 rounded-2xl border border-black/[0.04] p-6 hover:shadow-md transition-all mb-3`}>
               {/* Review Header */}
               <div className="flex items-start justify-between mb-3">
                 <div className="flex items-center gap-3">
@@ -593,7 +590,7 @@ export default function ReviewSection({ reviews: initialReviews, pgId, pgName, i
                   className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-medium transition ${
                     helpfulVotes[r.id] === "helpful"
                       ? "bg-emerald-50 text-emerald-600 border border-emerald-200"
-                      : "bg-[#F0EADD] text-[#888] hover:bg-[#EDE8DE] border border-transparent"
+                      : "rounded-full border border-black/[0.06] hover:border-[#1B5E3B]/30 hover:text-[#1B5E3B] text-[#888]"
                   }`}
                 >
                   <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
@@ -606,7 +603,7 @@ export default function ReviewSection({ reviews: initialReviews, pgId, pgName, i
                   className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-medium transition ${
                     helpfulVotes[r.id] === "not_helpful"
                       ? "bg-red-50 text-red-500 border border-red-200"
-                      : "bg-[#F0EADD] text-[#888] hover:bg-[#EDE8DE] border border-transparent"
+                      : "rounded-full border border-black/[0.06] hover:border-[#1B5E3B]/30 hover:text-[#1B5E3B] text-[#888]"
                   }`}
                 >
                   <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">

@@ -38,8 +38,8 @@ export default function WhyCastle() {
     <section className="py-20 bg-[#FFFDF9]">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <span className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-3 inline-block">Why Castle</span>
-          <h2 className="font-serif text-3xl sm:text-4xl text-black mb-3 tracking-tight">
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#1B5E3B]/60 mb-3 text-center">✦ Why Choose Us</p>
+          <h2 className="font-serif text-3xl sm:text-4xl text-center text-black mb-3 tracking-tight">
             Why Tenants Choose Castle
           </h2>
           <p className="text-black/50 text-sm max-w-md mx-auto">
@@ -49,9 +49,9 @@ export default function WhyCastle() {
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
           {reasons.map((r) => (
-            <div key={r.title} className="text-center p-6 rounded-2xl hover:bg-[#F0EADD] transition-colors">
-              <div className="text-4xl mb-3">{r.emoji}</div>
-              <h3 className="font-semibold text-[#1a1a1a] text-sm mb-2">{r.title}</h3>
+            <div key={r.title} className="text-center p-6 rounded-3xl hover:shadow-lg transition-all duration-500 hover:-translate-y-1 hover:bg-[#F0EADD] card-shine">
+              <div className="text-3xl mb-3">{r.emoji}</div>
+              <h3 className="font-semibold text-[#1a1a1a] text-sm mb-2 hover:text-[#1B5E3B] transition-colors">{r.title}</h3>
               <p className="text-xs text-[#888] leading-relaxed">{r.desc}</p>
             </div>
           ))}

@@ -39,9 +39,9 @@ export default function PriceAlertBanner() {
   return (
     <section className="py-12">
       <div className="max-w-4xl mx-auto px-4">
-        <div className="bg-[#1a1a1a] rounded-3xl p-8 sm:p-10 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full blur-2xl" />
-          <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/5 rounded-full blur-2xl" />
+        <div className="bg-gradient-to-r from-[#1B5E3B] to-[#2d8a5e] text-white rounded-2xl p-6 sm:p-10 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-2xl" />
+          <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full blur-2xl" />
           <div className="relative z-10">
             <div className="flex items-center gap-2 mb-2">
               <svg className="w-6 h-6 text-amber-300" fill="currentColor" viewBox="0 0 20 20">
@@ -57,12 +57,12 @@ export default function PriceAlertBanner() {
                 placeholder="your@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/30 outline-none focus:bg-white/15 focus:border-white/40 text-sm"
+                className="flex-1 px-4 py-3 rounded-full bg-white/20 border-0 text-white placeholder-white/50 outline-none focus:bg-white/25 text-sm"
               />
               <select
                 value={area}
                 onChange={(e) => setArea(e.target.value)}
-                className="px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white outline-none text-sm"
+                className="px-4 py-3 rounded-full bg-white/20 border-0 text-white outline-none text-sm"
               >
                 <option value="" className="text-gray-900">All Areas</option>
                 {areas.map((a) => (
@@ -72,14 +72,14 @@ export default function PriceAlertBanner() {
               <select
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(Number(e.target.value))}
-                className="px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white outline-none text-sm"
+                className="px-4 py-3 rounded-full bg-white/20 border-0 text-white outline-none text-sm"
               >
                 <option value={7000} className="text-gray-900">Under ₹7,000</option>
                 <option value={10000} className="text-gray-900">Under ₹10,000</option>
                 <option value={12000} className="text-gray-900">Under ₹12,000</option>
                 <option value={15000} className="text-gray-900">Under ₹15,000</option>
               </select>
-              <button type="submit" className="px-8 py-3 bg-[#EDE8DE] text-[#1a1a1a] rounded-xl font-semibold text-sm hover:bg-[#EDE8DE] transition whitespace-nowrap">
+              <button type="submit" className="px-8 py-3 bg-white text-[#1B5E3B] rounded-full font-semibold text-sm hover:bg-white/90 transition whitespace-nowrap">
                 Alert Me
               </button>
             </form>

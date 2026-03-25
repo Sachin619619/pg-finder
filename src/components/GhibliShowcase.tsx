@@ -141,8 +141,8 @@ export default function GhibliShowcase() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn>
             <div className="text-center mb-14">
-              <span className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-4 inline-block">The Castle Experience</span>
-              <h2 className="font-serif text-3xl sm:text-5xl font-normal text-black mb-4 tracking-tight">
+              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#1B5E3B]/60 mb-4">&#10022; The Castle Experience</p>
+              <h2 className="font-serif text-3xl sm:text-4xl font-normal text-black mb-4 tracking-tight">
                 More than just a room
               </h2>
               <p className="text-black/50 max-w-md mx-auto">A place where memories are made and friendships bloom</p>
@@ -153,8 +153,8 @@ export default function GhibliShowcase() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {/* Card 1 — Large */}
             <FadeIn delay={100} className="lg:col-span-2">
-              <div className="group relative rounded-3xl overflow-hidden bg-[#FFFDF9] border border-black/8 h-[380px] cursor-pointer hover:border-black/20 transition-all">
-                <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
+              <div className="group relative rounded-3xl overflow-hidden bg-[#FFFDF9] border border-black/8 h-[380px] cursor-pointer shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-500">
+                <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-110">
                   <Image
                     src="/images/ghibli/cozy-room.png"
                     alt="Cozy PG room with warm lighting"
@@ -175,8 +175,8 @@ export default function GhibliShowcase() {
 
             {/* Card 2 — Tall */}
             <FadeIn delay={200}>
-              <div className="group relative rounded-3xl overflow-hidden bg-[#FFFDF9] border border-black/8 h-[380px] cursor-pointer hover:border-black/20 transition-all">
-                <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
+              <div className="group relative rounded-3xl overflow-hidden bg-[#FFFDF9] border border-black/8 h-[380px] cursor-pointer shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-500">
+                <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-110">
                   <Image
                     src="/images/ghibli/balcony-chai.png"
                     alt="Evening chai on PG balcony"
@@ -197,8 +197,8 @@ export default function GhibliShowcase() {
 
             {/* Card 3 — Full width */}
             <FadeIn delay={300} className="lg:col-span-3">
-              <div className="group relative rounded-3xl overflow-hidden bg-[#FFFDF9] border border-black/8 h-[340px] cursor-pointer hover:border-black/20 transition-all">
-                <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
+              <div className="group relative rounded-3xl overflow-hidden bg-[#FFFDF9] border border-black/8 h-[340px] cursor-pointer shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-500">
+                <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-110">
                   <Image
                     src="/images/ghibli/community-evening.png"
                     alt="Friends gathering in PG common area"

@@ -30,15 +30,15 @@ export default function PriceInsights({ listings }: { listings: PGListing[] }) {
     <section className="py-20 bg-[#FFFDF9] border-t border-black/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <span className="pill bg-[#EDE8DE] text-[#1a1a1a] !text-xs font-semibold mb-4 inline-block">Price Intelligence</span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#1a1a1a] mb-3">
-            Area-wise <span className="gradient-text">Price Insights</span>
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#1B5E3B]/60 mb-3">&#10022; Price Analytics</p>
+          <h2 className="font-serif text-2xl sm:text-3xl text-[#1a1a1a] mb-3 tracking-tight">
+            Area-wise Price Insights
           </h2>
-          <p className="text-[#999] max-w-md mx-auto">Compare PG rental prices across Bangalore&apos;s top neighborhoods</p>
+          <p className="text-[#999] max-w-md mx-auto text-sm">Compare PG rental prices across Bangalore&apos;s top neighborhoods</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 stagger-children">
           {insights.map((item) => (
-            <div key={item.area} className="premium-card !rounded-2xl p-5">
+            <div key={item.area} className="bg-[#FFFDF9] border border-black/[0.06] rounded-3xl shadow-[0_4px_20px_rgba(0,0,0,0.04)] p-5">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="font-semibold text-[#1a1a1a]">{item.area}</h3>
                 <span className="text-xs text-[#999]">{item.count} PGs</span>
@@ -46,7 +46,7 @@ export default function PriceInsights({ listings }: { listings: PGListing[] }) {
               {/* Bar */}
               <div className="h-3 bg-[#EDE8DE] rounded-full overflow-hidden mb-4">
                 <div
-                  className="h-full rounded-full bg-[#1a1a1a] transition-all duration-1000"
+                  className="h-full rounded-full bg-gradient-to-r from-[#1B5E3B] to-[#2d8a5e] transition-all duration-1000"
                   style={{ width: `${(item.avg / globalMax) * 100}%` }}
                 />
               </div>

@@ -33,13 +33,14 @@ export default function TenantStories() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <span className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-3 inline-block">Testimonials</span>
-          <h2 className="font-serif text-3xl sm:text-4xl text-black mb-3 tracking-tight">What Our Tenants Say</h2>
+          <h2 className="font-serif text-4xl sm:text-5xl text-black mb-3 tracking-tight">What Our Tenants Say</h2>
           <p className="text-black/50 max-w-md mx-auto text-sm">Real stories from real people who found their perfect home through Castle Living</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {stories.map((s) => (
-            <div key={s.name} className="bg-[#FFFDF9] rounded-2xl border border-black/8 p-6 hover:shadow-lg hover:-translate-y-1 transition-all">
+            <div key={s.name} className="bg-[#FFFDF9] rounded-3xl border border-black/8 p-6 shadow-[0_4px_20px_rgba(0,0,0,0.06)] hover:shadow-lg hover:-translate-y-1 transition-all">
+              <span className="text-5xl font-serif text-[#1B5E3B]/20 leading-none block mb-2">&ldquo;</span>
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-br from-amber-100 to-orange-100 flex items-center justify-center text-2xl">
                   {s.avatar}
@@ -49,8 +50,8 @@ export default function TenantStories() {
                   <p className="text-xs text-[#888]">{s.role}</p>
                 </div>
               </div>
-              
-              <p className="text-sm text-[#666] leading-relaxed mb-4 italic">"{s.quote}"</p>
+
+              <p className="font-serif text-lg text-[#666] leading-relaxed mb-4 italic">&ldquo;{s.quote}&rdquo;</p>
               
               <div className="flex items-center justify-between pt-4 border-t border-black/5">
                 <div>

@@ -54,7 +54,7 @@ function StarSelector({ value, onChange, size = "lg" }: { value: number; onChang
         >
           <svg
             className={`${starSize} transition-colors ${
-              star <= (hover || value) ? "text-amber-400" : "text-[#d4c9a8]"
+              star <= (hover || value) ? "text-[#d4a574]" : "text-[#EDE8DE]"
             }`}
             fill="currentColor"
             viewBox="0 0 20 20"
@@ -111,11 +111,11 @@ export default function ReviewForm({ pgName, onSubmit, onClose, submitting, user
 
       {/* Modal */}
       <div
-        className="relative bg-[#FFFDF9] rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto animate-slide-up"
+        className="relative bg-[#FFFDF9] rounded-3xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto animate-slide-up"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="sticky top-0 bg-[#FFFDF9] rounded-t-2xl border-b border-black/5 px-6 py-4 flex items-center justify-between z-10">
+        <div className="sticky top-0 bg-[#FFFDF9] rounded-t-3xl border-b border-black/5 px-6 py-4 flex items-center justify-between z-10">
           <div>
             <h3 className="text-lg font-bold text-[#1a1a1a]">Write a Review</h3>
             <p className="text-xs text-[#888] mt-0.5">Share your experience at {pgName}</p>
@@ -179,7 +179,7 @@ export default function ReviewForm({ pgName, onSubmit, onClose, submitting, user
               value={comment}
               onChange={(e) => setComment(e.target.value)}
               placeholder="Tell others about your experience — what did you like or dislike?"
-              className="premium-input w-full text-sm resize-none"
+              className="w-full text-sm resize-none rounded-2xl border border-black/[0.06] focus:border-[#1B5E3B]/30 focus:ring-2 focus:ring-[#1B5E3B]/10 px-4 py-3 bg-transparent outline-none transition-all"
             />
           </div>
 
@@ -222,7 +222,7 @@ export default function ReviewForm({ pgName, onSubmit, onClose, submitting, user
             <button
               type="submit"
               disabled={submitting}
-              className="btn-premium !py-3 !px-8 !text-sm flex-1 disabled:opacity-50"
+              className="bg-[#1B5E3B] text-white rounded-full py-3 px-8 text-sm font-semibold flex-1 disabled:opacity-50 hover:bg-[#164a2f] transition-colors"
             >
               {submitting ? "Submitting..." : "Submit Review"}
             </button>

@@ -58,7 +58,7 @@ export default function CommunityStats() {
           {stats.map((stat) => (
             <div key={stat.label} className="text-center">
               <span className="text-3xl block mb-2">{stat.emoji}</span>
-              <p className="text-3xl sm:text-4xl font-bold text-white mb-1">
+              <p className="font-serif text-3xl sm:text-4xl font-bold text-white mb-1" style={{textShadow: '0 0 30px rgba(255,255,255,0.15)'}}>
                 {stat.value}
                 {stat.label === "Avg Rating" ? "" : "+"}
               </p>

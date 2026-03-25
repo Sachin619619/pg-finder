@@ -81,7 +81,7 @@ export default function NotificationBell() {
 
         {/* Unread badge */}
         {unreadCount > 0 && (
-          <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center px-1 shadow-lg shadow-red-500/30 animate-pulse">
+          <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] bg-[#1B5E3B] text-white text-[10px] font-bold rounded-full flex items-center justify-center px-1 shadow-lg shadow-[#1B5E3B]/30 animate-pulse">
             {unreadCount > 99 ? "99+" : unreadCount}
           </span>
         )}
@@ -89,7 +89,7 @@ export default function NotificationBell() {
 
       {/* Dropdown panel */}
       <div
-        className={`absolute right-0 top-12 w-80 sm:w-96 bg-[#FFFDF9] rounded-2xl shadow-2xl shadow-black/10 border border-black/8 z-50 overflow-hidden transition-all duration-300 origin-top-right ${
+        className={`absolute right-0 top-12 w-80 sm:w-96 bg-[#FFFDF9] rounded-2xl shadow-2xl shadow-black/15 border border-black/[0.06] z-50 overflow-hidden transition-all duration-300 origin-top-right ${
           open
             ? "opacity-100 scale-100 translate-y-0 pointer-events-auto"
             : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
@@ -100,7 +100,7 @@ export default function NotificationBell() {
           <div className="flex items-center gap-2">
             <h3 className="text-sm font-bold text-[#1a1a1a]">Notifications</h3>
             {unreadCount > 0 && (
-              <span className="text-[10px] font-semibold bg-red-100 text-red-600 px-1.5 py-0.5 rounded-full">
+              <span className="text-[10px] font-semibold bg-[#1B5E3B]/10 text-[#1B5E3B] px-1.5 py-0.5 rounded-full">
                 {unreadCount} new
               </span>
             )}
@@ -173,7 +173,7 @@ export default function NotificationBell() {
                   </p>
                 </div>
                 {!n.read && (
-                  <span className="w-2 h-2 bg-[#1a1a1a] rounded-full mt-2 shrink-0" />
+                  <span className="w-2 h-2 bg-[#1B5E3B] rounded-full mt-2 shrink-0" />
                 )}
               </button>
             ))

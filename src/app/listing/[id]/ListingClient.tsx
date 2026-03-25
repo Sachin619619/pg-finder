@@ -187,20 +187,20 @@ export default function ListingClient() {
         <Header />
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-24">
           <div className="animate-pulse">
-            <div className="h-4 bg-[#d4c9a8] rounded w-48 mb-6" />
+            <div className="h-4 bg-[#EDE8DE] animate-pulse rounded-2xl w-48 mb-6" />
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               <div className="lg:col-span-2 space-y-6">
-                <div className="h-80 bg-[#d4c9a8] rounded-2xl" />
-                <div className="h-8 bg-[#d4c9a8] rounded w-2/3" />
-                <div className="h-4 bg-[#d4c9a8] rounded w-1/3" />
+                <div className="h-80 bg-[#EDE8DE] animate-pulse rounded-2xl" />
+                <div className="h-8 bg-[#EDE8DE] animate-pulse rounded-2xl w-2/3" />
+                <div className="h-4 bg-[#EDE8DE] animate-pulse rounded-2xl w-1/3" />
                 <div className="flex gap-3">
-                  <div className="h-10 bg-[#d4c9a8] rounded-xl w-32" />
-                  <div className="h-10 bg-[#d4c9a8] rounded-xl w-28" />
-                  <div className="h-10 bg-[#d4c9a8] rounded-xl w-36" />
+                  <div className="h-10 bg-[#EDE8DE] animate-pulse rounded-2xl w-32" />
+                  <div className="h-10 bg-[#EDE8DE] animate-pulse rounded-2xl w-28" />
+                  <div className="h-10 bg-[#EDE8DE] animate-pulse rounded-2xl w-36" />
                 </div>
               </div>
               <div className="space-y-4">
-                <div className="h-96 bg-[#d4c9a8] rounded-2xl" />
+                <div className="h-96 bg-[#EDE8DE] animate-pulse rounded-2xl" />
               </div>
             </div>
           </div>
@@ -280,12 +280,12 @@ export default function ListingClient() {
       <Header />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-24 animate-fade-in-up">
         {/* Breadcrumb */}
-        <nav className="mb-6 text-sm text-[#888] flex items-center gap-2">
-          <Link href="/" className="hover:text-[#1a1a1a]">Home</Link>
-          <span>/</span>
-          <Link href={`/area/${pg.area.toLowerCase().replace(/\s+/g, "-")}`} className="hover:text-[#1a1a1a]">{pg.area}</Link>
-          <span>/</span>
-          <span className="text-[#1a1a1a]">{pg.name}</span>
+        <nav className="mb-6 text-[13px] text-[#888] flex items-center gap-2">
+          <Link href="/" className="hover:text-[#1a1a1a] transition-colors">Home</Link>
+          <span className="text-[#ccc]">&rsaquo;</span>
+          <Link href={`/area/${pg.area.toLowerCase().replace(/\s+/g, "-")}`} className="hover:text-[#1a1a1a] transition-colors">{pg.area}</Link>
+          <span className="text-[#ccc]">&rsaquo;</span>
+          <span className="text-[#1B5E3B] font-medium">{pg.name}</span>
         </nav>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -317,7 +317,7 @@ export default function ListingClient() {
             <div>
               <div className="flex items-start justify-between">
                 <div>
-                  <h1 className="text-3xl font-bold text-[#1a1a1a]">{pg.name}</h1>
+                  <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#1a1a1a]">{pg.name}</h1>
                   <p className="text-[#888] mt-1 flex items-center gap-1">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -345,12 +345,12 @@ export default function ListingClient() {
                     </svg>
                     {isReported ? "Reported" : "Report"}
                   </button>
-                  <div className="flex items-center gap-1 bg-yellow-50 px-3 py-2 rounded-xl">
-                    <svg className="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                  <div className="flex items-center gap-1.5 bg-[#1B5E3B] text-white rounded-full px-4 py-2 shadow-md">
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
-                    <span className="text-lg font-bold text-[#1a1a1a]">{pg.rating}</span>
-                    <span className="text-sm text-[#888]">({pg.reviews})</span>
+                    <span className="text-sm font-bold">{pg.rating}</span>
+                    <span className="text-xs text-white/70">({pg.reviews})</span>
                   </div>
                 </div>
               </div>
@@ -360,10 +360,10 @@ export default function ListingClient() {
             {/* Room Options */}
             {pg.roomOptions && pg.roomOptions.length > 0 && (
               <div className="premium-card !rounded-2xl p-6">
-                <h2 className="text-lg font-semibold text-[#1a1a1a] mb-4">🛏️ Room Options</h2>
+                <h2 className="font-serif text-2xl text-[#1a1a1a] mb-4">Room Options</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {pg.roomOptions.map(r => (
-                    <div key={r.type} className={`relative p-4 rounded-xl border-2 text-center transition-all ${r.available ? "border-[#1a1a1a] bg-[#F0EADD]" : "border-black/8 opacity-60"}`}>
+                    <div key={r.type} className={`relative rounded-2xl border text-center transition-all cursor-pointer p-5 ${r.available ? "border-[#1B5E3B] bg-[#1B5E3B]/5 shadow-md hover:shadow-lg" : "border-black/[0.06] opacity-60 hover:border-[#1B5E3B]/30 hover:shadow-md"}`}>
                       {/* Availability Badge */}
                       <div className="absolute -top-2.5 left-1/2 -translate-x-1/2">
                         <span className={`inline-flex items-center gap-1 text-[10px] font-bold px-3 py-1 rounded-full shadow-sm ${
@@ -388,31 +388,31 @@ export default function ListingClient() {
 
             {/* Quick Info Badges */}
             <div className="flex flex-wrap gap-3">
-              <span className="px-4 py-2 bg-[#EDE8DE] text-[#1a1a1a] rounded-xl font-medium">{typeLabels[pg.type]}</span>
-              <span className={`px-4 py-2 rounded-xl font-medium ${pg.gender === "male" ? "bg-blue-50 text-blue-700" : pg.gender === "female" ? "bg-pink-50 text-pink-700" : "bg-[#EDE8DE] text-[#1a1a1a]"}`}>
+              <span className="rounded-full px-4 py-2 text-sm bg-[#F0EADD] text-[#333] border border-black/[0.04] font-medium">{typeLabels[pg.type]}</span>
+              <span className={`rounded-full px-4 py-2 text-sm font-medium border border-black/[0.04] ${pg.gender === "male" ? "bg-blue-50 text-blue-700" : pg.gender === "female" ? "bg-pink-50 text-pink-700" : "bg-[#F0EADD] text-[#333]"}`}>
                 {genderLabels[pg.gender]}
               </span>
-              {pg.furnished && <span className="px-4 py-2 bg-green-50 text-green-700 rounded-xl font-medium">✨ Fully Furnished</span>}
-              {pg.foodIncluded && <span className="px-4 py-2 bg-orange-50 text-orange-700 rounded-xl font-medium">🍽️ Food Included</span>}
-              {pg.acAvailable && <span className="px-4 py-2 bg-blue-50 text-blue-700 rounded-xl font-medium">❄️ AC Available</span>}
+              {pg.furnished && <span className="rounded-full px-4 py-2 text-sm bg-green-50 text-green-700 border border-black/[0.04] font-medium">Fully Furnished</span>}
+              {pg.foodIncluded && <span className="rounded-full px-4 py-2 text-sm bg-orange-50 text-orange-700 border border-black/[0.04] font-medium">Food Included</span>}
+              {pg.acAvailable && <span className="rounded-full px-4 py-2 text-sm bg-blue-50 text-blue-700 border border-black/[0.04] font-medium">AC Available</span>}
             </div>
 
             {/* Description */}
             <div className="premium-card !rounded-2xl p-6">
-              <h2 className="text-lg font-semibold text-[#1a1a1a] mb-3">About this PG</h2>
+              <h2 className="font-serif text-2xl text-[#1a1a1a] mb-3">About this PG</h2>
               <p className="text-[#666] leading-relaxed">{pg.description}</p>
             </div>
 
             {/* Amenities */}
             <div className="premium-card !rounded-2xl p-6">
-              <h2 className="text-lg font-semibold text-[#1a1a1a] mb-4">Amenities</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <h2 className="font-serif text-2xl text-[#1a1a1a] mb-4">Amenities</h2>
+              <div className="flex flex-wrap gap-3">
                 {pg.amenities.map((a) => (
-                  <div key={a} className="flex items-center gap-2 text-[#666] bg-[#F0EADD] px-4 py-3 rounded-xl">
-                    <svg className="w-5 h-5 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div key={a} className="flex items-center gap-2 rounded-full px-4 py-2 text-sm bg-[#F0EADD] text-[#333] border border-black/[0.04]">
+                    <svg className="w-4 h-4 text-[#1B5E3B] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    <span className="text-sm font-medium">{a}</span>
+                    <span className="font-medium">{a}</span>
                   </div>
                 ))}
               </div>
@@ -420,10 +420,10 @@ export default function ListingClient() {
 
             {/* Nearby Landmarks */}
             <div className="premium-card !rounded-2xl p-6">
-              <h2 className="text-lg font-semibold text-[#1a1a1a] mb-4">Nearby Landmarks</h2>
+              <h2 className="font-serif text-2xl text-[#1a1a1a] mb-4">Nearby Landmarks</h2>
               <div className="flex flex-wrap gap-2">
                 {pg.nearbyLandmarks.map((l) => (
-                  <span key={l} className="px-3 py-1.5 bg-[#EDE8DE] rounded-lg text-sm text-[#666]">{l}</span>
+                  <span key={l} className="rounded-full px-4 py-2 text-sm bg-[#F0EADD] text-[#333] border border-black/[0.04]">{l}</span>
                 ))}
               </div>
               {pg.distanceFromMetro && (
@@ -450,7 +450,7 @@ export default function ListingClient() {
             {/* Real Map */}
             {pg.lat && pg.lng && (
               <div className="premium-card !rounded-2xl p-6">
-                <h2 className="text-lg font-semibold text-[#1a1a1a] mb-4">📍 Location</h2>
+                <h2 className="font-serif text-2xl text-[#1a1a1a] mb-4">Location</h2>
                 <MapEmbed lat={pg.lat} lng={pg.lng} name={pg.name} area={pg.area} />
               </div>
             )}
@@ -549,19 +549,19 @@ export default function ListingClient() {
           {/* Right Column — Contact & Price */}
           <div className="space-y-6">
             {/* Price Card */}
-            <div className="premium-card !rounded-2xl p-6 sticky top-24">
+            <div className="bg-[#FFFDF9] rounded-3xl border border-black/[0.04] shadow-[0_8px_30px_rgba(0,0,0,0.06)] p-8 sticky top-24">
               <div className="text-center mb-6">
                 <p className="text-sm text-[#888] mb-1">Monthly Rent</p>
                 {pg.roomOptions && pg.roomOptions.length > 1 ? (
                   <>
-                    <p className="text-3xl font-bold text-[#1a1a1a]">
+                    <p className="font-serif text-4xl text-[#1a1a1a]">
                       ₹{Math.min(...pg.roomOptions.map(r => r.price)).toLocaleString()} – ₹{Math.max(...pg.roomOptions.map(r => r.price)).toLocaleString()}
                     </p>
                     <p className="text-sm text-[#999] mt-1">depending on room type</p>
                   </>
                 ) : (
                   <>
-                    <p className="text-4xl font-bold text-[#1a1a1a]">₹{pg.price.toLocaleString()}</p>
+                    <p className="font-serif text-4xl text-[#1a1a1a]">₹{pg.price.toLocaleString()}</p>
                     <p className="text-sm text-[#999] mt-1">per month / per person</p>
                   </>
                 )}
@@ -598,7 +598,7 @@ export default function ListingClient() {
               </div>
 
               {/* Contact Person */}
-              <div className="flex items-center gap-3 p-4 bg-[#F0EADD] rounded-2xl mb-5">
+              <div className="flex items-center gap-3 p-6 bg-[#1B5E3B]/5 rounded-3xl border border-[#1B5E3B]/10 mb-5">
                 <div className="w-10 h-10 rounded-full bg-[#EDE8DE] flex items-center justify-center shrink-0">
                   <svg className="w-5 h-5 text-[#1a1a1a]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
@@ -629,7 +629,7 @@ export default function ListingClient() {
               {/* Primary CTA — Book Now */}
               <Link
                 href={`/booking/${pg.id}`}
-                className="w-full relative overflow-hidden bg-[#1a1a1a] text-white py-3.5 rounded-xl font-semibold text-center block transition-all hover:opacity-80 hover:-translate-y-0.5 active:translate-y-0"
+                className="w-full relative overflow-hidden bg-[#1B5E3B] text-white py-4 rounded-full text-base font-semibold text-center block transition-all hover:shadow-[0_8px_24px_rgba(27,94,59,0.25)] hover:-translate-y-0.5 active:translate-y-0"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
@@ -643,7 +643,7 @@ export default function ListingClient() {
               {/* Schedule Visit CTA */}
               <button
                 onClick={() => setShowScheduleVisit(true)}
-                className="w-full mt-3 relative overflow-hidden bg-[#EDE8DE] text-[#1a1a1a] py-3.5 rounded-xl font-semibold text-center transition-all hover:bg-[#d4c9a8] hover:-translate-y-0.5 active:translate-y-0 border border-black/8"
+                className="w-full mt-3 relative overflow-hidden bg-[#EDE8DE] text-[#1a1a1a] py-4 rounded-full text-base font-semibold text-center transition-all hover:bg-[#d4c9a8] hover:-translate-y-0.5 active:translate-y-0 border border-black/[0.04]"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
