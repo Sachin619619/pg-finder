@@ -8,6 +8,7 @@ import PGCard from "@/components/PGCard";
 import MapView from "@/components/MapView";
 import PriceInsights from "@/components/PriceInsights";
 import AreaInsights from "@/components/AreaInsights";
+import PGRankings from "@/components/PGRankings";
 import Testimonials from "@/components/Testimonials";
 import PriceAlertBanner from "@/components/PriceAlertBanner";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -505,6 +506,9 @@ export default function Home() {
         <ScrollReveal direction="right">
           <Testimonials />
         </ScrollReveal>
+
+        {/* ===== PG RANKINGS ===== */}
+        <PGRankings listings={listings} />
 
         {/* Dynamic Banner — before how it works */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
