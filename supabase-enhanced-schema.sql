@@ -572,3 +572,28 @@ CREATE POLICY "Service role can manage" ON notification_failures FOR ALL USING (
 
 CREATE INDEX IF NOT EXISTS idx_notification_failures_provider ON notification_failures(provider);
 CREATE INDEX IF NOT EXISTS idx_notification_failures_recipient ON notification_failures(recipient);
+
+-- ==========================================
+-- Refund Requests
+-- ==========================================
+
+CREATE TABLE IF NOT EXISTS refund_requests (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  booking_id UUID NOT NULL,
+  user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,
+  amount INTEGER DEFAULT 0,
+  reason TEXT,
+  status TEXT DEFAULT 'pending' CHECK (status IN ('pending', 'approved', 'rejected', 'not_applicable')),
+  refund_policy TEXT,
+  transaction_id TEXT,
+  requested_at TIMESTAMPTZ DEFAULT NOW(),
+  processed_at TIMESTAMPTZ
+);
+
+ALTER TABLE refund_requests ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Users can view own refund requests" ON refund_requests FOR SELECT USING (auth.uid() = user_id);
+CREATE POLICY "Users can create refund requests" ON refund_requests FOR INSERT WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "Service role can manage all" ON refund_requests FOR ALL USING (auth.role() = 'service_role');
+
+CREATE INDEX IF NOT EXISTS idx_refund_requests_booking ON refund_requests(booking_id);
+CREATE INDEX IF NOT EXISTS idx_refund_requests_status ON refund_requests(status);

@@ -15,6 +15,7 @@ import { ToastProvider } from "@/components/Toast";
 import { CompareProvider } from "@/context/CompareContext";
 import CompareBar from "@/components/CompareBar";
 import CompareModal from "@/components/CompareModal";
+import MobileNav from "@/components/MobileNav";
 
 const playfairDisplay = Playfair_Display({
   variable: "--font-serif",
@@ -235,6 +236,7 @@ export default function RootLayout({
             <CookieConsent />
             <CompareBar />
             <CompareModal />
+            <MobileNav />
           </ToastProvider>
           </CompareProvider>
         </AuthProvider>
