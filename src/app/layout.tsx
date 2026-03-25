@@ -1,13 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import { Playfair_Display, DM_Sans } from "next/font/google";
 import "./globals.css";
-import SWRegister from "@/components/SWRegister";
-import InstallPrompt from "@/components/InstallPrompt";
-import BackToTop from "@/components/BackToTop";
+
 import ScrollProgress from "@/components/ScrollProgress";
 // import AIAgent from "@/components/AIAgent"; // Replaced by ActionBot widget
 import ActionBotBridge from "@/components/ActionBotBridge";
-import CookieConsent from "@/components/CookieConsent";
+
 import ProgressBarProvider from "@/components/ProgressBar";
 import { AuthProvider } from "@/lib/auth";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
@@ -16,8 +14,8 @@ import { CompareProvider } from "@/context/CompareContext";
 import CompareBar from "@/components/CompareBar";
 import CompareModal from "@/components/CompareModal";
 import MobileNav from "@/components/MobileNav";
-import AppDownloadBanner from "@/components/AppDownloadBanner";
-import SocialProof from "@/components/SocialProof";
+
+
 
 const playfairDisplay = Playfair_Display({
   variable: "--font-serif",
@@ -216,7 +214,7 @@ export default function RootLayout({
           />
         )}
       </head>
-      <body className="min-h-full flex flex-col bg-[#F4EDD9] overflow-x-hidden">
+      <body className="min-h-full flex flex-col bg-white overflow-x-hidden">
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-[#1B1C15] focus:text-white focus:rounded-xl focus:font-semibold focus:shadow-lg focus:outline-none"
@@ -232,15 +230,10 @@ export default function RootLayout({
             {children}
             {/* <AIAgent /> */}
             <ActionBotBridge />
-            <BackToTop />
-            <SWRegister />
-            <InstallPrompt />
-            <CookieConsent />
             <CompareBar />
             <CompareModal />
             <MobileNav />
-            <AppDownloadBanner />
-            <SocialProof />
+
           </ToastProvider>
           </CompareProvider>
         </AuthProvider>

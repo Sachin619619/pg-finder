@@ -50,13 +50,13 @@ export default function SearchFilters({ filters, onChange }: Props) {
       {/* Collapsed view — always visible */}
       <div className="p-5 flex items-center gap-4">
         <div className="flex-1 relative">
-          <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
           <input
             type="text"
             placeholder="Search PG name, area, landmark..."
-            className="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-xl text-[15px] text-gray-700 placeholder-gray-300 focus:bg-white:bg-gray-800 focus:ring-2 focus:ring-[#1B1C15]/20 border border-transparent focus:border-[#d4ccb5]:border-[#1B1C15]/30 outline-none transition-all"
+            className="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-xl text-[15px] text-gray-700 placeholder-gray-400 focus:bg-white focus:ring-2 focus:ring-black/10 border border-transparent focus:border-black/10 outline-none transition-all"
             value={filters.search}
             onChange={(e) => update({ search: e.target.value })}
           />
@@ -65,8 +65,8 @@ export default function SearchFilters({ filters, onChange }: Props) {
           onClick={() => setExpanded(!expanded)}
           className={`flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-medium transition-all ${
             expanded || activeFilters > 0
-              ? "bg-[#1B1C15] text-white shadow-lg shadow-black/20"
-              : "bg-gray-100 text-gray-600 hover:bg-gray-200:bg-gray-700"
+              ? "bg-[#1a1a1a] text-white"
+              : "bg-gray-100 text-gray-600 hover:bg-gray-200"
           }`}
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -187,8 +187,8 @@ export default function SearchFilters({ filters, onChange }: Props) {
                   onClick={() => toggleAmenity(a)}
                   className={`pill transition-all text-[13px] ${
                     filters.amenities.includes(a)
-                      ? "bg-[#1B1C15] text-white shadow-md shadow-black/20"
-                      : "bg-gray-50 text-gray-500 hover:bg-gray-100:bg-gray-700 border border-gray-100"
+                      ? "bg-[#1a1a1a] text-white"
+                      : "bg-gray-50 text-gray-500 hover:bg-gray-100 border border-gray-100"
                   }`}
                 >
                   {a}
@@ -201,7 +201,7 @@ export default function SearchFilters({ filters, onChange }: Props) {
           {activeFilters > 0 && (
             <button
               onClick={() => onChange({ ...filters, area: "", minPrice: 0, maxPrice: 50000, gender: "", roomType: "", amenities: [], foodIncluded: null, acAvailable: null })}
-              className="text-sm text-[#1B1C15] hover:text-[#2a2b22] font-medium"
+              className="text-sm text-[#1a1a1a] hover:text-black font-medium"
             >
               Clear all filters
             </button>

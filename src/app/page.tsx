@@ -16,7 +16,7 @@ import CastleSearch from "@/components/CastleSearch";
 import CastleScoreCalculator from "@/components/CastleScoreCalculator";
 import BrowseByLifestyle from "@/components/BrowseByLifestyle";
 import TrendingSearches from "@/components/TrendingSearches";
-import QuickFiltersFAB from "@/components/QuickFiltersFAB";
+
 import FeaturedToday from "@/components/FeaturedToday";
 import TrendingNow from "@/components/TrendingNow";
 import AIMatchSection from "@/components/AIMatchSection";
@@ -33,7 +33,7 @@ import Testimonials from "@/components/Testimonials";
 import PriceAlertBanner from "@/components/PriceAlertBanner";
 import ScrollReveal from "@/components/ScrollReveal";
 import AdBanner from "@/components/AdBanner";
-import AnimatedBanner from "@/components/AnimatedBanner";
+
 import GhibliShowcase from "@/components/GhibliShowcase";
 import RecentlyViewed from "@/components/RecentlyViewed";
 import SearchAutocomplete from "@/components/SearchAutocomplete";
@@ -184,9 +184,7 @@ export default function Home() {
       <Header />
       <main id="main-content" className="flex-1 overflow-x-hidden">
         {/* ===== HERO ===== */}
-        <section className="bg-[#F4EDD9] pt-36 pb-28 sm:pt-44 sm:pb-36 relative overflow-hidden">
-          {/* Subtle Ghibli watercolor hero background */}
-          <div className="absolute inset-0 opacity-[0.35] pointer-events-none" style={{backgroundImage: 'url(/images/ghibli/bg-watercolor.png)', backgroundSize: 'cover', backgroundPosition: 'top center'}} />
+        <section className="bg-white pt-36 pb-20 sm:pt-44 sm:pb-28 relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
               {/* Hero heading */}
@@ -216,7 +214,7 @@ export default function Home() {
                 />
                 <button
                   onClick={() => document.getElementById("listings")?.scrollIntoView({ behavior: "smooth" })}
-                  className="bg-[#1B1C15] text-white py-4 px-8 rounded-[14px] font-medium text-sm hover:opacity-90 transition-opacity whitespace-nowrap"
+                  className="bg-[#1a1a1a] text-white py-4 px-8 rounded-xl font-medium text-sm hover:opacity-90 transition-opacity whitespace-nowrap"
                 >
                   Search PGs
                 </button>
@@ -237,7 +235,7 @@ export default function Home() {
                   <Link
                     key={area.name}
                     href={`/area/${area.name.toLowerCase().replace(/\s+/g, "-")}`}
-                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-white/60 backdrop-blur-sm border border-[#e8e0cc]/80 rounded-full text-xs font-medium text-black/60 hover:bg-white hover:border-black/20 hover:text-black/80 transition-all"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-white border border-black/5 rounded-full text-xs font-medium text-black/60 hover:bg-black/5 hover:text-black/80 transition-all"
                   >
                     <span>{area.emoji}</span>
                     {area.name}
@@ -328,10 +326,7 @@ export default function Home() {
         {/* ===== GHIBLI SHOWCASE ===== */}
         <GhibliShowcase />
 
-        {/* Dynamic Banner — after trust marquee */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedBanner seed={1} style="marquee" />
-        </div>
+
 
         {/* ===== AREA PILLS ===== */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 relative z-10">
@@ -367,8 +362,6 @@ export default function Home() {
 
         {/* ===== FILTERS + LISTINGS ===== */}
         <section id="listings" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 relative">
-          {/* Subtle Ghibli watercolor background */}
-          <div className="absolute inset-0 -mx-[50vw] left-1/2 right-1/2 w-screen opacity-[0.25] pointer-events-none" style={{backgroundImage: 'url(/images/ghibli/bg-watercolor.png)', backgroundSize: 'cover', backgroundPosition: 'center'}} />
           <SearchFilters filters={filters} onChange={setFilters} />
 
           {/* Toolbar */}
@@ -381,10 +374,10 @@ export default function Home() {
             </div>
             <div className="flex items-center gap-3">
               {/* View Toggle */}
-              <div className="flex items-center bg-[#FFFAEB] border border-[#e8e0cc] rounded-xl p-1">
+              <div className="flex items-center bg-white border border-black/5 rounded-xl p-1">
                 <button
                   onClick={() => setViewMode("grid")}
-                  className={`p-2.5 rounded-lg transition-all ${viewMode === "grid" ? "bg-white shadow-sm text-black" : "text-black/30"}`}
+                  className={`p-2.5 rounded-lg transition-all ${viewMode === "grid" ? "bg-black/5 shadow-sm text-black" : "text-black/30"}`}
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
@@ -392,7 +385,7 @@ export default function Home() {
                 </button>
                 <button
                   onClick={() => setViewMode("map")}
-                  className={`p-2.5 rounded-lg transition-all ${viewMode === "map" ? "bg-white shadow-sm text-black" : "text-black/30"}`}
+                  className={`p-2.5 rounded-lg transition-all ${viewMode === "map" ? "bg-black/5 shadow-sm text-black" : "text-black/30"}`}
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -400,7 +393,7 @@ export default function Home() {
                 </button>
               </div>
               <select
-                className="bg-[#FFFAEB] border border-[#e8e0cc] rounded-xl py-2.5 px-4 text-sm text-black outline-none"
+                className="bg-white border border-black/5 rounded-xl py-2.5 px-4 text-sm text-black outline-none"
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
               >
@@ -428,28 +421,28 @@ export default function Home() {
           {loading ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
               {[1, 2, 3, 4, 5, 6].map((i) => (
-                <div key={i} className="bg-[#FFFAEB] border border-[#e8e0cc] rounded-2xl overflow-hidden animate-pulse">
-                  <div className="h-52 bg-[#e8e0cc] rounded-t-2xl" />
+                <div key={i} className="bg-white border border-black/5 rounded-2xl overflow-hidden animate-pulse">
+                  <div className="h-52 bg-gray-100 rounded-t-2xl" />
                   <div className="p-5 space-y-3">
                     <div className="flex justify-between items-start">
                       <div className="space-y-2 flex-1">
-                        <div className="h-5 bg-[#e8e0cc] rounded-xl w-3/4" />
-                        <div className="h-3 bg-[#e8e0cc] rounded w-1/2" />
+                        <div className="h-5 bg-gray-100 rounded-xl w-3/4" />
+                        <div className="h-3 bg-gray-100 rounded w-1/2" />
                       </div>
-                      <div className="h-8 bg-[#e8e0cc] rounded-xl w-16" />
+                      <div className="h-8 bg-gray-100 rounded-xl w-16" />
                     </div>
-                    <div className="h-5 bg-[#e8e0cc] rounded-lg w-28" />
+                    <div className="h-5 bg-gray-100 rounded-lg w-28" />
                     <div className="flex gap-2 pt-1">
-                      <div className="h-2.5 w-2.5 bg-[#e8e0cc] rounded-full" />
-                      <div className="h-2.5 w-2.5 bg-[#e8e0cc] rounded-full" />
-                      <div className="h-2.5 w-2.5 bg-[#e8e0cc] rounded-full" />
-                      <div className="h-2.5 w-2.5 bg-[#e8e0cc] rounded-full" />
-                      <div className="h-2.5 w-2.5 bg-[#e8e0cc] rounded-full" />
+                      <div className="h-2.5 w-2.5 bg-gray-100 rounded-full" />
+                      <div className="h-2.5 w-2.5 bg-gray-100 rounded-full" />
+                      <div className="h-2.5 w-2.5 bg-gray-100 rounded-full" />
+                      <div className="h-2.5 w-2.5 bg-gray-100 rounded-full" />
+                      <div className="h-2.5 w-2.5 bg-gray-100 rounded-full" />
                     </div>
                     <div className="flex gap-2 pt-2">
-                      <div className="h-6 bg-[#e8e0cc] rounded-full w-16" />
-                      <div className="h-6 bg-[#e8e0cc] rounded-full w-14" />
-                      <div className="h-6 bg-[#e8e0cc] rounded-full w-12" />
+                      <div className="h-6 bg-gray-100 rounded-full w-16" />
+                      <div className="h-6 bg-gray-100 rounded-full w-14" />
+                      <div className="h-6 bg-gray-100 rounded-full w-12" />
                     </div>
                   </div>
                 </div>
@@ -509,11 +502,6 @@ export default function Home() {
           )}
         </section>
 
-        {/* Dynamic Banner — between listings and areas */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedBanner seed={2} style="floating" />
-        </div>
-
         {/* ===== BENTO AREAS GRID ===== */}
         <section id="areas" className="bg-[#F4EDD9] py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -564,11 +552,6 @@ export default function Home() {
           <PriceAlertBanner />
         </ScrollReveal>
 
-        {/* Dynamic Banner — after price alert */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedBanner seed={3} style="split" />
-        </div>
-
         {/* ===== PRICE INSIGHTS ===== */}
         <ScrollReveal direction="left">
           <PriceInsights listings={listings} />
@@ -590,11 +573,6 @@ export default function Home() {
 
         {/* ===== TENANT STORIES ===== */}
         <TenantStories />
-
-        {/* Dynamic Banner — before how it works */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedBanner seed={4} style="pulse" />
-        </div>
 
         {/* ===== HOW IT WORKS — VISUAL STEPS ===== */}
         <section className="py-24 bg-white relative overflow-hidden">
@@ -757,8 +735,7 @@ export default function Home() {
         onClose={() => setShowCostCalc(false)}
       />
 
-      {/* Quick Filters FAB (mobile) */}
-      <QuickFiltersFAB onApply={() => {}} />
+
     </>
   );
 }

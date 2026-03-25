@@ -35,14 +35,14 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
       <div className="mx-4 mt-3">
-        <div className="rounded-2xl px-6 py-3 max-w-7xl mx-auto bg-[rgba(244,237,217,0.8)] backdrop-blur-[11px] border border-[#e8e0cc]/60">
+        <div className="rounded-2xl px-6 py-3 max-w-7xl mx-auto bg-white/80 backdrop-blur-md border border-black/5 shadow-sm">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               {/* Back button — shown on all pages except home */}
               {!isHome && (
                 <button
                   onClick={() => router.back()}
-                  className="w-9 h-9 rounded-xl flex items-center justify-center hover:bg-[#ebe4d0]:bg-gray-800 transition-all text-[#222] hover:opacity-70 mr-1"
+                  className="w-9 h-9 rounded-xl flex items-center justify-center hover:bg-black/5 transition-all text-[#222] hover:opacity-70 mr-1"
                   aria-label="Go back"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
@@ -51,8 +51,8 @@ export default function Header() {
                 </button>
               )}
             <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 bg-[#f5eed8] rounded-xl flex items-center justify-center transition-all group-hover:scale-105">
-                <svg className="w-6 h-6 text-[#1B1C15]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+              <div className="w-10 h-10 bg-[#fafaf8] rounded-xl flex items-center justify-center transition-all group-hover:scale-105 border border-black/5">
+                <svg className="w-6 h-6 text-[#1a1a1a]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
                   <path d="M3 21h18" />
                   <path d="M5 21V7l3-3 4 3 4-3 3 3v14" />
                   <path d="M9 21v-4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4" />
@@ -62,7 +62,7 @@ export default function Header() {
                 </svg>
               </div>
               <div className="flex flex-col">
-                <span className="text-lg font-serif font-bold text-[#1B1C15] tracking-tight leading-none">Castle</span>
+                <span className="text-lg font-serif font-bold text-[#1a1a1a] tracking-tight leading-none">Castle</span>
                 <span className="text-[10px] font-medium text-[#666] uppercase tracking-[0.15em] leading-none mt-0.5">Find Your Home</span>
               </div>
             </Link>
@@ -96,7 +96,7 @@ export default function Header() {
                   {item.label}
                 </Link>
               ))}
-              <div className="w-px h-6 bg-[#ddd5be] mx-2" />
+              <div className="w-px h-6 bg-black/10 mx-2" />
               <NotificationBell />
 
               {/* Auth section */}
