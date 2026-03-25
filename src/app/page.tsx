@@ -23,6 +23,7 @@ import SaveSearchButton from "@/components/SaveSearchButton";
 import CommunityStats from "@/components/CommunityStats";
 import PGStatsBanner from "@/components/PGStatsBanner";
 import FAQ from "@/components/FAQ";
+import WhyCastle from "@/components/WhyCastle";
 import NewsletterSignup from "@/components/NewsletterSignup";
 import Testimonials from "@/components/Testimonials";
 import PriceAlertBanner from "@/components/PriceAlertBanner";
@@ -630,6 +631,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* ===== WHY CASTLE ===== */}
+        <WhyCastle />
 
         {/* ===== NEWSLETTER ===== */}
         <NewsletterSignup />
