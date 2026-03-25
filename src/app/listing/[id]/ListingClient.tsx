@@ -30,6 +30,7 @@ import ListingQualityScore from "@/components/ListingQualityScore";
 import CastleScore from "@/components/CastleScore";
 import CastleGuarantee from "@/components/CastleGuarantee";
 import SimilarPGs from "@/components/SimilarPGs";
+import PeopleAlsoAsk from "@/components/PeopleAlsoAsk";
 import VirtualTourBooking from "@/components/VirtualTourBooking";
 import NotificationPreferences from "@/components/NotificationPreferences";
 import EmergencyContacts from "@/components/EmergencyContacts";
@@ -594,6 +595,7 @@ export default function ListingClient() {
             <CastleGuarantee />
             <ListingQualityScore pg={pg} />
             <SimilarPGs currentPg={pg} />
+            <PeopleAlsoAsk area={pg.area} />
             <BookingTimeline />
             <PGHistory
               listedDate={pg.availableFrom}
