@@ -16,6 +16,7 @@ import PhotoGallery from "@/components/PhotoGallery";
 import MapEmbed from "@/components/MapEmbed";
 import AdBanner from "@/components/AdBanner";
 import AnimatedBanner from "@/components/AnimatedBanner";
+import CostCalculator from "@/components/CostCalculator";
 import { useAuth } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
 import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
@@ -44,6 +45,7 @@ export default function ListingClient() {
   const [reportDescription, setReportDescription] = useState("");
   const [isReported, setIsReported] = useState(false);
   const [reportSubmitting, setReportSubmitting] = useState(false);
+  const [showCostCalc, setShowCostCalc] = useState(false);
 
   // Check resident request status
   useEffect(() => {
@@ -543,6 +545,15 @@ export default function ListingClient() {
                 )}
               </div>
 
+              {/* Calculate Cost Button */}
+              <button
+                onClick={() => setShowCostCalc(true)}
+                className="w-full mb-5 py-3 rounded-2xl text-sm font-semibold transition-all hover:-translate-y-0.5 active:translate-y-0 bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-200 text-amber-800 hover:border-amber-300 hover:shadow-lg hover:shadow-amber-100 flex items-center justify-center gap-2"
+              >
+                <span className="text-base">💰</span>
+                Calculate Total Monthly Cost
+              </button>
+
               <div className="space-y-3 mb-6">
                 <div className="flex justify-between py-2 border-b border-gray-100">
                   <span className="text-gray-500">Available From</span>
@@ -741,6 +752,16 @@ export default function ListingClient() {
           </div>
         </div>
       )}
+
+      {/* Cost Calculator Modal */}
+      <CostCalculator
+        isOpen={showCostCalc}
+        onClose={() => setShowCostCalc(false)}
+        prefillRent={pg.price}
+        prefillArea={pg.area}
+        prefillFoodIncluded={pg.foodIncluded}
+        prefillWifiIncluded={pg.wifiIncluded}
+      />
 
       {/* Remove PG Warning Modal */}
       {showRemoveWarning && (
