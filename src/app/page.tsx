@@ -10,6 +10,7 @@ import PriceInsights from "@/components/PriceInsights";
 import AreaInsights from "@/components/AreaInsights";
 import PGRankings from "@/components/PGRankings";
 import BrowseByLifestyle from "@/components/BrowseByLifestyle";
+import TrendingSearches from "@/components/TrendingSearches";
 import FeaturedToday from "@/components/FeaturedToday";
 import AIMatchSection from "@/components/AIMatchSection";
 import SaveSearchButton from "@/components/SaveSearchButton";
@@ -261,6 +262,9 @@ export default function Home() {
 
         {/* ===== BROWSE BY LIFESTYLE ===== */}
         <BrowseByLifestyle />
+
+        {/* ===== TRENDING SEARCHES ===== */}
+        <TrendingSearches />
 
         {/* ===== TRUST MARQUEE ===== */}
         <section className="bg-[#FFFAEB] border-y border-[#e8e0cc] py-4 overflow-hidden">
