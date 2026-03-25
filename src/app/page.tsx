@@ -8,6 +8,7 @@ import PGCard from "@/components/PGCard";
 import MapView from "@/components/MapView";
 import PriceInsights from "@/components/PriceInsights";
 import AreaInsights from "@/components/AreaInsights";
+import AreaCompare from "@/components/AreaCompare";
 import PGRankings from "@/components/PGRankings";
 import BrowseByLifestyle from "@/components/BrowseByLifestyle";
 import TrendingSearches from "@/components/TrendingSearches";
@@ -517,6 +518,9 @@ export default function Home() {
 
         {/* ===== AREA INSIGHTS ===== */}
         <AreaInsights />
+
+        {/* ===== AREA COMPARE ===== */}
+        <AreaCompare />
 
         {/* ===== PRICE DROP ALERT ===== */}
         <ScrollReveal direction="scale">
