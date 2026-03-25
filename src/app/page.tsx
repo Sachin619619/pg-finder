@@ -25,6 +25,7 @@ import PGStatsBanner from "@/components/PGStatsBanner";
 import FAQ from "@/components/FAQ";
 import WhyCastle from "@/components/WhyCastle";
 import CastleAppPromo from "@/components/CastleAppPromo";
+import CastleBlog from "@/components/CastleBlog";
 import OwnerDashboardLanding from "@/components/OwnerDashboardLanding";
 import NewsletterSignup from "@/components/NewsletterSignup";
 import Testimonials from "@/components/Testimonials";
@@ -645,6 +646,9 @@ export default function Home() {
 
         {/* ===== NEWSLETTER ===== */}
         <NewsletterSignup />
+
+        {/* ===== BLOG ===== */}
+        <CastleBlog />
 
         {/* ===== FAQ ===== */}
         <FAQ />
