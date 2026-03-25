@@ -335,7 +335,7 @@ export default function Home() {
               onClick={() => setFilters(defaultFilters)}
               className={`shrink-0 px-6 py-3.5 rounded-full font-medium text-sm transition-all ${
                 !filters.area
-                  ? "bg-[#1B1C15] text-white"
+                  ? "bg-[#1a1a1a] text-white"
                   : "bg-gray-50 text-black border border-gray-200 hover:border-black/30"
               }`}
             >
@@ -347,7 +347,7 @@ export default function Home() {
                 onClick={() => setFilters({ ...defaultFilters, area })}
                 className={`shrink-0 px-6 py-3.5 rounded-full font-medium text-sm transition-all ${
                   filters.area === area
-                    ? "bg-[#1B1C15] text-white"
+                    ? "bg-[#1a1a1a] text-white"
                     : "bg-gray-50 text-black border border-gray-200 hover:border-black/30"
                 }`}
               >
@@ -488,7 +488,7 @@ export default function Home() {
               <p className="text-black/40 mb-2">We couldn&apos;t find any PGs matching your current criteria.</p>
               <p className="text-black/30 text-sm mb-8">Try broadening your search or removing some filters.</p>
               <div className="flex items-center justify-center gap-3">
-                <button onClick={() => setFilters(defaultFilters)} className="bg-[#1B1C15] text-white py-3 px-6 rounded-[14px] font-medium text-sm hover:opacity-90 transition-opacity">
+                <button onClick={() => setFilters(defaultFilters)} className="bg-[#1a1a1a] text-white py-3 px-6 rounded-[14px] font-medium text-sm hover:opacity-90 transition-opacity">
                   Clear Filters
                 </button>
                 <button

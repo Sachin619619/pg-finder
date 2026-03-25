@@ -113,7 +113,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#1B1C15",
+  themeColor: "#1a1a1a",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
@@ -217,7 +217,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-white overflow-x-hidden">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-[#1B1C15] focus:text-white focus:rounded-xl focus:font-semibold focus:shadow-lg focus:outline-none"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-[#1a1a1a] focus:text-white focus:rounded-xl focus:font-semibold focus:shadow-lg focus:outline-none"
         >
           Skip to main content
         </a>
@@ -241,7 +241,7 @@ export default function RootLayout({
           src="https://actionbot-next.vercel.app/widget.js"
           data-tenant="castle-674545ded691fc48edc66366bc5a754d"
           data-api="https://actionbot-next.vercel.app"
-          data-color="#1B1C15"
+          data-color="#1a1a1a"
         />
       </body>
     </html>

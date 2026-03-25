@@ -295,7 +295,7 @@ export default function AddListingPage() {
       <>
         <Header />
         <main className="max-w-3xl mx-auto px-4 pt-28 pb-16 flex items-center justify-center py-20">
-          <div className="animate-spin w-8 h-8 border-4 border-[#1B1C15] border-t-transparent rounded-full" />
+          <div className="animate-spin w-8 h-8 border-4 border-[#1a1a1a] border-t-transparent rounded-full" />
         </main>
       </>
     );
@@ -480,7 +480,7 @@ export default function AddListingPage() {
                                     }}
                                     className="w-full flex items-center gap-3 p-3 hover:bg-gray-50 transition text-left"
                                   >
-                                    <div className="w-8 h-8 rounded-full bg-[#1B1C15] flex items-center justify-center text-white font-bold text-xs shrink-0">
+                                    <div className="w-8 h-8 rounded-full bg-[#1a1a1a] flex items-center justify-center text-white font-bold text-xs shrink-0">
                                       {owner.name.charAt(0)}
                                     </div>
                                     <div className="min-w-0">
@@ -659,7 +659,7 @@ export default function AddListingPage() {
                       key={room.type}
                       className={`p-4 rounded-xl border-2 transition-all ${
                         room.enabled
-                          ? "border-[#1B1C15] bg-gray-100"
+                          ? "border-[#1a1a1a] bg-gray-100"
                           : "border-gray-200"
                       }`}
                     >
@@ -672,7 +672,7 @@ export default function AddListingPage() {
                             updated[idx] = { ...updated[idx], enabled: !updated[idx].enabled };
                             setRoomOptions(updated);
                           }}
-                          className="w-4 h-4 rounded text-[#1a1a1a] focus:ring-[#1B1C15]/20"
+                          className="w-4 h-4 rounded text-[#1a1a1a] focus:ring-[#1a1a1a]/20"
                         />
                         <span className="text-sm font-semibold text-gray-700">
                           {room.type === "single" ? "🛏️ Single" : room.type === "double" ? "🛏️ Double Sharing" : "🛏️ Triple Sharing"}
@@ -740,7 +740,7 @@ export default function AddListingPage() {
                   onClick={() => f.set(!f.value)}
                   className={`p-3 rounded-xl border-2 text-center transition-all ${
                     f.value
-                      ? "border-[#1B1C15] bg-gray-100"
+                      ? "border-[#1a1a1a] bg-gray-100"
                       : "border-gray-200 hover:border-gray-300"
                   }`}
                 >
@@ -760,7 +760,7 @@ export default function AddListingPage() {
                   onClick={() => toggleAmenity(a)}
                   className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
                     selectedAmenities.includes(a)
-                      ? "bg-[#1B1C15] text-white"
+                      ? "bg-[#1a1a1a] text-white"
                       : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                   }`}
                 >
