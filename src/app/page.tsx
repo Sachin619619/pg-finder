@@ -11,6 +11,7 @@ import AreaInsights from "@/components/AreaInsights";
 import AreaCompare from "@/components/AreaCompare";
 import PGRankings from "@/components/PGRankings";
 import CastleRankings from "@/components/CastleRankings";
+import CastleSearch from "@/components/CastleSearch";
 import BrowseByLifestyle from "@/components/BrowseByLifestyle";
 import TrendingSearches from "@/components/TrendingSearches";
 import QuickFiltersFAB from "@/components/QuickFiltersFAB";
@@ -258,6 +259,16 @@ export default function Home() {
         </section>
 
         {/* ===== FEATURED TODAY ===== */}
+
+        {/* ===== CASTLE SEARCH ===== */}
+        <section className="py-12 px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <p className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-3">Smart Search</p>
+            <CastleSearch />
+          </div>
+        </section>
+
+        <FeaturedToday listings={listings} />
         <FeaturedToday listings={listings} />
 
         {/* ===== AI MATCH ===== */}
