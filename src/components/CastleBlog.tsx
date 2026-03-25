@@ -28,10 +28,10 @@ export default function CastleBlog() {
           {posts.slice(0, 3).map((post, i) => (
             <Link key={i} href="/blog" className="group">
               <div className={`rounded-2xl overflow-hidden ${i === 0 ? "sm:col-span-2 lg:col-span-1 lg:row-span-2" : ""}`}>
-                <div className={`flex items-center justify-center ${i === 0 ? "h-48 sm:h-64 bg-[#EDE8DE]" : "h-32 bg-[#F5F0E8]"}`}>
+                <div className={`flex items-center justify-center ${i === 0 ? "h-48 sm:h-64 bg-[#EDE8DE]" : "h-32 bg-[#F0EADD]"}`}>
                   <span className="text-5xl">{post.emoji}</span>
                 </div>
-                <div className="p-5 bg-[#F5F0E8] border border-black/5">
+                <div className="p-5 bg-[#F0EADD] border border-black/5">
                   <div className="flex items-center gap-2 mb-2">
                     <span className="text-[10px] font-bold text-[#1a1a1a] bg-[#EDE8DE] px-2 py-0.5 rounded-full">{post.category}</span>
                     <span className="text-[10px] text-[#999]">{post.date}</span>

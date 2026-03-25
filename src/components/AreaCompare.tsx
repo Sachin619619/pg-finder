@@ -24,7 +24,7 @@ export default function AreaCompare() {
   });
 
   return (
-    <section className="py-20 bg-[#F5F0E8]">
+    <section className="py-20 bg-[#F0EADD]">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <span className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-3 inline-block">Smart Comparison</span>
@@ -60,7 +60,7 @@ export default function AreaCompare() {
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="bg-[#F5F0E8] border-b border-black/5">
+                  <tr className="bg-[#F0EADD] border-b border-black/5">
                     <th className="text-left p-4 text-sm font-semibold text-[#888] w-40">Metric</th>
                     {selected.map(area => (
                       <th key={area} className="text-center p-4 text-sm font-bold text-[#1a1a1a] min-w-44">
@@ -71,7 +71,7 @@ export default function AreaCompare() {
                 </thead>
                 <tbody>
                   {/* Safety Score */}
-                  <tr className="border-b border-[#F5F0E8]">
+                  <tr className="border-b border-[#F0EADD]">
                     <td className="p-4 text-sm font-medium text-[#666]">🛡️ Safety Score</td>
                     {selected.map(area => {
                       const safety = getData(area).safety;
@@ -87,7 +87,7 @@ export default function AreaCompare() {
                   </tr>
 
                   {/* Metro */}
-                  <tr className="border-b border-[#F5F0E8]">
+                  <tr className="border-b border-[#F0EADD]">
                     <td className="p-4 text-sm font-medium text-[#666]">🚇 Metro Walk</td>
                     {selected.map(area => {
                       const metro = getData(area).metro;
@@ -107,7 +107,7 @@ export default function AreaCompare() {
                   </tr>
 
                   {/* Bus */}
-                  <tr className="border-b border-[#F5F0E8]">
+                  <tr className="border-b border-[#F0EADD]">
                     <td className="p-4 text-sm font-medium text-[#666]">🚌 Bus Routes</td>
                     {selected.map(area => {
                       const bus = getData(area).bus;
@@ -124,7 +124,7 @@ export default function AreaCompare() {
                   </tr>
 
                   {/* Bus Score */}
-                  <tr className="border-b border-[#F5F0E8]">
+                  <tr className="border-b border-[#F0EADD]">
                     <td className="p-4 text-sm font-medium text-[#666]">🚌 Bus Score</td>
                     {selected.map(area => {
                       const bus = getData(area).bus;

@@ -53,7 +53,7 @@ export default function CastleRankings({ listings }: CastleRankingsProps) {
   const [active, setActive] = useState("castle_score");
 
   return (
-    <section className="py-20 bg-[#F5F0E8]">
+    <section className="py-20 bg-[#F0EADD]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <span className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-3 inline-block">Castle Rankings</span>
@@ -70,7 +70,7 @@ export default function CastleRankings({ listings }: CastleRankingsProps) {
               className={`px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition-all ${
                 active === cat.id
                   ? "bg-[#1a1a1a] text-white"
-                  : "bg-[#FFFDF9] border border-black/5 text-[#666] hover:border-black/10 hover:bg-[#F5F0E8]"
+                  : "bg-[#FFFDF9] border border-black/5 text-[#666] hover:border-black/10 hover:bg-[#F0EADD]"
               }`}
             >
               {cat.label}
@@ -88,7 +88,7 @@ export default function CastleRankings({ listings }: CastleRankingsProps) {
                   i === 0 ? "bg-amber-50" :
                   i === 1 ? "bg-[#EDE8DE]" :
                   i === 2 ? "bg-orange-50" :
-                  "bg-[#F5F0E8]"
+                  "bg-[#F0EADD]"
                 }`}>
                   <span className={`text-5xl font-black ${
                     i === 0 ? "text-amber-500" :

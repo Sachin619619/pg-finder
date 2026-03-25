@@ -153,7 +153,7 @@ export default function ShareButtons({ pgName, pgArea, pgPrice, compact = false,
           >
             <div
               ref={modalRef}
-              className="bg-[#F5F0E8] rounded-2xl shadow-2xl p-6 w-[320px] max-w-[90vw]"
+              className="bg-[#F0EADD] rounded-2xl shadow-2xl p-6 w-[320px] max-w-[90vw]"
               style={{ animation: "scaleIn 0.2s ease-out" }}
               onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}
             >
@@ -240,7 +240,7 @@ export default function ShareButtons({ pgName, pgArea, pgPrice, compact = false,
         >
           <div
             ref={modalRef}
-            className="bg-[#F5F0E8] rounded-2xl shadow-2xl p-6 w-[360px] max-w-[90vw]"
+            className="bg-[#F0EADD] rounded-2xl shadow-2xl p-6 w-[360px] max-w-[90vw]"
             style={{ animation: "scaleIn 0.2s ease-out" }}
             onClick={(e) => e.stopPropagation()}
           >

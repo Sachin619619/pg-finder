@@ -75,7 +75,7 @@ export default function AIMatchSection({ listings }: AIMatchSectionProps) {
   };
 
   return (
-    <section className="py-20 bg-[#F5F0E8]">
+    <section className="py-20 bg-[#F0EADD]">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <span className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-3 inline-block">AI-Powered</span>
@@ -87,7 +87,7 @@ export default function AIMatchSection({ listings }: AIMatchSectionProps) {
           {!matched ? (
             <>
               {/* Progress */}
-              <div className="bg-[#F5F0E8] px-6 py-4 border-b border-black/5">
+              <div className="bg-[#F0EADD] px-6 py-4 border-b border-black/5">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm font-semibold text-black">Question {step + 1} of {lifestyleQuestions.length}</span>
                   <button onClick={reset} className="text-xs text-[#999] hover:text-[#666]">Start Over</button>
@@ -112,7 +112,7 @@ export default function AIMatchSection({ listings }: AIMatchSectionProps) {
                     <button
                       key={opt}
                       onClick={() => handleAnswer(opt)}
-                      className="w-full text-left p-4 rounded-xl border border-black/5 hover:border-black/20 hover:bg-[#F5F0E8] transition-all text-sm font-medium text-[#666] group"
+                      className="w-full text-left p-4 rounded-xl border border-black/5 hover:border-black/20 hover:bg-[#F0EADD] transition-all text-sm font-medium text-[#666] group"
                     >
                       <span className="group-hover:ml-1 transition-all">{opt}</span>
                     </button>
@@ -131,7 +131,7 @@ export default function AIMatchSection({ listings }: AIMatchSectionProps) {
               <div className="p-6 space-y-4">
                 {matched.map((pg, i) => (
                   <Link key={pg.id} href={`/listing/${pg.id}`} className="block group">
-                    <div className="flex items-center gap-4 p-4 rounded-xl border border-black/5 hover:border-black/10 hover:bg-[#F5F0E8] transition-all">
+                    <div className="flex items-center gap-4 p-4 rounded-xl border border-black/5 hover:border-black/10 hover:bg-[#F0EADD] transition-all">
                       <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center text-white font-bold text-sm shrink-0">
                         {i + 1}
                       </div>

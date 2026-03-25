@@ -184,7 +184,7 @@ export default function Home() {
       <Header />
       <main id="main-content" className="flex-1 overflow-x-hidden">
         {/* ===== HERO ===== */}
-        <section className="bg-[#F5F0E8] pt-40 pb-24 sm:pt-52 sm:pb-32 relative overflow-hidden">
+        <section className="bg-[#F0EADD] pt-44 pb-24 sm:pt-56 sm:pb-32 relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
               {/* Hero heading */}
@@ -276,7 +276,7 @@ export default function Home() {
         </section>
 
         {/* ===== CASTLE SCORE CALCULATOR ===== */}
-        <section className="py-12 px-4 bg-[#F5F0E8]">
+        <section className="py-12 px-4 bg-[#F0EADD]">
           <div className="max-w-md mx-auto text-center">
             <span className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-3 inline-block">🎯 Quiz</span>
             <h2 className="font-serif text-2xl text-gray-900 mb-2">What's Your Castle Score?</h2>
@@ -636,7 +636,7 @@ export default function Home() {
         <FAQ />
 
         {/* ===== FOOTER ===== */}
-        <footer className="bg-[#F5F0E8] text-black/50 pt-20 pb-8 border-t border-black/5">
+        <footer className="bg-[#F0EADD] text-black/50 pt-20 pb-8 border-t border-black/5">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="grid grid-cols-1 sm:grid-cols-4 gap-10 mb-16">
               <div className="sm:col-span-2">

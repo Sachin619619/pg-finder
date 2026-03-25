@@ -39,7 +39,7 @@ export default function Header() {
         <a href="#listings" className="underline underline-offset-2 font-semibold ml-2 hover:opacity-80 transition-opacity">Browse PGs →</a>
       </div>
       <div className="mx-0 mt-0">
-        <div className="rounded-none px-8 py-3 max-w-7xl mx-auto bg-white/95 backdrop-blur-lg border-b border-black/5">
+        <div className="rounded-none px-4 sm:px-8 py-3 bg-[#FFFDF9]/95 backdrop-blur-lg border-b border-black/5">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               {/* Back button — shown on all pages except home */}

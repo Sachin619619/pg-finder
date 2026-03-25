@@ -470,7 +470,7 @@ export default function ReviewSection({ reviews: initialReviews, pgId, pgName, i
 
       {/* Overall Rating Summary */}
       {stats.total > 0 && (
-        <div className="bg-[#F5F0E8] rounded-2xl p-6 mb-6 border border-black/5">
+        <div className="bg-[#F0EADD] rounded-2xl p-6 mb-6 border border-black/5">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Big Rating Number */}
             <div className="flex flex-col items-center justify-center text-center">
@@ -593,7 +593,7 @@ export default function ReviewSection({ reviews: initialReviews, pgId, pgName, i
                   className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-medium transition ${
                     helpfulVotes[r.id] === "helpful"
                       ? "bg-emerald-50 text-emerald-600 border border-emerald-200"
-                      : "bg-[#F5F0E8] text-[#888] hover:bg-[#EDE8DE] border border-transparent"
+                      : "bg-[#F0EADD] text-[#888] hover:bg-[#EDE8DE] border border-transparent"
                   }`}
                 >
                   <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
@@ -606,7 +606,7 @@ export default function ReviewSection({ reviews: initialReviews, pgId, pgName, i
                   className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-medium transition ${
                     helpfulVotes[r.id] === "not_helpful"
                       ? "bg-red-50 text-red-500 border border-red-200"
-                      : "bg-[#F5F0E8] text-[#888] hover:bg-[#EDE8DE] border border-transparent"
+                      : "bg-[#F0EADD] text-[#888] hover:bg-[#EDE8DE] border border-transparent"
                   }`}
                 >
                   <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">

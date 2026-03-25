@@ -214,7 +214,7 @@ export default function RootLayout({
           />
         )}
       </head>
-      <body className="min-h-full flex flex-col bg-[#F5F0E8] overflow-x-hidden">
+      <body className="min-h-full flex flex-col bg-[#F0EADD] overflow-x-hidden">
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-[#1a1a1a] focus:text-white focus:rounded-xl focus:font-semibold focus:shadow-lg focus:outline-none"

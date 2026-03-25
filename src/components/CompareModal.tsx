@@ -231,7 +231,7 @@ export default function CompareModal() {
               {compareList.map((pg) => (
                 <div
                   key={pg.id}
-                  className="bg-[#F5F0E8] rounded-2xl border border-black/8 p-4 text-center relative group"
+                  className="bg-[#F0EADD] rounded-2xl border border-black/8 p-4 text-center relative group"
                 >
                   {/* Remove button */}
                   <button

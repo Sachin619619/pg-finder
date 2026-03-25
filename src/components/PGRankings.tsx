@@ -56,7 +56,7 @@ export default function PGRankings({ listings }: PGRankingsProps) {
   const activeType = rankTypes.find(r => r.id === activeRank)!;
 
   return (
-    <section className="py-20 bg-[#F5F0E8]">
+    <section className="py-20 bg-[#F0EADD]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <span className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-3 inline-block">Smart Rankings</span>
@@ -73,7 +73,7 @@ export default function PGRankings({ listings }: PGRankingsProps) {
               className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition-all ${
                 activeRank === type.id
                   ? "bg-[#1a1a1a] text-white shadow-lg"
-                  : "bg-[#FFFDF9] border border-black/8 text-[#666] hover:border-black/12 hover:bg-[#F5F0E8]"
+                  : "bg-[#FFFDF9] border border-black/8 text-[#666] hover:border-black/12 hover:bg-[#F0EADD]"
               }`}
             >
               <span>{type.emoji}</span>
@@ -87,20 +87,20 @@ export default function PGRankings({ listings }: PGRankingsProps) {
           <div className="p-4 sm:p-6 border-b border-black/5">
             <p className="text-sm text-[#888]">{activeType.desc}</p>
           </div>
-          <div className="divide-y divide-[#F5F0E8]">
+          <div className="divide-y divide-[#F0EADD]">
             {ranked.map((pg, i) => {
               const score = getScore(activeRank, pg);
               const safety = areaSafetyScores[pg.area];
               const rank = i + 1;
               
               return (
-                <div key={pg.id} className="p-4 sm:p-5 flex items-center gap-4 hover:bg-[#F5F0E8]/50 transition-colors">
+                <div key={pg.id} className="p-4 sm:p-5 flex items-center gap-4 hover:bg-[#F0EADD]/50 transition-colors">
                   {/* Rank */}
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-sm shrink-0 ${
                     rank === 1 ? "bg-amber-100 text-amber-700" :
                     rank === 2 ? "bg-[#EDE8DE] text-[#666]" :
                     rank === 3 ? "bg-orange-100 text-orange-700" :
-                    "bg-[#F5F0E8] text-[#999]"
+                    "bg-[#F0EADD] text-[#999]"
                   }`}>
                     {rank === 1 ? "🥇" : rank === 2 ? "🥈" : rank === 3 ? "🥉" : `#${rank}`}
                   </div>

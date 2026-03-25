@@ -53,7 +53,7 @@ export default function CastleScoreCalculator() {
   if (result !== null) {
     const tier = result >= 90 ? { label: "Castle Platinum", emoji: "🥇", color: "text-slate-700 bg-slate-50 border-slate-200" }
       : result >= 80 ? { label: "Castle Gold", emoji: "🥈", color: "text-amber-700 bg-amber-50 border-amber-200" }
-      : result >= 70 ? { label: "Castle Silver", emoji: "🥉", color: "text-[#555] bg-[#F5F0E8] border-black/8" }
+      : result >= 70 ? { label: "Castle Silver", emoji: "🥉", color: "text-[#555] bg-[#F0EADD] border-black/8" }
       : { label: "Castle Bronze", emoji: "🏅", color: "text-orange-700 bg-orange-50 border-orange-200" };
 
     return (
@@ -108,7 +108,7 @@ export default function CastleScoreCalculator() {
 
   return (
     <div className="bg-[#FFFDF9] border border-black/5 rounded-2xl overflow-hidden shadow-sm">
-      <div className="bg-[#F5F0E8] px-5 py-4 border-b border-black/5">
+      <div className="bg-[#F0EADD] px-5 py-4 border-b border-black/5">
         <div className="flex items-center justify-between mb-2">
           <span className="text-xs font-semibold text-[#666]">Question {step + 1} of {questions.length}</span>
           <button onClick={reset} className="text-xs text-[#999] hover:text-[#666]">Reset</button>
@@ -134,7 +134,7 @@ export default function CastleScoreCalculator() {
               }}
               className={`w-full text-left p-4 rounded-xl border-2 transition-all ${
                 currentQ.value === opt.id
-                  ? "border-black bg-[#F5F0E8]"
+                  ? "border-black bg-[#F0EADD]"
                   : "border-black/5 bg-[#FFFDF9] hover:border-black/8"
               }`}
             >

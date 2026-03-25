@@ -153,23 +153,23 @@ export default function PGCard({ pg, priority = false, showCompare = true }: { p
           <div className="flex flex-wrap gap-2 mb-4">
             {pg.roomOptions && pg.roomOptions.length > 0 ? (
               pg.roomOptions.map(r => (
-                <span key={r.type} className="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-medium bg-[#F5F0E8] text-[#333] border border-black/5">
+                <span key={r.type} className="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-medium bg-[#F0EADD] text-[#333] border border-black/5">
                   {r.type === "single" ? "Single" : r.type === "double" ? "Double" : "Triple"} · ₹{r.price.toLocaleString()}
                 </span>
               ))
             ) : (
-              <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-medium bg-[#F5F0E8] text-[#333] border border-black/5">
+              <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-medium bg-[#F0EADD] text-[#333] border border-black/5">
                 {pg.type === "single" ? "Single" : pg.type === "double" ? "Double" : pg.type === "triple" ? "Triple" : "Any"} Occupancy
               </span>
             )}
             {pg.foodIncluded && (
-              <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-medium bg-[#F5F0E8] text-[#333] border border-black/5">Food Inc.</span>
+              <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-medium bg-[#F0EADD] text-[#333] border border-black/5">Food Inc.</span>
             )}
             {pg.acAvailable && (
-              <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-medium bg-[#F5F0E8] text-[#333] border border-black/5">AC</span>
+              <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-medium bg-[#F0EADD] text-[#333] border border-black/5">AC</span>
             )}
             {pg.furnished && (
-              <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-medium bg-[#F5F0E8] text-[#333] border border-black/5">Furnished</span>
+              <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-medium bg-[#F0EADD] text-[#333] border border-black/5">Furnished</span>
             )}
           </div>
 

@@ -13,7 +13,7 @@ export default function CompareBar() {
       {/* Gradient shadow above */}
       <div className="h-6 bg-gradient-to-t from-black/10 to-transparent pointer-events-none" />
 
-      <div className="bg-[#F5F0E8] border-t-2 border-black/8 shadow-[0_-8px_30px_rgba(0,0,0,0.12)]">
+      <div className="bg-[#F0EADD] border-t-2 border-black/8 shadow-[0_-8px_30px_rgba(0,0,0,0.12)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between gap-4">
             {/* Left: Selected PG thumbnails */}

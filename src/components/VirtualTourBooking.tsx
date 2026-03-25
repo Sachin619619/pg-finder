@@ -70,7 +70,7 @@ export default function VirtualTourBooking({ pgId, pgName, onBooked }: VirtualTo
   }
 
   return (
-    <div className="bg-[#F5F0E8] border border-black/8 rounded-2xl p-5">
+    <div className="bg-[#F0EADD] border border-black/8 rounded-2xl p-5">
       <div className="flex items-center gap-2 mb-4">
         <span className="text-2xl">🎥</span>
         <div>

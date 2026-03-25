@@ -161,7 +161,7 @@ export default function ReviewForm({ pgName, onSubmit, onClose, submitting, user
             <label className="block text-sm font-semibold text-[#666] mb-3">Rate by Category</label>
             <div className="space-y-3">
               {categories.map(({ key, label, icon }) => (
-                <div key={key} className="flex items-center justify-between bg-[#F5F0E8] rounded-xl px-4 py-2.5">
+                <div key={key} className="flex items-center justify-between bg-[#F0EADD] rounded-xl px-4 py-2.5">
                   <span className="text-sm text-[#666] font-medium flex items-center gap-2">
                     <span>{icon}</span> {label}
                   </span>

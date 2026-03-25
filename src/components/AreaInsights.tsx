@@ -79,7 +79,7 @@ export default function AreaInsights() {
 
             return (
               <div key={area} className={`rounded-2xl p-4 border transition-all hover:shadow-md ${
-                rank <= 3 ? "bg-amber-50 border-amber-200" : "bg-[#F5F0E8] border-black/5 hover:border-black/8"
+                rank <= 3 ? "bg-amber-50 border-amber-200" : "bg-[#F0EADD] border-black/5 hover:border-black/8"
               }`}>
                 <div className="flex items-start justify-between mb-2">
                   <span className={`text-lg font-bold ${rank === 1 ? "text-amber-600" : rank === 2 ? "text-[#666]" : rank === 3 ? "text-orange-600" : "text-[#999]"}`}>

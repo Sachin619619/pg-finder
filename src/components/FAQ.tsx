@@ -41,7 +41,7 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section className="py-20 bg-[#F5F0E8]">
+    <section className="py-20 bg-[#F0EADD]">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <span className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-3 inline-block">Help Center</span>
@@ -58,7 +58,7 @@ export default function FAQ() {
               >
                 <span className="font-semibold text-[#1a1a1a] text-sm">{faq.q}</span>
                 <span className={`w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold shrink-0 transition-all ${
-                  open === i ? "bg-[#1a1a1a] text-white rotate-45" : "bg-[#F5F0E8] text-[#888]"
+                  open === i ? "bg-[#1a1a1a] text-white rotate-45" : "bg-[#F0EADD] text-[#888]"
                 }`}>
                   +
                 </span>

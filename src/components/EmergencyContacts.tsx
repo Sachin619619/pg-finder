@@ -28,7 +28,7 @@ export default function EmergencyContacts() {
           <a
             key={c.name}
             href={`tel:${c.phone}`}
-            className="flex items-center justify-between p-3 bg-[#F5F0E8] rounded-xl hover:bg-[#EDE8DE] transition-colors"
+            className="flex items-center justify-between p-3 bg-[#F0EADD] rounded-xl hover:bg-[#EDE8DE] transition-colors"
           >
             <div>
               <p className="text-sm font-semibold text-gray-900">{c.name}</p>

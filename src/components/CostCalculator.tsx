@@ -182,7 +182,7 @@ export default function CostCalculator({
         <div className="sticky top-0 bg-[#FFFDF9]/95 backdrop-blur-sm z-10 px-6 pt-6 pb-4 border-b border-black/5 rounded-t-3xl">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-11 h-11 rounded-2xl bg-[#F5F0E8] flex items-center justify-center">
+              <div className="w-11 h-11 rounded-2xl bg-[#F0EADD] flex items-center justify-center">
                 <span className="text-xl">💰</span>
               </div>
               <div>
@@ -192,7 +192,7 @@ export default function CostCalculator({
             </div>
             <button
               onClick={handleClose}
-              className="w-9 h-9 rounded-xl bg-[#F5F0E8] hover:bg-[#EDE8DE] flex items-center justify-center transition-colors"
+              className="w-9 h-9 rounded-xl bg-[#F0EADD] hover:bg-[#EDE8DE] flex items-center justify-center transition-colors"
               aria-label="Close calculator"
             >
               <svg className="w-4 h-4 text-[#888]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
@@ -238,7 +238,7 @@ export default function CostCalculator({
                   onClick={() => setFoodPlan(i)}
                   className={`py-2.5 px-3 rounded-xl text-xs font-semibold transition-all border-2 ${
                     foodPlan === i
-                      ? "border-[#1a1a1a] bg-[#F5F0E8] text-[#1a1a1a]"
+                      ? "border-[#1a1a1a] bg-[#F0EADD] text-[#1a1a1a]"
                       : "border-[#EDE8DE] text-[#888] hover:border-[#d4c9a8]"
                   }`}
                 >
@@ -386,7 +386,7 @@ export default function CostCalculator({
           </div>
 
           {/* ---- TOTAL ---- */}
-          <div className="bg-[#F5F0E8] rounded-2xl p-5 text-center">
+          <div className="bg-[#F0EADD] rounded-2xl p-5 text-center">
             <p className="text-xs font-semibold text-[#1a1a1a]/50 uppercase tracking-widest mb-1">
               Estimated Monthly Total
             </p>

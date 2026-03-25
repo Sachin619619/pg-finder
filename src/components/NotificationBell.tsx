@@ -20,7 +20,7 @@ const typeColorMap: Record<string, string> = {
   price_drop: "bg-emerald-50 text-emerald-600",
   new_pg: "bg-blue-50 text-blue-600",
   booking: "bg-amber-50 text-amber-600",
-  system: "bg-[#F5F0E8] text-[#666]",
+  system: "bg-[#F0EADD] text-[#666]",
   welcome: "bg-purple-50 text-purple-600",
 };
 
@@ -144,13 +144,13 @@ export default function NotificationBell() {
               <button
                 key={n.id}
                 onClick={() => markAsRead(n.id)}
-                className={`w-full flex items-start gap-3 px-5 py-3.5 hover:bg-[#F5F0E8] transition-all text-left ${
+                className={`w-full flex items-start gap-3 px-5 py-3.5 hover:bg-[#F0EADD] transition-all text-left ${
                   !n.read ? "bg-[#EDE8DE]/40" : ""
                 }`}
               >
                 <span
                   className={`text-base mt-0.5 shrink-0 w-8 h-8 rounded-lg flex items-center justify-center ${
-                    typeColorMap[n.type] || "bg-[#F5F0E8] text-[#666]"
+                    typeColorMap[n.type] || "bg-[#F0EADD] text-[#666]"
                   }`}
                 >
                   {n.icon}

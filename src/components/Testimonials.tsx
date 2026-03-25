@@ -61,7 +61,7 @@ export default function Testimonials() {
   return (
     <section className="py-24 relative overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#F5F0E8] via-[#FFFDF9] to-[#F5F0E8]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#F0EADD] via-[#FFFDF9] to-[#F0EADD]" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#1a1a1a]/[0.02] rounded-full blur-[150px]" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -104,7 +104,7 @@ export default function Testimonials() {
                   <p className="font-bold text-gray-900 text-sm">{t.name}</p>
                   <p className="text-xs text-gray-400">{t.role}</p>
                 </div>
-                <span className="pill bg-[#F5F0E8] text-[#1a1a1a] !text-[10px]">📍 {t.area}</span>
+                <span className="pill bg-[#F0EADD] text-[#1a1a1a] !text-[10px]">📍 {t.area}</span>
               </div>
             </div>
           ))}

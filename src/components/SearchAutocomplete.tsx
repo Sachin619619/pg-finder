@@ -176,8 +176,8 @@ export default function SearchAutocomplete({
                     aria-selected={index === activeIndex}
                     className={`flex items-center justify-between px-5 py-3.5 cursor-pointer transition-colors ${
                       index === activeIndex
-                        ? "bg-[#F5F0E8]"
-                        : "hover:bg-[#F5F0E8]"
+                        ? "bg-[#F0EADD]"
+                        : "hover:bg-[#F0EADD]"
                     }`}
                     onClick={() => navigateToArea(area)}
                     onMouseEnter={() => setActiveIndex(index)}

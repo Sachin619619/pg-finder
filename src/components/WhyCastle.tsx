@@ -49,7 +49,7 @@ export default function WhyCastle() {
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
           {reasons.map((r) => (
-            <div key={r.title} className="text-center p-6 rounded-2xl hover:bg-[#F5F0E8] transition-colors">
+            <div key={r.title} className="text-center p-6 rounded-2xl hover:bg-[#F0EADD] transition-colors">
               <div className="text-4xl mb-3">{r.emoji}</div>
               <h3 className="font-semibold text-[#1a1a1a] text-sm mb-2">{r.title}</h3>
               <p className="text-xs text-[#888] leading-relaxed">{r.desc}</p>

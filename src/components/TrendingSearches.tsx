@@ -32,7 +32,7 @@ export default function TrendingSearches() {
   const tabs = Object.keys(trendingSearches) as Array<keyof typeof trendingSearches>;
 
   return (
-    <section className="py-16 bg-[#F5F0E8] border-y border-black/5">
+    <section className="py-16 bg-[#F0EADD] border-y border-black/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
           <span className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-2 inline-block">What People Search</span>

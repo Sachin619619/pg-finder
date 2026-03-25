@@ -163,7 +163,7 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
                       className={`flex flex-col items-center min-w-[72px] px-3 py-3 rounded-2xl border-2 transition-all duration-200 shrink-0 ${
                         isSelected
                           ? "border-[#1a1a1a] bg-[#1a1a1a] text-white shadow-lg shadow-black/15 scale-[1.02]"
-                          : "border-black/8 bg-[#FFFDF9] text-[#666] hover:border-black/15 hover:bg-[#F5F0E8]"
+                          : "border-black/8 bg-[#FFFDF9] text-[#666] hover:border-black/15 hover:bg-[#F0EADD]"
                       }`}
                     >
                       <span className={`text-[10px] font-semibold uppercase tracking-wider ${isSelected ? "text-white/70" : "text-[#999]"}`}>
@@ -194,7 +194,7 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
                       className={`relative flex flex-col items-center p-4 rounded-2xl border-2 transition-all duration-200 ${
                         isSelected
                           ? "border-[#1a1a1a] bg-[#EDE8DE] shadow-md"
-                          : "border-black/8 bg-[#FFFDF9] hover:border-black/15 hover:bg-[#F5F0E8]"
+                          : "border-black/8 bg-[#FFFDF9] hover:border-black/15 hover:bg-[#F0EADD]"
                       }`}
                     >
                       {isSelected && (
@@ -344,7 +344,7 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
 
             {/* Visit Summary Card */}
             {booking && (
-              <div className={`bg-[#F5F0E8] rounded-2xl p-5 text-left mb-6 border border-black/5 transition-all duration-400 delay-200 ${showCheckmark ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}>
+              <div className={`bg-[#F0EADD] rounded-2xl p-5 text-left mb-6 border border-black/5 transition-all duration-400 delay-200 ${showCheckmark ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}>
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 bg-[#EDE8DE] rounded-xl flex items-center justify-center shrink-0">
                     <svg className="w-5 h-5 text-[#1a1a1a]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>

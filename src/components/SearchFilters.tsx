@@ -66,7 +66,7 @@ export default function SearchFilters({ filters, onChange }: Props) {
           className={`flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-medium transition-all ${
             expanded || activeFilters > 0
               ? "bg-[#1a1a1a] text-white"
-              : "bg-[#F5F0E8] text-[#888] hover:bg-[#EDE8DE]"
+              : "bg-[#F0EADD] text-[#888] hover:bg-[#EDE8DE]"
           }`}
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -188,7 +188,7 @@ export default function SearchFilters({ filters, onChange }: Props) {
                   className={`pill transition-all text-[13px] ${
                     filters.amenities.includes(a)
                       ? "bg-[#1a1a1a] text-white"
-                      : "bg-[#FFFDF9] text-[#888] hover:bg-[#F5F0E8] border border-black/5"
+                      : "bg-[#FFFDF9] text-[#888] hover:bg-[#F0EADD] border border-black/5"
                   }`}
                 >
                   {a}

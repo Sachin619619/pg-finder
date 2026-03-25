@@ -363,7 +363,7 @@ export default function ListingClient() {
                 <h2 className="text-lg font-semibold text-[#1a1a1a] mb-4">🛏️ Room Options</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {pg.roomOptions.map(r => (
-                    <div key={r.type} className={`relative p-4 rounded-xl border-2 text-center transition-all ${r.available ? "border-[#1a1a1a] bg-[#F5F0E8]" : "border-black/8 opacity-60"}`}>
+                    <div key={r.type} className={`relative p-4 rounded-xl border-2 text-center transition-all ${r.available ? "border-[#1a1a1a] bg-[#F0EADD]" : "border-black/8 opacity-60"}`}>
                       {/* Availability Badge */}
                       <div className="absolute -top-2.5 left-1/2 -translate-x-1/2">
                         <span className={`inline-flex items-center gap-1 text-[10px] font-bold px-3 py-1 rounded-full shadow-sm ${
@@ -408,7 +408,7 @@ export default function ListingClient() {
               <h2 className="text-lg font-semibold text-[#1a1a1a] mb-4">Amenities</h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {pg.amenities.map((a) => (
-                  <div key={a} className="flex items-center gap-2 text-[#666] bg-[#F5F0E8] px-4 py-3 rounded-xl">
+                  <div key={a} className="flex items-center gap-2 text-[#666] bg-[#F0EADD] px-4 py-3 rounded-xl">
                     <svg className="w-5 h-5 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
@@ -598,7 +598,7 @@ export default function ListingClient() {
               </div>
 
               {/* Contact Person */}
-              <div className="flex items-center gap-3 p-4 bg-[#F5F0E8] rounded-2xl mb-5">
+              <div className="flex items-center gap-3 p-4 bg-[#F0EADD] rounded-2xl mb-5">
                 <div className="w-10 h-10 rounded-full bg-[#EDE8DE] flex items-center justify-center shrink-0">
                   <svg className="w-5 h-5 text-[#1a1a1a]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />

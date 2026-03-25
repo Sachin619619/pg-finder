@@ -24,7 +24,7 @@ export default function BookingSummary({
   const totalCost = monthlyRent * duration + securityDeposit;
 
   return (
-    <div className="bg-gradient-to-br from-[#F5F0E8] to-[#EDE8DE] rounded-2xl border border-black/8 p-5">
+    <div className="bg-gradient-to-br from-[#F0EADD] to-[#EDE8DE] rounded-2xl border border-black/8 p-5">
       <h3 className="text-base font-bold text-gray-900 mb-4 flex items-center gap-2">
         <span className="text-lg">📋</span> Booking Summary
       </h3>

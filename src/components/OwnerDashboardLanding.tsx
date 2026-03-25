@@ -37,7 +37,7 @@ export default function OwnerDashboardLanding() {
             <div className="flex flex-col sm:flex-row gap-3">
               <Link
                 href="/list-your-pg"
-                className="px-6 py-3.5 bg-white text-[#1a1a1a] rounded-xl font-semibold text-sm hover:bg-[#F5F0E8] transition-colors text-center"
+                className="px-6 py-3.5 bg-white text-[#1a1a1a] rounded-xl font-semibold text-sm hover:bg-[#F0EADD] transition-colors text-center"
               >
                 List Your PG — Free
               </Link>
