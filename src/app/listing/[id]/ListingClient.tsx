@@ -30,6 +30,7 @@ import NotificationPreferences from "@/components/NotificationPreferences";
 import EmergencyContacts from "@/components/EmergencyContacts";
 import WalkthroughVideo from "@/components/WalkthroughVideo";
 import AmenityBreakdown from "@/components/AmenityBreakdown";
+import ListingQuickActions from "@/components/ListingQuickActions";
 import { useAuth } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
 import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
@@ -952,6 +953,9 @@ export default function ListingClient() {
           </div>
         </div>
       )}
+
+      {/* Quick Actions Floating Bar */}
+      <ListingQuickActions pgId={pg.id} pgName={pg.name} contactPhone={pg.contactPhone} />
     </>
   );
 }
