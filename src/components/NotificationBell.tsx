@@ -20,7 +20,7 @@ const typeColorMap: Record<string, string> = {
   price_drop: "bg-emerald-50 text-emerald-600",
   new_pg: "bg-blue-50 text-blue-600",
   booking: "bg-amber-50 text-amber-600",
-  system: "bg-gray-50 text-gray-600",
+  system: "bg-[#F5F0E8] text-[#666]",
   welcome: "bg-purple-50 text-purple-600",
 };
 
@@ -61,7 +61,7 @@ export default function NotificationBell() {
       {/* Bell button */}
       <button
         onClick={() => setOpen(!open)}
-        className="relative w-9 h-9 rounded-xl flex items-center justify-center hover:bg-gray-100 transition-all text-[#555] hover:text-[#1a1a1a]"
+        className="relative w-9 h-9 rounded-xl flex items-center justify-center hover:bg-[#EDE8DE] transition-all text-[#555] hover:text-[#1a1a1a]"
         aria-label="Notifications"
         aria-expanded={open}
         aria-haspopup="true"
@@ -89,7 +89,7 @@ export default function NotificationBell() {
 
       {/* Dropdown panel */}
       <div
-        className={`absolute right-0 top-12 w-80 sm:w-96 bg-white rounded-2xl shadow-2xl shadow-black/10 border border-gray-200/80 z-50 overflow-hidden transition-all duration-300 origin-top-right ${
+        className={`absolute right-0 top-12 w-80 sm:w-96 bg-[#FFFDF9] rounded-2xl shadow-2xl shadow-black/10 border border-black/8 z-50 overflow-hidden transition-all duration-300 origin-top-right ${
           open
             ? "opacity-100 scale-100 translate-y-0 pointer-events-auto"
             : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
@@ -120,7 +120,7 @@ export default function NotificationBell() {
                   clearAll();
                   setOpen(false);
                 }}
-                className="text-xs font-medium text-gray-400 hover:text-red-500 transition ml-1"
+                className="text-xs font-medium text-[#999] hover:text-red-500 transition ml-1"
                 title="Clear all"
               >
                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
@@ -136,21 +136,21 @@ export default function NotificationBell() {
           {notifications.length === 0 ? (
             <div className="py-12 text-center">
               <div className="text-3xl mb-2 opacity-40">🔔</div>
-              <p className="text-sm text-gray-400">No notifications yet</p>
-              <p className="text-xs text-gray-300 mt-1">We&apos;ll notify you about price drops &amp; new PGs</p>
+              <p className="text-sm text-[#999]">No notifications yet</p>
+              <p className="text-xs text-[#aaa] mt-1">We&apos;ll notify you about price drops &amp; new PGs</p>
             </div>
           ) : (
             notifications.map((n: Notification) => (
               <button
                 key={n.id}
                 onClick={() => markAsRead(n.id)}
-                className={`w-full flex items-start gap-3 px-5 py-3.5 hover:bg-gray-50 transition-all text-left ${
-                  !n.read ? "bg-gray-100/40" : ""
+                className={`w-full flex items-start gap-3 px-5 py-3.5 hover:bg-[#F5F0E8] transition-all text-left ${
+                  !n.read ? "bg-[#EDE8DE]/40" : ""
                 }`}
               >
                 <span
                   className={`text-base mt-0.5 shrink-0 w-8 h-8 rounded-lg flex items-center justify-center ${
-                    typeColorMap[n.type] || "bg-gray-50 text-gray-600"
+                    typeColorMap[n.type] || "bg-[#F5F0E8] text-[#666]"
                   }`}
                 >
                   {n.icon}
@@ -160,15 +160,15 @@ export default function NotificationBell() {
                     className={`text-[13px] leading-snug ${
                       !n.read
                         ? "font-semibold text-[#1a1a1a]"
-                        : "text-gray-500"
+                        : "text-[#888]"
                     }`}
                   >
                     {n.title}
                   </p>
-                  <p className="text-xs text-gray-400 mt-0.5 line-clamp-2">
+                  <p className="text-xs text-[#999] mt-0.5 line-clamp-2">
                     {n.message}
                   </p>
-                  <p className="text-[11px] text-gray-300 mt-1">
+                  <p className="text-[11px] text-[#aaa] mt-1">
                     {timeAgo(n.timestamp)}
                   </p>
                 </div>

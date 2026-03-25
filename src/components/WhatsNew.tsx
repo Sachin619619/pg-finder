@@ -10,22 +10,22 @@ const changelog = [
 
 export default function WhatsNew() {
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+    <div className="bg-[#FFFDF9] rounded-2xl border border-black/5 shadow-sm p-5">
       <h3 className="text-base font-bold text-gray-900 mb-4 flex items-center gap-2">
         <span className="text-lg">✨</span> What&apos;s New on Castle
       </h3>
       <div className="space-y-3">
         {changelog.map((item) => (
           <div key={item.date + item.title} className="flex gap-3">
-            <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-sm shrink-0">
+            <div className="w-8 h-8 bg-[#EDE8DE] rounded-full flex items-center justify-center text-sm shrink-0">
               {item.emoji}
             </div>
             <div>
               <div className="flex items-center gap-2 mb-0.5">
                 <span className="text-xs font-bold text-[#1a1a1a]">{item.title}</span>
-                <span className="text-[10px] text-gray-400">{item.date}</span>
+                <span className="text-[10px] text-[#999]">{item.date}</span>
               </div>
-              <p className="text-xs text-gray-500 leading-relaxed">{item.desc}</p>
+              <p className="text-xs text-[#888] leading-relaxed">{item.desc}</p>
             </div>
           </div>
         ))}

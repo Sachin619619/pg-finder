@@ -18,21 +18,21 @@ export default function EmergencyContacts() {
   const contacts = emergencyContacts["default"];
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+    <div className="bg-[#FFFDF9] rounded-2xl border border-black/5 shadow-sm p-5">
       <h3 className="text-base font-bold text-gray-900 mb-4 flex items-center gap-2">
         <span className="text-lg">🚨</span> Emergency Contacts
       </h3>
-      <p className="text-xs text-gray-500 mb-4">Important numbers for Bangalore. Save these for emergencies.</p>
+      <p className="text-xs text-[#888] mb-4">Important numbers for Bangalore. Save these for emergencies.</p>
       <div className="space-y-2">
         {contacts.map((c) => (
           <a
             key={c.name}
             href={`tel:${c.phone}`}
-            className="flex items-center justify-between p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors"
+            className="flex items-center justify-between p-3 bg-[#F5F0E8] rounded-xl hover:bg-[#EDE8DE] transition-colors"
           >
             <div>
               <p className="text-sm font-semibold text-gray-900">{c.name}</p>
-              <p className="text-xs text-gray-500">{c.description}</p>
+              <p className="text-xs text-[#888]">{c.description}</p>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-sm font-bold text-emerald-600">{c.phone}</span>

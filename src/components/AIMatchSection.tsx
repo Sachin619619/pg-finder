@@ -75,7 +75,7 @@ export default function AIMatchSection({ listings }: AIMatchSectionProps) {
   };
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-[#F5F0E8]">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <span className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-3 inline-block">AI-Powered</span>
@@ -83,16 +83,16 @@ export default function AIMatchSection({ listings }: AIMatchSectionProps) {
           <p className="text-black/50 max-w-md mx-auto text-sm">Answer 5 quick questions and our AI will find your best match</p>
         </div>
 
-        <div className="bg-white rounded-2xl border border-black/5 shadow-sm overflow-hidden">
+        <div className="bg-[#FFFDF9] rounded-2xl border border-black/5 shadow-sm overflow-hidden">
           {!matched ? (
             <>
               {/* Progress */}
-              <div className="bg-gray-50 px-6 py-4 border-b border-gray-100">
+              <div className="bg-[#F5F0E8] px-6 py-4 border-b border-black/5">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm font-semibold text-black">Question {step + 1} of {lifestyleQuestions.length}</span>
-                  <button onClick={reset} className="text-xs text-gray-400 hover:text-gray-600">Start Over</button>
+                  <button onClick={reset} className="text-xs text-[#999] hover:text-[#666]">Start Over</button>
                 </div>
-                <div className="w-full bg-gray-200 rounded-full h-2">
+                <div className="w-full bg-[#d4c9a8] rounded-full h-2">
                   <div
                     className="h-2 rounded-full bg-black transition-all duration-500"
                     style={{ width: `${progress}%` }}
@@ -104,7 +104,7 @@ export default function AIMatchSection({ listings }: AIMatchSectionProps) {
               <div className="p-8">
                 <div className="flex items-center gap-3 mb-6">
                   <span className="text-3xl">{currentQ.icon}</span>
-                  <h3 className="text-xl font-semibold text-gray-900">{currentQ.question}</h3>
+                  <h3 className="text-xl font-semibold text-[#1a1a1a]">{currentQ.question}</h3>
                 </div>
 
                 <div className="space-y-3">
@@ -112,7 +112,7 @@ export default function AIMatchSection({ listings }: AIMatchSectionProps) {
                     <button
                       key={opt}
                       onClick={() => handleAnswer(opt)}
-                      className="w-full text-left p-4 rounded-xl border border-gray-100 hover:border-black/20 hover:bg-gray-50 transition-all text-sm font-medium text-gray-700 group"
+                      className="w-full text-left p-4 rounded-xl border border-black/5 hover:border-black/20 hover:bg-[#F5F0E8] transition-all text-sm font-medium text-[#666] group"
                     >
                       <span className="group-hover:ml-1 transition-all">{opt}</span>
                     </button>
@@ -131,13 +131,13 @@ export default function AIMatchSection({ listings }: AIMatchSectionProps) {
               <div className="p-6 space-y-4">
                 {matched.map((pg, i) => (
                   <Link key={pg.id} href={`/listing/${pg.id}`} className="block group">
-                    <div className="flex items-center gap-4 p-4 rounded-xl border border-gray-100 hover:border-black/10 hover:bg-gray-50 transition-all">
+                    <div className="flex items-center gap-4 p-4 rounded-xl border border-black/5 hover:border-black/10 hover:bg-[#F5F0E8] transition-all">
                       <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center text-white font-bold text-sm shrink-0">
                         {i + 1}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="font-semibold text-gray-900 text-sm group-hover:text-black transition-colors">{pg.name}</p>
-                        <p className="text-xs text-gray-400">📍 {pg.area} • ⭐ {pg.rating} • ₹{pg.price.toLocaleString()}/mo</p>
+                        <p className="font-semibold text-[#1a1a1a] text-sm group-hover:text-black transition-colors">{pg.name}</p>
+                        <p className="text-xs text-[#999]">📍 {pg.area} • ⭐ {pg.rating} • ₹{pg.price.toLocaleString()}/mo</p>
                       </div>
                       <span className="text-xs text-violet-600 font-semibold group-hover:translate-x-1 transition-transform">View →</span>
                     </div>
@@ -148,7 +148,7 @@ export default function AIMatchSection({ listings }: AIMatchSectionProps) {
               <div className="px-6 pb-6">
                 <button
                   onClick={reset}
-                  className="w-full py-3 rounded-xl bg-gray-100 text-gray-700 text-sm font-semibold hover:bg-gray-200 transition"
+                  className="w-full py-3 rounded-xl bg-[#EDE8DE] text-[#666] text-sm font-semibold hover:bg-[#d4c9a8] transition"
                 >
                   Start Over
                 </button>

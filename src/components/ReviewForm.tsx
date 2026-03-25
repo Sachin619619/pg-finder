@@ -54,7 +54,7 @@ function StarSelector({ value, onChange, size = "lg" }: { value: number; onChang
         >
           <svg
             className={`${starSize} transition-colors ${
-              star <= (hover || value) ? "text-amber-400" : "text-gray-200"
+              star <= (hover || value) ? "text-amber-400" : "text-[#d4c9a8]"
             }`}
             fill="currentColor"
             viewBox="0 0 20 20"
@@ -64,7 +64,7 @@ function StarSelector({ value, onChange, size = "lg" }: { value: number; onChang
         </button>
       ))}
       {size === "lg" && value > 0 && (
-        <span className="ml-3 text-sm font-medium text-gray-600">{ratingLabels[value]}</span>
+        <span className="ml-3 text-sm font-medium text-[#666]">{ratingLabels[value]}</span>
       )}
     </div>
   );
@@ -111,17 +111,17 @@ export default function ReviewForm({ pgName, onSubmit, onClose, submitting, user
 
       {/* Modal */}
       <div
-        className="relative bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto animate-slide-up"
+        className="relative bg-[#FFFDF9] rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto animate-slide-up"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="sticky top-0 bg-white rounded-t-2xl border-b border-gray-100 px-6 py-4 flex items-center justify-between z-10">
+        <div className="sticky top-0 bg-[#FFFDF9] rounded-t-2xl border-b border-black/5 px-6 py-4 flex items-center justify-between z-10">
           <div>
-            <h3 className="text-lg font-bold text-gray-900">Write a Review</h3>
-            <p className="text-xs text-gray-500 mt-0.5">Share your experience at {pgName}</p>
+            <h3 className="text-lg font-bold text-[#1a1a1a]">Write a Review</h3>
+            <p className="text-xs text-[#888] mt-0.5">Share your experience at {pgName}</p>
           </div>
-          <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full transition">
-            <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+          <button onClick={onClose} className="p-2 hover:bg-[#EDE8DE] rounded-full transition">
+            <svg className="w-5 h-5 text-[#888]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
               <line x1="18" y1="6" x2="6" y2="18" />
               <line x1="6" y1="6" x2="18" y2="18" />
             </svg>
@@ -140,7 +140,7 @@ export default function ReviewForm({ pgName, onSubmit, onClose, submitting, user
 
           {/* Name */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1.5">Your Name</label>
+            <label className="block text-sm font-semibold text-[#666] mb-1.5">Your Name</label>
             <input
               type="text"
               value={name}
@@ -152,17 +152,17 @@ export default function ReviewForm({ pgName, onSubmit, onClose, submitting, user
 
           {/* Overall Rating */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">Overall Rating *</label>
+            <label className="block text-sm font-semibold text-[#666] mb-2">Overall Rating *</label>
             <StarSelector value={rating} onChange={setRating} size="lg" />
           </div>
 
           {/* Category Ratings */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-3">Rate by Category</label>
+            <label className="block text-sm font-semibold text-[#666] mb-3">Rate by Category</label>
             <div className="space-y-3">
               {categories.map(({ key, label, icon }) => (
-                <div key={key} className="flex items-center justify-between bg-gray-50 rounded-xl px-4 py-2.5">
-                  <span className="text-sm text-gray-700 font-medium flex items-center gap-2">
+                <div key={key} className="flex items-center justify-between bg-[#F5F0E8] rounded-xl px-4 py-2.5">
+                  <span className="text-sm text-[#666] font-medium flex items-center gap-2">
                     <span>{icon}</span> {label}
                   </span>
                   <StarSelector value={categoryRatings[key]} onChange={(v) => handleCategoryChange(key, v)} size="sm" />
@@ -173,7 +173,7 @@ export default function ReviewForm({ pgName, onSubmit, onClose, submitting, user
 
           {/* Review Text */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1.5">Your Review *</label>
+            <label className="block text-sm font-semibold text-[#666] mb-1.5">Your Review *</label>
             <textarea
               rows={4}
               value={comment}
@@ -229,7 +229,7 @@ export default function ReviewForm({ pgName, onSubmit, onClose, submitting, user
             <button
               type="button"
               onClick={onClose}
-              className="px-6 py-3 text-sm text-gray-500 hover:text-gray-700 rounded-xl hover:bg-gray-100 transition"
+              className="px-6 py-3 text-sm text-[#888] hover:text-[#666] rounded-xl hover:bg-[#EDE8DE] transition"
             >
               Cancel
             </button>

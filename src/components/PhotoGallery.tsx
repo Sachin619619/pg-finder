@@ -4,12 +4,12 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 
 const fallbackPhotos = [
-  { label: "Living Room", gradient: "from-gray-200 to-gray-100" },
+  { label: "Living Room", gradient: "from-[#d4c9a8] to-[#EDE8DE]" },
   { label: "Bedroom", gradient: "from-rose-200 to-pink-200" },
   { label: "Kitchen", gradient: "from-amber-200 to-orange-200" },
   { label: "Bathroom", gradient: "from-teal-200 to-emerald-200" },
   { label: "Balcony", gradient: "from-sky-200 to-blue-200" },
-  { label: "Common Area", gradient: "from-gray-200 to-gray-100" },
+  { label: "Common Area", gradient: "from-[#d4c9a8] to-[#EDE8DE]" },
 ];
 
 export default function PhotoGallery({ pgName, images }: { pgName: string; images?: string[] }) {
@@ -132,12 +132,12 @@ export default function PhotoGallery({ pgName, images }: { pgName: string; image
       <div className={`absolute inset-0 bg-gradient-to-br ${fallback.gradient} flex items-center justify-center`}>
         <div className="text-center">
           <div className="w-16 h-16 bg-white/50 backdrop-blur-md rounded-2xl flex items-center justify-center mx-auto mb-3">
-            <svg className="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-8 h-8 text-[#666]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
           </div>
-          <p className="font-medium text-gray-700">{fallback.label}</p>
-          <p className="text-sm text-gray-500">{pgName}</p>
+          <p className="font-medium text-[#666]">{fallback.label}</p>
+          <p className="text-sm text-[#888]">{pgName}</p>
         </div>
       </div>
     );
@@ -149,7 +149,7 @@ export default function PhotoGallery({ pgName, images }: { pgName: string; image
       <div className="space-y-3">
         {/* Main Image */}
         <div
-          className="h-72 sm:h-96 rounded-2xl cursor-pointer relative overflow-hidden group bg-gray-200"
+          className="h-72 sm:h-96 rounded-2xl cursor-pointer relative overflow-hidden group bg-[#d4c9a8]"
           onClick={() => openLightbox()}
         >
           {renderImage(activeIdx, "group-hover:scale-105 transition-transform duration-500", "(max-width: 768px) 100vw, 800px")}
@@ -189,7 +189,7 @@ export default function PhotoGallery({ pgName, images }: { pgName: string; image
                   onError={() => setImgError((prev) => ({ ...prev, [i]: true }))}
                 />
               ) : (
-                <div className={`absolute inset-0 bg-gradient-to-br ${fallbackPhotos[i % fallbackPhotos.length].gradient} flex items-center justify-center text-[10px] font-medium text-gray-600`}>
+                <div className={`absolute inset-0 bg-gradient-to-br ${fallbackPhotos[i % fallbackPhotos.length].gradient} flex items-center justify-center text-[10px] font-medium text-[#666]`}>
                   {fallbackPhotos[i % fallbackPhotos.length].label}
                 </div>
               )}

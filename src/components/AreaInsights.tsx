@@ -44,7 +44,7 @@ export default function AreaInsights() {
   const sorted = activeTab === "safety" ? getSafetySorted() : activeTab === "transport" ? getTransportSorted() : getValueSorted();
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-[#FFFDF9]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <span className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-3 inline-block">Area Intelligence</span>
@@ -61,7 +61,7 @@ export default function AreaInsights() {
               className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-all ${
                 activeTab === tab.id
                   ? "bg-[#1a1a1a] text-white shadow-lg"
-                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                  : "bg-[#EDE8DE] text-[#666] hover:bg-[#d4c9a8]"
               }`}
             >
               {tab.label}
@@ -79,22 +79,22 @@ export default function AreaInsights() {
 
             return (
               <div key={area} className={`rounded-2xl p-4 border transition-all hover:shadow-md ${
-                rank <= 3 ? "bg-amber-50 border-amber-200" : "bg-gray-50 border-gray-100 hover:border-gray-200"
+                rank <= 3 ? "bg-amber-50 border-amber-200" : "bg-[#F5F0E8] border-black/5 hover:border-black/8"
               }`}>
                 <div className="flex items-start justify-between mb-2">
-                  <span className={`text-lg font-bold ${rank === 1 ? "text-amber-600" : rank === 2 ? "text-gray-600" : rank === 3 ? "text-orange-600" : "text-gray-400"}`}>
+                  <span className={`text-lg font-bold ${rank === 1 ? "text-amber-600" : rank === 2 ? "text-[#666]" : rank === 3 ? "text-orange-600" : "text-[#999]"}`}>
                     #{rank}
                   </span>
                   {rank <= 3 && <span className="text-sm">
                     {rank === 1 ? "🥇" : rank === 2 ? "🥈" : "🥉"}
                   </span>}
                 </div>
-                <p className="text-sm font-semibold text-gray-900 mb-1">{area}</p>
+                <p className="text-sm font-semibold text-[#1a1a1a] mb-1">{area}</p>
 
                 {activeTab === "safety" && safety && (
                   <div className="space-y-1">
                     <div className="flex items-center justify-between">
-                      <span className="text-[10px] text-gray-500">Safety</span>
+                      <span className="text-[10px] text-[#888]">Safety</span>
                       <span className={`text-[11px] font-bold ${safety.score >= 80 ? "text-emerald-600" : safety.score >= 70 ? "text-blue-600" : "text-amber-600"}`}>
                         {safety.score}
                       </span>
@@ -103,7 +103,7 @@ export default function AreaInsights() {
                       <div className={`h-1.5 rounded-full ${safety.score >= 80 ? "bg-emerald-400" : safety.score >= 70 ? "bg-blue-400" : "bg-amber-400"}`}
                         style={{ width: `${safety.score}%` }} />
                     </div>
-                    <p className="text-[10px] text-gray-400">{safety.label}</p>
+                    <p className="text-[10px] text-[#999]">{safety.label}</p>
                   </div>
                 )}
 
@@ -122,7 +122,7 @@ export default function AreaInsights() {
                       </div>
                     )}
                     {!metro && !bus && (
-                      <p className="text-[11px] text-gray-400">Limited transit</p>
+                      <p className="text-[11px] text-[#999]">Limited transit</p>
                     )}
                   </div>
                 )}
@@ -130,12 +130,12 @@ export default function AreaInsights() {
                 {activeTab === "value" && safety && bus && (
                   <div className="space-y-1">
                     <div className="flex items-center justify-between">
-                      <span className="text-[10px] text-gray-500">Score</span>
+                      <span className="text-[10px] text-[#888]">Score</span>
                       <span className="text-[11px] font-bold text-violet-600">
                         {safety.score + bus.score + (metroProximity[area] ? 30 : 0)}
                       </span>
                     </div>
-                    <div className="flex gap-1 text-[10px] text-gray-400">
+                    <div className="flex gap-1 text-[10px] text-[#999]">
                       <span title="Safety">🛡️{safety.score}</span>
                       <span title="Bus">🚌{bus.score}</span>
                       {metro && <span title="Metro">🚇✓</span>}
@@ -147,7 +147,7 @@ export default function AreaInsights() {
           })}
         </div>
 
-        <p className="text-center text-xs text-gray-400 mt-6">
+        <p className="text-center text-xs text-[#999] mt-6">
           💡 Data based on area statistics — individual PGs may vary. Always visit before committing.
         </p>
       </div>

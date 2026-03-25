@@ -29,7 +29,7 @@ const stories = [
 
 export default function TenantStories() {
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-[#F5F0E8]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <span className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-3 inline-block">Testimonials</span>
@@ -39,23 +39,23 @@ export default function TenantStories() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {stories.map((s) => (
-            <div key={s.name} className="bg-white rounded-2xl border border-gray-200 p-6 hover:shadow-lg hover:-translate-y-1 transition-all">
+            <div key={s.name} className="bg-[#FFFDF9] rounded-2xl border border-black/8 p-6 hover:shadow-lg hover:-translate-y-1 transition-all">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-br from-amber-100 to-orange-100 flex items-center justify-center text-2xl">
                   {s.avatar}
                 </div>
                 <div>
-                  <p className="font-semibold text-gray-900 text-sm">{s.name}</p>
-                  <p className="text-xs text-gray-500">{s.role}</p>
+                  <p className="font-semibold text-[#1a1a1a] text-sm">{s.name}</p>
+                  <p className="text-xs text-[#888]">{s.role}</p>
                 </div>
               </div>
               
-              <p className="text-sm text-gray-600 leading-relaxed mb-4 italic">"{s.quote}"</p>
+              <p className="text-sm text-[#666] leading-relaxed mb-4 italic">"{s.quote}"</p>
               
-              <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+              <div className="flex items-center justify-between pt-4 border-t border-black/5">
                 <div>
-                  <p className="text-xs text-gray-400">Stayed at</p>
-                  <p className="text-sm font-semibold text-gray-800">{s.pg}</p>
+                  <p className="text-xs text-[#999]">Stayed at</p>
+                  <p className="text-sm font-semibold text-[#1a1a1a]">{s.pg}</p>
                 </div>
                 <div className="flex gap-0.5">
                   {Array.from({ length: s.rating }).map((_, i) => (

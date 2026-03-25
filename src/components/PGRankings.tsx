@@ -56,7 +56,7 @@ export default function PGRankings({ listings }: PGRankingsProps) {
   const activeType = rankTypes.find(r => r.id === activeRank)!;
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-[#F5F0E8]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <span className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-3 inline-block">Smart Rankings</span>
@@ -73,7 +73,7 @@ export default function PGRankings({ listings }: PGRankingsProps) {
               className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition-all ${
                 activeRank === type.id
                   ? "bg-[#1a1a1a] text-white shadow-lg"
-                  : "bg-white border border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50"
+                  : "bg-[#FFFDF9] border border-black/8 text-[#666] hover:border-black/12 hover:bg-[#F5F0E8]"
               }`}
             >
               <span>{type.emoji}</span>
@@ -83,24 +83,24 @@ export default function PGRankings({ listings }: PGRankingsProps) {
         </div>
 
         {/* Rankings list */}
-        <div className="bg-white/70 backdrop-blur-sm rounded-3xl border border-gray-200 overflow-hidden">
-          <div className="p-4 sm:p-6 border-b border-gray-100">
-            <p className="text-sm text-gray-500">{activeType.desc}</p>
+        <div className="bg-[#FFFDF9]/70 backdrop-blur-sm rounded-3xl border border-black/8 overflow-hidden">
+          <div className="p-4 sm:p-6 border-b border-black/5">
+            <p className="text-sm text-[#888]">{activeType.desc}</p>
           </div>
-          <div className="divide-y divide-gray-50">
+          <div className="divide-y divide-[#F5F0E8]">
             {ranked.map((pg, i) => {
               const score = getScore(activeRank, pg);
               const safety = areaSafetyScores[pg.area];
               const rank = i + 1;
               
               return (
-                <div key={pg.id} className="p-4 sm:p-5 flex items-center gap-4 hover:bg-gray-50/50 transition-colors">
+                <div key={pg.id} className="p-4 sm:p-5 flex items-center gap-4 hover:bg-[#F5F0E8]/50 transition-colors">
                   {/* Rank */}
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-sm shrink-0 ${
                     rank === 1 ? "bg-amber-100 text-amber-700" :
-                    rank === 2 ? "bg-gray-100 text-gray-600" :
+                    rank === 2 ? "bg-[#EDE8DE] text-[#666]" :
                     rank === 3 ? "bg-orange-100 text-orange-700" :
-                    "bg-gray-50 text-gray-400"
+                    "bg-[#F5F0E8] text-[#999]"
                   }`}>
                     {rank === 1 ? "🥇" : rank === 2 ? "🥈" : rank === 3 ? "🥉" : `#${rank}`}
                   </div>
@@ -108,10 +108,10 @@ export default function PGRankings({ listings }: PGRankingsProps) {
                   {/* PG Info */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-0.5">
-                      <h4 className="font-semibold text-gray-900 text-sm truncate">{pg.name}</h4>
-                      <span className="text-xs text-gray-400 shrink-0">⭐ {pg.rating}</span>
+                      <h4 className="font-semibold text-[#1a1a1a] text-sm truncate">{pg.name}</h4>
+                      <span className="text-xs text-[#999] shrink-0">⭐ {pg.rating}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-xs text-gray-500">
+                    <div className="flex items-center gap-2 text-xs text-[#888]">
                       <span>📍 {pg.area}</span>
                       {safety && (
                         <span className={`font-medium ${
@@ -126,8 +126,8 @@ export default function PGRankings({ listings }: PGRankingsProps) {
 
                   {/* Score */}
                   <div className="text-right shrink-0">
-                    <p className="text-lg font-bold text-gray-900">₹{pg.price.toLocaleString()}</p>
-                    <p className="text-[10px] text-gray-400">/month</p>
+                    <p className="text-lg font-bold text-[#1a1a1a]">₹{pg.price.toLocaleString()}</p>
+                    <p className="text-[10px] text-[#999]">/month</p>
                   </div>
 
                   {/* CTA */}

@@ -79,7 +79,7 @@ export default function PriceAlertBanner() {
                 <option value={12000} className="text-gray-900">Under ₹12,000</option>
                 <option value={15000} className="text-gray-900">Under ₹15,000</option>
               </select>
-              <button type="submit" className="px-8 py-3 bg-gray-100 text-[#1a1a1a] rounded-xl font-semibold text-sm hover:bg-gray-100 transition whitespace-nowrap">
+              <button type="submit" className="px-8 py-3 bg-[#EDE8DE] text-[#1a1a1a] rounded-xl font-semibold text-sm hover:bg-[#EDE8DE] transition whitespace-nowrap">
                 Alert Me
               </button>
             </form>

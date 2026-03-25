@@ -13,7 +13,7 @@ export default function CompareBar() {
       {/* Gradient shadow above */}
       <div className="h-6 bg-gradient-to-t from-black/10 to-transparent pointer-events-none" />
 
-      <div className="bg-gray-50 border-t-2 border-gray-200 shadow-[0_-8px_30px_rgba(0,0,0,0.12)]">
+      <div className="bg-[#F5F0E8] border-t-2 border-black/8 shadow-[0_-8px_30px_rgba(0,0,0,0.12)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between gap-4">
             {/* Left: Selected PG thumbnails */}
@@ -32,10 +32,10 @@ export default function CompareBar() {
                 {compareList.map((pg) => (
                   <div
                     key={pg.id}
-                    className="flex items-center gap-2 bg-gray-100 border border-gray-200 rounded-xl px-2 py-1.5 shrink-0 group"
+                    className="flex items-center gap-2 bg-[#FFFDF9] border border-black/8 rounded-xl px-2 py-1.5 shrink-0 group"
                   >
                     {/* Thumbnail */}
-                    <div className="relative w-9 h-9 rounded-lg overflow-hidden bg-gray-200 shrink-0">
+                    <div className="relative w-9 h-9 rounded-lg overflow-hidden bg-[#EDE8DE] shrink-0">
                       {pg.images && pg.images.length > 0 && pg.images[0] ? (
                         <Image
                           src={pg.images[0]}
@@ -95,7 +95,7 @@ export default function CompareBar() {
                 className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-all ${
                   compareList.length >= 2
                     ? "bg-[#1a1a1a] text-white hover:opacity-90 shadow-md"
-                    : "bg-gray-200 text-[#8a8070] cursor-not-allowed"
+                    : "bg-[#EDE8DE] text-[#8a8070] cursor-not-allowed"
                 }`}
               >
                 Compare Now

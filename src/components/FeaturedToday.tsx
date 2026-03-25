@@ -22,7 +22,7 @@ export default function FeaturedToday({ listings }: FeaturedTodayProps) {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-[#FFFDF9]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <span className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-3 inline-block">Today&apos;s Picks</span>
@@ -40,9 +40,9 @@ export default function FeaturedToday({ listings }: FeaturedTodayProps) {
 
             return (
               <Link key={pg.id} href={`/listing/${pg.id}`} className="group">
-                <div className="bg-white rounded-2xl border border-black/5 overflow-hidden hover:shadow-md hover:-translate-y-1 transition-all duration-200">
+                <div className="bg-[#FFFDF9] rounded-2xl border border-black/5 overflow-hidden hover:shadow-md hover:-translate-y-1 transition-all duration-200">
                   {/* Image */}
-                  <div className="relative h-48 bg-gray-100 overflow-hidden">
+                  <div className="relative h-48 bg-[#EDE8DE] overflow-hidden">
                     {pg.images[0] ? (
                       <Image
                         src={pg.images[0]}
@@ -52,7 +52,7 @@ export default function FeaturedToday({ listings }: FeaturedTodayProps) {
                         sizes="(max-width: 768px) 100vw, 33vw"
                       />
                     ) : (
-                      <div className="absolute inset-0 flex items-center justify-center text-gray-300">
+                      <div className="absolute inset-0 flex items-center justify-center text-[#d4c9a8]">
                         <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                         </svg>
@@ -67,16 +67,16 @@ export default function FeaturedToday({ listings }: FeaturedTodayProps) {
 
                     {/* Price */}
                     <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-sm rounded-xl px-3 py-1.5">
-                      <span className="text-sm font-bold text-gray-900">₹{pg.price.toLocaleString()}/mo</span>
+                      <span className="text-sm font-bold text-[#1a1a1a]">₹{pg.price.toLocaleString()}/mo</span>
                     </div>
                   </div>
 
                   {/* Content */}
                   <div className="p-5">
-                    <h3 className="font-serif text-lg text-gray-900 mb-1 group-hover:text-[#1a1a1a] transition-colors">
+                    <h3 className="font-serif text-lg text-[#1a1a1a] mb-1 group-hover:text-[#1a1a1a] transition-colors">
                       {pg.name}
                     </h3>
-                    <p className="text-xs text-gray-400 mb-3 flex items-center gap-1.5">
+                    <p className="text-xs text-[#999] mb-3 flex items-center gap-1.5">
                       <span>📍</span> {pg.area} • ⭐ {pg.rating} ({pg.reviews} reviews)
                     </p>
 
@@ -94,7 +94,7 @@ export default function FeaturedToday({ listings }: FeaturedTodayProps) {
                     </div>
 
                     {/* Safety + Castle Score */}
-                    <div className="flex items-center justify-between pt-3 border-t border-gray-200">
+                    <div className="flex items-center justify-between pt-3 border-t border-black/8">
                       {safety && (
                         <span className={`text-[11px] font-semibold ${
                           safety.score >= 80 ? "text-emerald-600" : safety.score >= 70 ? "text-blue-600" : "text-amber-600"

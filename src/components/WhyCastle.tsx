@@ -35,7 +35,7 @@ const reasons = [
 
 export default function WhyCastle() {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-[#FFFDF9]">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <span className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-3 inline-block">Why Castle</span>
@@ -49,10 +49,10 @@ export default function WhyCastle() {
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
           {reasons.map((r) => (
-            <div key={r.title} className="text-center p-6 rounded-2xl hover:bg-gray-50 transition-colors">
+            <div key={r.title} className="text-center p-6 rounded-2xl hover:bg-[#F5F0E8] transition-colors">
               <div className="text-4xl mb-3">{r.emoji}</div>
-              <h3 className="font-semibold text-gray-900 text-sm mb-2">{r.title}</h3>
-              <p className="text-xs text-gray-500 leading-relaxed">{r.desc}</p>
+              <h3 className="font-semibold text-[#1a1a1a] text-sm mb-2">{r.title}</h3>
+              <p className="text-xs text-[#888] leading-relaxed">{r.desc}</p>
             </div>
           ))}
         </div>

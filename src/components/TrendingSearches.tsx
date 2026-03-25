@@ -32,11 +32,11 @@ export default function TrendingSearches() {
   const tabs = Object.keys(trendingSearches) as Array<keyof typeof trendingSearches>;
 
   return (
-    <section className="py-16 bg-gray-50 border-y border-gray-100">
+    <section className="py-16 bg-[#F5F0E8] border-y border-black/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
           <span className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-2 inline-block">What People Search</span>
-          <h3 className="text-xl font-semibold text-gray-900">Trending Right Now</h3>
+          <h3 className="text-xl font-semibold text-[#1a1a1a]">Trending Right Now</h3>
         </div>
 
         {/* Tabs */}
@@ -48,7 +48,7 @@ export default function TrendingSearches() {
               className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
                 activeTab === tab
                   ? "bg-[#1a1a1a] text-white"
-                  : "bg-white border border-gray-200 text-gray-600 hover:border-gray-300"
+                  : "bg-[#FFFDF9] border border-black/8 text-[#666] hover:border-black/12"
               }`}
             >
               {tab}
@@ -62,11 +62,11 @@ export default function TrendingSearches() {
             <Link
               key={item.label}
               href={`/?search=${encodeURIComponent(item.label)}`}
-              className="inline-flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 rounded-full text-sm text-gray-700 hover:border-[#1a1a1a] hover:text-[#1a1a1a] hover:shadow-sm transition-all"
+              className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#FFFDF9] border border-black/8 rounded-full text-sm text-[#555] hover:border-[#1a1a1a] hover:text-[#1a1a1a] hover:shadow-sm transition-all"
             >
               {"emoji" in item && <span className="text-base">{item.emoji}</span>}
               <span className="font-medium">{item.label}</span>
-              <span className="text-xs text-gray-400">({item.count})</span>
+              <span className="text-xs text-[#999]">({item.count})</span>
             </Link>
           ))}
         </div>

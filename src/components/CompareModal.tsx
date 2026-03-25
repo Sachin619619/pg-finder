@@ -199,7 +199,7 @@ export default function CompareModal() {
       {/* Modal container */}
       <div className="relative z-10 flex flex-col h-full max-h-screen animate-in fade-in duration-200">
         {/* Header */}
-        <div className="bg-gray-100 border-b border-gray-200 px-4 sm:px-6 py-4 shrink-0">
+        <div className="bg-[#EDE8DE] border-b border-black/8 px-4 sm:px-6 py-4 shrink-0">
           <div className="max-w-6xl mx-auto flex items-center justify-between">
             <div>
               <h2 className="font-serif text-xl sm:text-2xl text-[#1a1a1a] tracking-tight">
@@ -231,7 +231,7 @@ export default function CompareModal() {
               {compareList.map((pg) => (
                 <div
                   key={pg.id}
-                  className="bg-gray-50 rounded-2xl border border-gray-200 p-4 text-center relative group"
+                  className="bg-[#F5F0E8] rounded-2xl border border-black/8 p-4 text-center relative group"
                 >
                   {/* Remove button */}
                   <button
@@ -248,7 +248,7 @@ export default function CompareModal() {
                   </button>
 
                   {/* Image */}
-                  <div className="relative w-20 h-20 mx-auto rounded-xl overflow-hidden bg-gray-200 mb-3">
+                  <div className="relative w-20 h-20 mx-auto rounded-xl overflow-hidden bg-[#d4c9a8] mb-3">
                     {pg.images && pg.images.length > 0 && pg.images[0] ? (
                       <Image
                         src={pg.images[0]}
@@ -288,7 +288,7 @@ export default function CompareModal() {
             </div>
 
             {/* Comparison rows */}
-            <div className="mt-6 rounded-2xl border border-gray-200 overflow-hidden bg-white">
+            <div className="mt-6 rounded-2xl border border-black/8 overflow-hidden bg-[#FFFDF9]">
               {rows.map((row, rowIdx) => (
                 <div
                   key={row.label}
@@ -316,7 +316,7 @@ export default function CompareModal() {
               ))}
 
               {/* Amenities section */}
-              <div className="border-t-2 border-gray-200">
+              <div className="border-t-2 border-black/8">
                 <div
                   className="grid items-start"
                   style={{ gridTemplateColumns: `140px repeat(${compareList.length}, 1fr)` }}
@@ -363,7 +363,7 @@ export default function CompareModal() {
             </div>
 
             {/* Nearby landmarks */}
-            <div className="mt-6 rounded-2xl border border-gray-200 overflow-hidden bg-white">
+            <div className="mt-6 rounded-2xl border border-black/8 overflow-hidden bg-[#FFFDF9]">
               <div
                 className="grid items-start"
                 style={{ gridTemplateColumns: `140px repeat(${compareList.length}, 1fr)` }}
@@ -380,7 +380,7 @@ export default function CompareModal() {
                       {pg.nearbyLandmarks.slice(0, 5).map((l) => (
                         <span
                           key={l}
-                          className="inline-flex items-center px-2 py-1 rounded-md text-[10px] font-medium bg-gray-100 text-[#1a1a1a] border border-gray-200"
+                          className="inline-flex items-center px-2 py-1 rounded-md text-[10px] font-medium bg-[#EDE8DE] text-[#1a1a1a] border border-black/8"
                         >
                           {l}
                         </span>

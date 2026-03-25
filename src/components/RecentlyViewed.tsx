@@ -32,12 +32,12 @@ export default function RecentlyViewed() {
             <h2 className="text-xl font-bold text-gray-900 tracking-tight">
               Recently Viewed
             </h2>
-            <p className="text-xs text-gray-400">Pick up where you left off</p>
+            <p className="text-xs text-[#999]">Pick up where you left off</p>
           </div>
         </div>
         <button
           onClick={clearRecent}
-          className="text-xs text-gray-400 hover:text-red-500 transition-colors font-medium"
+          className="text-xs text-[#999] hover:text-red-500 transition-colors font-medium"
         >
           Clear History
         </button>
@@ -71,7 +71,7 @@ function RecentCard({
   return (
     <Link
       href={`/listing/${item.id}`}
-      className="group flex-shrink-0 w-56 bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg hover:shadow-black/10 hover:border-gray-200 transition-all hover:-translate-y-0.5 snap-start"
+      className="group flex-shrink-0 w-56 bg-[#FFFDF9] rounded-2xl border border-black/5 overflow-hidden hover:shadow-lg hover:shadow-black/10 hover:border-black/8 transition-all hover:-translate-y-0.5 snap-start"
     >
       {/* Thumbnail */}
       <div className="relative h-28 bg-[#F5ECD7] overflow-hidden">
@@ -120,7 +120,7 @@ function RecentCard({
           {item.name}
         </h3>
         <div className="flex items-center justify-between mt-1.5">
-          <p className="text-xs text-gray-400 flex items-center gap-1 truncate">
+          <p className="text-xs text-[#999] flex items-center gap-1 truncate">
             <svg
               className="w-3 h-3 flex-shrink-0"
               fill="none"

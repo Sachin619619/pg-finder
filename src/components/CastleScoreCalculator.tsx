@@ -53,19 +53,19 @@ export default function CastleScoreCalculator() {
   if (result !== null) {
     const tier = result >= 90 ? { label: "Castle Platinum", emoji: "🥇", color: "text-slate-700 bg-slate-50 border-slate-200" }
       : result >= 80 ? { label: "Castle Gold", emoji: "🥈", color: "text-amber-700 bg-amber-50 border-amber-200" }
-      : result >= 70 ? { label: "Castle Silver", emoji: "🥉", color: "text-gray-700 bg-gray-50 border-gray-200" }
+      : result >= 70 ? { label: "Castle Silver", emoji: "🥉", color: "text-[#555] bg-[#F5F0E8] border-black/8" }
       : { label: "Castle Bronze", emoji: "🏅", color: "text-orange-700 bg-orange-50 border-orange-200" };
 
     return (
-      <div className="bg-white border border-black/5 rounded-2xl p-6 text-center shadow-sm">
+      <div className="bg-[#FFFDF9] border border-black/5 rounded-2xl p-6 text-center shadow-sm">
         <div className="text-5xl mb-3">{tier.emoji}</div>
         <p className="text-5xl font-bold text-black mb-2">{result}</p>
-        <p className="text-sm text-gray-500 mb-4">Your Castle Score</p>
+        <p className="text-sm text-[#888] mb-4">Your Castle Score</p>
         <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold border ${tier.color} mb-4`}>
           <span>{tier.emoji}</span>
           <span>{tier.label}</span>
         </div>
-        <p className="text-xs text-gray-500 mb-6">
+        <p className="text-xs text-[#888] mb-6">
           Based on your lifestyle, budget, and preferred area, we recommend PGs in our{" "}
           <Link href={`/?area=${areaOptions.find(a => a.id === area)?.areas[0]}`} className="font-semibold underline">
             {areaOptions.find(a => a.id === area)?.areas[0]}
@@ -107,13 +107,13 @@ export default function CastleScoreCalculator() {
   const progress = ((step + 1) / questions.length) * 100;
 
   return (
-    <div className="bg-white border border-black/5 rounded-2xl overflow-hidden shadow-sm">
-      <div className="bg-gray-50 px-5 py-4 border-b border-black/5">
+    <div className="bg-[#FFFDF9] border border-black/5 rounded-2xl overflow-hidden shadow-sm">
+      <div className="bg-[#F5F0E8] px-5 py-4 border-b border-black/5">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-xs font-semibold text-gray-600">Question {step + 1} of {questions.length}</span>
-          <button onClick={reset} className="text-xs text-gray-400 hover:text-gray-600">Reset</button>
+          <span className="text-xs font-semibold text-[#666]">Question {step + 1} of {questions.length}</span>
+          <button onClick={reset} className="text-xs text-[#999] hover:text-[#666]">Reset</button>
         </div>
-        <div className="w-full bg-gray-200 rounded-full h-2">
+        <div className="w-full bg-[#d4c9a8] rounded-full h-2">
           <div className="h-2 rounded-full bg-[#1a1a1a] transition-all duration-500" style={{ width: `${progress}%` }} />
         </div>
       </div>
@@ -134,15 +134,15 @@ export default function CastleScoreCalculator() {
               }}
               className={`w-full text-left p-4 rounded-xl border-2 transition-all ${
                 currentQ.value === opt.id
-                  ? "border-black bg-gray-50"
-                  : "border-gray-100 bg-white hover:border-gray-200"
+                  ? "border-black bg-[#F5F0E8]"
+                  : "border-black/5 bg-[#FFFDF9] hover:border-black/8"
               }`}
             >
               <div className="flex items-center justify-between">
-                <span className="font-semibold text-gray-900 text-sm">{opt.label}</span>
-                {"desc" in opt && <span className="text-xs text-gray-400">{opt.desc}</span>}
-                {"range" in opt && <span className="text-xs text-gray-400">{opt.range}</span>}
-                {"areas" in opt && <span className="text-xs text-gray-400">{opt.areas.slice(0, 2).join(", ")}</span>}
+                <span className="font-semibold text-[#1a1a1a] text-sm">{opt.label}</span>
+                {"desc" in opt && <span className="text-xs text-[#999]">{opt.desc}</span>}
+                {"range" in opt && <span className="text-xs text-[#999]">{opt.range}</span>}
+                {"areas" in opt && <span className="text-xs text-[#999]">{opt.areas.slice(0, 2).join(", ")}</span>}
               </div>
             </button>
           ))}

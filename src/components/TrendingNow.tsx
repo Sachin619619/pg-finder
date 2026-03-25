@@ -15,12 +15,12 @@ const trendingItems = [
 
 export default function TrendingNow() {
   return (
-    <section className="py-12 bg-gray-50 border-y border-black/5">
+    <section className="py-12 bg-[#F5F0E8] border-y border-black/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3 mb-5">
           <span className="text-lg">🔥</span>
-          <h2 className="text-lg font-bold text-gray-900">Trending Now</h2>
-          <span className="text-xs text-gray-400">Most popular searches today</span>
+          <h2 className="text-lg font-bold text-[#1a1a1a]">Trending Now</h2>
+          <span className="text-xs text-[#999]">Most popular searches today</span>
         </div>
 
         <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
@@ -28,11 +28,11 @@ export default function TrendingNow() {
             <Link
               key={item.label}
               href={item.href}
-              className="group flex items-center gap-2 px-4 py-2.5 bg-white border border-black/5 rounded-full text-sm text-gray-700 hover:bg-[#1a1a1a] hover:text-white hover:border-[#1a1a1a] transition-all shrink-0"
+              className="group flex items-center gap-2 px-4 py-2.5 bg-[#FFFDF9] border border-black/5 rounded-full text-sm text-[#666] hover:bg-[#1a1a1a] hover:text-white hover:border-[#1a1a1a] transition-all shrink-0"
             >
               <span className="text-base group-hover:scale-110 transition-transform">{item.emoji}</span>
               <span className="font-semibold whitespace-nowrap">{item.label}</span>
-              <span className="text-xs text-gray-400 group-hover:text-white/60 ml-1">{item.count}</span>
+              <span className="text-xs text-[#999] group-hover:text-white/60 ml-1">{item.count}</span>
             </Link>
           ))}
         </div>

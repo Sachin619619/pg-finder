@@ -126,20 +126,20 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4" onClick={onClose}>
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
       <div
-        className="relative w-full sm:max-w-lg bg-white sm:rounded-3xl rounded-t-3xl shadow-2xl max-h-[90vh] overflow-y-auto animate-slide-up"
+        className="relative w-full sm:max-w-lg bg-[#FFFDF9] sm:rounded-3xl rounded-t-3xl shadow-2xl max-h-[90vh] overflow-y-auto animate-slide-up"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="sticky top-0 bg-white sm:rounded-t-3xl rounded-t-3xl border-b border-gray-100 px-6 py-4 flex items-center justify-between z-10">
+        <div className="sticky top-0 bg-[#FFFDF9] sm:rounded-t-3xl rounded-t-3xl border-b border-black/5 px-6 py-4 flex items-center justify-between z-10">
           <div>
-            <h2 className="text-lg font-bold text-gray-900">
+            <h2 className="text-lg font-bold text-[#1a1a1a]">
               {step === "form" ? "Schedule a Visit" : "Visit Confirmed!"}
             </h2>
-            <p className="text-xs text-gray-400 mt-0.5">{pgName}</p>
+            <p className="text-xs text-[#999] mt-0.5">{pgName}</p>
           </div>
           <button
             onClick={onClose}
-            className="w-9 h-9 rounded-xl bg-gray-100 flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-200 transition"
+            className="w-9 h-9 rounded-xl bg-[#EDE8DE] flex items-center justify-center text-[#999] hover:text-[#666] hover:bg-[#d4c9a8] transition"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -151,7 +151,7 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
           <div className="p-6 space-y-6">
             {/* Date Selection */}
             <div>
-              <label className="block text-sm font-semibold text-gray-900 mb-3">Pick a Date</label>
+              <label className="block text-sm font-semibold text-[#1a1a1a] mb-3">Pick a Date</label>
               <div className="flex gap-2 overflow-x-auto pb-2 -mx-1 px-1 scrollbar-hide">
                 {days.map((d) => {
                   const dateStr = d.date.toISOString().split("T")[0];
@@ -163,16 +163,16 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
                       className={`flex flex-col items-center min-w-[72px] px-3 py-3 rounded-2xl border-2 transition-all duration-200 shrink-0 ${
                         isSelected
                           ? "border-[#1a1a1a] bg-[#1a1a1a] text-white shadow-lg shadow-black/15 scale-[1.02]"
-                          : "border-gray-200 bg-white text-gray-700 hover:border-gray-300 hover:bg-gray-50"
+                          : "border-black/8 bg-[#FFFDF9] text-[#666] hover:border-black/15 hover:bg-[#F5F0E8]"
                       }`}
                     >
-                      <span className={`text-[10px] font-semibold uppercase tracking-wider ${isSelected ? "text-white/70" : "text-gray-400"}`}>
+                      <span className={`text-[10px] font-semibold uppercase tracking-wider ${isSelected ? "text-white/70" : "text-[#999]"}`}>
                         {d.dayName}
                       </span>
-                      <span className={`text-lg font-bold mt-0.5 ${isSelected ? "text-white" : "text-gray-900"}`}>
+                      <span className={`text-lg font-bold mt-0.5 ${isSelected ? "text-white" : "text-[#1a1a1a]"}`}>
                         {d.date.getDate()}
                       </span>
-                      <span className={`text-[10px] font-medium ${isSelected ? "text-white/70" : "text-gray-400"}`}>
+                      <span className={`text-[10px] font-medium ${isSelected ? "text-white/70" : "text-[#999]"}`}>
                         {d.date.toLocaleDateString("en-IN", { month: "short" })}
                       </span>
                     </button>
@@ -183,7 +183,7 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
 
             {/* Time Slot Selection */}
             <div>
-              <label className="block text-sm font-semibold text-gray-900 mb-3">Choose a Time Slot</label>
+              <label className="block text-sm font-semibold text-[#1a1a1a] mb-3">Choose a Time Slot</label>
               <div className="grid grid-cols-3 gap-3">
                 {TIME_SLOTS.map((slot) => {
                   const isSelected = selectedSlot === slot.id;
@@ -193,8 +193,8 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
                       onClick={() => setSelectedSlot(slot.id)}
                       className={`relative flex flex-col items-center p-4 rounded-2xl border-2 transition-all duration-200 ${
                         isSelected
-                          ? "border-[#1a1a1a] bg-gray-100 shadow-md"
-                          : "border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50"
+                          ? "border-[#1a1a1a] bg-[#EDE8DE] shadow-md"
+                          : "border-black/8 bg-[#FFFDF9] hover:border-black/15 hover:bg-[#F5F0E8]"
                       }`}
                     >
                       {isSelected && (
@@ -205,7 +205,7 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
                         </div>
                       )}
                       <svg
-                        className={`w-5 h-5 mb-1.5 ${isSelected ? "text-[#1a1a1a]" : "text-gray-400"}`}
+                        className={`w-5 h-5 mb-1.5 ${isSelected ? "text-[#1a1a1a]" : "text-[#999]"}`}
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -215,10 +215,10 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
                       >
                         <path d={slot.icon} />
                       </svg>
-                      <span className={`text-sm font-semibold ${isSelected ? "text-[#1a1a1a]" : "text-gray-700"}`}>
+                      <span className={`text-sm font-semibold ${isSelected ? "text-[#1a1a1a]" : "text-[#666]"}`}>
                         {slot.label}
                       </span>
-                      <span className={`text-[10px] mt-0.5 ${isSelected ? "text-[#1a1a1a]/70" : "text-gray-400"}`}>
+                      <span className={`text-[10px] mt-0.5 ${isSelected ? "text-[#1a1a1a]/70" : "text-[#999]"}`}>
                         {slot.time}
                       </span>
                     </button>
@@ -229,10 +229,10 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
 
             {/* Visitor Info */}
             <div>
-              <label className="block text-sm font-semibold text-gray-900 mb-3">Your Details</label>
+              <label className="block text-sm font-semibold text-[#1a1a1a] mb-3">Your Details</label>
               <div className="space-y-3">
                 <div className="relative">
-                  <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400">
+                  <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#999]">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                     </svg>
@@ -242,11 +242,11 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Full Name *"
-                    className="w-full pl-10 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-[#1a1a1a] focus:ring-0 outline-none text-sm transition-colors"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl border-2 border-black/8 focus:border-[#1a1a1a] focus:ring-0 outline-none text-sm transition-colors"
                   />
                 </div>
                 <div className="relative">
-                  <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400">
+                  <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#999]">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
                     </svg>
@@ -256,11 +256,11 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="Phone Number *"
-                    className="w-full pl-10 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-[#1a1a1a] focus:ring-0 outline-none text-sm transition-colors"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl border-2 border-black/8 focus:border-[#1a1a1a] focus:ring-0 outline-none text-sm transition-colors"
                   />
                 </div>
                 <div className="relative">
-                  <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400">
+                  <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#999]">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                     </svg>
@@ -270,7 +270,7 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Email (optional)"
-                    className="w-full pl-10 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-[#1a1a1a] focus:ring-0 outline-none text-sm transition-colors"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl border-2 border-black/8 focus:border-[#1a1a1a] focus:ring-0 outline-none text-sm transition-colors"
                   />
                 </div>
               </div>
@@ -278,15 +278,15 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
 
             {/* Notes */}
             <div>
-              <label className="block text-sm font-semibold text-gray-900 mb-2">
-                Notes <span className="font-normal text-gray-400">(optional)</span>
+              <label className="block text-sm font-semibold text-[#1a1a1a] mb-2">
+                Notes <span className="font-normal text-[#999]">(optional)</span>
               </label>
               <textarea
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 rows={2}
                 placeholder="Any specific questions or requests for the visit..."
-                className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-[#1a1a1a] focus:ring-0 outline-none text-sm transition-colors resize-none"
+                className="w-full px-4 py-3 rounded-xl border-2 border-black/8 focus:border-[#1a1a1a] focus:ring-0 outline-none text-sm transition-colors resize-none"
               />
             </div>
 
@@ -297,7 +297,7 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
               className={`w-full py-4 rounded-2xl font-semibold text-sm transition-all flex items-center justify-center gap-2 ${
                 isFormValid
                   ? "bg-[#1a1a1a] text-white hover:shadow-xl hover:shadow-black/20 hover:-translate-y-0.5 active:translate-y-0"
-                  : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                  : "bg-[#d4c9a8] text-[#999] cursor-not-allowed"
               }`}
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
@@ -335,52 +335,52 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
               </svg>
             </div>
 
-            <h3 className={`text-xl font-bold text-gray-900 mb-1 transition-all duration-400 ${showCheckmark ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}>
+            <h3 className={`text-xl font-bold text-[#1a1a1a] mb-1 transition-all duration-400 ${showCheckmark ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}>
               Visit Scheduled!
             </h3>
-            <p className={`text-sm text-gray-400 mb-6 transition-all duration-400 delay-100 ${showCheckmark ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}>
+            <p className={`text-sm text-[#999] mb-6 transition-all duration-400 delay-100 ${showCheckmark ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}>
               We&apos;ll remind you before your visit
             </p>
 
             {/* Visit Summary Card */}
             {booking && (
-              <div className={`bg-gray-50 rounded-2xl p-5 text-left mb-6 border border-gray-100 transition-all duration-400 delay-200 ${showCheckmark ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}>
+              <div className={`bg-[#F5F0E8] rounded-2xl p-5 text-left mb-6 border border-black/5 transition-all duration-400 delay-200 ${showCheckmark ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}>
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 bg-[#EDE8DE] rounded-xl flex items-center justify-center shrink-0">
                     <svg className="w-5 h-5 text-[#1a1a1a]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                       <polyline points="9 22 9 12 15 12 15 22" />
                     </svg>
                   </div>
                   <div>
-                    <p className="font-bold text-gray-900 text-sm">{booking.pgName}</p>
-                    <p className="text-xs text-gray-400">{booking.pgLocality}, {booking.pgArea}</p>
+                    <p className="font-bold text-[#1a1a1a] text-sm">{booking.pgName}</p>
+                    <p className="text-xs text-[#999]">{booking.pgLocality}, {booking.pgArea}</p>
                   </div>
                 </div>
                 <div className="space-y-2.5">
                   <div className="flex items-center gap-3">
-                    <svg className="w-4 h-4 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                    <svg className="w-4 h-4 text-[#999] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                       <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
                       <line x1="16" y1="2" x2="16" y2="6" />
                       <line x1="8" y1="2" x2="8" y2="6" />
                       <line x1="3" y1="10" x2="21" y2="10" />
                     </svg>
-                    <span className="text-sm text-gray-700">
+                    <span className="text-sm text-[#666]">
                       {new Date(booking.date).toLocaleDateString("en-IN", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}
                     </span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <svg className="w-4 h-4 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                    <svg className="w-4 h-4 text-[#999] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                       <circle cx="12" cy="12" r="10" />
                       <polyline points="12 6 12 12 16 14" />
                     </svg>
-                    <span className="text-sm text-gray-700">{booking.timeLabel}</span>
+                    <span className="text-sm text-[#666]">{booking.timeLabel}</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <svg className="w-4 h-4 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                    <svg className="w-4 h-4 text-[#999] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0" />
                     </svg>
-                    <span className="text-sm text-gray-700">{booking.visitorName} &middot; {booking.visitorPhone}</span>
+                    <span className="text-sm text-[#666]">{booking.visitorName} &middot; {booking.visitorPhone}</span>
                   </div>
                 </div>
               </div>
@@ -418,7 +418,7 @@ export default function ScheduleVisit({ pgId, pgName, pgArea, pgLocality, onClos
                 </a>
                 <button
                   onClick={onClose}
-                  className="w-full py-3 rounded-2xl font-medium text-sm text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-all"
+                  className="w-full py-3 rounded-2xl font-medium text-sm text-[#888] hover:text-[#666] hover:bg-[#EDE8DE] transition-all"
                 >
                   Done
                 </button>

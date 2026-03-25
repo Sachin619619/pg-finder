@@ -53,7 +53,7 @@ export default function CastleRankings({ listings }: CastleRankingsProps) {
   const [active, setActive] = useState("castle_score");
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-[#F5F0E8]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <span className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-3 inline-block">Castle Rankings</span>
@@ -70,7 +70,7 @@ export default function CastleRankings({ listings }: CastleRankingsProps) {
               className={`px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition-all ${
                 active === cat.id
                   ? "bg-[#1a1a1a] text-white"
-                  : "bg-white border border-black/5 text-gray-600 hover:border-black/10 hover:bg-gray-50"
+                  : "bg-[#FFFDF9] border border-black/5 text-[#666] hover:border-black/10 hover:bg-[#F5F0E8]"
               }`}
             >
               {cat.label}
@@ -82,19 +82,19 @@ export default function CastleRankings({ listings }: CastleRankingsProps) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
           {getCategoryListings(listings, active).map((pg, i) => (
             <Link key={pg.id} href={`/listing/${pg.id}`} className="group">
-              <div className="bg-white rounded-2xl border border-black/5 overflow-hidden hover:shadow-md hover:-translate-y-1 transition-all">
+              <div className="bg-[#FFFDF9] rounded-2xl border border-black/5 overflow-hidden hover:shadow-md hover:-translate-y-1 transition-all">
                 {/* Rank badge */}
                 <div className={`relative h-32 flex items-center justify-center ${
                   i === 0 ? "bg-amber-50" :
-                  i === 1 ? "bg-gray-100" :
+                  i === 1 ? "bg-[#EDE8DE]" :
                   i === 2 ? "bg-orange-50" :
-                  "bg-gray-50"
+                  "bg-[#F5F0E8]"
                 }`}>
                   <span className={`text-5xl font-black ${
                     i === 0 ? "text-amber-500" :
-                    i === 1 ? "text-gray-400" :
+                    i === 1 ? "text-[#999]" :
                     i === 2 ? "text-orange-500" :
-                    "text-gray-300"
+                    "text-[#d4c9a8]"
                   }`}>
                     #{i + 1}
                   </span>
@@ -105,11 +105,11 @@ export default function CastleRankings({ listings }: CastleRankingsProps) {
 
                 {/* Content */}
                 <div className="p-4">
-                  <h4 className="font-semibold text-gray-900 text-sm mb-1 group-hover:text-[#1a1a1a] transition-colors truncate">{pg.name}</h4>
-                  <p className="text-xs text-gray-400 mb-2">📍 {pg.area}</p>
+                  <h4 className="font-semibold text-[#1a1a1a] text-sm mb-1 group-hover:text-[#1a1a1a] transition-colors truncate">{pg.name}</h4>
+                  <p className="text-xs text-[#999] mb-2">📍 {pg.area}</p>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-bold text-gray-900">₹{pg.price.toLocaleString()}</span>
-                    <span className="text-xs text-gray-400">⭐ {pg.rating}</span>
+                    <span className="text-sm font-bold text-[#1a1a1a]">₹{pg.price.toLocaleString()}</span>
+                    <span className="text-xs text-[#999]">⭐ {pg.rating}</span>
                   </div>
                 </div>
               </div>

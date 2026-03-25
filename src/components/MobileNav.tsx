@@ -101,8 +101,8 @@ export default function MobileNav() {
           {/* Top shadow */}
           <div className="absolute -top-4 left-0 right-0 h-4 bg-gradient-to-b from-black/10 to-transparent" />
           
-          <div className={`flex items-center justify-around px-2 py-2 border-t border-gray-200/50 ${
-            scrolled ? "bg-white/95 backdrop-blur-xl shadow-lg shadow-black/5" : "bg-white/90 backdrop-blur-lg"
+          <div className={`flex items-center justify-around px-2 py-2 border-t border-black/5 ${
+            scrolled ? "bg-[#FFFDF9]/95 backdrop-blur-xl shadow-lg shadow-black/5" : "bg-[#FFFDF9]/90 backdrop-blur-lg"
           }`}>
             {navItems.map((item) => {
               const isActive = pathname === item.href || (item.href !== "/" && pathname?.startsWith(item.href));
@@ -113,7 +113,7 @@ export default function MobileNav() {
                   className={`flex flex-col items-center justify-center gap-0.5 px-4 py-1.5 rounded-xl transition-all ${
                     isActive
                       ? "text-[#1a1a1a]"
-                      : "text-gray-400 hover:text-gray-600"
+                      : "text-[#999] hover:text-[#666]"
                   }`}
                 >
                   <div className={`relative ${isActive ? "scale-110" : ""} transition-transform`}>

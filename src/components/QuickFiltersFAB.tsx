@@ -29,16 +29,16 @@ export default function QuickFiltersFAB({ onApply }: QuickFiltersFABProps) {
         <div className="fixed inset-0 z-50 md:hidden" onClick={() => setOpen(false)}>
           <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
           <div
-            className="absolute bottom-0 left-0 right-0 max-h-[85vh] bg-white rounded-t-3xl overflow-y-auto animate-slide-up"
+            className="absolute bottom-0 left-0 right-0 max-h-[85vh] bg-[#FFFDF9] rounded-t-3xl overflow-y-auto animate-slide-up"
             onClick={e => e.stopPropagation()}
           >
-            <div className="sticky top-0 bg-white z-10 flex items-center justify-between p-5 border-b border-gray-100">
+            <div className="sticky top-0 bg-[#FFFDF9] z-10 flex items-center justify-between p-5 border-b border-black/5">
               <h2 className="text-lg font-bold text-gray-900">🎯 Smart Filters</h2>
               <button
                 onClick={() => setOpen(false)}
-                className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition"
+                className="w-8 h-8 rounded-full bg-[#EDE8DE] flex items-center justify-center hover:bg-[#d4c9a8] transition"
               >
-                <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                <svg className="w-4 h-4 text-[#888]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                   <path d="M18 6L6 18M6 6l12 12" />
                 </svg>
               </button>

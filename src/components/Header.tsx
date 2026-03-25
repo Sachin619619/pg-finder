@@ -34,8 +34,12 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
-      <div className="mx-4 mt-3">
-        <div className="rounded-2xl px-6 py-3 max-w-7xl mx-auto bg-white/80 backdrop-blur-md border border-black/5 shadow-sm">
+      <div className="announcement-bar text-center py-2.5 px-4 bg-[#1B5E3B] text-white text-[13px] font-medium">
+        🏠 Castle is Bangalore&apos;s #1 PG finder — 20+ verified listings
+        <a href="#listings" className="underline underline-offset-2 font-semibold ml-2 hover:opacity-80 transition-opacity">Browse PGs →</a>
+      </div>
+      <div className="mx-0 mt-0">
+        <div className="rounded-none px-8 py-3 max-w-7xl mx-auto bg-white/95 backdrop-blur-lg border-b border-black/5">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               {/* Back button — shown on all pages except home */}
@@ -91,7 +95,7 @@ export default function Header() {
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="px-4 py-2 text-[14px] font-normal text-[#222] hover:opacity-60 rounded-xl transition-all"
+                  className="px-4 py-2 text-[14px] font-medium text-[#333] hover:text-black rounded-xl transition-all"
                 >
                   {item.label}
                 </Link>
@@ -197,7 +201,7 @@ export default function Header() {
                       )}
                     </div>
                   ) : (
-                    <Link href="/login" className="ml-2 px-5 py-2 text-sm font-medium bg-[#1a1a1a] text-white rounded-[14px] hover:opacity-90 transition shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_2px_4px_rgba(0,0,0,0.15)]">
+                    <Link href="/login" className="ml-2 bg-[#1a1a1a] text-white px-5 py-2.5 rounded-full text-sm font-medium hover:opacity-90 transition">
                       Sign In
                     </Link>
                   )}

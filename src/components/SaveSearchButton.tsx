@@ -49,7 +49,7 @@ export default function SaveSearchButton({ searchCriteria }: SaveSearchButtonPro
       className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
         saved
           ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
-          : "bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200"
+          : "bg-[#EDE8DE] text-gray-700 hover:bg-[#d4c9a8] border border-black/8"
       }`}
     >
       {saving ? (

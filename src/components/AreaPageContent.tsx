@@ -79,13 +79,13 @@ export default function AreaPageContent({ listings }: { listings: PGListing[] })
   return (
     <div>
       {/* Quick Filters */}
-      <div className="bg-white rounded-2xl border border-[#E8E0CC] p-5 sm:p-6 mb-8 shadow-sm">
+      <div className="bg-[#FFFDF9] rounded-2xl border border-[#E8E0CC] p-5 sm:p-6 mb-8 shadow-sm">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-bold text-[#1a1a1a]">Filter PGs</h2>
           {activeFilterCount > 0 && (
             <button
               onClick={() => { setGender(""); setPriceRange(null); setActiveAmenities(new Set()); }}
-              className="text-sm text-gray-500 hover:text-[#1a1a1a] underline underline-offset-2 transition-colors"
+              className="text-sm text-[#888] hover:text-[#1a1a1a] underline underline-offset-2 transition-colors"
             >
               Clear all ({activeFilterCount})
             </button>
@@ -94,7 +94,7 @@ export default function AreaPageContent({ listings }: { listings: PGListing[] })
 
         {/* Gender */}
         <div className="mb-4">
-          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Gender</p>
+          <p className="text-xs font-semibold text-[#888] uppercase tracking-wider mb-2">Gender</p>
           <div className="flex flex-wrap gap-2">
             {([
               { value: "" as GenderFilter, label: "All", icon: "👥" },
@@ -108,7 +108,7 @@ export default function AreaPageContent({ listings }: { listings: PGListing[] })
                 className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
                   gender === g.value
                     ? "bg-[#1a1a1a] text-white"
-                    : "bg-gray-100 text-[#1a1a1a] hover:bg-gray-200"
+                    : "bg-[#EDE8DE] text-[#1a1a1a] hover:bg-[#d4c9a8]"
                 }`}
               >
                 {g.icon} {g.label}
@@ -119,7 +119,7 @@ export default function AreaPageContent({ listings }: { listings: PGListing[] })
 
         {/* Price Range Chips */}
         <div className="mb-4">
-          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Budget / month</p>
+          <p className="text-xs font-semibold text-[#888] uppercase tracking-wider mb-2">Budget / month</p>
           <div className="flex flex-wrap gap-2">
             {PRICE_CHIPS.map((chip) => {
               const isActive = priceRange?.min === chip.min && priceRange?.max === chip.max;
@@ -130,7 +130,7 @@ export default function AreaPageContent({ listings }: { listings: PGListing[] })
                   className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
                     isActive
                       ? "bg-[#1a1a1a] text-white shadow-md"
-                      : "bg-[gray-100] text-[#1a1a1a] hover:bg-[gray-200]"
+                      : "bg-[#EDE8DE] text-[#1a1a1a] hover:bg-[#d4c9a8]"
                   }`}
                 >
                   {chip.label}
@@ -142,7 +142,7 @@ export default function AreaPageContent({ listings }: { listings: PGListing[] })
 
         {/* Amenity Toggles */}
         <div>
-          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Amenities</p>
+          <p className="text-xs font-semibold text-[#888] uppercase tracking-wider mb-2">Amenities</p>
           <div className="flex flex-wrap gap-2">
             {AMENITY_TOGGLES.map((am) => {
               const isActive = activeAmenities.has(am.key);
@@ -153,7 +153,7 @@ export default function AreaPageContent({ listings }: { listings: PGListing[] })
                   className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
                     isActive
                       ? "bg-[#1a1a1a] text-white shadow-md"
-                      : "bg-[gray-100] text-[#1a1a1a] hover:bg-[gray-200]"
+                      : "bg-[#EDE8DE] text-[#1a1a1a] hover:bg-[#d4c9a8]"
                   }`}
                 >
                   {am.icon} {am.label}
@@ -166,17 +166,17 @@ export default function AreaPageContent({ listings }: { listings: PGListing[] })
 
       {/* Sort bar + count */}
       <div className="flex items-center justify-between mb-6">
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-[#666]">
           <span className="font-bold text-[#1a1a1a]">{filtered.length}</span>{" "}
           {filtered.length === 1 ? "PG" : "PGs"} found
         </p>
         <div className="flex items-center gap-2">
-          <label htmlFor="sort" className="text-xs text-gray-500 hidden sm:inline">Sort by:</label>
+          <label htmlFor="sort" className="text-xs text-[#888] hidden sm:inline">Sort by:</label>
           <select
             id="sort"
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as SortOption)}
-            className="text-sm border border-gray-200 rounded-xl px-3 py-2 bg-white text-[#1a1a1a] focus:outline-none focus:ring-2 focus:ring-black/10"
+            className="text-sm border border-black/8 rounded-xl px-3 py-2 bg-[#FFFDF9] text-[#1a1a1a] focus:outline-none focus:ring-2 focus:ring-black/10"
           >
             <option value="rating">Top Rated</option>
             <option value="price-asc">Price: Low to High</option>
@@ -197,7 +197,7 @@ export default function AreaPageContent({ listings }: { listings: PGListing[] })
         <div className="text-center py-16 mb-12">
           <div className="text-5xl mb-4">🏠</div>
           <h3 className="text-xl font-bold text-[#1a1a1a] mb-2">No PGs match your filters</h3>
-          <p className="text-gray-500 mb-4">Try adjusting your filters to see more results.</p>
+          <p className="text-[#888] mb-4">Try adjusting your filters to see more results.</p>
           <button
             onClick={() => { setGender(""); setPriceRange(null); setActiveAmenities(new Set()); }}
             className="px-6 py-2.5 bg-[#1a1a1a] text-white rounded-xl text-sm font-medium hover:opacity-80 transition-opacity"

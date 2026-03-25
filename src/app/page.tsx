@@ -184,11 +184,11 @@ export default function Home() {
       <Header />
       <main id="main-content" className="flex-1 overflow-x-hidden">
         {/* ===== HERO ===== */}
-        <section className="bg-white pt-36 pb-20 sm:pt-44 sm:pb-28 relative overflow-hidden">
+        <section className="bg-[#F5F0E8] pt-40 pb-24 sm:pt-52 sm:pb-32 relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
               {/* Hero heading */}
-              <h1 className="font-serif text-5xl sm:text-7xl font-normal mb-7 leading-[1.05] tracking-tight text-black">
+              <h1 className="font-serif text-[3.2rem] sm:text-[5rem] lg:text-[5.5rem] font-normal mb-7 leading-[1.05] tracking-tight text-black">
                 Find your
                 <br />
                 <em>perfect stay</em>
@@ -214,7 +214,7 @@ export default function Home() {
                 />
                 <button
                   onClick={() => document.getElementById("listings")?.scrollIntoView({ behavior: "smooth" })}
-                  className="bg-[#1a1a1a] text-white py-4 px-8 rounded-xl font-medium text-sm hover:opacity-90 transition-opacity whitespace-nowrap"
+                  className="bg-[#1a1a1a] text-white py-4 px-10 rounded-full font-medium text-sm hover:opacity-90 transition-opacity whitespace-nowrap"
                 >
                   Search PGs
                 </button>
@@ -235,7 +235,7 @@ export default function Home() {
                   <Link
                     key={area.name}
                     href={`/area/${area.name.toLowerCase().replace(/\s+/g, "-")}`}
-                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-white border border-black/5 rounded-full text-xs font-medium text-black/60 hover:bg-black/5 hover:text-black/80 transition-all"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-[#FFFDF9] border border-black/8 rounded-full text-xs font-medium text-black/60 hover:bg-black/5 hover:text-black/80 transition-all"
                   >
                     <span>{area.emoji}</span>
                     {area.name}
@@ -245,7 +245,7 @@ export default function Home() {
             </div>
 
             {/* Stats */}
-            <div className="mt-20 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-3xl mx-auto">
+            <div className="mt-24 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-3xl mx-auto">
               {[
                 { ref: stat1.ref, value: `${stat1.count}+`, label: "Verified PGs" },
                 { ref: stat2.ref, value: `${stat2.count}+`, label: "Areas Covered" },
@@ -276,7 +276,7 @@ export default function Home() {
         </section>
 
         {/* ===== CASTLE SCORE CALCULATOR ===== */}
-        <section className="py-12 px-4 bg-white">
+        <section className="py-12 px-4 bg-[#F5F0E8]">
           <div className="max-w-md mx-auto text-center">
             <span className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-3 inline-block">🎯 Quiz</span>
             <h2 className="font-serif text-2xl text-gray-900 mb-2">What's Your Castle Score?</h2>
@@ -303,7 +303,7 @@ export default function Home() {
         <TrendingSearches />
 
         {/* ===== TRUST MARQUEE ===== */}
-        <section className="bg-gray-50 border-y border-gray-200 py-4 overflow-hidden">
+        <section className="bg-[#EDE8DE] border-y border-black/5 py-4 overflow-hidden">
           <div className="animate-marquee flex items-center gap-12 whitespace-nowrap">
             {[...Array(2)].map((_, setIdx) => (
               <div key={setIdx} className="flex items-center gap-12">
@@ -336,7 +336,7 @@ export default function Home() {
               className={`shrink-0 px-6 py-3.5 rounded-full font-medium text-sm transition-all ${
                 !filters.area
                   ? "bg-[#1a1a1a] text-white"
-                  : "bg-gray-50 text-black border border-gray-200 hover:border-black/30"
+                  : "bg-[#FFFDF9] text-black border border-black/8 hover:border-black/30"
               }`}
             >
               All Areas
@@ -348,7 +348,7 @@ export default function Home() {
                 className={`shrink-0 px-6 py-3.5 rounded-full font-medium text-sm transition-all ${
                   filters.area === area
                     ? "bg-[#1a1a1a] text-white"
-                    : "bg-gray-50 text-black border border-gray-200 hover:border-black/30"
+                    : "bg-[#FFFDF9] text-black border border-black/8 hover:border-black/30"
                 }`}
               >
                 {area} <span className="text-xs opacity-50 ml-1">{count}</span>
@@ -636,7 +636,7 @@ export default function Home() {
         <FAQ />
 
         {/* ===== FOOTER ===== */}
-        <footer className="bg-white text-black/50 pt-20 pb-8 border-t border-black/5">
+        <footer className="bg-[#F5F0E8] text-black/50 pt-20 pb-8 border-t border-black/5">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="grid grid-cols-1 sm:grid-cols-4 gap-10 mb-16">
               <div className="sm:col-span-2">

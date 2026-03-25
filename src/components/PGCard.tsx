@@ -20,10 +20,10 @@ export default function PGCard({ pg, priority = false, showCompare = true }: { p
   return (
     <Link href={`/listing/${pg.id}`}>
       <div
-        className="bg-white rounded-2xl overflow-hidden cursor-pointer group h-full flex flex-col shadow-sm hover:shadow-md transition-all duration-300"
+        className="bg-[#FFFDF9] rounded-2xl overflow-hidden cursor-pointer group h-full flex flex-col shadow-sm hover:shadow-md transition-all duration-300"
       >
         {/* Image area */}
-        <div className={`relative h-52 ${hasImage ? "bg-gray-100" : "bg-[#fafaf8]"} overflow-hidden`}>
+        <div className={`relative h-52 ${hasImage ? "bg-gray-100" : "bg-[#F0EBE0]"} overflow-hidden`}>
           {hasImage ? (
             <Image
               src={pg.images[0]}
@@ -144,7 +144,7 @@ export default function PGCard({ pg, priority = false, showCompare = true }: { p
           </div>
 
           {/* Location */}
-          <p className="text-sm text-gray-400 mb-4 flex items-center gap-1.5">
+          <p className="text-sm text-[#999] mb-4 flex items-center gap-1.5">
             
             <span className="truncate">{pg.locality}</span>
           </p>
@@ -153,47 +153,47 @@ export default function PGCard({ pg, priority = false, showCompare = true }: { p
           <div className="flex flex-wrap gap-2 mb-4">
             {pg.roomOptions && pg.roomOptions.length > 0 ? (
               pg.roomOptions.map(r => (
-                <span key={r.type} className="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-medium bg-gray-50 text-gray-700 border border-gray-100">
+                <span key={r.type} className="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-medium bg-[#F5F0E8] text-[#333] border border-black/5">
                   {r.type === "single" ? "Single" : r.type === "double" ? "Double" : "Triple"} · ₹{r.price.toLocaleString()}
                 </span>
               ))
             ) : (
-              <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-medium bg-gray-50 text-gray-700 border border-gray-100">
+              <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-medium bg-[#F5F0E8] text-[#333] border border-black/5">
                 {pg.type === "single" ? "Single" : pg.type === "double" ? "Double" : pg.type === "triple" ? "Triple" : "Any"} Occupancy
               </span>
             )}
             {pg.foodIncluded && (
-              <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-medium bg-gray-50 text-gray-700 border border-gray-100">Food Inc.</span>
+              <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-medium bg-[#F5F0E8] text-[#333] border border-black/5">Food Inc.</span>
             )}
             {pg.acAvailable && (
-              <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-medium bg-gray-50 text-gray-700 border border-gray-100">AC</span>
+              <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-medium bg-[#F5F0E8] text-[#333] border border-black/5">AC</span>
             )}
             {pg.furnished && (
-              <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-medium bg-gray-50 text-gray-700 border border-gray-100">Furnished</span>
+              <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-medium bg-[#F5F0E8] text-[#333] border border-black/5">Furnished</span>
             )}
           </div>
 
           {/* Bottom amenities */}
-          <div className="mt-auto pt-4 border-t border-gray-100 flex items-center justify-between">
+          <div className="mt-auto pt-4 border-t border-black/5 flex items-center justify-between">
             <div className="flex -space-x-1.5">
               {pg.amenities.slice(0, 4).map((a) => (
                 <span
                   key={a}
-                  className="w-7 h-7 rounded-full bg-gray-50 border-2 border-white flex items-center justify-center text-[9px] font-bold text-gray-500 shadow-sm"
+                  className="w-7 h-7 rounded-full bg-[#F0EBE0] border-2 border-white flex items-center justify-center text-[9px] font-bold text-[#666] shadow-sm"
                   title={a}
                 >
                   {a.charAt(0)}
                 </span>
               ))}
               {pg.amenities.length > 4 && (
-                <span className="w-7 h-7 rounded-full bg-gray-50 border-2 border-white flex items-center justify-center text-[10px] font-bold text-gray-500 shadow-sm">
+                <span className="w-7 h-7 rounded-full bg-[#F0EBE0] border-2 border-white flex items-center justify-center text-[10px] font-bold text-[#666] shadow-sm">
                   +{pg.amenities.length - 4}
                 </span>
               )}
             </div>
             <div className="flex items-center gap-2">
               {pg.distanceFromMetro && (
-                <span className="text-[11px] text-gray-400 flex items-center gap-1 bg-gray-50 px-2 py-1 rounded-lg">
+                <span className="text-[11px] text-[#888] flex items-center gap-1 bg-[#F0EBE0] px-2 py-1 rounded-lg">
                   {pg.distanceFromMetro}
                 </span>
               )}

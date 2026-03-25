@@ -41,7 +41,7 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-[#F5F0E8]">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <span className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-3 inline-block">Help Center</span>
@@ -51,21 +51,21 @@ export default function FAQ() {
 
         <div className="space-y-3">
           {faqs.map((faq, i) => (
-            <div key={i} className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
+            <div key={i} className="bg-[#FFFDF9] rounded-2xl border border-black/5 overflow-hidden">
               <button
                 onClick={() => setOpen(open === i ? null : i)}
                 className="w-full text-left p-5 flex items-center justify-between gap-4"
               >
-                <span className="font-semibold text-gray-900 text-sm">{faq.q}</span>
+                <span className="font-semibold text-[#1a1a1a] text-sm">{faq.q}</span>
                 <span className={`w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold shrink-0 transition-all ${
-                  open === i ? "bg-[#1a1a1a] text-white rotate-45" : "bg-gray-100 text-gray-500"
+                  open === i ? "bg-[#1a1a1a] text-white rotate-45" : "bg-[#F5F0E8] text-[#888]"
                 }`}>
                   +
                 </span>
               </button>
               {open === i && (
                 <div className="px-5 pb-5">
-                  <p className="text-sm text-gray-600 leading-relaxed">{faq.a}</p>
+                  <p className="text-sm text-[#888] leading-relaxed">{faq.a}</p>
                 </div>
               )}
             </div>
@@ -73,7 +73,7 @@ export default function FAQ() {
         </div>
 
         <div className="text-center mt-8">
-          <p className="text-sm text-gray-500 mb-4">Still have questions?</p>
+          <p className="text-sm text-[#888] mb-4">Still have questions?</p>
           <a
             href="mailto:hello@castleliving.in"
             className="inline-flex items-center gap-2 px-6 py-3 bg-[#1a1a1a] text-white rounded-xl text-sm font-semibold hover:bg-[#2d2e25] transition"

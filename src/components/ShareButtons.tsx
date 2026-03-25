@@ -87,7 +87,7 @@ export default function ShareButtons({ pgName, pgArea, pgPrice, compact = false,
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
         </svg>
       ) : (
-        <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-5 h-5 text-[#666]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
         </svg>
       ),
@@ -115,7 +115,7 @@ export default function ShareButtons({ pgName, pgArea, pgPrice, compact = false,
       label: "Email",
       href: `mailto:?subject=${encodeURIComponent(`Check out ${pgName} on Castle Living`)}&body=${encodeURIComponent(`${shareText}\n\n${url}`)}`,
       icon: (
-        <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-5 h-5 text-[#666]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
         </svg>
       ),
@@ -153,7 +153,7 @@ export default function ShareButtons({ pgName, pgArea, pgPrice, compact = false,
           >
             <div
               ref={modalRef}
-              className="bg-gray-50 rounded-2xl shadow-2xl p-6 w-[320px] max-w-[90vw]"
+              className="bg-[#F5F0E8] rounded-2xl shadow-2xl p-6 w-[320px] max-w-[90vw]"
               style={{ animation: "scaleIn 0.2s ease-out" }}
               onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}
             >
@@ -161,9 +161,9 @@ export default function ShareButtons({ pgName, pgArea, pgPrice, compact = false,
                 <h3 className="text-lg font-bold text-[#1a1a1a]">Share Listing</h3>
                 <button
                   onClick={(e) => { e.preventDefault(); e.stopPropagation(); setOpen(false); }}
-                  className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition"
+                  className="w-8 h-8 rounded-full bg-[#EDE8DE] flex items-center justify-center hover:bg-[#d4c9a8] transition"
                 >
-                  <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-[#888]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
@@ -171,8 +171,8 @@ export default function ShareButtons({ pgName, pgArea, pgPrice, compact = false,
               <div className="space-y-2">
                 {shareOptions.map((opt) => {
                   const content = (
-                    <div className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-100 transition-colors cursor-pointer">
-                      <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm shrink-0">
+                    <div className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-[#EDE8DE] transition-colors cursor-pointer">
+                      <div className="w-10 h-10 rounded-full bg-[#FFFDF9] flex items-center justify-center shadow-sm shrink-0">
                         {opt.icon}
                       </div>
                       <span className="text-sm font-medium text-[#1a1a1a]">{opt.activeLabel || opt.label}</span>
@@ -223,7 +223,7 @@ export default function ShareButtons({ pgName, pgArea, pgPrice, compact = false,
     <div className="relative">
       <button
         onClick={handleShareClick}
-        className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all text-sm font-medium"
+        className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#EDE8DE] text-[#666] hover:bg-[#d4c9a8] transition-all text-sm font-medium"
         aria-label={`Share ${pgName}`}
         title="Share this listing"
       >
@@ -240,7 +240,7 @@ export default function ShareButtons({ pgName, pgArea, pgPrice, compact = false,
         >
           <div
             ref={modalRef}
-            className="bg-gray-50 rounded-2xl shadow-2xl p-6 w-[360px] max-w-[90vw]"
+            className="bg-[#F5F0E8] rounded-2xl shadow-2xl p-6 w-[360px] max-w-[90vw]"
             style={{ animation: "scaleIn 0.2s ease-out" }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -248,25 +248,25 @@ export default function ShareButtons({ pgName, pgArea, pgPrice, compact = false,
               <h3 className="text-lg font-bold text-[#1a1a1a]">Share Listing</h3>
               <button
                 onClick={() => setOpen(false)}
-                className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition"
+                className="w-8 h-8 rounded-full bg-[#EDE8DE] flex items-center justify-center hover:bg-[#d4c9a8] transition"
               >
-                <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-[#888]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
 
             {/* PG name preview */}
-            <div className="mb-5 px-4 py-3 bg-gray-100 rounded-xl">
+            <div className="mb-5 px-4 py-3 bg-[#EDE8DE] rounded-xl">
               <p className="text-sm font-semibold text-[#1a1a1a] truncate">{pgName}</p>
-              <p className="text-xs text-gray-500">{pgArea} &middot; ₹{pgPrice.toLocaleString()}/mo</p>
+              <p className="text-xs text-[#888]">{pgArea} &middot; ₹{pgPrice.toLocaleString()}/mo</p>
             </div>
 
             <div className="space-y-2">
               {shareOptions.map((opt) => {
                 const content = (
-                  <div className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-100 transition-colors cursor-pointer">
-                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm shrink-0">
+                  <div className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-[#EDE8DE] transition-colors cursor-pointer">
+                    <div className="w-10 h-10 rounded-full bg-[#FFFDF9] flex items-center justify-center shadow-sm shrink-0">
                       {opt.icon}
                     </div>
                     <span className="text-sm font-medium text-[#1a1a1a]">{opt.activeLabel || opt.label}</span>

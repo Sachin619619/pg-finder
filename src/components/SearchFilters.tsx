@@ -50,13 +50,13 @@ export default function SearchFilters({ filters, onChange }: Props) {
       {/* Collapsed view — always visible */}
       <div className="p-5 flex items-center gap-4">
         <div className="flex-1 relative">
-          <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#999]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
           <input
             type="text"
             placeholder="Search PG name, area, landmark..."
-            className="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-xl text-[15px] text-gray-700 placeholder-gray-400 focus:bg-white focus:ring-2 focus:ring-black/10 border border-transparent focus:border-black/10 outline-none transition-all"
+            className="w-full pl-12 pr-4 py-3 bg-[#FFFDF9] rounded-xl text-[15px] text-gray-700 placeholder-[#999] focus:bg-white focus:ring-2 focus:ring-black/10 border border-transparent focus:border-black/10 outline-none transition-all"
             value={filters.search}
             onChange={(e) => update({ search: e.target.value })}
           />
@@ -66,7 +66,7 @@ export default function SearchFilters({ filters, onChange }: Props) {
           className={`flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-medium transition-all ${
             expanded || activeFilters > 0
               ? "bg-[#1a1a1a] text-white"
-              : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+              : "bg-[#F5F0E8] text-[#888] hover:bg-[#EDE8DE]"
           }`}
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -83,11 +83,11 @@ export default function SearchFilters({ filters, onChange }: Props) {
 
       {/* Expanded filters */}
       {expanded && (
-        <div className="px-5 pb-6 border-t border-gray-100 pt-5 animate-slide-up space-y-5">
+        <div className="px-5 pb-6 border-t border-black/5 pt-5 animate-slide-up space-y-5">
           {/* Row 1 — Area, Price */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Area</label>
+              <label className="block text-xs font-semibold text-[#999] uppercase tracking-wider mb-2">Area</label>
               <select
                 className="premium-input w-full text-sm"
                 value={filters.area}
@@ -100,7 +100,7 @@ export default function SearchFilters({ filters, onChange }: Props) {
               </select>
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Min Budget</label>
+              <label className="block text-xs font-semibold text-[#999] uppercase tracking-wider mb-2">Min Budget</label>
               <select
                 className="premium-input w-full text-sm"
                 value={filters.minPrice}
@@ -115,7 +115,7 @@ export default function SearchFilters({ filters, onChange }: Props) {
               </select>
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Max Budget</label>
+              <label className="block text-xs font-semibold text-[#999] uppercase tracking-wider mb-2">Max Budget</label>
               <select
                 className="premium-input w-full text-sm"
                 value={filters.maxPrice}
@@ -134,7 +134,7 @@ export default function SearchFilters({ filters, onChange }: Props) {
           {/* Row 2 — Gender, Room, Food, AC */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Gender</label>
+              <label className="block text-xs font-semibold text-[#999] uppercase tracking-wider mb-2">Gender</label>
               <select className="premium-input w-full text-sm" value={filters.gender} onChange={(e) => update({ gender: e.target.value })}>
                 <option value="">Any</option>
                 <option value="male">Male</option>
@@ -143,7 +143,7 @@ export default function SearchFilters({ filters, onChange }: Props) {
               </select>
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Room Type</label>
+              <label className="block text-xs font-semibold text-[#999] uppercase tracking-wider mb-2">Room Type</label>
               <select className="premium-input w-full text-sm" value={filters.roomType} onChange={(e) => update({ roomType: e.target.value })}>
                 <option value="">Any</option>
                 <option value="single">Single</option>
@@ -152,7 +152,7 @@ export default function SearchFilters({ filters, onChange }: Props) {
               </select>
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Food</label>
+              <label className="block text-xs font-semibold text-[#999] uppercase tracking-wider mb-2">Food</label>
               <select
                 className="premium-input w-full text-sm"
                 value={filters.foodIncluded === null ? "" : filters.foodIncluded ? "yes" : "no"}
@@ -164,7 +164,7 @@ export default function SearchFilters({ filters, onChange }: Props) {
               </select>
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">AC</label>
+              <label className="block text-xs font-semibold text-[#999] uppercase tracking-wider mb-2">AC</label>
               <select
                 className="premium-input w-full text-sm"
                 value={filters.acAvailable === null ? "" : filters.acAvailable ? "yes" : "no"}
@@ -179,7 +179,7 @@ export default function SearchFilters({ filters, onChange }: Props) {
 
           {/* Amenities */}
           <div>
-            <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Amenities</label>
+            <label className="block text-xs font-semibold text-[#999] uppercase tracking-wider mb-3">Amenities</label>
             <div className="flex flex-wrap gap-2">
               {amenities.map((a) => (
                 <button
@@ -188,7 +188,7 @@ export default function SearchFilters({ filters, onChange }: Props) {
                   className={`pill transition-all text-[13px] ${
                     filters.amenities.includes(a)
                       ? "bg-[#1a1a1a] text-white"
-                      : "bg-gray-50 text-gray-500 hover:bg-gray-100 border border-gray-100"
+                      : "bg-[#FFFDF9] text-[#888] hover:bg-[#F5F0E8] border border-black/5"
                   }`}
                 >
                   {a}

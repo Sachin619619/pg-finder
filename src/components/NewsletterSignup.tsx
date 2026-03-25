@@ -23,11 +23,11 @@ export default function NewsletterSignup() {
   };
 
   return (
-    <section className="py-20 bg-white border-t border-black/5">
+    <section className="py-20 bg-[#FFFDF9] border-t border-black/5">
       <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="text-4xl mb-4">📬</div>
         <h2 className="text-2xl font-bold text-black mb-3">Stay in the Loop</h2>
-        <p className="text-gray-500 text-sm mb-8 max-w-md mx-auto">
+        <p className="text-[#888] text-sm mb-8 max-w-md mx-auto">
           Get weekly updates on new PG listings, price drops, and neighborhood insights. No spam — unsubscribe anytime.
         </p>
 
@@ -39,7 +39,7 @@ export default function NewsletterSignup() {
               onChange={e => setEmail(e.target.value)}
               placeholder="your@email.com"
               required
-              className="flex-1 px-5 py-4 rounded-xl bg-gray-50 border border-gray-200 text-black placeholder:text-gray-400 text-sm focus:outline-none focus:border-gray-300 transition-colors"
+              className="flex-1 px-5 py-4 rounded-xl bg-[#F5F0E8] border border-black/8 text-black placeholder:text-[#999] text-sm focus:outline-none focus:border-black/15 transition-colors"
             />
             <button
               type="submit"
@@ -56,7 +56,7 @@ export default function NewsletterSignup() {
           </div>
         )}
 
-        <p className="text-gray-300 text-xs mt-4">
+        <p className="text-[#d4c9a8] text-xs mt-4">
           Join 2,500+ subscribers. We respect your privacy.
         </p>
       </div>

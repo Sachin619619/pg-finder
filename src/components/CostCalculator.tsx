@@ -89,15 +89,15 @@ function CostBar({
   return (
     <div className="group">
       <div className="flex items-center justify-between mb-1.5">
-        <span className="flex items-center gap-2 text-sm text-gray-700 font-medium">
+        <span className="flex items-center gap-2 text-sm text-[#555] font-medium">
           <span className="text-base">{icon}</span>
           {label}
         </span>
-        <span className="text-sm font-semibold text-gray-900 tabular-nums transition-all duration-300">
+        <span className="text-sm font-semibold text-[#1a1a1a] tabular-nums transition-all duration-300">
           {amount > 0 ? `+${animated.toLocaleString("en-IN")}` : "FREE"}
         </span>
       </div>
-      <div className="h-2.5 bg-gray-100 rounded-full overflow-hidden">
+      <div className="h-2.5 bg-[#EDE8DE] rounded-full overflow-hidden">
         <div
           className={`h-full rounded-full transition-all duration-700 ease-out ${color}`}
           style={{ width: `${pct}%` }}
@@ -171,7 +171,7 @@ export default function CostCalculator({
       onClick={handleClose}
     >
       <div
-        className={`bg-white rounded-3xl w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-2xl transition-all duration-300 ${
+        className={`bg-[#FFFDF9] rounded-3xl w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-2xl transition-all duration-300 ${
           closing
             ? "opacity-0 scale-95 translate-y-4"
             : "opacity-100 scale-100 translate-y-0 animate-slide-up"
@@ -179,23 +179,23 @@ export default function CostCalculator({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="sticky top-0 bg-white/95 backdrop-blur-sm z-10 px-6 pt-6 pb-4 border-b border-gray-100 rounded-t-3xl">
+        <div className="sticky top-0 bg-[#FFFDF9]/95 backdrop-blur-sm z-10 px-6 pt-6 pb-4 border-b border-black/5 rounded-t-3xl">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-11 h-11 rounded-2xl bg-gray-100 flex items-center justify-center">
+              <div className="w-11 h-11 rounded-2xl bg-[#F5F0E8] flex items-center justify-center">
                 <span className="text-xl">💰</span>
               </div>
               <div>
-                <h2 className="text-lg font-bold text-gray-900">Monthly Cost Calculator</h2>
-                <p className="text-xs text-gray-400">Estimate your total living cost</p>
+                <h2 className="text-lg font-bold text-[#1a1a1a]">Monthly Cost Calculator</h2>
+                <p className="text-xs text-[#999]">Estimate your total living cost</p>
               </div>
             </div>
             <button
               onClick={handleClose}
-              className="w-9 h-9 rounded-xl bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors"
+              className="w-9 h-9 rounded-xl bg-[#F5F0E8] hover:bg-[#EDE8DE] flex items-center justify-center transition-colors"
               aria-label="Close calculator"
             >
-              <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+              <svg className="w-4 h-4 text-[#888]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
@@ -207,7 +207,7 @@ export default function CostCalculator({
 
           {/* Rent */}
           <div>
-            <label className="flex items-center justify-between text-sm font-medium text-gray-700 mb-2">
+            <label className="flex items-center justify-between text-sm font-medium text-[#555] mb-2">
               <span>🏠 PG Rent</span>
               <span className="text-[#1a1a1a] font-bold tabular-nums">
                 {rent.toLocaleString("en-IN")}
@@ -220,9 +220,9 @@ export default function CostCalculator({
               step={500}
               value={rent}
               onChange={(e) => setRent(Number(e.target.value))}
-              className="w-full h-2 rounded-full appearance-none cursor-pointer bg-gray-200 accent-[#1a1a1a]"
+              className="w-full h-2 rounded-full appearance-none cursor-pointer bg-[#EDE8DE] accent-[#1a1a1a]"
             />
-            <div className="flex justify-between text-[10px] text-gray-400 mt-1">
+            <div className="flex justify-between text-[10px] text-[#999] mt-1">
               <span>3,000</span>
               <span>30,000</span>
             </div>
@@ -230,7 +230,7 @@ export default function CostCalculator({
 
           {/* Food Plan */}
           <div>
-            <label className="text-sm font-medium text-gray-700 mb-2 block">🍽️ Food Plan</label>
+            <label className="text-sm font-medium text-[#555] mb-2 block">🍽️ Food Plan</label>
             <div className="grid grid-cols-3 gap-2">
               {foodPlans.map((plan, i) => (
                 <button
@@ -238,8 +238,8 @@ export default function CostCalculator({
                   onClick={() => setFoodPlan(i)}
                   className={`py-2.5 px-3 rounded-xl text-xs font-semibold transition-all border-2 ${
                     foodPlan === i
-                      ? "border-[#1a1a1a] bg-gray-100 text-[#1a1a1a]"
-                      : "border-gray-200 text-gray-500 hover:border-gray-300"
+                      ? "border-[#1a1a1a] bg-[#F5F0E8] text-[#1a1a1a]"
+                      : "border-[#EDE8DE] text-[#888] hover:border-[#d4c9a8]"
                   }`}
                 >
                   <span className="block text-lg mb-0.5">
@@ -256,7 +256,7 @@ export default function CostCalculator({
 
           {/* Electricity */}
           <div>
-            <label className="flex items-center justify-between text-sm font-medium text-gray-700 mb-2">
+            <label className="flex items-center justify-between text-sm font-medium text-[#555] mb-2">
               <span>⚡ Electricity</span>
               <span className="text-yellow-600 font-bold tabular-nums">
                 +{electricity.toLocaleString("en-IN")}
@@ -269,9 +269,9 @@ export default function CostCalculator({
               step={100}
               value={electricity}
               onChange={(e) => setElectricity(Number(e.target.value))}
-              className="w-full h-2 rounded-full appearance-none cursor-pointer bg-gray-200 accent-yellow-500"
+              className="w-full h-2 rounded-full appearance-none cursor-pointer bg-[#EDE8DE] accent-yellow-500"
             />
-            <div className="flex justify-between text-[10px] text-gray-400 mt-1">
+            <div className="flex justify-between text-[10px] text-[#999] mt-1">
               <span>500</span>
               <span>3,000</span>
             </div>
@@ -280,11 +280,11 @@ export default function CostCalculator({
           {/* Internet */}
           <div>
             <div className="flex items-center justify-between mb-2">
-              <label className="text-sm font-medium text-gray-700">📶 Internet / WiFi</label>
+              <label className="text-sm font-medium text-[#555]">📶 Internet / WiFi</label>
               <button
                 onClick={() => setWifiIncluded(!wifiIncluded)}
                 className={`relative w-12 h-6 rounded-full transition-colors duration-300 ${
-                  wifiIncluded ? "bg-emerald-400" : "bg-gray-300"
+                  wifiIncluded ? "bg-emerald-400" : "bg-[#d4c9a8]"
                 }`}
               >
                 <span
@@ -294,7 +294,7 @@ export default function CostCalculator({
                 />
               </button>
             </div>
-            <p className="text-[11px] text-gray-400 -mt-1 mb-2">
+            <p className="text-[11px] text-[#999] -mt-1 mb-2">
               {wifiIncluded ? "WiFi included in PG rent" : "Separate internet connection"}
             </p>
             {!wifiIncluded && (
@@ -305,18 +305,18 @@ export default function CostCalculator({
                 step={100}
                 value={internetCost}
                 onChange={(e) => setInternetCost(Number(e.target.value))}
-                className="w-full h-2 rounded-full appearance-none cursor-pointer bg-gray-200 accent-blue-500"
+                className="w-full h-2 rounded-full appearance-none cursor-pointer bg-[#EDE8DE] accent-blue-500"
               />
             )}
           </div>
 
           {/* Laundry Toggle */}
           <div className="flex items-center justify-between">
-            <label className="text-sm font-medium text-gray-700">👕 Laundry Service (500/mo)</label>
+            <label className="text-sm font-medium text-[#555]">👕 Laundry Service (500/mo)</label>
             <button
               onClick={() => setLaundry(!laundry)}
               className={`relative w-12 h-6 rounded-full transition-colors duration-300 ${
-                laundry ? "bg-purple-400" : "bg-gray-300"
+                laundry ? "bg-purple-400" : "bg-[#d4c9a8]"
               }`}
             >
               <span
@@ -329,7 +329,7 @@ export default function CostCalculator({
 
           {/* Transport */}
           <div>
-            <label className="flex items-center justify-between text-sm font-medium text-gray-700 mb-2">
+            <label className="flex items-center justify-between text-sm font-medium text-[#555] mb-2">
               <span>🚌 Transport</span>
               <span className="text-emerald-600 font-bold tabular-nums">
                 +{transport.toLocaleString("en-IN")}
@@ -342,9 +342,9 @@ export default function CostCalculator({
               step={250}
               value={transport}
               onChange={(e) => setTransport(Number(e.target.value))}
-              className="w-full h-2 rounded-full appearance-none cursor-pointer bg-gray-200 accent-emerald-500"
+              className="w-full h-2 rounded-full appearance-none cursor-pointer bg-[#EDE8DE] accent-emerald-500"
             />
-            <div className="flex justify-between text-[10px] text-gray-400 mt-1">
+            <div className="flex justify-between text-[10px] text-[#999] mt-1">
               <span>1,000 (nearby)</span>
               <span>5,000 (commute)</span>
             </div>
@@ -352,7 +352,7 @@ export default function CostCalculator({
 
           {/* Miscellaneous */}
           <div>
-            <label className="flex items-center justify-between text-sm font-medium text-gray-700 mb-2">
+            <label className="flex items-center justify-between text-sm font-medium text-[#555] mb-2">
               <span>🛒 Miscellaneous</span>
               <span className="text-rose-500 font-bold tabular-nums">
                 +{misc.toLocaleString("en-IN")}
@@ -365,17 +365,17 @@ export default function CostCalculator({
               step={250}
               value={misc}
               onChange={(e) => setMisc(Number(e.target.value))}
-              className="w-full h-2 rounded-full appearance-none cursor-pointer bg-gray-200 accent-rose-500"
+              className="w-full h-2 rounded-full appearance-none cursor-pointer bg-[#EDE8DE] accent-rose-500"
             />
-            <div className="flex justify-between text-[10px] text-gray-400 mt-1">
+            <div className="flex justify-between text-[10px] text-[#999] mt-1">
               <span>1,000</span>
               <span>5,000</span>
             </div>
           </div>
 
           {/* ---- DIVIDER ---- */}
-          <div className="border-t border-dashed border-gray-200 pt-5">
-            <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">
+          <div className="border-t border-dashed border-[#d4c9a8] pt-5">
+            <p className="text-xs font-semibold text-[#999] uppercase tracking-widest mb-4">
               Breakdown
             </p>
             <div className="space-y-3">
@@ -386,7 +386,7 @@ export default function CostCalculator({
           </div>
 
           {/* ---- TOTAL ---- */}
-          <div className="bg-gray-100 rounded-2xl p-5 text-center">
+          <div className="bg-[#F5F0E8] rounded-2xl p-5 text-center">
             <p className="text-xs font-semibold text-[#1a1a1a]/50 uppercase tracking-widest mb-1">
               Estimated Monthly Total
             </p>
@@ -399,28 +399,28 @@ export default function CostCalculator({
 
           {/* ---- AREA COMPARISON ---- */}
           {prefillArea && (
-            <div className="bg-gray-50 rounded-2xl p-4">
+            <div className="bg-[#FFFDF9] border border-black/5 rounded-2xl p-4">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm text-gray-600">
+                <span className="text-sm text-[#888]">
                   Avg. cost in <strong>{prefillArea}</strong>
                 </span>
-                <span className="text-sm font-semibold text-gray-700 tabular-nums">
+                <span className="text-sm font-semibold text-[#555] tabular-nums">
                   {areaAvg.toLocaleString("en-IN")}
                 </span>
               </div>
-              <div className="h-2 bg-gray-200 rounded-full overflow-hidden mb-2">
+              <div className="h-2 bg-[#EDE8DE] rounded-full overflow-hidden mb-2">
                 <div
                   className="h-full rounded-full bg-[#1a1a1a]/30 transition-all duration-500"
                   style={{ width: `${Math.min((areaAvg / Math.max(total, areaAvg)) * 100, 100)}%` }}
                 />
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">Your estimate</span>
-                <span className="text-sm font-semibold text-gray-900 tabular-nums">
+                <span className="text-sm text-[#888]">Your estimate</span>
+                <span className="text-sm font-semibold text-[#1a1a1a] tabular-nums">
                   {total.toLocaleString("en-IN")}
                 </span>
               </div>
-              <div className="h-2 bg-gray-200 rounded-full overflow-hidden mb-3">
+              <div className="h-2 bg-[#EDE8DE] rounded-full overflow-hidden mb-3">
                 <div
                   className={`h-full rounded-full transition-all duration-500 ${
                     diff > 0 ? "bg-rose-400" : "bg-emerald-400"
@@ -464,7 +464,7 @@ export default function CostCalculator({
         </div>
 
         {/* ---- FOOTER ---- */}
-        <div className="sticky bottom-0 bg-white/95 backdrop-blur-sm border-t border-gray-100 px-6 py-4 rounded-b-3xl">
+        <div className="sticky bottom-0 bg-[#FFFDF9]/95 backdrop-blur-sm border-t border-black/5 px-6 py-4 rounded-b-3xl">
           <button
             onClick={handleClose}
             className="w-full py-3.5 rounded-xl bg-[#1a1a1a] text-white font-semibold text-sm hover:opacity-80 transition-opacity active:scale-[0.98]"

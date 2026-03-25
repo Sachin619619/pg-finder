@@ -61,7 +61,7 @@ export default function Testimonials() {
   return (
     <section className="py-24 relative overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-50 via-white to-gray-50" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#F5F0E8] via-[#FFFDF9] to-[#F5F0E8]" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#1a1a1a]/[0.02] rounded-full blur-[150px]" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -78,7 +78,7 @@ export default function Testimonials() {
           {testimonials.map((t, i) => (
             <div
               key={t.name}
-              className={`premium-card !rounded-2xl p-6 break-inside-avoid ${i === 0 || i === 4 ? "" : ""}`}
+              className={`premium-card !rounded-2xl p-8 break-inside-avoid bg-[#FFFDF9] ${i === 0 || i === 4 ? "" : ""}`}
             >
               {/* Quote icon */}
               <div className="mb-4">
@@ -94,9 +94,9 @@ export default function Testimonials() {
                 ))}
               </div>
 
-              <p className="text-gray-600 text-[15px] leading-relaxed mb-6">&ldquo;{t.text}&rdquo;</p>
+              <p className="text-gray-600 font-serif text-lg leading-relaxed mb-6">&ldquo;{t.text}&rdquo;</p>
 
-              <div className="flex items-center gap-3 pt-5 border-t border-gray-100">
+              <div className="flex items-center gap-3 pt-5 border-t border-black/5">
                 <div className={`w-11 h-11 bg-gradient-to-br ${t.gradient} rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg`}>
                   {t.avatar}
                 </div>
@@ -104,7 +104,7 @@ export default function Testimonials() {
                   <p className="font-bold text-gray-900 text-sm">{t.name}</p>
                   <p className="text-xs text-gray-400">{t.role}</p>
                 </div>
-                <span className="pill bg-gray-100 text-[#1a1a1a] !text-[10px]">📍 {t.area}</span>
+                <span className="pill bg-[#F5F0E8] text-[#1a1a1a] !text-[10px]">📍 {t.area}</span>
               </div>
             </div>
           ))}

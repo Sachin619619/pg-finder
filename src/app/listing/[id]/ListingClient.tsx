@@ -187,20 +187,20 @@ export default function ListingClient() {
         <Header />
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-24">
           <div className="animate-pulse">
-            <div className="h-4 bg-gray-200 rounded w-48 mb-6" />
+            <div className="h-4 bg-[#d4c9a8] rounded w-48 mb-6" />
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               <div className="lg:col-span-2 space-y-6">
-                <div className="h-80 bg-gray-200 rounded-2xl" />
-                <div className="h-8 bg-gray-200 rounded w-2/3" />
-                <div className="h-4 bg-gray-200 rounded w-1/3" />
+                <div className="h-80 bg-[#d4c9a8] rounded-2xl" />
+                <div className="h-8 bg-[#d4c9a8] rounded w-2/3" />
+                <div className="h-4 bg-[#d4c9a8] rounded w-1/3" />
                 <div className="flex gap-3">
-                  <div className="h-10 bg-gray-200 rounded-xl w-32" />
-                  <div className="h-10 bg-gray-200 rounded-xl w-28" />
-                  <div className="h-10 bg-gray-200 rounded-xl w-36" />
+                  <div className="h-10 bg-[#d4c9a8] rounded-xl w-32" />
+                  <div className="h-10 bg-[#d4c9a8] rounded-xl w-28" />
+                  <div className="h-10 bg-[#d4c9a8] rounded-xl w-36" />
                 </div>
               </div>
               <div className="space-y-4">
-                <div className="h-96 bg-gray-200 rounded-2xl" />
+                <div className="h-96 bg-[#d4c9a8] rounded-2xl" />
               </div>
             </div>
           </div>
@@ -215,8 +215,8 @@ export default function ListingClient() {
         <Header />
         <div className="max-w-7xl mx-auto px-4 py-20 text-center">
           <div className="text-6xl mb-6">🏠</div>
-          <h1 className="text-2xl font-bold text-gray-900 mb-3">PG Not Found</h1>
-          <p className="text-gray-500 mb-6">This listing may have been removed or doesn&apos;t exist.</p>
+          <h1 className="text-2xl font-bold text-[#1a1a1a] mb-3">PG Not Found</h1>
+          <p className="text-[#888] mb-6">This listing may have been removed or doesn&apos;t exist.</p>
           <Link href="/" className="inline-flex items-center gap-2 px-6 py-3 bg-[#1a1a1a] text-white rounded-xl font-medium hover:opacity-80 transition">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -280,12 +280,12 @@ export default function ListingClient() {
       <Header />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-24 animate-fade-in-up">
         {/* Breadcrumb */}
-        <nav className="mb-6 text-sm text-gray-500 flex items-center gap-2">
+        <nav className="mb-6 text-sm text-[#888] flex items-center gap-2">
           <Link href="/" className="hover:text-[#1a1a1a]">Home</Link>
           <span>/</span>
           <Link href={`/area/${pg.area.toLowerCase().replace(/\s+/g, "-")}`} className="hover:text-[#1a1a1a]">{pg.area}</Link>
           <span>/</span>
-          <span className="text-gray-900">{pg.name}</span>
+          <span className="text-[#1a1a1a]">{pg.name}</span>
         </nav>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -317,8 +317,8 @@ export default function ListingClient() {
             <div>
               <div className="flex items-start justify-between">
                 <div>
-                  <h1 className="text-3xl font-bold text-gray-900">{pg.name}</h1>
-                  <p className="text-gray-500 mt-1 flex items-center gap-1">
+                  <h1 className="text-3xl font-bold text-[#1a1a1a]">{pg.name}</h1>
+                  <p className="text-[#888] mt-1 flex items-center gap-1">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -334,7 +334,7 @@ export default function ListingClient() {
                     className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-medium transition-all ${
                       isReported
                         ? "bg-red-50 text-red-500 cursor-default"
-                        : "bg-gray-100 text-gray-500 hover:bg-red-50 hover:text-red-500"
+                        : "bg-[#EDE8DE] text-[#888] hover:bg-red-50 hover:text-red-500"
                     }`}
                     aria-label={isReported ? "You have reported this listing" : "Report this listing"}
                     title={isReported ? "You have reported this listing" : "Report this listing"}
@@ -349,8 +349,8 @@ export default function ListingClient() {
                     <svg className="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
-                    <span className="text-lg font-bold text-gray-900">{pg.rating}</span>
-                    <span className="text-sm text-gray-500">({pg.reviews})</span>
+                    <span className="text-lg font-bold text-[#1a1a1a]">{pg.rating}</span>
+                    <span className="text-sm text-[#888]">({pg.reviews})</span>
                   </div>
                 </div>
               </div>
@@ -360,10 +360,10 @@ export default function ListingClient() {
             {/* Room Options */}
             {pg.roomOptions && pg.roomOptions.length > 0 && (
               <div className="premium-card !rounded-2xl p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">🛏️ Room Options</h2>
+                <h2 className="text-lg font-semibold text-[#1a1a1a] mb-4">🛏️ Room Options</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {pg.roomOptions.map(r => (
-                    <div key={r.type} className={`relative p-4 rounded-xl border-2 text-center transition-all ${r.available ? "border-[#1a1a1a] bg-gray-50" : "border-gray-200 opacity-60"}`}>
+                    <div key={r.type} className={`relative p-4 rounded-xl border-2 text-center transition-all ${r.available ? "border-[#1a1a1a] bg-[#F5F0E8]" : "border-black/8 opacity-60"}`}>
                       {/* Availability Badge */}
                       <div className="absolute -top-2.5 left-1/2 -translate-x-1/2">
                         <span className={`inline-flex items-center gap-1 text-[10px] font-bold px-3 py-1 rounded-full shadow-sm ${
@@ -375,11 +375,11 @@ export default function ListingClient() {
                           {r.available ? "AVAILABLE" : "FULL"}
                         </span>
                       </div>
-                      <p className="text-sm font-semibold text-gray-700 mb-1 mt-2">
+                      <p className="text-sm font-semibold text-[#666] mb-1 mt-2">
                         {r.type === "single" ? "Single Room" : r.type === "double" ? "Double Sharing" : "Triple Sharing"}
                       </p>
-                      <p className="text-2xl font-bold text-gray-900">₹{r.price.toLocaleString()}</p>
-                      <p className="text-xs text-gray-400">/month</p>
+                      <p className="text-2xl font-bold text-[#1a1a1a]">₹{r.price.toLocaleString()}</p>
+                      <p className="text-xs text-[#999]">/month</p>
                     </div>
                   ))}
                 </div>
@@ -388,8 +388,8 @@ export default function ListingClient() {
 
             {/* Quick Info Badges */}
             <div className="flex flex-wrap gap-3">
-              <span className="px-4 py-2 bg-gray-100 text-[#1a1a1a] rounded-xl font-medium">{typeLabels[pg.type]}</span>
-              <span className={`px-4 py-2 rounded-xl font-medium ${pg.gender === "male" ? "bg-blue-50 text-blue-700" : pg.gender === "female" ? "bg-pink-50 text-pink-700" : "bg-gray-100 text-[#1a1a1a]"}`}>
+              <span className="px-4 py-2 bg-[#EDE8DE] text-[#1a1a1a] rounded-xl font-medium">{typeLabels[pg.type]}</span>
+              <span className={`px-4 py-2 rounded-xl font-medium ${pg.gender === "male" ? "bg-blue-50 text-blue-700" : pg.gender === "female" ? "bg-pink-50 text-pink-700" : "bg-[#EDE8DE] text-[#1a1a1a]"}`}>
                 {genderLabels[pg.gender]}
               </span>
               {pg.furnished && <span className="px-4 py-2 bg-green-50 text-green-700 rounded-xl font-medium">✨ Fully Furnished</span>}
@@ -399,16 +399,16 @@ export default function ListingClient() {
 
             {/* Description */}
             <div className="premium-card !rounded-2xl p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-3">About this PG</h2>
-              <p className="text-gray-600 leading-relaxed">{pg.description}</p>
+              <h2 className="text-lg font-semibold text-[#1a1a1a] mb-3">About this PG</h2>
+              <p className="text-[#666] leading-relaxed">{pg.description}</p>
             </div>
 
             {/* Amenities */}
             <div className="premium-card !rounded-2xl p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Amenities</h2>
+              <h2 className="text-lg font-semibold text-[#1a1a1a] mb-4">Amenities</h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {pg.amenities.map((a) => (
-                  <div key={a} className="flex items-center gap-2 text-gray-700 bg-gray-50 px-4 py-3 rounded-xl">
+                  <div key={a} className="flex items-center gap-2 text-[#666] bg-[#F5F0E8] px-4 py-3 rounded-xl">
                     <svg className="w-5 h-5 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
@@ -420,14 +420,14 @@ export default function ListingClient() {
 
             {/* Nearby Landmarks */}
             <div className="premium-card !rounded-2xl p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Nearby Landmarks</h2>
+              <h2 className="text-lg font-semibold text-[#1a1a1a] mb-4">Nearby Landmarks</h2>
               <div className="flex flex-wrap gap-2">
                 {pg.nearbyLandmarks.map((l) => (
-                  <span key={l} className="px-3 py-1.5 bg-gray-100 rounded-lg text-sm text-gray-700">{l}</span>
+                  <span key={l} className="px-3 py-1.5 bg-[#EDE8DE] rounded-lg text-sm text-[#666]">{l}</span>
                 ))}
               </div>
               {pg.distanceFromMetro && (
-                <p className="mt-3 text-sm text-gray-500 flex items-center gap-1">
+                <p className="mt-3 text-sm text-[#888] flex items-center gap-1">
                   <svg className="w-4 h-4 text-[#1a1a1a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                   </svg>
@@ -450,7 +450,7 @@ export default function ListingClient() {
             {/* Real Map */}
             {pg.lat && pg.lng && (
               <div className="premium-card !rounded-2xl p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">📍 Location</h2>
+                <h2 className="text-lg font-semibold text-[#1a1a1a] mb-4">📍 Location</h2>
                 <MapEmbed lat={pg.lat} lng={pg.lng} name={pg.name} area={pg.area} />
               </div>
             )}
@@ -469,7 +469,7 @@ export default function ListingClient() {
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${
                     isCurrentPg ? "bg-emerald-100" :
                     requestStatus === "pending" ? "bg-amber-100" :
-                    "bg-gray-100"
+                    "bg-[#EDE8DE]"
                   }`}>
                     <svg className={`w-5 h-5 ${
                       isCurrentPg ? "text-emerald-600" :
@@ -481,12 +481,12 @@ export default function ListingClient() {
                     </svg>
                   </div>
                   <div>
-                    <p className="font-semibold text-gray-900 text-sm">
+                    <p className="font-semibold text-[#1a1a1a] text-sm">
                       {isCurrentPg ? "You are a verified resident 🏠" :
                        requestStatus === "pending" ? "Request pending ⏳" :
                        "Do you stay here?"}
                     </p>
-                    <p className="text-xs text-gray-500 mt-0.5">
+                    <p className="text-xs text-[#888] mt-0.5">
                       {isCurrentPg ? "You can write reviews for this PG" :
                        requestStatus === "pending" ? "Waiting for owner to approve your request" :
                        "Request to link yourself — owner will approve"}
@@ -551,18 +551,18 @@ export default function ListingClient() {
             {/* Price Card */}
             <div className="premium-card !rounded-2xl p-6 sticky top-24">
               <div className="text-center mb-6">
-                <p className="text-sm text-gray-500 mb-1">Monthly Rent</p>
+                <p className="text-sm text-[#888] mb-1">Monthly Rent</p>
                 {pg.roomOptions && pg.roomOptions.length > 1 ? (
                   <>
-                    <p className="text-3xl font-bold text-gray-900">
+                    <p className="text-3xl font-bold text-[#1a1a1a]">
                       ₹{Math.min(...pg.roomOptions.map(r => r.price)).toLocaleString()} – ₹{Math.max(...pg.roomOptions.map(r => r.price)).toLocaleString()}
                     </p>
-                    <p className="text-sm text-gray-400 mt-1">depending on room type</p>
+                    <p className="text-sm text-[#999] mt-1">depending on room type</p>
                   </>
                 ) : (
                   <>
-                    <p className="text-4xl font-bold text-gray-900">₹{pg.price.toLocaleString()}</p>
-                    <p className="text-sm text-gray-400 mt-1">per month / per person</p>
+                    <p className="text-4xl font-bold text-[#1a1a1a]">₹{pg.price.toLocaleString()}</p>
+                    <p className="text-sm text-[#999] mt-1">per month / per person</p>
                   </>
                 )}
               </div>
@@ -577,37 +577,37 @@ export default function ListingClient() {
               </button>
 
               <div className="space-y-3 mb-6">
-                <div className="flex justify-between py-2 border-b border-gray-100">
-                  <span className="text-gray-500">Available From</span>
-                  <span className="font-medium text-gray-900">
+                <div className="flex justify-between py-2 border-b border-black/5">
+                  <span className="text-[#888]">Available From</span>
+                  <span className="font-medium text-[#1a1a1a]">
                     {new Date(pg.availableFrom).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}
                   </span>
                 </div>
-                <div className="flex justify-between py-2 border-b border-gray-100">
-                  <span className="text-gray-500">Room Type</span>
-                  <span className="font-medium text-gray-900">{typeLabels[pg.type]}</span>
+                <div className="flex justify-between py-2 border-b border-black/5">
+                  <span className="text-[#888]">Room Type</span>
+                  <span className="font-medium text-[#1a1a1a]">{typeLabels[pg.type]}</span>
                 </div>
-                <div className="flex justify-between py-2 border-b border-gray-100">
-                  <span className="text-gray-500">Food</span>
-                  <span className="font-medium text-gray-900">{pg.foodIncluded ? "✅ Included" : "❌ Not Included"}</span>
+                <div className="flex justify-between py-2 border-b border-black/5">
+                  <span className="text-[#888]">Food</span>
+                  <span className="font-medium text-[#1a1a1a]">{pg.foodIncluded ? "✅ Included" : "❌ Not Included"}</span>
                 </div>
                 <div className="flex justify-between py-2">
-                  <span className="text-gray-500">WiFi</span>
-                  <span className="font-medium text-gray-900">{pg.wifiIncluded ? "✅ Included" : "❌ Not Included"}</span>
+                  <span className="text-[#888]">WiFi</span>
+                  <span className="font-medium text-[#1a1a1a]">{pg.wifiIncluded ? "✅ Included" : "❌ Not Included"}</span>
                 </div>
               </div>
 
               {/* Contact Person */}
-              <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-2xl mb-5">
-                <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center shrink-0">
+              <div className="flex items-center gap-3 p-4 bg-[#F5F0E8] rounded-2xl mb-5">
+                <div className="w-10 h-10 rounded-full bg-[#EDE8DE] flex items-center justify-center shrink-0">
                   <svg className="w-5 h-5 text-[#1a1a1a]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                     <circle cx="12" cy="7" r="4" />
                   </svg>
                 </div>
                 <div>
-                  <p className="text-[11px] font-medium text-gray-400 uppercase tracking-wider">Contact Person</p>
-                  <p className="font-semibold text-gray-900 text-sm">{pg.contactName}</p>
+                  <p className="text-[11px] font-medium text-[#999] uppercase tracking-wider">Contact Person</p>
+                  <p className="font-semibold text-[#1a1a1a] text-sm">{pg.contactName}</p>
                 </div>
               </div>
 
@@ -643,7 +643,7 @@ export default function ListingClient() {
               {/* Schedule Visit CTA */}
               <button
                 onClick={() => setShowScheduleVisit(true)}
-                className="w-full mt-3 relative overflow-hidden bg-gray-100 text-[#1a1a1a] py-3.5 rounded-xl font-semibold text-center transition-all hover:bg-gray-200 hover:-translate-y-0.5 active:translate-y-0 border border-gray-200"
+                className="w-full mt-3 relative overflow-hidden bg-[#EDE8DE] text-[#1a1a1a] py-3.5 rounded-xl font-semibold text-center transition-all hover:bg-[#d4c9a8] hover:-translate-y-0.5 active:translate-y-0 border border-black/8"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
@@ -662,7 +662,7 @@ export default function ListingClient() {
                 <a
                   href={`tel:${pg.contactPhone}`}
                   aria-label={`Call ${pg.contactName} about ${pg.name}`}
-                  className="flex items-center justify-center gap-2 py-3 rounded-2xl font-semibold text-sm transition-all hover:-translate-y-0.5 active:translate-y-0 bg-gray-100 text-gray-900 hover:bg-gray-200"
+                  className="flex items-center justify-center gap-2 py-3 rounded-2xl font-semibold text-sm transition-all hover:-translate-y-0.5 active:translate-y-0 bg-[#EDE8DE] text-[#1a1a1a] hover:bg-[#d4c9a8]"
                 >
                   <svg className="w-4 h-4 text-[#1a1a1a]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
@@ -732,7 +732,7 @@ export default function ListingClient() {
                 href={pg.mapUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 w-full mt-3 py-2.5 text-sm text-gray-500 hover:text-[#1a1a1a] transition-colors"
+                className="flex items-center justify-center gap-2 w-full mt-3 py-2.5 text-sm text-[#888] hover:text-[#1a1a1a] transition-colors"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
@@ -787,13 +787,13 @@ export default function ListingClient() {
                 </svg>
               </div>
               <div>
-                <h3 className="font-bold text-gray-900 text-lg">Report Listing</h3>
-                <p className="text-xs text-gray-400 mt-0.5">Help us keep the platform safe</p>
+                <h3 className="font-bold text-[#1a1a1a] text-lg">Report Listing</h3>
+                <p className="text-xs text-[#999] mt-0.5">Help us keep the platform safe</p>
               </div>
             </div>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">Reason</label>
+                <label className="block text-sm font-medium text-[#666] mb-1.5">Reason</label>
                 <select
                   value={reportReason}
                   onChange={(e) => setReportReason(e.target.value)}
@@ -808,7 +808,7 @@ export default function ListingClient() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">Description (optional)</label>
+                <label className="block text-sm font-medium text-[#666] mb-1.5">Description (optional)</label>
                 <textarea
                   value={reportDescription}
                   onChange={(e) => setReportDescription(e.target.value)}
@@ -821,7 +821,7 @@ export default function ListingClient() {
             <div className="flex gap-3 mt-5">
               <button
                 onClick={() => setShowReportModal(false)}
-                className="flex-1 py-2.5 rounded-xl text-sm font-semibold text-gray-700 bg-gray-100 hover:bg-gray-200 transition"
+                className="flex-1 py-2.5 rounded-xl text-sm font-semibold text-[#666] bg-[#EDE8DE] hover:bg-[#d4c9a8] transition"
               >
                 Cancel
               </button>
@@ -860,8 +860,8 @@ export default function ListingClient() {
                 </svg>
               </div>
               <div>
-                <h3 className="font-bold text-gray-900">Remove from this PG?</h3>
-                <p className="text-xs text-gray-400 mt-0.5">This action cannot be undone easily</p>
+                <h3 className="font-bold text-[#1a1a1a]">Remove from this PG?</h3>
+                <p className="text-xs text-[#999] mt-0.5">This action cannot be undone easily</p>
               </div>
             </div>
             <div className="bg-red-50 border border-red-200 rounded-xl p-4 mb-5">
@@ -883,7 +883,7 @@ export default function ListingClient() {
             <div className="flex gap-3">
               <button
                 onClick={() => setShowRemoveWarning(false)}
-                className="flex-1 py-2.5 rounded-xl text-sm font-semibold text-gray-700 bg-gray-100 hover:bg-gray-200 transition"
+                className="flex-1 py-2.5 rounded-xl text-sm font-semibold text-[#666] bg-[#EDE8DE] hover:bg-[#d4c9a8] transition"
               >
                 Cancel
               </button>

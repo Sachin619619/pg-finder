@@ -24,7 +24,7 @@ export default function AreaCompare() {
   });
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-[#F5F0E8]">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <span className="text-xs font-semibold text-black/40 uppercase tracking-widest mb-3 inline-block">Smart Comparison</span>
@@ -34,7 +34,7 @@ export default function AreaCompare() {
 
         {/* Area selector */}
         <div className="mb-8">
-          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Select areas to compare ({selected.length}/3)</p>
+          <p className="text-xs font-semibold text-[#888] uppercase tracking-wider mb-3">Select areas to compare ({selected.length}/3)</p>
           <div className="flex flex-wrap gap-2">
             {allAreas.slice(0, 15).map(area => (
               <button
@@ -44,7 +44,7 @@ export default function AreaCompare() {
                 className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-all ${
                   selected.includes(area)
                     ? "bg-[#1a1a1a] text-white border-[#1a1a1a]"
-                    : "bg-white text-gray-600 border-gray-200 hover:border-gray-300 disabled:opacity-40 disabled:cursor-not-allowed"
+                    : "bg-[#FFFDF9] text-[#666] border-black/8 hover:border-black/12 disabled:opacity-40 disabled:cursor-not-allowed"
                 }`}
               >
                 {selected.includes(area) && <span className="mr-1">✓</span>}
@@ -56,14 +56,14 @@ export default function AreaCompare() {
 
         {/* Comparison table */}
         {selected.length >= 2 && (
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+          <div className="bg-[#FFFDF9] rounded-2xl border border-black/5 shadow-sm overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="bg-gray-50 border-b border-gray-100">
-                    <th className="text-left p-4 text-sm font-semibold text-gray-500 w-40">Metric</th>
+                  <tr className="bg-[#F5F0E8] border-b border-black/5">
+                    <th className="text-left p-4 text-sm font-semibold text-[#888] w-40">Metric</th>
                     {selected.map(area => (
-                      <th key={area} className="text-center p-4 text-sm font-bold text-gray-900 min-w-44">
+                      <th key={area} className="text-center p-4 text-sm font-bold text-[#1a1a1a] min-w-44">
                         {area}
                       </th>
                     ))}
@@ -71,8 +71,8 @@ export default function AreaCompare() {
                 </thead>
                 <tbody>
                   {/* Safety Score */}
-                  <tr className="border-b border-gray-50">
-                    <td className="p-4 text-sm font-medium text-gray-600">🛡️ Safety Score</td>
+                  <tr className="border-b border-[#F5F0E8]">
+                    <td className="p-4 text-sm font-medium text-[#666]">🛡️ Safety Score</td>
                     {selected.map(area => {
                       const safety = getData(area).safety;
                       return (
@@ -80,15 +80,15 @@ export default function AreaCompare() {
                           <span className={`text-lg font-bold ${safety && safety.score >= 80 ? "text-emerald-600" : safety && safety.score >= 70 ? "text-blue-600" : "text-amber-600"}`}>
                             {safety?.score || "—"}/100
                           </span>
-                          {safety && <div className="text-[10px] text-gray-400">{safety.label}</div>}
+                          {safety && <div className="text-[10px] text-[#999]">{safety.label}</div>}
                         </td>
                       );
                     })}
                   </tr>
 
                   {/* Metro */}
-                  <tr className="border-b border-gray-50">
-                    <td className="p-4 text-sm font-medium text-gray-600">🚇 Metro Walk</td>
+                  <tr className="border-b border-[#F5F0E8]">
+                    <td className="p-4 text-sm font-medium text-[#666]">🚇 Metro Walk</td>
                     {selected.map(area => {
                       const metro = getData(area).metro;
                       return (
@@ -96,10 +96,10 @@ export default function AreaCompare() {
                           {metro ? (
                             <div>
                               <span className="text-base font-bold text-blue-600">{metro.walkTime}</span>
-                              <div className="text-[10px] text-gray-400">{metro.metroStation.split(" ").slice(0, 2).join(" ")}</div>
+                              <div className="text-[10px] text-[#999]">{metro.metroStation.split(" ").slice(0, 2).join(" ")}</div>
                             </div>
                           ) : (
-                            <span className="text-sm text-gray-400">No metro</span>
+                            <span className="text-sm text-[#999]">No metro</span>
                           )}
                         </td>
                       );
@@ -107,8 +107,8 @@ export default function AreaCompare() {
                   </tr>
 
                   {/* Bus */}
-                  <tr className="border-b border-gray-50">
-                    <td className="p-4 text-sm font-medium text-gray-600">🚌 Bus Routes</td>
+                  <tr className="border-b border-[#F5F0E8]">
+                    <td className="p-4 text-sm font-medium text-[#666]">🚌 Bus Routes</td>
                     {selected.map(area => {
                       const bus = getData(area).bus;
                       return (
@@ -116,7 +116,7 @@ export default function AreaCompare() {
                           {bus ? (
                             <span className="text-base font-bold text-green-600">{bus.routes} routes</span>
                           ) : (
-                            <span className="text-sm text-gray-400">—</span>
+                            <span className="text-sm text-[#999]">—</span>
                           )}
                         </td>
                       );
@@ -124,8 +124,8 @@ export default function AreaCompare() {
                   </tr>
 
                   {/* Bus Score */}
-                  <tr className="border-b border-gray-50">
-                    <td className="p-4 text-sm font-medium text-gray-600">🚌 Bus Score</td>
+                  <tr className="border-b border-[#F5F0E8]">
+                    <td className="p-4 text-sm font-medium text-[#666]">🚌 Bus Score</td>
                     {selected.map(area => {
                       const bus = getData(area).bus;
                       return (
@@ -135,7 +135,7 @@ export default function AreaCompare() {
                               {bus.score}/100
                             </span>
                           ) : (
-                            <span className="text-sm text-gray-400">—</span>
+                            <span className="text-sm text-[#999]">—</span>
                           )}
                         </td>
                       );
@@ -144,7 +144,7 @@ export default function AreaCompare() {
 
                   {/* Overall */}
                   <tr>
-                    <td className="p-4 text-sm font-medium text-gray-600">📊 Overall</td>
+                    <td className="p-4 text-sm font-medium text-[#666]">📊 Overall</td>
                     {selected.map(area => {
                       const safety = getData(area).safety?.score || 50;
                       const bus = getData(area).bus?.score || 50;
@@ -153,7 +153,7 @@ export default function AreaCompare() {
                       return (
                         <td key={area} className="p-4 text-center">
                           <span className="text-xl font-bold text-violet-600">{total}</span>
-                          <div className="text-[10px] text-gray-400">/ 180</div>
+                          <div className="text-[10px] text-[#999]">/ 180</div>
                         </td>
                       );
                     })}
@@ -165,11 +165,11 @@ export default function AreaCompare() {
         )}
 
         {selected.length < 2 && selected.length > 0 && (
-          <p className="text-center text-sm text-gray-400">Select at least one more area to compare</p>
+          <p className="text-center text-sm text-[#999]">Select at least one more area to compare</p>
         )}
 
         {selected.length === 0 && (
-          <p className="text-center text-sm text-gray-400">Select areas above to compare them side by side</p>
+          <p className="text-center text-sm text-[#999]">Select areas above to compare them side by side</p>
         )}
       </div>
     </section>
