@@ -38,6 +38,7 @@ import AmenityBreakdown from "@/components/AmenityBreakdown";
 import NearbyEssentials from "@/components/NearbyEssentials";
 import VisitReminder from "@/components/VisitReminder";
 import QuickStats from "@/components/QuickStats";
+import BookingTimeline from "@/components/BookingTimeline";
 import RentVsBuyCalculator from "@/components/RentVsBuyCalculator";
 import ListingQuickActions from "@/components/ListingQuickActions";
 import { useAuth } from "@/lib/auth";
@@ -586,6 +587,7 @@ export default function ListingClient() {
             <CastleGuarantee />
             <ListingQualityScore pg={pg} />
             <SimilarPGs currentPg={pg} />
+            <BookingTimeline />
             <RentVsBuyCalculator />
           </div>
 
