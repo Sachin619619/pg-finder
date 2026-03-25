@@ -7,6 +7,8 @@ import type { PGListing } from "@/data/listings";
 import WishlistButton from "@/components/WishlistButton";
 import ShareButtons from "@/components/ShareButtons";
 import { useCompare } from "@/context/CompareContext";
+import { areaSafetyScores } from "@/data/safetyData";
+import { metroProximity } from "@/data/safetyData";
 
 const areaEmojis: Record<string, string> = {
   "Koramangala": "🏙️", "Indiranagar": "🎵", "HSR Layout": "💻", "Bellandur": "🌊",
