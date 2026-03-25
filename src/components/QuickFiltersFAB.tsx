@@ -16,7 +16,7 @@ export default function QuickFiltersFAB({ onApply }: QuickFiltersFABProps) {
       {/* Floating Action Button */}
       <button
         onClick={() => setOpen(true)}
-        className="fixed bottom-24 right-4 md:hidden z-40 w-14 h-14 bg-[#1B1C15] text-white rounded-full shadow-xl shadow-black/20 flex items-center justify-center hover:bg-[#2d2e25] transition-all active:scale-95"
+        className="fixed bottom-24 right-4 md:hidden z-40 w-14 h-14 bg-[#1a1a1a] text-white rounded-full shadow-lg flex items-center justify-center hover:opacity-80 transition-all active:scale-95"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
           <path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
