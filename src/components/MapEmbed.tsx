@@ -33,8 +33,7 @@ export default function MapEmbed({ lat, lng, name, area }: Props) {
 
     const loadJS = () =>
       new Promise<void>((resolve) => {
-        // @ts-expect-error - Leaflet loaded dynamically
-        if (window.L) {
+        if ((window as unknown as Record<string, unknown>).L) {
           resolve();
           return;
         }
@@ -50,8 +49,7 @@ export default function MapEmbed({ lat, lng, name, area }: Props) {
 
       if (!mapRef.current || mapInstanceRef.current) return;
 
-      // @ts-expect-error - Leaflet loaded dynamically
-      const L = window.L;
+      const L = (window as unknown as Record<string, unknown>).L as typeof import("leaflet");
       const map = L.map(mapRef.current, {
         scrollWheelZoom: false,
         zoomControl: true,
@@ -87,8 +85,7 @@ export default function MapEmbed({ lat, lng, name, area }: Props) {
 
     return () => {
       if (mapInstanceRef.current) {
-        // @ts-expect-error - Leaflet map instance
-        mapInstanceRef.current.remove();
+        (mapInstanceRef.current as unknown as { remove: () => void }).remove();
         mapInstanceRef.current = null;
       }
     };
