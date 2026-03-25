@@ -40,7 +40,7 @@ export default function PrivacyPolicyPage() {
             {/* 1. Information We Collect */}
             <section>
               <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">1</span>
+                <span className="w-8 h-8 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">1</span>
                 Information We Collect
               </h2>
               <div className="space-y-4 text-sm text-gray-600 leading-relaxed">
@@ -58,7 +58,7 @@ export default function PrivacyPolicyPage() {
                     "Reviews and ratings submitted on the platform",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2.5">
-                      <span className="w-1.5 h-1.5 bg-[#1B1C15] rounded-full mt-1.5 shrink-0" />
+                      <span className="w-1.5 h-1.5 bg-[#1a1a1a] rounded-full mt-1.5 shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -69,7 +69,7 @@ export default function PrivacyPolicyPage() {
             {/* 2. How We Store Your Data */}
             <section>
               <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">2</span>
+                <span className="w-8 h-8 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">2</span>
                 How We Store Your Data
               </h2>
               <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
@@ -84,7 +84,7 @@ export default function PrivacyPolicyPage() {
                     "Regular automated backups of all data",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2.5">
-                      <span className="w-1.5 h-1.5 bg-[#1B1C15] rounded-full mt-1.5 shrink-0" />
+                      <span className="w-1.5 h-1.5 bg-[#1a1a1a] rounded-full mt-1.5 shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -95,7 +95,7 @@ export default function PrivacyPolicyPage() {
             {/* 3. Cookies & Local Storage */}
             <section>
               <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">3</span>
+                <span className="w-8 h-8 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">3</span>
                 Cookies &amp; Local Storage
               </h2>
               <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
@@ -109,7 +109,7 @@ export default function PrivacyPolicyPage() {
                     "Saved/bookmarked PGs — stored locally for quick access",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2.5">
-                      <span className="w-1.5 h-1.5 bg-[#1B1C15] rounded-full mt-1.5 shrink-0" />
+                      <span className="w-1.5 h-1.5 bg-[#1a1a1a] rounded-full mt-1.5 shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -121,7 +121,7 @@ export default function PrivacyPolicyPage() {
             {/* 4. Third-Party Services */}
             <section>
               <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">4</span>
+                <span className="w-8 h-8 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">4</span>
                 Third-Party Services
               </h2>
               <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
@@ -157,7 +157,7 @@ export default function PrivacyPolicyPage() {
             {/* 5. Data Security */}
             <section>
               <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">5</span>
+                <span className="w-8 h-8 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">5</span>
                 Data Security
               </h2>
               <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
@@ -172,7 +172,7 @@ export default function PrivacyPolicyPage() {
                     "Admin access is restricted and monitored",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2.5">
-                      <span className="w-1.5 h-1.5 bg-[#1B1C15] rounded-full mt-1.5 shrink-0" />
+                      <span className="w-1.5 h-1.5 bg-[#1a1a1a] rounded-full mt-1.5 shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -184,7 +184,7 @@ export default function PrivacyPolicyPage() {
             {/* 6. Your Rights */}
             <section>
               <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">6</span>
+                <span className="w-8 h-8 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">6</span>
                 Your Rights
               </h2>
               <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
@@ -199,7 +199,7 @@ export default function PrivacyPolicyPage() {
                     "Opt-out — You can opt out of promotional communications and notifications",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2.5">
-                      <span className="w-1.5 h-1.5 bg-[#1B1C15] rounded-full mt-1.5 shrink-0" />
+                      <span className="w-1.5 h-1.5 bg-[#1a1a1a] rounded-full mt-1.5 shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -210,7 +210,7 @@ export default function PrivacyPolicyPage() {
             {/* 7. Data Retention */}
             <section>
               <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">7</span>
+                <span className="w-8 h-8 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">7</span>
                 Data Retention
               </h2>
               <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
@@ -221,7 +221,7 @@ export default function PrivacyPolicyPage() {
             {/* 8. Changes to This Policy */}
             <section>
               <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">8</span>
+                <span className="w-8 h-8 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">8</span>
                 Changes to This Policy
               </h2>
               <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
@@ -232,7 +232,7 @@ export default function PrivacyPolicyPage() {
             {/* 9. Contact Us */}
             <section>
               <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">9</span>
+                <span className="w-8 h-8 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">9</span>
                 Contact Us
               </h2>
               <div className="space-y-3 text-sm text-gray-600 leading-relaxed">

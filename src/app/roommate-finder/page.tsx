@@ -13,7 +13,7 @@ function sanitize(str: string, maxLen: number): string {
 }
 
 const gradients = [
-  "bg-[#1B1C15]",
+  "bg-[#1a1a1a]",
   "from-blue-400 to-indigo-500",
   "from-pink-400 to-rose-500",
   "from-emerald-400 to-teal-500",

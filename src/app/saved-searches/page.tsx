@@ -85,7 +85,7 @@ export default function SavedSearchesPage() {
               key={f}
               onClick={() => setFilter(f)}
               className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
-                filter === f ? "bg-[#1B1C15] text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                filter === f ? "bg-[#1a1a1a] text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"
               }`}
             >
               {f.charAt(0).toUpperCase() + f.slice(1)}
@@ -108,7 +108,7 @@ export default function SavedSearchesPage() {
             </p>
             <Link
               href="/"
-              className="px-6 py-3 bg-[#1B1C15] text-white rounded-xl font-semibold text-sm inline-block"
+              className="px-6 py-3 bg-[#1a1a1a] text-white rounded-xl font-semibold text-sm inline-block"
             >
               Browse PGs
             </Link>
@@ -153,7 +153,7 @@ export default function SavedSearchesPage() {
 
                   <Link
                     href={`/?area=${search.criteria.area || ""}&minPrice=${search.criteria.minPrice || 0}&maxPrice=${search.criteria.maxPrice || 50000}`}
-                    className="px-4 py-2 bg-[#1B1C15] text-white rounded-xl text-xs font-semibold hover:bg-[#2d2e25] transition"
+                    className="px-4 py-2 bg-[#1a1a1a] text-white rounded-xl text-xs font-semibold hover:bg-[#333333] transition"
                   >
                     Search →
                   </Link>

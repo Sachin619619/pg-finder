@@ -70,7 +70,7 @@ export default function ListYourPGPage() {
             <p className="text-sm text-gray-500 mb-8">
               📞 If you have questions, call us at <strong>+91 98765 43210</strong>
             </p>
-            <Link href="/" className="px-6 py-3 bg-[#1B1C15] text-white rounded-xl font-semibold inline-block">
+            <Link href="/" className="px-6 py-3 bg-[#1a1a1a] text-white rounded-xl font-semibold inline-block">
               Back to Home
             </Link>
           </div>
@@ -84,7 +84,7 @@ export default function ListYourPGPage() {
       <Header />
       <main className="min-h-screen bg-[#FFFAEC]">
         {/* Hero */}
-        <section className="bg-[#1B1C15] text-white py-20 px-4">
+        <section className="bg-[#1a1a1a] text-white py-20 px-4">
           <div className="max-w-3xl mx-auto text-center">
             <div className="text-5xl mb-4">🏠</div>
             <h1 className="text-3xl sm:text-4xl font-bold mb-4">List Your PG on Castle</h1>
@@ -136,7 +136,7 @@ export default function ListYourPGPage() {
         <section className="py-16 px-4">
           <div className="max-w-xl mx-auto">
             <div className="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
-              <div className="bg-[#1B1C15] text-white px-6 py-5">
+              <div className="bg-[#1a1a1a] text-white px-6 py-5">
                 <h2 className="text-lg font-bold">Get Started — Tell Us About Your PG</h2>
                 <p className="text-white/60 text-sm mt-1">Fill this form and we&apos;ll reach out within 24 hours</p>
               </div>
@@ -150,7 +150,7 @@ export default function ListYourPGPage() {
                       value={formData.name}
                       onChange={e => setFormData({ ...formData, name: e.target.value })}
                       placeholder="Sunrise PG for Men"
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#1B1C15] transition-colors"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#1a1a1a] transition-colors"
                     />
                   </div>
                   <div>
@@ -160,7 +160,7 @@ export default function ListYourPGPage() {
                       value={formData.ownerName}
                       onChange={e => setFormData({ ...formData, ownerName: e.target.value })}
                       placeholder="Rajesh Kumar"
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#1B1C15] transition-colors"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#1a1a1a] transition-colors"
                     />
                   </div>
                 </div>
@@ -173,7 +173,7 @@ export default function ListYourPGPage() {
                       value={formData.phone}
                       onChange={e => setFormData({ ...formData, phone: e.target.value })}
                       placeholder="+91 98765 43210"
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#1B1C15] transition-colors"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#1a1a1a] transition-colors"
                     />
                   </div>
                   <div>
@@ -183,7 +183,7 @@ export default function ListYourPGPage() {
                       value={formData.email}
                       onChange={e => setFormData({ ...formData, email: e.target.value })}
                       placeholder="rajesh@example.com"
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#1B1C15] transition-colors"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#1a1a1a] transition-colors"
                     />
                   </div>
                 </div>
@@ -194,7 +194,7 @@ export default function ListYourPGPage() {
                     <select
                       value={formData.area}
                       onChange={e => setFormData({ ...formData, area: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#1B1C15] transition-colors"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#1a1a1a] transition-colors"
                     >
                       <option value="">Select area</option>
                       {["Kalyan Nagar", "Bellandur", "HSR Layout", "Koramangala", "Indiranagar", "Whitefield", "Marathahalli", "BTM Layout", "Electronic City", "JP Nagar", "Jayanagar", "Hebbal"].map(a => (
@@ -207,7 +207,7 @@ export default function ListYourPGPage() {
                     <select
                       value={formData.type}
                       onChange={e => setFormData({ ...formData, type: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#1B1C15] transition-colors"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#1a1a1a] transition-colors"
                     >
                       <option value="">Select type</option>
                       <option value="boys">Boys Only</option>
@@ -224,7 +224,7 @@ export default function ListYourPGPage() {
                     value={formData.address}
                     onChange={e => setFormData({ ...formData, address: e.target.value })}
                     placeholder="Near Wipro Park, Outer Ring Road"
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#1B1C15] transition-colors"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#1a1a1a] transition-colors"
                   />
                 </div>
 
@@ -236,7 +236,7 @@ export default function ListYourPGPage() {
                       value={formData.price}
                       onChange={e => setFormData({ ...formData, price: e.target.value })}
                       placeholder="8000"
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#1B1C15] transition-colors"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#1a1a1a] transition-colors"
                     />
                   </div>
                   <div>
@@ -246,7 +246,7 @@ export default function ListYourPGPage() {
                       value={formData.rooms}
                       onChange={e => setFormData({ ...formData, rooms: e.target.value })}
                       placeholder="10"
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#1B1C15] transition-colors"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#1a1a1a] transition-colors"
                     />
                   </div>
                 </div>
@@ -254,7 +254,7 @@ export default function ListYourPGPage() {
                 <button
                   onClick={handleSubmit}
                   disabled={!formData.name || !formData.phone || !formData.ownerName || !formData.area}
-                  className="w-full py-4 bg-[#1B1C15] text-white rounded-xl font-semibold text-sm hover:bg-[#2d2e25] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full py-4 bg-[#1a1a1a] text-white rounded-xl font-semibold text-sm hover:bg-[#333333] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Submit Listing Request →
                 </button>

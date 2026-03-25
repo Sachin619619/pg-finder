@@ -17,7 +17,7 @@ const faqData: FAQSection[] = [
   {
     title: "For Tenants",
     emoji: "🏠",
-    gradient: "from-[#1B1C15] to-[#2a2b22]",
+    gradient: "from-[#1a1a1a] to-[#2a2b22]",
     items: [
       {
         question: "How do I search for a PG on Castle?",
@@ -54,7 +54,7 @@ const faqData: FAQSection[] = [
   {
     title: "For Owners",
     emoji: "🔑",
-    gradient: "bg-[#1B1C15]",
+    gradient: "bg-[#1a1a1a]",
     items: [
       {
         question: "How do I list my PG on Castle?",
@@ -147,7 +147,7 @@ function AccordionItem({ item, isOpen, onToggle }: { item: FAQItem; isOpen: bool
         <span
           className={`flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center transition-all duration-300 ${
             isOpen
-              ? "bg-[#1B1C15] text-white rotate-180"
+              ? "bg-[#1a1a1a] text-white rotate-180"
               : "bg-gray-100 text-gray-400"
           }`}
         >
@@ -236,7 +236,7 @@ export default function FAQPage() {
 
           {/* Still have questions */}
           <div className="mt-12 premium-card !rounded-2xl p-8 sm:p-10 text-center">
-            <div className="w-14 h-14 bg-[#1B1C15] rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg shadow-black/20">
+            <div className="w-14 h-14 bg-[#1a1a1a] rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg shadow-black/20">
               <span className="text-2xl">💬</span>
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-2">Still have questions?</h3>
@@ -245,7 +245,7 @@ export default function FAQPage() {
             </p>
             <a
               href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#1B1C15] text-white text-sm font-semibold rounded-2xl shadow-lg shadow-black/20 hover:shadow-black/20 hover:scale-[1.02] transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#1a1a1a] text-white text-sm font-semibold rounded-2xl shadow-lg shadow-black/20 hover:shadow-black/20 hover:scale-[1.02] transition-all"
             >
               Contact Us
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>

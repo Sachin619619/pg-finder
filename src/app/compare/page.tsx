@@ -33,7 +33,7 @@ export default function ComparePage() {
           <div className="text-6xl mb-4">⚖️</div>
           <h1 className="text-2xl font-bold text-gray-900 mb-3">Compare PG Listings</h1>
           <p className="text-gray-500 mb-8">Add at least 2 PGs to compare them side by side.</p>
-          <Link href="/" className="px-6 py-3 bg-[#1B1C15] text-white rounded-xl font-semibold inline-block">
+          <Link href="/" className="px-6 py-3 bg-[#1a1a1a] text-white rounded-xl font-semibold inline-block">
             Browse PGs
           </Link>
         </main>
@@ -173,7 +173,7 @@ export default function ComparePage() {
 
                   <Link
                     href={`/listing/${pg.id}`}
-                    className="w-full mt-4 py-2.5 bg-[#1B1C15] text-white rounded-xl text-xs font-semibold text-center block hover:bg-[#2d2e25] transition"
+                    className="w-full mt-4 py-2.5 bg-[#1a1a1a] text-white rounded-xl text-xs font-semibold text-center block hover:bg-[#333333] transition"
                   >
                     View Details →
                   </Link>
@@ -372,7 +372,7 @@ export default function ComparePage() {
                     <td key={pg.id} className="p-4 text-center">
                       <Link
                         href={`/booking/${pg.id}`}
-                        className="px-5 py-2.5 bg-[#1B1C15] text-white rounded-xl text-sm font-semibold hover:bg-[#2d2e25] transition inline-block"
+                        className="px-5 py-2.5 bg-[#1a1a1a] text-white rounded-xl text-sm font-semibold hover:bg-[#333333] transition inline-block"
                       >
                         Book Now
                       </Link>

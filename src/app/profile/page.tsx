@@ -45,7 +45,7 @@ export default function ProfilePage() {
       <>
         <Header />
         <main className="min-h-screen pt-28 pb-16 px-4 flex items-center justify-center">
-          <div className="animate-spin w-8 h-8 border-3 border-[#1B1C15] border-t-transparent rounded-full" />
+          <div className="animate-spin w-8 h-8 border-3 border-[#1a1a1a] border-t-transparent rounded-full" />
         </main>
       </>
     );
@@ -142,10 +142,10 @@ export default function ProfilePage() {
               <img
                 src={profile.avatar}
                 alt={profile.name}
-                className="w-24 h-24 rounded-2xl mx-auto object-cover shadow-lg shadow-black/20 border-2 border-[#1B1C15]/20"
+                className="w-24 h-24 rounded-2xl mx-auto object-cover shadow-lg shadow-black/20 border-2 border-[#1a1a1a]/20"
               />
             ) : (
-              <div className="w-24 h-24 rounded-2xl mx-auto bg-[#1B1C15] flex items-center justify-center shadow-lg shadow-black/20">
+              <div className="w-24 h-24 rounded-2xl mx-auto bg-[#1a1a1a] flex items-center justify-center shadow-lg shadow-black/20">
                 <span className="text-4xl font-bold text-white">{initial}</span>
               </div>
             )}
@@ -164,7 +164,7 @@ export default function ProfilePage() {
               </span>
             </div>
             {profile.currentPgId && profile.role === "tenant" && (
-              <div className="mt-4 p-3 rounded-xl bg-[#1B1C15]/10 border border-[#1B1C15]/20">
+              <div className="mt-4 p-3 rounded-xl bg-[#1a1a1a]/10 border border-[#1a1a1a]/20">
                 <p className="text-xs text-gray-400 mb-1">Current PG</p>
                 <button
                   onClick={() => router.push(`/listing/${profile.currentPgId}`)}

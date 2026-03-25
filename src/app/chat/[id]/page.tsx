@@ -101,7 +101,7 @@ export default function ChatPage() {
       <main className="max-w-3xl mx-auto px-4 pt-24 pb-4 flex flex-col" style={{ height: "100vh" }}>
         {/* Chat header */}
         <div className="premium-card !rounded-2xl p-4 mb-4 flex items-center gap-4">
-          <div className="w-12 h-12 bg-[#1B1C15] rounded-xl flex items-center justify-center">
+          <div className="w-12 h-12 bg-[#1a1a1a] rounded-xl flex items-center justify-center">
             <span className="text-white font-bold text-lg">🏠</span>
           </div>
           <div className="flex-1">
@@ -127,7 +127,7 @@ export default function ChatPage() {
               <div key={msg.id} className={`flex ${isMine ? "justify-end" : "justify-start"}`}>
                 <div className={`max-w-[75%] p-4 rounded-2xl ${
                   isMine
-                    ? "bg-[#1B1C15] text-white rounded-br-md"
+                    ? "bg-[#1a1a1a] text-white rounded-br-md"
                     : "bg-white text-gray-900 shadow-sm border border-gray-100 rounded-bl-md"
                 }`}>
                   {!isMine && <p className="text-xs font-semibold text-[#1a1a1a] mb-1">{msg.sender_name}</p>}
@@ -150,7 +150,7 @@ export default function ChatPage() {
             onChange={(e) => setNewMsg(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && sendMessage()}
             placeholder="Type a message..."
-            className="flex-1 bg-gray-50 border-0 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-[#1B1C15]/20 outline-none"
+            className="flex-1 bg-gray-50 border-0 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-[#1a1a1a]/20 outline-none"
           />
           <button
             onClick={sendMessage}

@@ -196,7 +196,7 @@ export default function BookingPage() {
                       key={t}
                       onClick={() => setRoomType(t)}
                       className={`p-3 rounded-xl border-2 text-sm font-medium capitalize transition-all ${
-                        roomType === t ? "border-[#1B1C15] bg-gray-100 text-[#1a1a1a]" : "border-gray-200 text-gray-600"
+                        roomType === t ? "border-[#1a1a1a] bg-gray-100 text-[#1a1a1a]" : "border-gray-200 text-gray-600"
                       }`}
                     >
                       {t === "single" ? "🛏️ " : t === "double" ? "🛏️🛏️ " : "🛏️🛏️🛏️ "}

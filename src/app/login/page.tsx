@@ -178,9 +178,9 @@ export default function LoginPage() {
                     onKeyDown={(e) => handleOtpKeyDown(i, e)}
                     className={`w-11 h-12 text-center text-xl font-bold rounded-xl border-2 outline-none transition-all ${
                       digit
-                        ? "border-[#1B1C15] bg-gray-100 text-[#1a1a1a]"
+                        ? "border-[#1a1a1a] bg-gray-100 text-[#1a1a1a]"
                         : "border-gray-200 bg-white text-gray-900"
-                    } focus:border-[#1B1C15] focus:ring-2 focus:ring-[#1B1C15]/20`}
+                    } focus:border-[#1a1a1a] focus:ring-2 focus:ring-[#1a1a1a]/20`}
                     autoFocus={i === 0}
                   />
                 ))}
@@ -245,7 +245,7 @@ export default function LoginPage() {
       <main className="min-h-screen flex items-center justify-center px-4 pt-20">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-[#1B1C15] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-black/20">
+            <div className="w-16 h-16 bg-[#1a1a1a] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-black/20">
               <span className="text-white text-2xl font-bold">P</span>
             </div>
             <h1 className="text-3xl font-extrabold text-gray-900">Welcome back 👋</h1>

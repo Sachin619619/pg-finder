@@ -44,7 +44,7 @@ export default function TermsOfServicePage() {
             {/* 1. Platform Overview */}
             <section>
               <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">1</span>
+                <span className="w-8 h-8 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">1</span>
                 Platform Overview
               </h2>
               <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
@@ -56,7 +56,7 @@ export default function TermsOfServicePage() {
             {/* 2. User Accounts & Roles */}
             <section>
               <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">2</span>
+                <span className="w-8 h-8 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">2</span>
                 User Accounts &amp; Roles
               </h2>
               <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
@@ -88,7 +88,7 @@ export default function TermsOfServicePage() {
                       <ul className="space-y-1.5">
                         {r.items.map((item) => (
                           <li key={item} className="flex items-start gap-2 text-xs text-gray-500">
-                            <span className="w-1 h-1 bg-[#1B1C15] rounded-full mt-1.5 shrink-0" />
+                            <span className="w-1 h-1 bg-[#1a1a1a] rounded-full mt-1.5 shrink-0" />
                             {item}
                           </li>
                         ))}
@@ -103,7 +103,7 @@ export default function TermsOfServicePage() {
             {/* 3. Listing Guidelines */}
             <section>
               <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">3</span>
+                <span className="w-8 h-8 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">3</span>
                 Listing Guidelines
               </h2>
               <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
@@ -120,7 +120,7 @@ export default function TermsOfServicePage() {
                     "Duplicate listings for the same property are not allowed",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2.5">
-                      <span className="w-1.5 h-1.5 bg-[#1B1C15] rounded-full mt-1.5 shrink-0" />
+                      <span className="w-1.5 h-1.5 bg-[#1a1a1a] rounded-full mt-1.5 shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -132,7 +132,7 @@ export default function TermsOfServicePage() {
             {/* 4. Reviews & Ratings Policy */}
             <section>
               <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">4</span>
+                <span className="w-8 h-8 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">4</span>
                 Reviews &amp; Ratings Policy
               </h2>
               <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
@@ -148,7 +148,7 @@ export default function TermsOfServicePage() {
                     "Users who repeatedly post fraudulent reviews may have their accounts suspended",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2.5">
-                      <span className="w-1.5 h-1.5 bg-[#1B1C15] rounded-full mt-1.5 shrink-0" />
+                      <span className="w-1.5 h-1.5 bg-[#1a1a1a] rounded-full mt-1.5 shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -159,7 +159,7 @@ export default function TermsOfServicePage() {
             {/* 5. Acceptable Use */}
             <section>
               <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">5</span>
+                <span className="w-8 h-8 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">5</span>
                 Acceptable Use
               </h2>
               <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
@@ -176,7 +176,7 @@ export default function TermsOfServicePage() {
                     "Use the platform to harass, threaten, or discriminate against other users",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2.5">
-                      <span className="w-1.5 h-1.5 bg-[#1B1C15] rounded-full mt-1.5 shrink-0" />
+                      <span className="w-1.5 h-1.5 bg-[#1a1a1a] rounded-full mt-1.5 shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -187,7 +187,7 @@ export default function TermsOfServicePage() {
             {/* 6. Account Termination */}
             <section>
               <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">6</span>
+                <span className="w-8 h-8 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">6</span>
                 Account Termination
               </h2>
               <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
@@ -202,7 +202,7 @@ export default function TermsOfServicePage() {
                     "We are required to do so by law or legal process",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2.5">
-                      <span className="w-1.5 h-1.5 bg-[#1B1C15] rounded-full mt-1.5 shrink-0" />
+                      <span className="w-1.5 h-1.5 bg-[#1a1a1a] rounded-full mt-1.5 shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -214,7 +214,7 @@ export default function TermsOfServicePage() {
             {/* 7. Limitation of Liability */}
             <section>
               <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">7</span>
+                <span className="w-8 h-8 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">7</span>
                 Limitation of Liability
               </h2>
               <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
@@ -243,7 +243,7 @@ export default function TermsOfServicePage() {
             {/* 8. Dispute Resolution */}
             <section>
               <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">8</span>
+                <span className="w-8 h-8 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">8</span>
                 Dispute Resolution
               </h2>
               <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
@@ -257,7 +257,7 @@ export default function TermsOfServicePage() {
                     "The courts of Bangalore, Karnataka shall have exclusive jurisdiction over any legal proceedings",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2.5">
-                      <span className="w-1.5 h-1.5 bg-[#1B1C15] rounded-full mt-1.5 shrink-0" />
+                      <span className="w-1.5 h-1.5 bg-[#1a1a1a] rounded-full mt-1.5 shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -268,7 +268,7 @@ export default function TermsOfServicePage() {
             {/* 9. Intellectual Property */}
             <section>
               <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">9</span>
+                <span className="w-8 h-8 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">9</span>
                 Intellectual Property
               </h2>
               <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
@@ -280,7 +280,7 @@ export default function TermsOfServicePage() {
             {/* 10. Changes to Terms */}
             <section>
               <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">10</span>
+                <span className="w-8 h-8 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">10</span>
                 Changes to These Terms
               </h2>
               <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
@@ -291,7 +291,7 @@ export default function TermsOfServicePage() {
             {/* 11. Contact */}
             <section>
               <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-[#1B1C15] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">11</span>
+                <span className="w-8 h-8 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-md">11</span>
                 Contact Us
               </h2>
               <div className="space-y-3 text-sm text-gray-600 leading-relaxed">

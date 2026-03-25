@@ -570,7 +570,7 @@ export default function OwnerDashboard() {
             <button
               onClick={handleClaim}
               disabled={claiming || !claimInput.trim()}
-              className="px-5 py-2.5 bg-[#1B1C15] text-white rounded-xl text-sm font-semibold hover:bg-[#2a2b22] transition disabled:opacity-50 shrink-0"
+              className="px-5 py-2.5 bg-[#1a1a1a] text-white rounded-xl text-sm font-semibold hover:bg-[#2a2b22] transition disabled:opacity-50 shrink-0"
             >
               {claiming ? "Claiming..." : "Claim"}
             </button>
@@ -625,7 +625,7 @@ export default function OwnerDashboard() {
                   {callbacks.slice(0, 5).map((inq) => (
                     <div key={inq.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-[#1B1C15] rounded-full flex items-center justify-center text-white font-bold text-sm">
+                        <div className="w-10 h-10 bg-[#1a1a1a] rounded-full flex items-center justify-center text-white font-bold text-sm">
                           {inq.name.charAt(0)}
                         </div>
                         <div>
@@ -1012,7 +1012,7 @@ export default function OwnerDashboard() {
                 {callbacks.map((inq) => (
                   <div key={inq.id} className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-gray-50 transition">
                     <div className="flex items-center gap-3 min-w-0">
-                      <div className="w-10 h-10 bg-[#1B1C15] rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0">
+                      <div className="w-10 h-10 bg-[#1a1a1a] rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0">
                         {inq.name.charAt(0)}
                       </div>
                       <div className="min-w-0">
@@ -1056,7 +1056,7 @@ export default function OwnerDashboard() {
                       <span className="font-medium text-gray-900">{count} PGs</span>
                     </div>
                     <div className="h-2 bg-gray-100 rounded-full">
-                      <div className="h-full rounded-full bg-[#1B1C15]" style={{ width: `${(count / listings.length) * 100}%` }} />
+                      <div className="h-full rounded-full bg-[#1a1a1a]" style={{ width: `${(count / listings.length) * 100}%` }} />
                     </div>
                   </div>
                 ))}
@@ -1097,7 +1097,7 @@ export default function OwnerDashboard() {
                     return (
                       <div key={day} className="flex-1 flex flex-col items-center gap-2">
                         <div
-                          className="w-full bg-[#1B1C15] rounded-t-lg transition-all hover:opacity-80"
+                          className="w-full bg-[#1a1a1a] rounded-t-lg transition-all hover:opacity-80"
                           style={{ height: `${pct}%` }}
                         />
                         <span className="text-[10px] text-gray-400">{day}</span>
@@ -1126,7 +1126,7 @@ export default function OwnerDashboard() {
 
               {editFetching ? (
                 <div className="flex items-center justify-center py-20">
-                  <div className="animate-spin w-8 h-8 border-4 border-[#1B1C15] border-t-transparent rounded-full" />
+                  <div className="animate-spin w-8 h-8 border-4 border-[#1a1a1a] border-t-transparent rounded-full" />
                 </div>
               ) : editForm ? (
                 <div className="p-6 space-y-5">
@@ -1153,7 +1153,7 @@ export default function OwnerDashboard() {
                               type="checkbox"
                               checked={room.available}
                               onChange={(e) => updateRoomOption(idx, "available", e.target.checked)}
-                              className="w-4 h-4 rounded border-gray-300 text-[#1a1a1a] focus:ring-[#1B1C15]/20"
+                              className="w-4 h-4 rounded border-gray-300 text-[#1a1a1a] focus:ring-[#1a1a1a]/20"
                             />
                             <span className="text-sm font-medium text-gray-700 capitalize">{room.type}</span>
                           </label>

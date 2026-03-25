@@ -288,7 +288,7 @@ export default async function AreaPage({ params }: Props) {
         </nav>
 
         {/* ── Hero Section ── */}
-        <div className="bg-[#1B1C15] rounded-2xl p-8 sm:p-10 text-white mb-8 relative overflow-hidden">
+        <div className="bg-[#1a1a1a] rounded-2xl p-8 sm:p-10 text-white mb-8 relative overflow-hidden">
           {/* Subtle gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-[#2B2C25]/50 to-transparent pointer-events-none" />
           <div className="relative z-10">
@@ -335,7 +335,7 @@ export default async function AreaPage({ params }: Props) {
         <AreaPageContent listings={areaListings} />
 
         {/* ── Area Info Card ── */}
-        <div className="bg-white rounded-2xl border border-[#E8E0CC] p-8 mb-8 shadow-sm">
+        <div className="bg-white rounded-2xl border border-[black/5] p-8 mb-8 shadow-sm">
           <h2 className="text-2xl font-bold text-[#1a1a1a] mb-4">About {area}, Bangalore</h2>
           <p className="text-gray-600 leading-relaxed mb-6">
             {info.description}
@@ -348,7 +348,7 @@ export default async function AreaPage({ params }: Props) {
               <ul className="space-y-2">
                 {info.landmarks.map((lm) => (
                   <li key={lm} className="flex items-center gap-2 text-sm text-gray-700">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#1B1C15] shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#1a1a1a] shrink-0" />
                     {lm}
                   </li>
                 ))}
@@ -379,7 +379,7 @@ export default async function AreaPage({ params }: Props) {
               <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Popular For</h3>
               <div className="flex flex-wrap gap-2">
                 {info.popularFor.split(", ").map((tag) => (
-                  <span key={tag} className="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-medium bg-[#F5F0E1] text-[#1a1a1a] border border-[#E8E0CC]">
+                  <span key={tag} className="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-medium bg-[gray-100] text-[#1a1a1a] border border-[black/5]">
                     {tag}
                   </span>
                 ))}
@@ -389,13 +389,13 @@ export default async function AreaPage({ params }: Props) {
         </div>
 
         {/* ── FAQ Section ── */}
-        <div className="bg-[#FFFAEC] rounded-2xl border border-[#E8E0CC] p-8 mb-8">
+        <div className="bg-[#FFFAEC] rounded-2xl border border-[black/5] p-8 mb-8">
           <h2 className="text-2xl font-bold text-[#1a1a1a] mb-6">
             Frequently Asked Questions about PGs in {area}
           </h2>
           <div className="space-y-4">
             {faqs.map((faq, i) => (
-              <details key={i} className="group bg-white rounded-xl border border-[#E8E0CC] overflow-hidden">
+              <details key={i} className="group bg-white rounded-xl border border-[black/5] overflow-hidden">
                 <summary className="flex items-center justify-between p-5 cursor-pointer select-none hover:bg-[#FDFAF0] transition-colors">
                   <h3 className="text-[15px] font-semibold text-[#1a1a1a] pr-4">{faq.q}</h3>
                   <span className="text-gray-400 group-open:rotate-180 transition-transform duration-200 shrink-0">
