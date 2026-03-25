@@ -21,6 +21,7 @@ import TrendingNow from "@/components/TrendingNow";
 import AIMatchSection from "@/components/AIMatchSection";
 import SaveSearchButton from "@/components/SaveSearchButton";
 import CommunityStats from "@/components/CommunityStats";
+import PGStatsBanner from "@/components/PGStatsBanner";
 import FAQ from "@/components/FAQ";
 import NewsletterSignup from "@/components/NewsletterSignup";
 import Testimonials from "@/components/Testimonials";
@@ -282,6 +283,9 @@ export default function Home() {
         </section>
 
         <FeaturedToday listings={listings} />
+
+        {/* ===== PG STATS BANNER ===== */}
+        <PGStatsBanner />
 
         {/* ===== TRENDING NOW ===== */}
         <TrendingNow />
