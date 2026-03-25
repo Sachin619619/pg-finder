@@ -51,21 +51,21 @@ export default function CastleScoreCalculator() {
   };
 
   if (result !== null) {
-    const tier = result >= 90 ? { label: "Castle Platinum", emoji: "🥇", color: "text-slate-700 bg-slate-50 border-slate-300" }
-      : result >= 80 ? { label: "Castle Gold", emoji: "🥈", color: "text-amber-700 bg-amber-50 border-amber-300" }
-      : result >= 70 ? { label: "Castle Silver", emoji: "🥉", color: "text-gray-700 bg-gray-50 border-gray-300" }
-      : { label: "Castle Bronze", emoji: "🏅", color: "text-orange-700 bg-orange-50 border-orange-300" };
+    const tier = result >= 90 ? { label: "Castle Platinum", emoji: "🥇", color: "text-slate-700 bg-slate-50 border-slate-200" }
+      : result >= 80 ? { label: "Castle Gold", emoji: "🥈", color: "text-amber-700 bg-amber-50 border-amber-200" }
+      : result >= 70 ? { label: "Castle Silver", emoji: "🥉", color: "text-gray-700 bg-gray-50 border-gray-200" }
+      : { label: "Castle Bronze", emoji: "🏅", color: "text-orange-700 bg-orange-50 border-orange-200" };
 
     return (
-      <div className="bg-gradient-to-br from-violet-50 to-purple-50 border border-violet-100 rounded-2xl p-6 text-center">
+      <div className="bg-white border border-black/5 rounded-2xl p-6 text-center shadow-sm">
         <div className="text-5xl mb-3">{tier.emoji}</div>
-        <p className="text-5xl font-bold text-violet-900 mb-2">{result}</p>
-        <p className="text-sm text-violet-700 mb-4">Your Castle Score</p>
+        <p className="text-5xl font-bold text-black mb-2">{result}</p>
+        <p className="text-sm text-gray-500 mb-4">Your Castle Score</p>
         <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold border ${tier.color} mb-4`}>
           <span>{tier.emoji}</span>
           <span>{tier.label}</span>
         </div>
-        <p className="text-xs text-violet-600 mb-6">
+        <p className="text-xs text-gray-500 mb-6">
           Based on your lifestyle, budget, and preferred area, we recommend PGs in our{" "}
           <Link href={`/?area=${areaOptions.find(a => a.id === area)?.areas[0]}`} className="font-semibold underline">
             {areaOptions.find(a => a.id === area)?.areas[0]}
@@ -74,7 +74,7 @@ export default function CastleScoreCalculator() {
         </p>
         <button
           onClick={reset}
-          className="px-6 py-3 bg-violet-600 text-white rounded-xl font-semibold text-sm hover:bg-violet-700 transition-colors"
+          className="px-6 py-3 bg-[#1a1a1a] text-white rounded-xl font-semibold text-sm hover:opacity-80 transition-opacity"
         >
           Calculate Again
         </button>
@@ -107,19 +107,19 @@ export default function CastleScoreCalculator() {
   const progress = ((step + 1) / questions.length) * 100;
 
   return (
-    <div className="bg-gradient-to-br from-violet-50 to-purple-50 border border-violet-100 rounded-2xl overflow-hidden">
-      <div className="bg-violet-100 px-5 py-4">
+    <div className="bg-white border border-black/5 rounded-2xl overflow-hidden shadow-sm">
+      <div className="bg-gray-50 px-5 py-4 border-b border-black/5">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-xs font-semibold text-violet-700">Question {step + 1} of {questions.length}</span>
-          <button onClick={reset} className="text-xs text-violet-500 hover:text-violet-700">Reset</button>
+          <span className="text-xs font-semibold text-gray-600">Question {step + 1} of {questions.length}</span>
+          <button onClick={reset} className="text-xs text-gray-400 hover:text-gray-600">Reset</button>
         </div>
-        <div className="w-full bg-violet-200 rounded-full h-2">
-          <div className="h-2 rounded-full bg-violet-600 transition-all duration-500" style={{ width: `${progress}%` }} />
+        <div className="w-full bg-gray-200 rounded-full h-2">
+          <div className="h-2 rounded-full bg-[#1a1a1a] transition-all duration-500" style={{ width: `${progress}%` }} />
         </div>
       </div>
 
       <div className="p-5">
-        <h3 className="text-lg font-bold text-violet-900 mb-4">{currentQ.q}</h3>
+        <h3 className="text-lg font-bold text-black mb-4">{currentQ.q}</h3>
         <div className="space-y-2">
           {currentQ.options.map(opt => (
             <button
@@ -134,8 +134,8 @@ export default function CastleScoreCalculator() {
               }}
               className={`w-full text-left p-4 rounded-xl border-2 transition-all ${
                 currentQ.value === opt.id
-                  ? "border-violet-400 bg-violet-50"
-                  : "border-gray-100 bg-white hover:border-violet-200"
+                  ? "border-black bg-gray-50"
+                  : "border-gray-100 bg-white hover:border-gray-200"
               }`}
             >
               <div className="flex items-center justify-between">

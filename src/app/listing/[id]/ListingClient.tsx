@@ -550,39 +550,8 @@ export default function ListingClient() {
               isOwner={!!user && !!ownerId && user.id === ownerId}
             />
 
-            {/* Sentiment Analysis + Price Prediction + Quality Score */}
-            {reviews.length > 0 && (
-              <SentimentAnalysis reviews={reviews} />
-            )}
-            <PricePrediction
-              area={pg.area}
-              amenities={pg.amenities}
-              furnished={pg.furnished}
-              foodIncluded={pg.foodIncluded}
-              acAvailable={pg.acAvailable}
-              currentPrice={pg.price}
-            />
+            {/* Castle Score */}
             <CastleScore pg={pg} />
-            <QuickStats
-              rating={pg.rating}
-              reviews={pg.reviews}
-              price={pg.price}
-              furnished={pg.furnished}
-              foodIncluded={pg.foodIncluded}
-              acAvailable={pg.acAvailable}
-            />
-            <CastleGuarantee />
-            <ListingQualityScore pg={pg} />
-            <SimilarPGs currentPg={pg} />
-            <PeopleAlsoAsk area={pg.area} />
-            <BookingTimeline />
-            <PGHistory
-              listedDate={pg.availableFrom}
-              lastUpdated={pg.availableFrom}
-              totalViews={Math.floor(Math.random() * 500) + 100}
-              totalInquiries={Math.floor(Math.random() * 50) + 5}
-            />
-            <RentVsBuyCalculator />
           </div>
 
           {/* Right Column — Contact & Price */}

@@ -147,7 +147,7 @@ export default function LoginPage() {
         <main className="min-h-screen flex items-center justify-center px-4 pt-20">
           <div className="w-full max-w-md">
             <div className="text-center mb-8">
-              <div className="w-20 h-20 bg-[#F4EDD9] rounded-3xl flex items-center justify-center mx-auto mb-4">
+              <div className="w-20 h-20 bg-gray-100 rounded-3xl flex items-center justify-center mx-auto mb-4">
                 <span className="text-5xl">📧</span>
               </div>
               <h1 className="text-3xl font-extrabold text-gray-900">Verify Your Email</h1>
@@ -259,13 +259,13 @@ export default function LoginPage() {
               </div>
             )}
             {error && (
-              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-2xl text-sm text-red-600">
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-sm text-red-600">
                 <p>⚠️ {error}</p>
                 {(error.toLowerCase().includes("confirm") || error.toLowerCase().includes("verif")) && (
                   <div className="mt-3 flex gap-2">
                     <button
                       onClick={() => { setShowOtp(true); }}
-                      className="text-[#1B1C15] font-semibold hover:underline text-xs"
+                      className="text-[#1a1a1a] font-semibold hover:underline text-xs"
                     >
                       🔢 Enter verification code
                     </button>
@@ -273,7 +273,7 @@ export default function LoginPage() {
                     <button
                       onClick={handleResend}
                       disabled={resending}
-                      className="text-[#1B1C15] font-semibold hover:underline text-xs"
+                      className="text-[#1a1a1a] font-semibold hover:underline text-xs"
                     >
                       {resending ? "Sending..." : "📧 Resend code"}
                     </button>
@@ -315,7 +315,7 @@ export default function LoginPage() {
               </div>
 
               <div className="flex justify-end">
-                <Link href="/forgot-password" className="text-xs text-[#1B1C15] font-semibold hover:underline">
+                <Link href="/forgot-password" className="text-xs text-[#1a1a1a] font-semibold hover:underline">
                   Forgot password?
                 </Link>
               </div>

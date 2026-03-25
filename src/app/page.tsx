@@ -636,12 +636,12 @@ export default function Home() {
         <FAQ />
 
         {/* ===== FOOTER ===== */}
-        <footer className="bg-[#F4EDD9] text-black/50 pt-20 pb-8 relative">
+        <footer className="bg-white text-black/50 pt-20 pb-8 border-t border-black/5">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="grid grid-cols-1 sm:grid-cols-4 gap-10 mb-16">
               <div className="sm:col-span-2">
                 <div className="flex items-center gap-3 mb-5">
-                  <div className="w-11 h-11 bg-[#1B1C15] rounded-xl flex items-center justify-center">
+                  <div className="w-11 h-11 bg-[#1a1a1a] rounded-xl flex items-center justify-center">
                     <span className="text-white text-lg">🏰</span>
                   </div>
                   <div>
@@ -722,7 +722,7 @@ export default function Home() {
       {/* Floating Cost Calculator Button */}
       <button
         onClick={() => setShowCostCalc(true)}
-        className="fixed bottom-6 right-6 z-40 bg-[#1B1C15] text-white px-5 py-3.5 rounded-2xl font-semibold text-sm shadow-2xl shadow-black/30 hover:shadow-black/40 hover:-translate-y-1 active:translate-y-0 transition-all flex items-center gap-2 group"
+        className="fixed bottom-6 right-6 z-40 bg-[#1a1a1a] text-white px-5 py-3.5 rounded-2xl font-semibold text-sm shadow-lg hover:shadow-xl hover:-translate-y-1 active:translate-y-0 transition-all flex items-center gap-2 group"
         aria-label="Open cost calculator"
       >
         <span className="text-lg group-hover:animate-bounce">💰</span>

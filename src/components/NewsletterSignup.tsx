@@ -23,11 +23,11 @@ export default function NewsletterSignup() {
   };
 
   return (
-    <section className="py-20 bg-[#1B1C15]">
+    <section className="py-20 bg-white border-t border-black/5">
       <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="text-4xl mb-4">📬</div>
-        <h2 className="text-2xl font-bold text-white mb-3">Stay in the Loop</h2>
-        <p className="text-white/50 text-sm mb-8 max-w-md mx-auto">
+        <h2 className="text-2xl font-bold text-black mb-3">Stay in the Loop</h2>
+        <p className="text-gray-500 text-sm mb-8 max-w-md mx-auto">
           Get weekly updates on new PG listings, price drops, and neighborhood insights. No spam — unsubscribe anytime.
         </p>
 
@@ -39,24 +39,24 @@ export default function NewsletterSignup() {
               onChange={e => setEmail(e.target.value)}
               placeholder="your@email.com"
               required
-              className="flex-1 px-5 py-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder:text-white/40 text-sm focus:outline-none focus:border-white/40 transition-colors"
+              className="flex-1 px-5 py-4 rounded-xl bg-gray-50 border border-gray-200 text-black placeholder:text-gray-400 text-sm focus:outline-none focus:border-gray-300 transition-colors"
             />
             <button
               type="submit"
               disabled={submitting}
-              className="px-6 py-4 bg-white text-[#1B1C15] rounded-xl font-semibold text-sm hover:bg-gray-100 transition-colors disabled:opacity-60"
+              className="px-6 py-4 bg-[#1a1a1a] text-white rounded-xl font-semibold text-sm hover:opacity-80 transition-opacity disabled:opacity-60"
             >
               {submitting ? "Subscribing..." : "Subscribe"}
             </button>
           </form>
         ) : (
-          <div className="flex items-center justify-center gap-2 py-4 text-emerald-400">
+          <div className="flex items-center justify-center gap-2 py-4 text-emerald-600">
             <span className="text-2xl">✓</span>
             <span className="font-semibold">You&apos;re subscribed! Check your email.</span>
           </div>
         )}
 
-        <p className="text-white/20 text-xs mt-4">
+        <p className="text-gray-300 text-xs mt-4">
           Join 2,500+ subscribers. We respect your privacy.
         </p>
       </div>
