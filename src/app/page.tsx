@@ -9,6 +9,7 @@ import MapView from "@/components/MapView";
 import PriceInsights from "@/components/PriceInsights";
 import AreaInsights from "@/components/AreaInsights";
 import PGRankings from "@/components/PGRankings";
+import SaveSearchButton from "@/components/SaveSearchButton";
 import Testimonials from "@/components/Testimonials";
 import PriceAlertBanner from "@/components/PriceAlertBanner";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -352,6 +353,18 @@ export default function Home() {
                 <option value="price-high">💎 Price: High to Low</option>
                 <option value="reviews">💬 Most Reviews</option>
               </select>
+              <SaveSearchButton
+                searchCriteria={{
+                  area: filters.area,
+                  minPrice: filters.minPrice,
+                  maxPrice: filters.maxPrice,
+                  gender: filters.gender,
+                  type: filters.roomType,
+                  amenities: filters.amenities,
+                  foodIncluded: filters.foodIncluded ?? undefined,
+                  acAvailable: filters.acAvailable ?? undefined,
+                }}
+              />
             </div>
           </div>
 
