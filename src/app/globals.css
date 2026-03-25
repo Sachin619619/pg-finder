@@ -245,7 +245,7 @@ html, body {
 /* ===== SELECTION ===== */
 ::selection {
   background: rgba(0, 0, 0, 0.1);
-  color: #1B1C15;
+  color: #1a1a1a;
 }
 
 /* ===== HOVER LIFT ===== */
@@ -277,7 +277,7 @@ html, body {
 
 /* ===== TYPEWRITER CURSOR ===== */
 @keyframes blink-cursor {
-  0%, 50% { border-color: #1B1C15; }
+  0%, 50% { border-color: #1a1a1a; }
   51%, 100% { border-color: transparent; }
 }
 
