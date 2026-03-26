@@ -238,9 +238,9 @@ export default function RootLayout({
           </CompareProvider>
         </AuthProvider>
         <script
-          src="https://actionbot-next.vercel.app/widget.js"
-          data-tenant="castle-674545ded691fc48edc66366bc5a754d"
-          data-api="https://actionbot-next.vercel.app"
+          src="https://actionbot-psi.vercel.app/widget.js"
+          data-tenant="a7dea8c407e17aa85cb8a6d117dbf8a6150a9e4b5afc2db34c2a475af99aa8ad"
+          data-api="https://actionbot-psi.vercel.app"
           data-color="#1a1a1a"
         />
       </body>
